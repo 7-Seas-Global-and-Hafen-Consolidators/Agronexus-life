@@ -1,4 +1,4 @@
-import heroBg from '../assets/images/hero-biotech.jpg'
+import heroBg from '../assets/images/hero-bg-3.png'
 import '../styles/Hero.css'
 
 export default function Hero() {
