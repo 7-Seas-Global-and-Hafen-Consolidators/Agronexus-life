@@ -1,0 +1,241 @@
+/* ============================================================
+   AgroNexus.Life — Sistema de Design Global
+   Paleta biotech: azul-marinho profundo + ciano + roxo
+   ============================================================ */
+
+/* ---------- Design Tokens ---------- */
+:root {
+  /* Fundos */
+  --bg: #070b16;
+  --bg-2: #0a0f1f;
+  --surface: #0c1324;
+  --surface-2: #101a30;
+  --surface-hover: #131f3a;
+
+  /* Bordas */
+  --border: rgba(95, 220, 226, 0.12);
+  --border-strong: rgba(95, 220, 226, 0.32);
+  --border-purple: rgba(124, 92, 252, 0.3);
+
+  /* Acentos */
+  --cyan: #22d3d8;
+  --cyan-bright: #3ce4ea;
+  --cyan-dim: #1aa3a8;
+  --purple: #7c5cfc;
+  --purple-bright: #9b80ff;
+
+  /* Texto */
+  --text: #eef3fb;
+  --text-dim: #9aa6bc;
+  --text-faint: #5e6a82;
+
+  /* Glows */
+  --glow-cyan: 0 0 40px rgba(34, 211, 216, 0.35);
+  --glow-cyan-soft: 0 0 60px rgba(34, 211, 216, 0.12);
+  --glow-purple: 0 0 40px rgba(124, 92, 252, 0.3);
+
+  /* Tipografia */
+  --font-display: 'Space Grotesk', 'Segoe UI', sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
+
+  /* Layout */
+  --container: 1180px;
+  --radius: 16px;
+  --radius-sm: 10px;
+  --nav-h: 86px;
+
+  /* Transições */
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
+}
+
+/* ---------- Reset ---------- */
+*,
+*::before,
+*::after {
+  box-sizing: border-box;
+  margin: 0;
+  padding: 0;
+}
+
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: var(--nav-h);
+  -webkit-text-size-adjust: 100%;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--bg);
+  color: var(--text);
+  line-height: 1.6;
+  -webkit-font-smoothing: antialiased;
+  -moz-osx-font-smoothing: grayscale;
+  overflow-x: hidden;
+}
+
+img {
+  max-width: 100%;
+  display: block;
+}
+
+a {
+  color: inherit;
+  text-decoration: none;
+}
+
+button,
+input,
+textarea {
+  font-family: inherit;
+  font-size: inherit;
+  color: inherit;
+}
+
+ul {
+  list-style: none;
+}
+
+/* ---------- Tipografia ---------- */
+h1,
+h2,
+h3,
+h4 {
+  font-family: var(--font-display);
+  font-weight: 700;
+  line-height: 1.05;
+  letter-spacing: -0.01em;
+}
+
+/* ---------- Utilitários ---------- */
+.container {
+  width: 100%;
+  max-width: var(--container);
+  margin-inline: auto;
+  padding-inline: 24px;
+}
+
+.section {
+  padding-block: clamp(64px, 9vw, 120px);
+  position: relative;
+}
+
+/* Eyebrow: rótulo pequeno com traço e tracking largo */
+.eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  font-weight: 500;
+  letter-spacing: 0.28em;
+  text-transform: uppercase;
+  color: var(--cyan);
+}
+.eyebrow::before {
+  content: '';
+  width: 28px;
+  height: 1.5px;
+  background: var(--cyan);
+}
+.eyebrow.center {
+  justify-content: center;
+}
+
+/* Variante roxo-azulada (usada em "Fale Conosco", igual à referência) */
+.eyebrow--purple {
+  color: #8b7bf5;
+}
+.eyebrow--purple::before {
+  background: linear-gradient(90deg, #5b53c8, #8060f0);
+  width: 40px;
+  height: 2px;
+}
+
+/* Texto com destaque ciano / roxo */
+.hl-cyan {
+  color: var(--cyan);
+}
+.hl-purple {
+  color: var(--purple);
+}
+
+/* Botões */
+.btn {
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 10px;
+  font-family: var(--font-display);
+  font-weight: 600;
+  font-size: 0.82rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  padding: 15px 28px;
+  border-radius: var(--radius-sm);
+  border: 1px solid transparent;
+  cursor: pointer;
+  transition: all 0.3s var(--ease);
+  white-space: nowrap;
+}
+
+.btn-primary {
+  background: var(--cyan);
+  color: #04141a;
+  box-shadow: var(--glow-cyan-soft);
+}
+.btn-primary:hover {
+  background: var(--cyan-bright);
+  box-shadow: var(--glow-cyan);
+  transform: translateY(-2px);
+}
+
+.btn-outline {
+  background: transparent;
+  color: var(--cyan);
+  border-color: var(--border-strong);
+}
+.btn-outline:hover {
+  border-color: var(--cyan);
+  background: rgba(34, 211, 216, 0.08);
+  box-shadow: var(--glow-cyan-soft);
+}
+
+.btn .arrow {
+  transition: transform 0.3s var(--ease);
+}
+.btn:hover .arrow {
+  transform: translateX(4px);
+}
+
+/* ---------- Animação de revelação no scroll ---------- */
+.reveal {
+  opacity: 0;
+  transform: translateY(32px);
+  transition: opacity 0.7s var(--ease), transform 0.7s var(--ease);
+}
+.reveal.is-visible {
+  opacity: 1;
+  transform: none;
+}
+
+@media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+  .reveal {
+    opacity: 1;
+    transform: none;
+    transition: none;
+  }
+  * {
+    animation-duration: 0.001ms !important;
+    transition-duration: 0.001ms !important;
+  }
+}
+
+/* ---------- Acessibilidade: foco visível ---------- */
+:focus-visible {
+  outline: 2px solid var(--cyan);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
