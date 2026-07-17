@@ -22,14 +22,11 @@ export default function Hero() {
 </h1>
 
           <p className="hero__lead">
-            <p className="hero__lead">
   Conectando biodiversidade, genética, produção sustentável e logística especializada
   para criar soluções globais entre origem e destino.
 </p>
-          </p>
 
-          <p className="hero__tagline">
-            <p className="hero__tagline">
+<p className="hero__tagline">
   Onde a <span className="hl-cyan">vida</span> encontra a{' '}
   <span className="hl-purple">conexão global.</span>
 </p>
