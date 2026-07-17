@@ -8,9 +8,8 @@ const CARDS = [
     icons: [icons.ship, icons.airplane, icons.truck],
     title: 'Conexões Globais para Biodiversidade',
 
-text: 'Soluções integradas para conectar espécies, genética, produtores e mercados internacionais com rastreabilidade, segurança e responsabilidade.'
-    accent: 'cyan',
-  },
+text: 'Soluções integradas para conectar espécies, genética, produtores e mercados internacionais com rastreabilidade, segurança e responsabilidade.',
+accent: 'cyan',  },
   {
     icons: [icons.leaf],
     title: 'Ecossistemas Vegetais e Aquáticos',
