@@ -14,22 +14,22 @@ export default function Hero() {
 
       <div className="container hero__inner">
         <div className="hero__content reveal is-visible">
-          <span className="eyebrow">Biotecnologia + Logística</span>
+          <span className="eyebrow">Biodiversidade + Logística Global</span>
 
           <h1 className="hero__title">
-            Soluções inteligentes para cadeias de suprimentos{' '}
-            <span className="hl-cyan">animal e vegetal.</span>
-          </h1>
+  Soluções inteligentes para cadeias de valor{' '}
+  <span className="hl-cyan">animal e vegetal.</span>
+</h1>
 
           <p className="hero__lead">
-            Integrando o transporte especializado de animais e vegetais na logística avançada
-            para superar desafios de falta de fretes globais.
-          </p>
+  Conectando biodiversidade, genética, produção sustentável e logística especializada
+  para criar soluções globais entre origem e destino.
+</p>
 
-          <p className="hero__tagline">
-            Onde a <span className="hl-cyan">biologia</span> encontra a{' '}
-            <span className="hl-purple">logística.</span>
-          </p>
+<p className="hero__tagline">
+  Onde a <span className="hl-cyan">vida</span> encontra a{' '}
+  <span className="hl-purple">conexão global.</span>
+</p>
 
           <a href="#missao" className="btn btn-outline hero__cta" onClick={(e) => scrollTo(e, '#missao')}>
             Explore o Agro Nexus
