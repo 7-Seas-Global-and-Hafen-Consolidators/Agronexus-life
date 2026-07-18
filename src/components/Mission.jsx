@@ -5,21 +5,21 @@ import '../styles/Mission.css'
 
 const CARDS = [
   {
-    icons: [icons.ship, icons.airplane, icons.truck],
-    title: 'Conexões Globais para Biodiversidade',
-    text: 'Soluções integradas para conectar espécies, genética, produtores e mercados internacionais com rastreabilidade, segurança e responsabilidade.',
+    icons: [icons.leaf, icons.flask],
+    title: 'Biodiversidade Global',
+    text: 'Conectamos espécies, genética e conhecimento científico para criar pontes responsáveis entre ecossistemas, instituições e mercados internacionais.',
     accent: 'cyan',
   },
   {
-    icons: [icons.leaf],
-    title: 'Ecossistemas Vegetais e Aquáticos',
-    text: 'Suporte especializado para plantas ornamentais, organismos aquáticos e biodiversidade vegetal através de cadeias responsáveis e controladas.',
+    icons: [icons.flask, icons.leaf],
+    title: 'Genética e Desenvolvimento Sustentável',
+    text: 'Soluções baseadas em pesquisa, conservação e valorização de variedades animais e vegetais de importância estratégica.',
     accent: 'cyan',
   },
   {
     icons: [icons.paw, icons.bird],
-    title: 'Bem-estar Animal e Conservação',
-    text: 'Soluções responsáveis para espécies legalizadas, criadores conscientes e projetos de conservação, sempre priorizando o cuidado animal.',
+    title: 'Logística Especializada Global',
+    text: 'Infraestrutura internacional para conectar origem e destino com segurança, rastreabilidade e cuidado especializado para organismos vivos.',
     accent: 'cyan',
   },
 ]
@@ -32,8 +32,8 @@ export default function Mission() {
           <span className="eyebrow center">Nossa Missão</span>
 
           <h2 className="mission__title">
-            No nexo da biodiversidade <br />
-            <span className="hl-cyan">animal e vegetal</span>
+            No nexo entre biodiversidade <br />
+            <span className="hl-cyan">ciência e conexão global</span>
           </h2>
         </Reveal>
 
