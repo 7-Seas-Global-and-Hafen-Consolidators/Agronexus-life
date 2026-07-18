@@ -1,33 +1,24 @@
 import ServiceCard from './ServiceCard'
 import Dashboard from './Dashboard'
 import Reveal from './Reveal'
-import icons from '../assets/icons'
 import '../styles/Portfolio.css'
 
 const SOLUTIONS = [
   {
-    icons: [icons.flask],
     title: 'Biotecnologia e Genética',
     text: 'Estratégias e conhecimento aplicado para genética, melhoramento e desenvolvimento sustentável de espécies animais e vegetais.',
-    accent: 'cyan',
   },
   {
-    icons: [icons.shield],
     title: 'Conservação e Compliance Global',
     text: 'Estruturas responsáveis para conectar criadores, produtores, instituições e projetos internacionais seguindo padrões regulatórios.',
-    accent: 'purple',
   },
   {
-    icons: [icons.paw, icons.leaf],
     title: 'Biodiversidade e Ecossistemas',
     text: 'Soluções integradas para espécies animais, plantas ornamentais e organismos aquáticos com foco em preservação e responsabilidade.',
-    accent: 'cyan',
   },
   {
-    icons: [icons.ship, icons.airplane],
     title: 'Logística Especializada Global',
     text: 'Infraestrutura logística internacional para conectar origem e destino com segurança, rastreabilidade e cuidado especializado.',
-    accent: 'purple',
   },
 ]
 
@@ -54,7 +45,6 @@ export default function Portfolio() {
             ))}
           </div>
 
-
           <Reveal className="portfolio__dash" delay={150}>
 
             <div className="portfolio__dash-head">
@@ -72,28 +62,18 @@ export default function Portfolio() {
               </svg>
 
               <span className="eyebrow portfolio__dash-label">
-                Dashboards de Desempenho
+                Presença Global
               </span>
 
             </div>
 
-
             <div className="portfolio__dash-frame">
 
-              <div className="portfolio__dash-blur">
-                <Dashboard />
-              </div>
-
-
-              <div className="portfolio__soon">
-                <span>Em Breve</span>
-              </div>
-
+              <Dashboard />
 
             </div>
 
           </Reveal>
-
 
         </div>
 
