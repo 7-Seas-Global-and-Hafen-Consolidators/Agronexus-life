@@ -35,6 +35,7 @@ export default function Portfolio() {
   return (
     <section id="portfolio" className="section portfolio">
       <div className="container">
+
         <Reveal className="portfolio__head">
           <span className="eyebrow">Portfólio</span>
 
@@ -53,8 +54,16 @@ export default function Portfolio() {
             ))}
           </div>
 
+
           <Reveal className="portfolio__dash" delay={150}>
+
             <div className="portfolio__dash-head">
+
+              <svg
+                className="portfolio__dash-icon"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
                 aria-hidden="true"
               >
                 <rect x="3" y="11" width="4" height="9" rx="1" fill="var(--cyan)" />
@@ -65,22 +74,29 @@ export default function Portfolio() {
               <span className="eyebrow portfolio__dash-label">
                 Dashboards de Desempenho
               </span>
+
             </div>
 
+
             <div className="portfolio__dash-frame">
+
               <div className="portfolio__dash-blur">
                 <Dashboard />
               </div>
+
 
               <div className="portfolio__soon">
                 <span>Em Breve</span>
               </div>
 
+
             </div>
 
           </Reveal>
 
+
         </div>
+
       </div>
     </section>
   )
