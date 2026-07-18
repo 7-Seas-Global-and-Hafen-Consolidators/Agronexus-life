@@ -115,10 +115,13 @@ h4 {
 }
 
 .section {
-  padding-block: clamp(64px, 9vw, 120px);
   position: relative;
+  padding-block: clamp(96px, 10vw, 140px);
+  scroll-margin-top: calc(var(--nav-h) + 28px);
 }
-
+section[id] {
+  scroll-margin-top: calc(var(--nav-h) + 28px);
+}
 /* Eyebrow: rótulo pequeno com traço e tracking largo */
 .eyebrow {
   display: inline-flex;
