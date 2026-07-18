@@ -1,11 +1,11 @@
-import geneticaAnimal from '../assets/images/living-ecosystem/genetica-animal.png'
-import aquarismoReef from '../assets/images/living-ecosystem/aquarismo-reef.png'
-import botanicaBiodiversidade from '../assets/images/living-ecosystem/botanica-biodiversidade.png'
-import agroGenetica from '../assets/images/living-ecosystem/agro-genetica.png'
-import veterinariosBiologos from '../assets/images/living-ecosystem/veterinarios-biologos.png'
-import criadoresConsumidores from '../assets/images/living-ecosystem/criadores-consumidores.png'
-import marketplaceResponsavel from '../assets/images/living-ecosystem/marketplace-responsavel.png'
-import conservacaoGlobal from '../assets/images/living-ecosystem/conservacao-global.png'
+import geneticaAnimal from '../assets/images/living-ecosystem/Genetica-animal1.png'
+import aquarismoReef from '../assets/images/living-ecosystem/Aquarismo & Reef.png'
+import botanicaBiodiversidade from '../assets/images/living-ecosystem/Botanica & Biodiversidade.png'
+import agroGenetica from '../assets/images/living-ecosystem/Agro & Genetica.png'
+import veterinariosBiologos from '../assets/images/living-ecosystem/Veterinarios & Biologos.png'
+import criadoresConsumidores from '../assets/images/living-ecosystem/Criadores & Consumidores.png'
+import marketplaceResponsavel from '../assets/images/living-ecosystem/Marketplace responsavel.png'
+import conservacaoGlobal from '../assets/images/living-ecosystem/Conservação Global.png'
 
 export default function LivingEcosystem() {
   const ecosystems = [
@@ -73,11 +73,7 @@ export default function LivingEcosystem() {
         {ecosystems.map((item) => (
           <article className="ecosystem-card" key={item.title}>
             <div className="ecosystem-card__image">
-              <img
-                src={item.image}
-                alt={item.title}
-                loading="lazy"
-              />
+              <img src={item.image} alt={item.title} loading="lazy" />
             </div>
 
             <div className="ecosystem-card__content">
