@@ -7,26 +7,26 @@ import '../styles/Portfolio.css'
 const SOLUTIONS = [
   {
     icons: [icons.flask],
-    title: 'Logística Especializada',
-    text: 'Transporte centrado em carga animal e vegetal, tendo como especialidade: aves exóticas legalizadas, psitacídeos, flores e peixes ornamentais.',
+    title: 'Biotecnologia e Genética',
+    text: 'Estratégias e conhecimento aplicado para genética, melhoramento e desenvolvimento sustentável de espécies animais e vegetais.',
     accent: 'cyan',
   },
   {
     icons: [icons.shield],
-    title: 'Compliance Global',
-    text: 'Conformidade e harmonização regulatória em transações internacionais para o agronegócio.',
+    title: 'Conservação e Compliance Global',
+    text: 'Estruturas responsáveis para conectar criadores, produtores, instituições e projetos internacionais seguindo padrões regulatórios.',
     accent: 'purple',
   },
   {
-    icons: [icons.flask],
-    title: 'Consultoria Genética',
-    text: 'Análise e seleção de variedades de alta performance adaptadas à realidade do produtor.',
+    icons: [icons.paw, icons.leaf],
+    title: 'Biodiversidade e Ecossistemas',
+    text: 'Soluções integradas para espécies animais, plantas ornamentais e organismos aquáticos com foco em preservação e responsabilidade.',
     accent: 'cyan',
   },
   {
-    icons: [icons.truck2],
-    title: 'Logística de Fornecimento Crítico',
-    text: 'Cadeia de inventário e rotas de abastecimento para insumos críticos em todas as regiões do globo.',
+    icons: [icons.ship, icons.airplane],
+    title: 'Logística Especializada Global',
+    text: 'Infraestrutura logística internacional para conectar origem e destino com segurança, rastreabilidade e cuidado especializado.',
     accent: 'purple',
   },
 ]
@@ -37,13 +37,14 @@ export default function Portfolio() {
       <div className="container">
         <Reveal className="portfolio__head">
           <span className="eyebrow">Portfólio</span>
+
           <h2 className="portfolio__title">
-            Soluções <span className="hl-cyan">Verticais</span>
+            Soluções <span className="hl-cyan">Integradas</span>
           </h2>
         </Reveal>
 
         <div className="portfolio__grid">
-          {/* Coluna esquerda: cards de soluções */}
+
           <div className="portfolio__cards">
             {SOLUTIONS.map((card, i) => (
               <Reveal key={card.title} delay={i * 100}>
@@ -52,26 +53,37 @@ export default function Portfolio() {
             ))}
           </div>
 
-          {/* Coluna direita: dashboards (em breve) */}
           <Reveal className="portfolio__dash" delay={150}>
             <div className="portfolio__dash-head">
-              <svg className="portfolio__dash-icon" viewBox="0 0 24 24" width="18" height="18" aria-hidden="true">
+              <svg
+                className="portfolio__dash-icon"
+                viewBox="0 0 24 24"
+                width="18"
+                height="18"
+                aria-hidden="true"
+              >
                 <rect x="3" y="11" width="4" height="9" rx="1" fill="var(--cyan)" />
                 <rect x="10" y="6" width="4" height="14" rx="1" fill="var(--cyan)" />
                 <rect x="17" y="3" width="4" height="17" rx="1" fill="var(--cyan)" />
               </svg>
-              <span className="eyebrow portfolio__dash-label">Dashboards de Desempenho</span>
+
+              <span className="eyebrow portfolio__dash-label">
+                Dashboards de Desempenho
+              </span>
             </div>
 
             <div className="portfolio__dash-frame">
               <div className="portfolio__dash-blur">
                 <Dashboard />
               </div>
+
               <div className="portfolio__soon">
                 <span>Em Breve</span>
               </div>
             </div>
+
           </Reveal>
+
         </div>
       </div>
     </section>
