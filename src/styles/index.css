@@ -239,3 +239,111 @@ h4 {
   outline-offset: 3px;
   border-radius: 4px;
 }
+/* ============================================================
+   AgroNexus Living Ecosystem™
+   ============================================================ */
+
+.living-ecosystem {
+  padding: clamp(70px, 10vw, 140px) 24px;
+  position: relative;
+}
+
+
+.ecosystem-header {
+  max-width: 820px;
+  margin: 0 auto 70px;
+  text-align: center;
+}
+
+
+.ecosystem-header span {
+  color: var(--cyan);
+  font-family: var(--font-display);
+  font-size: 0.72rem;
+  letter-spacing: .3em;
+  text-transform: uppercase;
+}
+
+
+.ecosystem-header h2 {
+  margin-top: 25px;
+  font-size: clamp(2rem, 4vw, 3.2rem);
+}
+
+
+.ecosystem-header p {
+  margin-top: 25px;
+  color: var(--text-dim);
+  font-size: 1.05rem;
+}
+
+
+.ecosystem-grid {
+  max-width: var(--container);
+  margin: auto;
+  display: grid;
+  grid-template-columns: repeat(4, 1fr);
+  gap: 22px;
+}
+
+
+.ecosystem-card {
+  background:
+    linear-gradient(
+      145deg,
+      rgba(34,211,216,.08),
+      rgba(124,92,252,.05)
+    ),
+    var(--surface);
+
+  border: 1px solid var(--border);
+
+  border-radius: var(--radius);
+
+  padding: 30px;
+
+  transition: .35s var(--ease);
+}
+
+
+.ecosystem-card:hover {
+  transform: translateY(-8px);
+  border-color: var(--border-strong);
+  box-shadow: var(--glow-cyan-soft);
+}
+
+
+.ecosystem-icon {
+  font-size: 2rem;
+  margin-bottom: 20px;
+}
+
+
+.ecosystem-card h3 {
+  font-size: 1.1rem;
+  margin-bottom: 15px;
+}
+
+
+.ecosystem-card p {
+  color: var(--text-dim);
+  font-size: .95rem;
+}
+
+
+@media(max-width:1000px){
+
+  .ecosystem-grid{
+    grid-template-columns:repeat(2,1fr);
+  }
+
+}
+
+
+@media(max-width:600px){
+
+  .ecosystem-grid{
+    grid-template-columns:1fr;
+  }
+
+}
