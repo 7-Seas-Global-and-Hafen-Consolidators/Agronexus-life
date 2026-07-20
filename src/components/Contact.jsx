@@ -6,30 +6,34 @@ import '../styles/Contact.css'
 
 const CONTACTS = [
   {
+    type: 'image',
     icon: icons.phone,
     label: 'Brasil',
     value: '+55 51 3027 4785 · +55 45 2021 0022',
     href: 'tel:+555130274785',
   },
   {
+    type: 'image',
     icon: icons.whatsapp,
     label: 'WhatsApp Global',
     value: '+55 47 99135 3900',
     href: 'https://wa.me/5547991353900',
   },
   {
+    type: 'image',
     icon: icons.phone,
     label: 'Europa Central',
     value: '+48 732 099 369',
     href: 'tel:+48732099369',
   },
   {
-    icon: icons.Telegram,
-    label: 'Reino Unido',
+    type: 'telegram',
+    label: 'Telegram Premium — Reino Unido',
     value: '+44 7594 716370',
     href: 'https://t.me/m/t6seeX61ZTlk',
   },
   {
+    type: 'image',
     icon: icons.email,
     label: 'E-mail institucional',
     value: 'hr@agronexus.life',
@@ -75,6 +79,23 @@ const EMPTY = {
 
 const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
 
+function TelegramIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="23"
+      height="23"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        fill="currentColor"
+        d="M21.6 3.4a1.6 1.6 0 0 0-1.65-.22L3.2 9.65c-1.15.45-1.13 1.12-.2 1.4l4.3 1.34 1.66 5.1c.2.58.1.81.68.81.45 0 .65-.2.9-.45l2.08-2.02 4.33 3.2c.8.44 1.38.21 1.58-.74l2.86-13.48c.3-1.18-.45-1.72-1.79-1.41ZM8.03 12.08l9.96-6.28c.5-.3.95-.14.58.2l-8.22 7.42-.32 3.4-2-4.74Z"
+      />
+    </svg>
+  )
+}
+
 function validate(values) {
   const errors = {}
 
@@ -111,7 +132,8 @@ function validate(values) {
   if (!values.mensagem.trim()) {
     errors.mensagem = 'Conte-nos como deseja se conectar.'
   } else if (values.mensagem.trim().length < 10) {
-    errors.mensagem = 'Conte um pouco mais, com pelo menos 10 caracteres.'
+    errors.mensagem =
+      'Conte um pouco mais, com pelo menos 10 caracteres.'
   }
 
   return errors
@@ -125,6 +147,7 @@ export default function Contact() {
 
   const handleChange = (event) => {
     const { name, value } = event.target
+
     const nextValues = {
       ...values,
       [name]: value,
@@ -158,6 +181,7 @@ export default function Contact() {
     const foundErrors = validate(values)
 
     setErrors(foundErrors)
+
     setTouched({
       nome: true,
       email: true,
@@ -174,7 +198,13 @@ export default function Contact() {
 
     try {
       setStatus('sending')
-      await sendContactMessage(values)
+
+      await sendContactMessage({
+        ...values,
+        destinatario: 'hr@agronexus.life',
+        origem: 'Formulário do site AgroNexus.Life',
+      })
+
       setStatus('success')
       setValues(EMPTY)
       setTouched({})
@@ -186,7 +216,9 @@ export default function Contact() {
   }
 
   const fieldClass = (name) =>
-    `field ${touched[name] && errors[name] ? 'field--error' : ''}`
+    `field ${
+      touched[name] && errors[name] ? 'field--error' : ''
+    }`
 
   return (
     <section id="contato" className="section contact">
@@ -203,10 +235,10 @@ export default function Contact() {
 
           <p className="contact__text">
             Criadores, consumidores, produtores, veterinários, biólogos,
-            pesquisadores, instituições e parceiros encontram na AgroNexus um
-            ambiente para compartilhar conhecimento, desenvolver projetos e
-            criar conexões responsáveis entre biodiversidade, ciência e mercado
-            nacional e internacional.
+            pesquisadores, instituições e parceiros encontram na AgroNexus
+            um ambiente para compartilhar conhecimento, desenvolver
+            projetos e criar conexões responsáveis entre biodiversidade,
+            ciência e mercado nacional e internacional.
           </p>
 
           <div className="contact__areas">
@@ -224,25 +256,42 @@ export default function Contact() {
           </div>
 
           <ul className="contact__list">
-            {CONTACTS.map((contact) => (
-              <li key={contact.label}>
-                <a
-                  href={contact.href}
-                  className="contact__item"
-                  target={contact.href.startsWith('http') ? '_blank' : undefined}
-                  rel={contact.href.startsWith('http') ? 'noreferrer' : undefined}
-                >
-                  <span className="contact__item-icon">
-                    <img src={contact.icon} alt="" aria-hidden="true" />
-                  </span>
+            {CONTACTS.map((contact) => {
+              const opensExternally =
+                contact.href.startsWith('http')
 
-                  <span className="contact__item-text">
-                    <strong>{contact.label}</strong>
-                    <span>{contact.value}</span>
-                  </span>
-                </a>
-              </li>
-            ))}
+              return (
+                <li key={contact.label}>
+                  <a
+                    href={contact.href}
+                    className="contact__item"
+                    target={opensExternally ? '_blank' : undefined}
+                    rel={
+                      opensExternally
+                        ? 'noopener noreferrer'
+                        : undefined
+                    }
+                  >
+                    <span className="contact__item-icon">
+                      {contact.type === 'telegram' ? (
+                        <TelegramIcon />
+                      ) : (
+                        <img
+                          src={contact.icon}
+                          alt=""
+                          aria-hidden="true"
+                        />
+                      )}
+                    </span>
+
+                    <span className="contact__item-text">
+                      <strong>{contact.label}</strong>
+                      <span>{contact.value}</span>
+                    </span>
+                  </a>
+                </li>
+              )
+            })}
           </ul>
         </Reveal>
 
@@ -262,13 +311,15 @@ export default function Contact() {
               </h3>
 
               <p>
-                A AgroNexus analisará sua mensagem e encaminhará o contato para
-                a área mais adequada do ecossistema.
+                A AgroNexus analisará sua mensagem e encaminhará o
+                contato para a área mais adequada do ecossistema.
               </p>
             </div>
 
             <div className={fieldClass('nome')}>
-              <label htmlFor="nome">Nome completo</label>
+              <label htmlFor="nome">
+                Nome completo
+              </label>
 
               <input
                 id="nome"
@@ -290,7 +341,9 @@ export default function Contact() {
 
             <div className="contact__form-row">
               <div className={fieldClass('email')}>
-                <label htmlFor="email">E-mail</label>
+                <label htmlFor="email">
+                  E-mail
+                </label>
 
                 <input
                   id="email"
@@ -351,11 +404,12 @@ export default function Contact() {
                   autoComplete="address-level2"
                 />
 
-                {touched.localizacao && errors.localizacao && (
-                  <small className="field__msg">
-                    {errors.localizacao}
-                  </small>
-                )}
+                {touched.localizacao &&
+                  errors.localizacao && (
+                    <small className="field__msg">
+                      {errors.localizacao}
+                    </small>
+                  )}
               </div>
 
               <div className={fieldClass('empresa')}>
@@ -399,7 +453,10 @@ export default function Contact() {
                 </option>
 
                 {INTERESTS.map((interest) => (
-                  <option value={interest} key={interest}>
+                  <option
+                    value={interest}
+                    key={interest}
+                  >
                     {interest}
                   </option>
                 ))}
@@ -449,8 +506,8 @@ export default function Contact() {
                 className="form__feedback form__feedback--ok"
                 role="status"
               >
-                Sua conexão foi iniciada. Nossa equipe analisará sua mensagem e
-                retornará em breve.
+                Sua conexão foi iniciada. Nossa equipe analisará sua
+                mensagem e retornará em breve.
               </p>
             )}
 
@@ -459,8 +516,8 @@ export default function Contact() {
                 className="form__feedback form__feedback--err"
                 role="alert"
               >
-                Não foi possível enviar sua mensagem agora. Tente novamente em
-                instantes.
+                Não foi possível enviar sua mensagem agora. Tente
+                novamente em instantes.
               </p>
             )}
           </form>
