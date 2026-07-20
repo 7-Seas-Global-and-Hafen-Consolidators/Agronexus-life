@@ -27,7 +27,7 @@ const CONTACTS = [
     icon: icons.phone,
     label: 'Reino Unido',
     value: '+44 7594 716370',
-    href: 'tel:+447594716370',
+    href: 'https://t.me/m/t6seeX61ZTlk',
   },
   {
     icon: icons.email,
