@@ -1,27 +1,40 @@
-import ServiceCard from './ServiceCard'
 import Reveal from './Reveal'
-import icons from '../assets/icons'
 import '../styles/Mission.css'
 
-const CARDS = [
+const PILLARS = [
   {
-    icons: [icons.leaf, icons.flask],
-    title: 'Biodiversidade Global',
-    text: 'Conectamos espécies, genética e conhecimento científico para criar pontes responsáveis entre ecossistemas, instituições e mercados internacionais.',
-    accent: 'cyan',
+    number: '01',
+    title: 'Conhecimento que orienta',
+    text: 'Transformamos informação, experiência e ciência em decisões mais responsáveis para criadores, consumidores, produtores, especialistas e instituições.',
   },
   {
-    icons: [icons.flask, icons.leaf],
-    title: 'Genética e Desenvolvimento Sustentável',
-    text: 'Soluções baseadas em pesquisa, conservação e valorização de variedades animais e vegetais de importância estratégica.',
-    accent: 'cyan',
+    number: '02',
+    title: 'Biodiversidade que conecta',
+    text: 'Aproximamos pessoas, espécies, projetos e mercados sem perder de vista a conservação, a procedência, o bem-estar e o valor de cada linhagem.',
   },
   {
-    icons: [icons.paw, icons.bird],
-    title: 'Logística Especializada Global',
-    text: 'Infraestrutura internacional para conectar origem e destino com segurança, rastreabilidade e cuidado especializado para organismos vivos.',
-    accent: 'cyan',
+    number: '03',
+    title: 'Mercado responsável',
+    text: 'Criamos pontes entre quem produz, quem pesquisa, quem cuida e quem procura, promovendo relações transparentes no mercado nacional e internacional.',
   },
+  {
+    number: '04',
+    title: 'Conexões que transformam',
+    text: 'Unimos criadores, veterinários, biólogos, aquaristas, produtores, universidades, empresas e parceiros em um ecossistema vivo de colaboração.',
+  },
+]
+
+const COMMUNITY = [
+  'Criadores',
+  'Consumidores',
+  'Veterinários',
+  'Biólogos',
+  'Aquaristas',
+  'Produtores',
+  'Pesquisadores',
+  'Instituições',
+  'Parceiros',
+  'Empresas',
 ]
 
 export default function Mission() {
@@ -29,21 +42,76 @@ export default function Mission() {
     <section id="missao" className="section mission">
       <div className="container">
         <Reveal className="mission__head">
-          <span className="eyebrow center">Nossa Missão</span>
+          <span className="eyebrow center">
+            Nossa Missão
+          </span>
 
           <h2 className="mission__title">
-            No nexo entre biodiversidade <br />
-            <span className="hl-cyan">ciência e conexão global</span>
+            Conectar pessoas que compartilham
+            <span className="hl-cyan">
+              {' '}a mesma paixão pela vida.
+            </span>
           </h2>
+
+          <p className="mission__lead">
+            A AgroNexus existe para transformar conhecimento, biodiversidade e
+            responsabilidade em conexões capazes de gerar valor para pessoas,
+            espécies, instituições e mercados.
+          </p>
         </Reveal>
 
-        <div className="mission__grid">
-          {CARDS.map((card, i) => (
-            <Reveal key={card.title} delay={i * 120}>
-              <ServiceCard {...card} />
-            </Reveal>
-          ))}
+        <div className="mission__story">
+          <Reveal className="mission__statement">
+            <span className="mission__statement-label">
+              O nosso compromisso
+            </span>
+
+            <p>
+              A biodiversidade não conhece fronteiras.
+              <strong> Nós também não.</strong>
+            </p>
+          </Reveal>
+
+          <div className="mission__pillars">
+            {PILLARS.map((pillar, index) => (
+              <Reveal
+                className="mission__pillar"
+                key={pillar.title}
+                delay={index * 110}
+              >
+                <span className="mission__number">
+                  {pillar.number}
+                </span>
+
+                <div className="mission__pillar-content">
+                  <h3>{pillar.title}</h3>
+                  <p>{pillar.text}</p>
+                </div>
+              </Reveal>
+            ))}
+          </div>
         </div>
+
+        <Reveal className="mission__community" delay={180}>
+          <span className="mission__community-label">
+            Um ecossistema construído por
+          </span>
+
+          <div className="mission__community-list">
+            {COMMUNITY.map((item) => (
+              <span key={item}>
+                {item}
+              </span>
+            ))}
+          </div>
+        </Reveal>
+
+        <Reveal className="mission__closing" delay={220}>
+          <p>
+            Conhecimento gera confiança. Confiança gera conexão.
+            <span> Conexão gera futuro.</span>
+          </p>
+        </Reveal>
       </div>
     </section>
   )
