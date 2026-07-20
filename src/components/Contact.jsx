@@ -24,7 +24,7 @@ const CONTACTS = [
     href: 'tel:+48732099369',
   },
   {
-    icon: icons.phone,
+    icon: icons.Telegram,
     label: 'Reino Unido',
     value: '+44 7594 716370',
     href: 'https://t.me/m/t6seeX61ZTlk',
