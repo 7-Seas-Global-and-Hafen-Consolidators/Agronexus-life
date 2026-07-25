@@ -4,7 +4,7 @@ import icons from '../assets/icons'
 import { sendContactMessage } from '../services/contactService'
 import '../styles/Contact.css'
 
-const SUPPORT_URL = 'https://mpago.la/1pMx3VE'
+const SUPPORT_URL = 'https://www.asaas.com/c/u6toboa8xhqsmosv'
 
 const CONTACTS = [
   {
@@ -600,22 +600,26 @@ export default function Contact() {
             </span>
 
             <strong className="contact__support-value">
-              A partir de R$ 10
+              Valor sugerido: R$ 10
             </strong>
+
+            <span className="contact__support-choice">
+              Você escolhe o valor da contribuição.
+            </span>
 
             <a
               href={SUPPORT_URL}
               className="contact__support-button"
               target="_blank"
               rel="noopener noreferrer"
-              aria-label="Apoiar a AgroNexus pelo Mercado Pago"
+              aria-label="Apoiar a AgroNexus pelo Asaas"
             >
               <span>Apoiar a AgroNexus</span>
               <SupportArrowIcon />
             </a>
 
             <small className="contact__support-note">
-              Pagamento seguro processado pelo Mercado Pago.
+              Pagamento seguro via Asaas com Pix, cartão ou boleto.
             </small>
           </div>
         </Reveal>
