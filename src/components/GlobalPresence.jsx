@@ -25,7 +25,7 @@ const COUNTRIES = [
       left: '31%',
       top: '68%',
     },
-    image: '/images/countries/agronexus-brazil-world-biodiversity-atlas.webp',
+    image: '/images/countries/agronexus-brazil-world-biodiversity-atlas.png',
     imageAlt:
       'Composição editorial da biodiversidade brasileira com arara-canindé, acará-disco e orquídea',
     headline:
@@ -58,7 +58,7 @@ const COUNTRIES = [
       left: '84%',
       top: '73%',
     },
-    image: '/images/countries/agronexus-australia-world-biodiversity-atlas.webp',
+    image: '/images/countries/agronexus-australia-world-biodiversity-atlas.png',
     imageAlt:
       'Composição editorial da biodiversidade australiana com calopsita, rosela e banksia',
     headline:
@@ -91,7 +91,7 @@ const COUNTRIES = [
       left: '87%',
       top: '38%',
     },
-    image: '/images/countries/agronexus-japan-world-biodiversity-atlas.webp',
+    image: '/images/countries/agronexus-japan-world-biodiversity-atlas.png',
     imageAlt:
       'Composição editorial da biodiversidade japonesa com carpa ornamental, medaka e cerejeira',
     headline:
@@ -124,7 +124,7 @@ const COUNTRIES = [
       left: '60%',
       top: '72%',
     },
-    image: '/images/countries/agronexus-madagascar-world-biodiversity-atlas.webp',
+    image: '/images/countries/agronexus-madagascar-world-biodiversity-atlas.png',
     imageAlt:
       'Composição editorial da biodiversidade de Madagascar com camaleão, baobá e floresta insular',
     headline:
