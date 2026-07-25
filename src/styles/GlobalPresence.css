@@ -77,8 +77,8 @@
 .global-presence__layout {
   display: grid;
   grid-template-columns:
-    minmax(0, 1.18fr)
-    minmax(360px, 0.82fr);
+    minmax(0, 1.08fr)
+    minmax(390px, 0.92fr);
   gap: 48px;
   align-items: start;
 }
@@ -101,7 +101,7 @@
 .global-presence__map {
   position: relative;
   aspect-ratio: 16 / 9;
-  min-height: 520px;
+  min-height: 0;
   overflow: hidden;
   border: 1px solid rgba(95, 220, 226, 0.16);
   border-radius: 28px;
@@ -403,7 +403,7 @@
 
 .global-presence__country-image {
   position: relative;
-  min-height: 250px;
+  min-height: 220px;
   overflow: hidden;
   background:
     radial-gradient(
@@ -824,7 +824,7 @@
   }
 
   .global-presence__country-image {
-    min-height: 225px;
+    min-height: 210px;
   }
 
   .global-presence__pillars {
