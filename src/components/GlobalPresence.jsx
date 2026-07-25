@@ -1,71 +1,166 @@
+import { useState } from 'react'
 import Reveal from './Reveal'
 import '../styles/GlobalPresence.css'
 
-const CONNECTIONS = [
+/*
+ * AgroNexus — Explorador Mundial da Biodiversidade
+ *
+ * IMPORTANTE:
+ * - Esta seção possui finalidade editorial e educativa.
+ * - A presença de uma espécie não representa autorização de criação,
+ *   aquisição, transporte, reprodução ou comercialização.
+ * - Antes de habilitar qualquer integração com marketplace, cada espécie
+ *   deverá passar por validação ambiental, veterinária e jurídica.
+ */
+
+const COUNTRIES = [
   {
     code: 'BR',
-    title: 'Brasil',
-    subtitle: 'Base de conexão nacional',
-    text: 'Criadores, produtores, consumidores, veterinários, biólogos, aquaristas, instituições e parceiros conectados dentro de um ecossistema responsável.',
+    name: 'Brasil',
+    region: 'América do Sul',
     position: {
       left: '31%',
-      top: '66%',
+      top: '67%',
     },
+    image: '/images/biodiversity/countries/brazil.webp',
+    imageAlt:
+      'Composição editorial da biodiversidade brasileira com arara, acará-disco e vegetação tropical',
+    headline: 'Florestas, rios e uma das maiores diversidades biológicas do planeta.',
+    introduction:
+      'Uma viagem por aves, peixes ornamentais, plantas tropicais, polinizadores e ecossistemas que atravessam diferentes biomas brasileiros.',
+    species: [
+      {
+        type: 'Ave',
+        commonName: 'Arara-canindé',
+        scientificName: 'Ara ararauna',
+      },
+      {
+        type: 'Peixe',
+        commonName: 'Acará-disco',
+        scientificName: 'Symphysodon spp.',
+      },
+      {
+        type: 'Planta',
+        commonName: 'Orquídea Cattleya',
+        scientificName: 'Cattleya spp.',
+      },
+    ],
   },
   {
-    code: 'EU',
-    title: 'Europa Central',
-    subtitle: 'Parcerias e articulação internacional',
-    text: 'Conexões com mercados, especialistas, pesquisa, comércio responsável e projetos ligados à biodiversidade animal e vegetal.',
+    code: 'AU',
+    name: 'Austrália',
+    region: 'Oceania',
     position: {
-      left: '54%',
-      top: '35%',
+      left: '84%',
+      top: '72%',
     },
+    image: '/images/biodiversity/countries/australia.webp',
+    imageAlt:
+      'Composição editorial da biodiversidade australiana com calopsita, rosela e flora nativa',
+    headline: 'Um continente de aves ornamentais, flora singular e paisagens extremas.',
+    introduction:
+      'A Austrália reúne algumas das aves mais conhecidas da avicultura ornamental, além de plantas e ecossistemas encontrados em poucas outras regiões.',
+    species: [
+      {
+        type: 'Ave',
+        commonName: 'Calopsita',
+        scientificName: 'Nymphicus hollandicus',
+      },
+      {
+        type: 'Ave',
+        commonName: 'Rosela',
+        scientificName: 'Platycercus spp.',
+      },
+      {
+        type: 'Planta',
+        commonName: 'Banksia',
+        scientificName: 'Banksia spp.',
+      },
+    ],
   },
   {
-    code: 'UK',
-    title: 'Reino Unido',
-    subtitle: 'Comunicação e presença internacional',
-    text: 'Canal de comunicação global para parceiros, especialistas, instituições e oportunidades de conexão entre diferentes mercados.',
+    code: 'JP',
+    name: 'Japão',
+    region: 'Ásia',
     position: {
-      left: '48%',
-      top: '28%',
+      left: '85%',
+      top: '39%',
     },
+    image: '/images/biodiversity/countries/japan.webp',
+    imageAlt:
+      'Composição editorial da biodiversidade japonesa com carpa ornamental, medaka e cerejeira',
+    headline: 'Tradição, seleção ornamental e uma relação cultural profunda com a natureza.',
+    introduction:
+      'Peixes ornamentais, jardins, plantas e técnicas de cultivo transformaram a biodiversidade japonesa em referência internacional.',
+    species: [
+      {
+        type: 'Peixe',
+        commonName: 'Nishikigoi',
+        scientificName: 'Cyprinus carpio',
+      },
+      {
+        type: 'Peixe',
+        commonName: 'Medaka',
+        scientificName: 'Oryzias latipes',
+      },
+      {
+        type: 'Planta',
+        commonName: 'Cerejeira',
+        scientificName: 'Prunus spp.',
+      },
+    ],
   },
   {
-    code: 'GL',
-    title: 'Conexões Globais',
-    subtitle: 'Um ecossistema sem fronteiras',
-    text: 'Expansão responsável entre conhecimento, biodiversidade, ciência, mercado, logística especializada e colaboração internacional.',
+    code: 'MG',
+    name: 'Madagascar',
+    region: 'África',
     position: {
-      left: '73%',
-      top: '48%',
+      left: '60%',
+      top: '72%',
     },
+    image: '/images/biodiversity/countries/madagascar.webp',
+    imageAlt:
+      'Composição editorial da biodiversidade de Madagascar com camaleão, flora tropical e paisagem insular',
+    headline: 'Uma ilha marcada por espécies singulares e elevado endemismo.',
+    introduction:
+      'Madagascar será apresentado inicialmente em contexto exclusivamente educativo, científico e de conservação.',
+    species: [
+      {
+        type: 'Réptil',
+        commonName: 'Camaleões de Madagascar',
+        scientificName: 'Chamaeleonidae',
+      },
+      {
+        type: 'Planta',
+        commonName: 'Baobás',
+        scientificName: 'Adansonia spp.',
+      },
+      {
+        type: 'Ecossistema',
+        commonName: 'Florestas insulares',
+        scientificName: 'Biodiversidade endêmica',
+      },
+    ],
   },
 ]
 
-const ROUTES = [
-  {
-    className: 'global-presence__route global-presence__route--br-eu',
-  },
-  {
-    className: 'global-presence__route global-presence__route--eu-uk',
-  },
-  {
-    className: 'global-presence__route global-presence__route--eu-global',
-  },
-]
-
-const PILLARS = [
-  'Biodiversidade',
-  'Conhecimento',
-  'Pesquisa',
-  'Mercado responsável',
-  'Compliance',
-  'Logística especializada',
+const PRINCIPLES = [
+  'Educação antes da aquisição',
+  'Origem responsável',
+  'Bem-estar',
+  'Conservação',
+  'Ciência',
+  'Comércio legal',
 ]
 
 export default function GlobalPresence() {
+  const [selectedCountryCode, setSelectedCountryCode] = useState('BR')
+
+  const selectedCountry =
+    COUNTRIES.find(
+      (country) => country.code === selectedCountryCode,
+    ) || COUNTRIES[0]
+
   return (
     <section
       id="presenca-global"
@@ -74,21 +169,20 @@ export default function GlobalPresence() {
       <div className="container">
         <Reveal className="global-presence__head">
           <span className="eyebrow center">
-            Presença Global
+            Atlas Vivo AgroNexus
           </span>
 
           <h2 className="global-presence__title">
-            Conectando biodiversidade,
+            Explore o planeta através da
             <span className="hl-cyan">
-              {' '}conhecimento e pessoas sem fronteiras.
+              {' '}biodiversidade.
             </span>
           </h2>
 
           <p className="global-presence__lead">
-            A AgroNexus aproxima mercados, especialistas, instituições,
-            criadores, consumidores e projetos por meio de uma rede
-            internacional construída com responsabilidade, ciência e
-            propósito.
+            Cada país guarda espécies, ecossistemas, conhecimentos e
+            histórias próprias. Selecione um destino e descubra parte
+            da sua identidade natural.
           </p>
         </Reveal>
 
@@ -99,196 +193,210 @@ export default function GlobalPresence() {
           >
             <div
               className="global-presence__map"
-              aria-label="Mapa ilustrativo das conexões internacionais da AgroNexus"
+              aria-label="Explorador mundial da biodiversidade"
             >
               <div
-                className="global-presence__map-glow"
+                className="global-presence__map-atmosphere"
                 aria-hidden="true"
               />
 
-              <svg
-                className="global-presence__world"
-                viewBox="0 0 1000 520"
-                role="img"
-                aria-label="Mapa mundial estilizado"
-              >
-                <defs>
-                  <linearGradient
-                    id="worldGradient"
-                    x1="0%"
-                    y1="0%"
-                    x2="100%"
-                    y2="100%"
-                  >
-                    <stop
-                      offset="0%"
-                      stopColor="var(--cyan)"
-                      stopOpacity="0.5"
-                    />
-                    <stop
-                      offset="100%"
-                      stopColor="var(--purple)"
-                      stopOpacity="0.24"
-                    />
-                  </linearGradient>
+              <div
+                className="global-presence__map-grid"
+                aria-hidden="true"
+              />
 
-                  <filter id="worldGlow">
-                    <feGaussianBlur
-                      stdDeviation="3"
-                      result="blur"
-                    />
-                    <feMerge>
-                      <feMergeNode in="blur" />
-                      <feMergeNode in="SourceGraphic" />
-                    </feMerge>
-                  </filter>
-                </defs>
+              <div className="global-presence__map-copy">
+                <span>AgroNexus World Biodiversity Atlas</span>
 
-                <g
-                  fill="url(#worldGradient)"
-                  stroke="rgba(95, 220, 226, 0.32)"
-                  strokeWidth="1.6"
-                  filter="url(#worldGlow)"
-                >
-                  <path d="M105 130l45-35 76-8 52 22 25 37-17 38-49 11-28 42-61-8-38-36-5-63Z" />
-
-                  <path d="M238 245l45 15 31 42-7 55-28 64-34 32-18-54 13-42-16-58 14-54Z" />
-
-                  <path d="M470 112l53-22 56 12 34 29-15 31-41 2-18 29-48-8-37-27 16-46Z" />
-
-                  <path d="M535 198l54-10 57 29 24 54-11 67-39 51-50 7-31-42-23-68 19-88Z" />
-
-                  <path d="M598 105l82-23 118 15 63 38 18 43-46 42-78-2-46 36-51-16-12-55-48-28v-50Z" />
-
-                  <path d="M816 335l48-16 45 18 24 39-18 36-52 9-42-28-5-58Z" />
-
-                  <path d="M363 95l21-8 18 10-6 18-25 3-8-23Z" />
-
-                  <path d="M432 79l18-10 18 7-2 18-21 5-13-20Z" />
-
-                  <path d="M745 270l18-8 15 11-4 18-20 2-9-23Z" />
-                </g>
-
-                <g
-                  fill="none"
-                  stroke="rgba(95, 220, 226, 0.08)"
-                  strokeWidth="1"
-                >
-                  <path d="M0 90h1000" />
-                  <path d="M0 180h1000" />
-                  <path d="M0 270h1000" />
-                  <path d="M0 360h1000" />
-                  <path d="M0 450h1000" />
-
-                  <path d="M130 0v520" />
-                  <path d="M260 0v520" />
-                  <path d="M390 0v520" />
-                  <path d="M520 0v520" />
-                  <path d="M650 0v520" />
-                  <path d="M780 0v520" />
-                  <path d="M910 0v520" />
-                </g>
-              </svg>
-
-              {ROUTES.map((route) => (
-                <span
-                  className={route.className}
-                  key={route.className}
-                  aria-hidden="true"
-                />
-              ))}
-
-              {CONNECTIONS.map((connection) => (
-                <div
-                  className={`global-presence__marker global-presence__marker--${connection.code.toLowerCase()}`}
-                  key={connection.code}
-                  style={connection.position}
-                >
-                  <span
-                    className="global-presence__pulse"
-                    aria-hidden="true"
-                  />
-
-                  <span className="global-presence__dot">
-                    {connection.code}
-                  </span>
-
-                  <span className="global-presence__marker-label">
-                    {connection.title}
-                  </span>
-                </div>
-              ))}
-
-              <div className="global-presence__map-caption">
-                <span>AgroNexus Living Ecosystem™</span>
                 <strong>
-                  Conexões internacionais em expansão
+                  Escolha um país para iniciar a jornada
+                </strong>
+              </div>
+
+              <div
+                className="global-presence__continent global-presence__continent--americas"
+                aria-hidden="true"
+              />
+
+              <div
+                className="global-presence__continent global-presence__continent--eurasia"
+                aria-hidden="true"
+              />
+
+              <div
+                className="global-presence__continent global-presence__continent--africa"
+                aria-hidden="true"
+              />
+
+              <div
+                className="global-presence__continent global-presence__continent--oceania"
+                aria-hidden="true"
+              />
+
+              <div className="global-presence__markers">
+                {COUNTRIES.map((country) => {
+                  const isActive =
+                    country.code === selectedCountry.code
+
+                  return (
+                    <button
+                      type="button"
+                      className={`global-presence__marker ${
+                        isActive
+                          ? 'global-presence__marker--active'
+                          : ''
+                      }`}
+                      key={country.code}
+                      style={country.position}
+                      aria-pressed={isActive}
+                      aria-label={`Explorar biodiversidade de ${country.name}`}
+                      onClick={() =>
+                        setSelectedCountryCode(country.code)
+                      }
+                    >
+                      <span
+                        className="global-presence__marker-ring"
+                        aria-hidden="true"
+                      />
+
+                      <span className="global-presence__marker-code">
+                        {country.code}
+                      </span>
+
+                      <span className="global-presence__marker-name">
+                        {country.name}
+                      </span>
+                    </button>
+                  )
+                })}
+              </div>
+
+              <div className="global-presence__map-footer">
+                <span>
+                  Primeira expedição
+                </span>
+
+                <strong>
+                  {COUNTRIES.length} destinos em destaque
                 </strong>
               </div>
             </div>
           </Reveal>
 
-          <div className="global-presence__content">
+          <div
+            className="global-presence__content"
+            aria-live="polite"
+          >
             <Reveal
-              className="global-presence__statement"
+              className="global-presence__country"
               delay={140}
             >
-              <span className="global-presence__statement-label">
-                Uma rede construída com propósito
-              </span>
+              <div className="global-presence__country-image">
+                <img
+                  src={selectedCountry.image}
+                  alt={selectedCountry.imageAlt}
+                  onError={(event) => {
+                    event.currentTarget.style.display = 'none'
+                    event.currentTarget
+                      .closest('.global-presence__country-image')
+                      ?.classList.add(
+                        'global-presence__country-image--fallback',
+                      )
+                  }}
+                />
 
-              <h3>
-                A atuação global começa com
-                <span className="hl-cyan">
-                  {' '}conexões responsáveis.
+                <div className="global-presence__country-overlay">
+                  <span>
+                    {selectedCountry.region}
+                  </span>
+
+                  <strong>
+                    {selectedCountry.name}
+                  </strong>
+                </div>
+              </div>
+
+              <div className="global-presence__country-body">
+                <span className="global-presence__country-kicker">
+                  Identidade natural
                 </span>
-              </h3>
 
-              <p>
-                A AgroNexus não representa apenas países ou rotas. Ela
-                representa a união entre pessoas, conhecimento,
-                biodiversidade, mercados e instituições que compartilham
-                objetivos comuns.
-              </p>
+                <h3>
+                  {selectedCountry.headline}
+                </h3>
+
+                <p>
+                  {selectedCountry.introduction}
+                </p>
+              </div>
             </Reveal>
 
-            <div className="global-presence__connections">
-              {CONNECTIONS.map((connection, index) => (
+            <div className="global-presence__species">
+              {selectedCountry.species.map((species, index) => (
                 <Reveal
-                  className="global-presence__connection"
-                  key={connection.code}
-                  delay={180 + index * 90}
+                  className="global-presence__species-card"
+                  key={`${selectedCountry.code}-${species.commonName}`}
+                  delay={180 + index * 80}
                 >
-                  <span className="global-presence__connection-code">
-                    {connection.code}
+                  <span className="global-presence__species-number">
+                    {String(index + 1).padStart(2, '0')}
                   </span>
 
                   <div>
-                    <span className="global-presence__connection-subtitle">
-                      {connection.subtitle}
+                    <span className="global-presence__species-type">
+                      {species.type}
                     </span>
 
-                    <h4>{connection.title}</h4>
-                    <p>{connection.text}</p>
+                    <h4>
+                      {species.commonName}
+                    </h4>
+
+                    <p>
+                      <em>
+                        {species.scientificName}
+                      </em>
+                    </p>
                   </div>
                 </Reveal>
               ))}
             </div>
+
+            <Reveal
+              className="global-presence__legal"
+              delay={260}
+            >
+              <span className="global-presence__legal-label">
+                Conteúdo educativo
+              </span>
+
+              <p>
+                A presença de uma espécie neste atlas não significa
+                autorização para captura, criação, aquisição,
+                reprodução, transporte ou comercialização. O status
+                de conservação, a origem legal e as exigências
+                documentais deverão ser verificados antes de qualquer
+                atividade.
+              </p>
+
+              <strong>
+                Marketplace de animais não habilitado nesta seção.
+              </strong>
+            </Reveal>
           </div>
         </div>
 
         <Reveal
           className="global-presence__pillars"
-          delay={240}
+          delay={300}
         >
           <span className="global-presence__pillars-label">
-            Conectando
+            Compromissos do ecossistema
           </span>
 
           <div className="global-presence__pillars-list">
-            {PILLARS.map((pillar) => (
-              <span key={pillar}>
-                {pillar}
+            {PRINCIPLES.map((principle) => (
+              <span key={principle}>
+                {principle}
               </span>
             ))}
           </div>
@@ -296,12 +404,11 @@ export default function GlobalPresence() {
 
         <Reveal
           className="global-presence__closing"
-          delay={280}
+          delay={340}
         >
           <p>
-            Conectando pessoas.
-            <span> Preservando conhecimento.</span>
-            Construindo novas possibilidades.
+            Primeiro o conhecimento.
+            <span> Depois, qualquer decisão.</span>
           </p>
         </Reveal>
       </div>
