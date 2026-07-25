@@ -8,6 +8,9 @@ import '../styles/GlobalPresence.css'
  * Esta seção conecta países, espécies, conhecimento,
  * criadores responsáveis e pessoas interessadas.
  *
+ * As imagens editoriais dos países ficam em:
+ * public/images/countries/
+ *
  * A disponibilidade de espécies regulamentadas depende
  * de origem comprovada, documentação aplicável e atuação
  * de criadores ou estabelecimentos autorizados.
@@ -22,7 +25,7 @@ const COUNTRIES = [
       left: '31%',
       top: '68%',
     },
-    image: '/images/biodiversity/countries/brazil.webp',
+    image: '/images/countries/agronexus-brazil-world-biodiversity-atlas.webp',
     imageAlt:
       'Composição editorial da biodiversidade brasileira com arara-canindé, acará-disco e orquídea',
     headline:
@@ -55,7 +58,7 @@ const COUNTRIES = [
       left: '84%',
       top: '73%',
     },
-    image: '/images/biodiversity/countries/australia.webp',
+    image: '/images/countries/agronexus-australia-world-biodiversity-atlas.webp',
     imageAlt:
       'Composição editorial da biodiversidade australiana com calopsita, rosela e banksia',
     headline:
@@ -88,7 +91,7 @@ const COUNTRIES = [
       left: '87%',
       top: '38%',
     },
-    image: '/images/biodiversity/countries/japan.webp',
+    image: '/images/countries/agronexus-japan-world-biodiversity-atlas.webp',
     imageAlt:
       'Composição editorial da biodiversidade japonesa com carpa ornamental, medaka e cerejeira',
     headline:
@@ -121,7 +124,7 @@ const COUNTRIES = [
       left: '60%',
       top: '72%',
     },
-    image: '/images/biodiversity/countries/madagascar.webp',
+    image: '/images/countries/agronexus-madagascar-world-biodiversity-atlas.webp',
     imageAlt:
       'Composição editorial da biodiversidade de Madagascar com camaleão, baobá e floresta insular',
     headline:
