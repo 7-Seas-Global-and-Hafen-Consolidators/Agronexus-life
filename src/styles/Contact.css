@@ -440,6 +440,13 @@
   font-weight: 600;
 }
 
+.contact__support-choice {
+  margin-top: 8px;
+  color: var(--text-dim);
+  font-size: 0.78rem;
+  line-height: 1.55;
+}
+
 .contact__support-button {
   display: flex;
   min-height: 56px;
