@@ -1,39 +1,58 @@
 /**
  * contactService.js
  * ------------------------------------------------------------------
- * Ponto central de integração do formulário de contato.
- *
- * Hoje esta função apenas SIMULA o envio (resolve após um pequeno
- * delay). Quando você tiver um backend ou um serviço de e-mail
- * (EmailJS, Resend, SendGrid, Formspree, um endpoint próprio, etc.),
- * basta substituir o corpo da função `sendContactMessage` pela
- * chamada real — o restante da aplicação não precisa mudar.
- *
- * Exemplo de integração real com fetch:
- *
- *   export async function sendContactMessage(data) {
- *     const res = await fetch(import.meta.env.VITE_CONTACT_ENDPOINT, {
- *       method: 'POST',
- *       headers: { 'Content-Type': 'application/json' },
- *       body: JSON.stringify(data),
- *     })
- *     if (!res.ok) throw new Error('Falha ao enviar a mensagem')
- *     return res.json()
- *   }
- *
- * Dica: guarde a URL do endpoint em um arquivo .env como
- *   VITE_CONTACT_ENDPOINT=https://...
- * e acesse via import.meta.env.VITE_CONTACT_ENDPOINT
+ * Integração real do formulário de contato da AgroNexus com Formspree.
  * ------------------------------------------------------------------
  */
 
-export async function sendContactMessage(data) {
-  // --- SIMULAÇÃO (remover ao integrar a API real) ---
-  console.log('[contactService] Mensagem pronta para envio:', data)
+const FORMSPREE_ENDPOINT = 'https://formspree.io/f/xqergyvv'
 
-  return new Promise((resolve) => {
-    setTimeout(() => {
-      resolve({ ok: true, message: 'Mensagem recebida com sucesso.' })
-    }, 900)
+function getErrorMessage(result) {
+  if (!result) {
+    return 'Não foi possível enviar sua mensagem.'
+  }
+
+  if (result.error) {
+    return result.error
+  }
+
+  if (Array.isArray(result.errors)) {
+    return result.errors
+      .map((item) => item.message)
+      .join(' ')
+  }
+
+  return 'Não foi possível enviar sua mensagem.'
+}
+
+export async function sendContactMessage(data) {
+  const response = await fetch(FORMSPREE_ENDPOINT, {
+    method: 'POST',
+    headers: {
+      Accept: 'application/json',
+      'Content-Type': 'application/json',
+    },
+    body: JSON.stringify({
+      nome: data.nome,
+      email: data.email,
+      telefone: data.telefone,
+      localizacao: data.localizacao,
+      empresa: data.empresa,
+      interesse: data.interesse,
+      mensagem: data.mensagem,
+
+      _subject: `Novo contato AgroNexus - ${data.nome}`,
+
+      destinatario: data.destinatario,
+      origem: data.origem,
+    }),
   })
+
+  const result = await response.json()
+
+  if (!response.ok) {
+    throw new Error(getErrorMessage(result))
+  }
+
+  return result
 }
