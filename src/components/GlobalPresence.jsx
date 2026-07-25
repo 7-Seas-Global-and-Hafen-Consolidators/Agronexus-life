@@ -3,14 +3,14 @@ import Reveal from './Reveal'
 import '../styles/GlobalPresence.css'
 
 /*
- * AgroNexus — Explorador Mundial da Biodiversidade
+ * AgroNexus — Atlas Vivo da Biodiversidade
  *
- * IMPORTANTE:
- * - Esta seção possui finalidade editorial e educativa.
- * - A presença de uma espécie não representa autorização de criação,
- *   aquisição, transporte, reprodução ou comercialização.
- * - Antes de habilitar qualquer integração com marketplace, cada espécie
- *   deverá passar por validação ambiental, veterinária e jurídica.
+ * Esta seção conecta países, espécies, conhecimento,
+ * criadores responsáveis e pessoas interessadas.
+ *
+ * A disponibilidade de espécies regulamentadas depende
+ * de origem comprovada, documentação aplicável e atuação
+ * de criadores ou estabelecimentos autorizados.
  */
 
 const COUNTRIES = [
@@ -20,14 +20,15 @@ const COUNTRIES = [
     region: 'América do Sul',
     position: {
       left: '31%',
-      top: '67%',
+      top: '68%',
     },
     image: '/images/biodiversity/countries/brazil.webp',
     imageAlt:
-      'Composição editorial da biodiversidade brasileira com arara, acará-disco e vegetação tropical',
-    headline: 'Florestas, rios e uma das maiores diversidades biológicas do planeta.',
+      'Composição editorial da biodiversidade brasileira com arara-canindé, acará-disco e orquídea',
+    headline:
+      'Florestas, rios e uma das maiores diversidades biológicas do planeta.',
     introduction:
-      'Uma viagem por aves, peixes ornamentais, plantas tropicais, polinizadores e ecossistemas que atravessam diferentes biomas brasileiros.',
+      'Uma viagem por aves, peixes ornamentais, plantas tropicais, polinizadores e ecossistemas presentes nos diferentes biomas brasileiros.',
     species: [
       {
         type: 'Ave',
@@ -52,14 +53,15 @@ const COUNTRIES = [
     region: 'Oceania',
     position: {
       left: '84%',
-      top: '72%',
+      top: '73%',
     },
     image: '/images/biodiversity/countries/australia.webp',
     imageAlt:
-      'Composição editorial da biodiversidade australiana com calopsita, rosela e flora nativa',
-    headline: 'Um continente de aves ornamentais, flora singular e paisagens extremas.',
+      'Composição editorial da biodiversidade australiana com calopsita, rosela e banksia',
+    headline:
+      'Um continente de aves ornamentais, flora singular e paisagens extremas.',
     introduction:
-      'A Austrália reúne algumas das aves mais conhecidas da avicultura ornamental, além de plantas e ecossistemas encontrados em poucas outras regiões.',
+      'A Austrália reúne aves mundialmente conhecidas, plantas nativas extraordinárias e ecossistemas encontrados em poucas outras regiões.',
     species: [
       {
         type: 'Ave',
@@ -83,15 +85,16 @@ const COUNTRIES = [
     name: 'Japão',
     region: 'Ásia',
     position: {
-      left: '85%',
-      top: '39%',
+      left: '87%',
+      top: '38%',
     },
     image: '/images/biodiversity/countries/japan.webp',
     imageAlt:
       'Composição editorial da biodiversidade japonesa com carpa ornamental, medaka e cerejeira',
-    headline: 'Tradição, seleção ornamental e uma relação cultural profunda com a natureza.',
+    headline:
+      'Tradição, seleção ornamental e uma relação profunda com a natureza.',
     introduction:
-      'Peixes ornamentais, jardins, plantas e técnicas de cultivo transformaram a biodiversidade japonesa em referência internacional.',
+      'Peixes ornamentais, jardins e técnicas de cultivo transformaram a biodiversidade japonesa em referência internacional.',
     species: [
       {
         type: 'Peixe',
@@ -120,10 +123,11 @@ const COUNTRIES = [
     },
     image: '/images/biodiversity/countries/madagascar.webp',
     imageAlt:
-      'Composição editorial da biodiversidade de Madagascar com camaleão, flora tropical e paisagem insular',
-    headline: 'Uma ilha marcada por espécies singulares e elevado endemismo.',
+      'Composição editorial da biodiversidade de Madagascar com camaleão, baobá e floresta insular',
+    headline:
+      'Uma ilha marcada por espécies singulares e elevado endemismo.',
     introduction:
-      'Madagascar será apresentado inicialmente em contexto exclusivamente educativo, científico e de conservação.',
+      'Madagascar revela como o isolamento geográfico pode produzir formas de vida únicas, paisagens extraordinárias e histórias de conservação.',
     species: [
       {
         type: 'Réptil',
@@ -145,7 +149,7 @@ const COUNTRIES = [
 ]
 
 const PRINCIPLES = [
-  'Educação antes da aquisição',
+  'Conhecimento',
   'Origem responsável',
   'Bem-estar',
   'Conservação',
@@ -155,6 +159,7 @@ const PRINCIPLES = [
 
 export default function GlobalPresence() {
   const [selectedCountryCode, setSelectedCountryCode] = useState('BR')
+  const [mapLoaded, setMapLoaded] = useState(true)
 
   const selectedCountry =
     COUNTRIES.find(
@@ -192,46 +197,35 @@ export default function GlobalPresence() {
             delay={100}
           >
             <div
-              className="global-presence__map"
-              aria-label="Explorador mundial da biodiversidade"
+              className={`global-presence__map ${
+                !mapLoaded
+                  ? 'global-presence__map--fallback'
+                  : ''
+              }`}
+              aria-label="Mapa-múndi interativo do Atlas Vivo AgroNexus"
             >
-              <div
-                className="global-presence__map-atmosphere"
+              <img
+                className="global-presence__map-image"
+                src="/images/maps/world-map-editorial.webp"
+                alt=""
                 aria-hidden="true"
+                onError={() => setMapLoaded(false)}
               />
 
               <div
-                className="global-presence__map-grid"
+                className="global-presence__map-shade"
                 aria-hidden="true"
               />
 
               <div className="global-presence__map-copy">
-                <span>AgroNexus World Biodiversity Atlas</span>
+                <span>
+                  AgroNexus World Biodiversity Atlas
+                </span>
 
                 <strong>
                   Escolha um país para iniciar a jornada
                 </strong>
               </div>
-
-              <div
-                className="global-presence__continent global-presence__continent--americas"
-                aria-hidden="true"
-              />
-
-              <div
-                className="global-presence__continent global-presence__continent--eurasia"
-                aria-hidden="true"
-              />
-
-              <div
-                className="global-presence__continent global-presence__continent--africa"
-                aria-hidden="true"
-              />
-
-              <div
-                className="global-presence__continent global-presence__continent--oceania"
-                aria-hidden="true"
-              />
 
               <div className="global-presence__markers">
                 {COUNTRIES.map((country) => {
@@ -249,7 +243,7 @@ export default function GlobalPresence() {
                       key={country.code}
                       style={country.position}
                       aria-pressed={isActive}
-                      aria-label={`Explorar biodiversidade de ${country.name}`}
+                      aria-label={`Explorar a biodiversidade de ${country.name}`}
                       onClick={() =>
                         setSelectedCountryCode(country.code)
                       }
@@ -272,9 +266,7 @@ export default function GlobalPresence() {
               </div>
 
               <div className="global-presence__map-footer">
-                <span>
-                  Primeira expedição
-                </span>
+                <span>Primeira expedição</span>
 
                 <strong>
                   {COUNTRIES.length} destinos em destaque
@@ -290,6 +282,7 @@ export default function GlobalPresence() {
             <Reveal
               className="global-presence__country"
               delay={140}
+              key={`country-${selectedCountry.code}`}
             >
               <div className="global-presence__country-image">
                 <img
@@ -306,13 +299,8 @@ export default function GlobalPresence() {
                 />
 
                 <div className="global-presence__country-overlay">
-                  <span>
-                    {selectedCountry.region}
-                  </span>
-
-                  <strong>
-                    {selectedCountry.name}
-                  </strong>
+                  <span>{selectedCountry.region}</span>
+                  <strong>{selectedCountry.name}</strong>
                 </div>
               </div>
 
@@ -321,17 +309,15 @@ export default function GlobalPresence() {
                   Identidade natural
                 </span>
 
-                <h3>
-                  {selectedCountry.headline}
-                </h3>
-
-                <p>
-                  {selectedCountry.introduction}
-                </p>
+                <h3>{selectedCountry.headline}</h3>
+                <p>{selectedCountry.introduction}</p>
               </div>
             </Reveal>
 
-            <div className="global-presence__species">
+            <div
+              className="global-presence__species"
+              key={`species-${selectedCountry.code}`}
+            >
               {selectedCountry.species.map((species, index) => (
                 <Reveal
                   className="global-presence__species-card"
@@ -347,14 +333,10 @@ export default function GlobalPresence() {
                       {species.type}
                     </span>
 
-                    <h4>
-                      {species.commonName}
-                    </h4>
+                    <h4>{species.commonName}</h4>
 
                     <p>
-                      <em>
-                        {species.scientificName}
-                      </em>
+                      <em>{species.scientificName}</em>
                     </p>
                   </div>
                 </Reveal>
@@ -362,24 +344,23 @@ export default function GlobalPresence() {
             </div>
 
             <Reveal
-              className="global-presence__legal"
+              className="global-presence__responsibility"
               delay={260}
+              key={`responsibility-${selectedCountry.code}`}
             >
-              <span className="global-presence__legal-label">
-                Conteúdo educativo
+              <span className="global-presence__responsibility-label">
+                Conexão responsável
               </span>
 
               <p>
-                A presença de uma espécie neste atlas não significa
-                autorização para captura, criação, aquisição,
-                reprodução, transporte ou comercialização. O status
-                de conservação, a origem legal e as exigências
-                documentais deverão ser verificados antes de qualquer
-                atividade.
+                Espécies regulamentadas podem ser disponibilizadas por
+                criadores e estabelecimentos autorizados, com origem
+                comprovada e documentação aplicável.
               </p>
 
               <strong>
-                Marketplace de animais não habilitado nesta seção.
+                Conhecimento para quem compra. Espaço para quem cria
+                com responsabilidade.
               </strong>
             </Reveal>
           </div>
@@ -408,7 +389,7 @@ export default function GlobalPresence() {
         >
           <p>
             Primeiro o conhecimento.
-            <span> Depois, qualquer decisão.</span>
+            <span> Depois, a conexão.</span>
           </p>
         </Reveal>
       </div>
