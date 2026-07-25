@@ -4,6 +4,8 @@ import icons from '../assets/icons'
 import { sendContactMessage } from '../services/contactService'
 import '../styles/Contact.css'
 
+const SUPPORT_URL = 'https://mpago.la/1pMx3VE'
+
 const CONTACTS = [
   {
     type: 'image',
@@ -67,6 +69,13 @@ const AREAS = [
   'Conexão nacional e internacional',
 ]
 
+const SUPPORT_POINTS = [
+  'Novos países',
+  'Novas espécies',
+  'Pesquisa e conservação',
+  'Conteúdo gratuito',
+]
+
 const EMPTY = {
   nome: '',
   email: '',
@@ -91,6 +100,27 @@ function TelegramIcon() {
       <path
         fill="currentColor"
         d="M21.6 3.4a1.6 1.6 0 0 0-1.65-.22L3.2 9.65c-1.15.45-1.13 1.12-.2 1.4l4.3 1.34 1.66 5.1c.2.58.1.81.68.81.45 0 .65-.2.9-.45l2.08-2.02 4.33 3.2c.8.44 1.38.21 1.58-.74l2.86-13.48c.3-1.18-.45-1.72-1.79-1.41ZM8.03 12.08l9.96-6.28c.5-.3.95-.14.58.2l-8.22 7.42-.32 3.4-2-4.74Z"
+      />
+    </svg>
+  )
+}
+
+function SupportArrowIcon() {
+  return (
+    <svg
+      viewBox="0 0 24 24"
+      width="20"
+      height="20"
+      aria-hidden="true"
+      focusable="false"
+    >
+      <path
+        d="M5 12h14M13 6l6 6-6 6"
+        fill="none"
+        stroke="currentColor"
+        strokeWidth="1.8"
+        strokeLinecap="round"
+        strokeLinejoin="round"
       />
     </svg>
   )
@@ -122,7 +152,8 @@ function validate(values) {
   }
 
   if (values.empresa.trim() && values.empresa.trim().length < 2) {
-    errors.empresa = 'Nome da empresa ou organização muito curto.'
+    errors.empresa =
+      'Nome da empresa ou organização muito curto.'
   }
 
   if (!values.interesse) {
@@ -234,11 +265,12 @@ export default function Contact() {
           </h2>
 
           <p className="contact__text">
-            Criadores, consumidores, produtores, veterinários, biólogos,
-            pesquisadores, instituições e parceiros encontram na AgroNexus
-            um ambiente para compartilhar conhecimento, desenvolver
-            projetos e criar conexões responsáveis entre biodiversidade,
-            ciência e mercado nacional e internacional.
+            Criadores, consumidores, produtores, veterinários,
+            biólogos, pesquisadores, instituições e parceiros
+            encontram na AgroNexus um ambiente para compartilhar
+            conhecimento, desenvolver projetos e criar conexões
+            responsáveis entre biodiversidade, ciência e mercado
+            nacional e internacional.
           </p>
 
           <div className="contact__areas">
@@ -265,7 +297,9 @@ export default function Contact() {
                   <a
                     href={contact.href}
                     className="contact__item"
-                    target={opensExternally ? '_blank' : undefined}
+                    target={
+                      opensExternally ? '_blank' : undefined
+                    }
                     rel={
                       opensExternally
                         ? 'noopener noreferrer'
@@ -317,9 +351,7 @@ export default function Contact() {
             </div>
 
             <div className={fieldClass('nome')}>
-              <label htmlFor="nome">
-                Nome completo
-              </label>
+              <label htmlFor="nome">Nome completo</label>
 
               <input
                 id="nome"
@@ -341,9 +373,7 @@ export default function Contact() {
 
             <div className="contact__form-row">
               <div className={fieldClass('email')}>
-                <label htmlFor="email">
-                  E-mail
-                </label>
+                <label htmlFor="email">E-mail</label>
 
                 <input
                   id="email"
@@ -453,10 +483,7 @@ export default function Contact() {
                 </option>
 
                 {INTERESTS.map((interest) => (
-                  <option
-                    value={interest}
-                    key={interest}
-                  >
+                  <option value={interest} key={interest}>
                     {interest}
                   </option>
                 ))}
@@ -521,6 +548,76 @@ export default function Contact() {
               </p>
             )}
           </form>
+        </Reveal>
+      </div>
+
+      <div className="container contact__support-container">
+        <Reveal className="contact__support" delay={180}>
+          <div
+            className="contact__support-decoration"
+            aria-hidden="true"
+          >
+            <span />
+            <span />
+            <span />
+          </div>
+
+          <div className="contact__support-content">
+            <span className="contact__support-eyebrow">
+              Projeto independente
+            </span>
+
+            <h3 className="contact__support-title">
+              Ajude a expandir o
+              <span> Atlas Mundial da Biodiversidade.</span>
+            </h3>
+
+            <p className="contact__support-text">
+              Cada contribuição ajuda a AgroNexus a pesquisar novos
+              territórios, documentar espécies, desenvolver atlas
+              editoriais e manter o conhecimento disponível
+              gratuitamente.
+            </p>
+
+            <div
+              className="contact__support-points"
+              aria-label="Áreas beneficiadas pelo apoio"
+            >
+              {SUPPORT_POINTS.map((point) => (
+                <span
+                  className="contact__support-point"
+                  key={point}
+                >
+                  {point}
+                </span>
+              ))}
+            </div>
+          </div>
+
+          <div className="contact__support-action">
+            <span className="contact__support-label">
+              Apoio voluntário
+            </span>
+
+            <strong className="contact__support-value">
+              A partir de R$ 10
+            </strong>
+
+            <a
+              href={SUPPORT_URL}
+              className="contact__support-button"
+              target="_blank"
+              rel="noopener noreferrer"
+              aria-label="Apoiar a AgroNexus pelo Mercado Pago"
+            >
+              <span>Apoiar a AgroNexus</span>
+              <SupportArrowIcon />
+            </a>
+
+            <small className="contact__support-note">
+              Pagamento seguro processado pelo Mercado Pago.
+            </small>
+          </div>
         </Reveal>
       </div>
     </section>
