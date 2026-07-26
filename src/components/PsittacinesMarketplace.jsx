@@ -8,6 +8,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Melopsittacus undulatus',
     description:
       'Periquitos australianos comuns, ingleses de exposição, linhagens selecionadas, cores, desenhos e combinações genéticas.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-periquitos-australianos-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para periquitos-australianos',
     species: [
       'Periquito-australiano comum',
       'Periquito inglês de exposição',
@@ -658,6 +662,7 @@ function normaliseText(value) {
 export default function PsittacinesMarketplace() {
   const [searchTerm, setSearchTerm] = useState('')
   const [activeGroup, setActiveGroup] = useState('all')
+  const [selectedImage, setSelectedImage] = useState(null)
 
   const filteredGroups = useMemo(() => {
     const query = normaliseText(searchTerm.trim())
@@ -1000,6 +1005,118 @@ export default function PsittacinesMarketplace() {
           line-height: 1.3;
         }
 
+        .psitta-card-visual {
+          position: relative;
+          overflow: hidden;
+          margin: -10px -10px 26px;
+          padding: 0;
+          border: 1px solid rgba(212, 175, 55, 0.28);
+          border-radius: 18px;
+          background: #050b15;
+          aspect-ratio: 16 / 10;
+          cursor: pointer;
+        }
+
+        .psitta-card-visual::after {
+          content: '';
+          position: absolute;
+          inset: 0;
+          pointer-events: none;
+          background: linear-gradient(
+            180deg,
+            transparent 55%,
+            rgba(3, 10, 18, 0.88) 100%
+          );
+        }
+
+        .psitta-card-visual img {
+          display: block;
+          width: 100%;
+          height: 100%;
+          object-fit: cover;
+          object-position: top center;
+          transition: transform 360ms ease, filter 360ms ease;
+        }
+
+        .psitta-card-visual:hover img {
+          transform: scale(1.035);
+          filter: brightness(1.08);
+        }
+
+        .psitta-card-visual-label {
+          position: absolute;
+          z-index: 1;
+          right: 14px;
+          bottom: 13px;
+          display: inline-flex;
+          align-items: center;
+          min-height: 34px;
+          padding: 0 13px;
+          border: 1px solid rgba(212, 175, 55, 0.5);
+          border-radius: 999px;
+          background: rgba(4, 12, 21, 0.84);
+          color: #f3d77a;
+          font-size: 0.69rem;
+          font-weight: 800;
+          letter-spacing: 0.09em;
+          text-transform: uppercase;
+          backdrop-filter: blur(10px);
+        }
+
+        .psitta-lightbox {
+          position: fixed;
+          z-index: 9999;
+          inset: 0;
+          display: grid;
+          place-items: center;
+          padding: 24px;
+          background: rgba(1, 5, 10, 0.94);
+          backdrop-filter: blur(14px);
+        }
+
+        .psitta-lightbox-dialog {
+          position: relative;
+          width: min(1180px, 100%);
+          max-height: calc(100vh - 48px);
+          overflow: auto;
+          border: 1px solid rgba(212, 175, 55, 0.38);
+          border-radius: 22px;
+          background: #050b15;
+          box-shadow: 0 35px 110px rgba(0, 0, 0, 0.68);
+        }
+
+        .psitta-lightbox-image {
+          display: block;
+          width: 100%;
+          height: auto;
+        }
+
+        .psitta-lightbox-close {
+          position: sticky;
+          z-index: 2;
+          top: 14px;
+          float: right;
+          display: grid;
+          width: 46px;
+          height: 46px;
+          margin: 14px 14px -60px 0;
+          place-items: center;
+          border: 1px solid rgba(35, 211, 230, 0.46);
+          border-radius: 50%;
+          background: rgba(3, 16, 25, 0.9);
+          color: #23d3e6;
+          cursor: pointer;
+          font: inherit;
+          font-size: 1.4rem;
+          line-height: 1;
+          backdrop-filter: blur(12px);
+        }
+
+        .psitta-lightbox-close:hover {
+          background: #23d3e6;
+          color: #031019;
+        }
+
         .psitta-card-actions {
           display: flex;
           flex-wrap: wrap;
@@ -1306,6 +1423,29 @@ export default function PsittacinesMarketplace() {
                   className="psitta-group-card"
                   delay={(index % 4) * 70}
                 >
+                  {group.image && (
+                    <button
+                      type="button"
+                      className="psitta-card-visual"
+                      onClick={() =>
+                        setSelectedImage({
+                          src: group.image,
+                          alt: group.imageAlt || group.title,
+                        })
+                      }
+                      aria-label={`Abrir guia visual completo de ${group.title}`}
+                    >
+                      <img
+                        src={group.image}
+                        alt={group.imageAlt || group.title}
+                        loading="lazy"
+                      />
+                      <span className="psitta-card-visual-label">
+                        Abrir guia visual
+                      </span>
+                    </button>
+                  )}
+
                   <div className="psitta-group-heading">
                     <div>
                       <h3 className="psitta-group-title">{group.title}</h3>
@@ -1355,8 +1495,25 @@ export default function PsittacinesMarketplace() {
                   </div>
 
                   <div className="psitta-card-actions">
+                    {group.image && (
+                      <button
+                        type="button"
+                        className="psitta-button is-primary"
+                        onClick={() =>
+                          setSelectedImage({
+                            src: group.image,
+                            alt: group.imageAlt || group.title,
+                          })
+                        }
+                      >
+                        Ver guia visual
+                      </button>
+                    )}
+
                     <a
-                      className="psitta-button is-primary"
+                      className={`psitta-button ${
+                        group.image ? '' : 'is-primary'
+                      }`}
                       href="#contact"
                     >
                       Consultar disponibilidade
@@ -1430,6 +1587,36 @@ export default function PsittacinesMarketplace() {
           </Reveal>
         </div>
       </section>
+
+      {selectedImage && (
+        <div
+          className="psitta-lightbox"
+          role="dialog"
+          aria-modal="true"
+          aria-label="Guia visual de psitacídeos"
+          onClick={() => setSelectedImage(null)}
+        >
+          <div
+            className="psitta-lightbox-dialog"
+            onClick={(event) => event.stopPropagation()}
+          >
+            <button
+              type="button"
+              className="psitta-lightbox-close"
+              onClick={() => setSelectedImage(null)}
+              aria-label="Fechar guia visual"
+            >
+              ×
+            </button>
+
+            <img
+              className="psitta-lightbox-image"
+              src={selectedImage.src}
+              alt={selectedImage.alt}
+            />
+          </div>
+        </div>
+      )}
     </>
   )
 }
