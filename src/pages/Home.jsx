@@ -2,6 +2,7 @@ import Hero from '../components/Hero'
 import Mission from '../components/Mission'
 import Portfolio from '../components/Portfolio'
 import MarketplaceWarPlan from '../components/MarketplaceWarPlan'
+import PsittacinesMarketplace from '../components/PsittacinesMarketplace'
 import GlobalPresence from '../components/GlobalPresence'
 import CommunityHub from '../components/CommunityHub'
 import LivingEcosystem from '../components/LivingEcosystem'
@@ -17,6 +18,8 @@ export default function Home() {
       <Portfolio />
 
       <MarketplaceWarPlan />
+
+      <PsittacinesMarketplace />
 
       <GlobalPresence />
 
