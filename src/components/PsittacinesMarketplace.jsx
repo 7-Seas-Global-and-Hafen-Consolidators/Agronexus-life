@@ -63,6 +63,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Psittacula krameri',
     description:
       'Ring Necks ancestrais, séries azul e verde, fatores escuros, diluições, padrões e combinações de alto valor genético.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-ring-necks-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Ring Necks',
     species: [
       'Ring Neck indiano',
       'Ring Neck africano',
@@ -147,6 +151,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Nymphicus hollandicus',
     description:
       'Calopsitas domésticas, linhagens de exposição, mutações simples e combinações de cores e desenhos.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-calopsitas-marketplace-definitive.png',
+    imageAlt:
+      'Guia visual definitivo do Marketplace AgroNexus para calopsitas',
     species: ['Calopsita australiana', 'Calopsita inglesa de exposição'],
     mutations: [
       'Cinza ancestral',
@@ -186,6 +194,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Agapornis spp.',
     description:
       'Espécies com e sem anel perioftálmico, linhagens puras e amplo universo de mutações e combinações.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-agapornis-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Agapornis',
     species: [
       'Agapornis roseicollis',
       'Agapornis fischeri',
@@ -235,6 +247,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Platycercus spp.',
     description:
       'Roselas australianas por espécie, subespécie, linhagem, cor ancestral e mutações selecionadas.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-roselas-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Roselas',
     species: [
       'Rosela-crimson',
       'Rosela-pennant',
@@ -307,6 +323,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Cyanoramphus spp.',
     description:
       'Periquitos neozelandeses ativos e curiosos, com espécies e mutações mantidas por criadores especializados.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-kakarikis-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Kakarikis',
     species: [
       'Kakariki-de-fronte-vermelha',
       'Kakariki-de-fronte-amarela',
@@ -409,6 +429,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Loriini',
     description:
       'Psitacídeos nectarívoros de cores intensas, necessidades nutricionais específicas e comportamento altamente ativo.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-loris-e-loriquitos-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Lóris e loriquitos',
     species: [
       'Lóris-moluccano',
       'Lóris-arco-íris',
@@ -442,6 +466,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Amazona spp.',
     description:
       'Papagaios americanos reconhecidos pela inteligência, vocalização e longevidade, sempre com procedência legal.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-papagaios-amazonicos-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para papagaios amazônicos',
     species: [
       'Papagaio-verdadeiro',
       'Papagaio-do-mangue',
