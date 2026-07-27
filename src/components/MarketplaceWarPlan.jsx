@@ -49,6 +49,7 @@ const MARKETPLACE_STATS = [
 const MARKETPLACE_AREAS = [
   {
     id: 'psitacideos',
+    href: '#psitacideos-marketplace',
     eyebrow: 'Aves',
     title: 'Psitacídeos',
     description:
@@ -64,6 +65,7 @@ const MARKETPLACE_AREAS = [
   },
   {
     id: 'aqua',
+    href: '#contact',
     eyebrow: 'Ecossistemas aquáticos',
     title: 'Mundo Aqua',
     description:
@@ -79,6 +81,7 @@ const MARKETPLACE_AREAS = [
   },
   {
     id: 'roedores',
+    href: '#contact',
     eyebrow: 'Pequenos animais',
     title: 'Roedores',
     description:
@@ -94,6 +97,7 @@ const MARKETPLACE_AREAS = [
   },
   {
     id: 'pequenos-mamiferos',
+    href: '#contact',
     eyebrow: 'Companheiros especiais',
     title: 'Pequenos Mamíferos',
     description:
@@ -524,7 +528,7 @@ export default function MarketplaceWarPlan() {
                 </ul>
 
                 <a
-                  href="#contact"
+                  href={area.href}
                   style={{
                     display: 'inline-flex',
                     alignItems: 'center',
