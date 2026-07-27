@@ -689,6 +689,51 @@ const PSITTACINE_GROUPS = [
   },
 ]
 
+
+const MARKETPLACE_IMAGE_ROOT = '/images/marketplace'
+
+const PSITTACINE_EDITORIAL_SLUGS = {
+  budgerigars: 'periquitos-australianos',
+  ringnecks: 'ring-necks',
+  'asiatic-parakeets': 'periquitos-asiaticos',
+  cockatiels: 'calopsitas-definitive',
+  lovebirds: 'agapornis',
+  rosellas: 'roselas',
+  'australian-grass-parakeets': 'periquitos-australianos-cauda-longa',
+  kakarikis: 'kakarikis',
+  conures: 'conures-jandaias-tiribas-maritacas',
+  forpus: 'forpus',
+  lorikeets: 'loris-e-loriquitos',
+  amazons: 'papagaios-amazonicos',
+  'african-parrots': 'papagaios-africanos',
+  pionus: 'pionus',
+  caiques: 'caiques',
+  eclectus: 'eclectus',
+  vasa: 'papagaios-vasa',
+  macaws: 'araras',
+  cockatoos: 'cacatuas',
+}
+
+function buildMarketplaceImagePath(category, slug) {
+  return `${MARKETPLACE_IMAGE_ROOT}/${category}/agronexus-${slug}-marketplace.png`
+}
+
+const PSITTACINE_CATALOG = PSITTACINE_GROUPS.map((group) => {
+  const editorialSlug = PSITTACINE_EDITORIAL_SLUGS[group.id]
+
+  return {
+    ...group,
+    image:
+      group.image ||
+      (editorialSlug
+        ? buildMarketplaceImagePath('psitacideos', editorialSlug)
+        : null),
+    imageAlt:
+      group.imageAlt ||
+      `Guia visual completo do Marketplace AgroNexus para ${group.title}`,
+  }
+})
+
 const COMPLEMENTARY_CATEGORIES = [
   {
     title: 'Viveiros e gaiolas',
@@ -778,11 +823,24 @@ export default function PsittacinesMarketplace() {
   const [searchTerm, setSearchTerm] = useState('')
   const [activeGroup, setActiveGroup] = useState('all')
   const [selectedImage, setSelectedImage] = useState(null)
+  const [failedImages, setFailedImages] = useState(() => new Set())
+
+  const markImageUnavailable = (groupId) => {
+    setFailedImages((current) => {
+      if (current.has(groupId)) {
+        return current
+      }
+
+      const next = new Set(current)
+      next.add(groupId)
+      return next
+    })
+  }
 
   const filteredGroups = useMemo(() => {
     const query = normaliseText(searchTerm.trim())
 
-    return PSITTACINE_GROUPS.filter((group) => {
+    return PSITTACINE_CATALOG.filter((group) => {
       const matchesGroup = activeGroup === 'all' || group.id === activeGroup
 
       if (!matchesGroup) {
@@ -807,12 +865,12 @@ export default function PsittacinesMarketplace() {
     })
   }, [activeGroup, searchTerm])
 
-  const totalSpecies = PSITTACINE_GROUPS.reduce(
+  const totalSpecies = PSITTACINE_CATALOG.reduce(
     (total, group) => total + group.species.length,
     0
   )
 
-  const totalMutations = PSITTACINE_GROUPS.reduce(
+  const totalMutations = PSITTACINE_CATALOG.reduce(
     (total, group) => total + group.mutations.length,
     0
   )
@@ -1178,6 +1236,38 @@ export default function PsittacinesMarketplace() {
           backdrop-filter: blur(10px);
         }
 
+        .psitta-card-placeholder {
+          display: grid;
+          min-height: 100%;
+          place-items: center;
+          padding: 28px;
+          text-align: center;
+          background:
+            radial-gradient(
+              circle at 50% 20%,
+              rgba(35, 211, 230, 0.12),
+              transparent 42%
+            ),
+            linear-gradient(145deg, #0a1728, #050b15);
+        }
+
+        .psitta-card-placeholder strong {
+          display: block;
+          color: #f3d77a;
+          font-size: 0.78rem;
+          letter-spacing: 0.13em;
+          text-transform: uppercase;
+        }
+
+        .psitta-card-placeholder span {
+          display: block;
+          max-width: 280px;
+          margin-top: 10px;
+          color: #8f9db0;
+          font-size: 0.82rem;
+          line-height: 1.55;
+        }
+
         .psitta-lightbox {
           position: fixed;
           z-index: 9999;
@@ -1462,7 +1552,7 @@ export default function PsittacinesMarketplace() {
             <Reveal className="psitta-summary" delay={100}>
               <div className="psitta-summary-item">
                 <span className="psitta-summary-number">
-                  {PSITTACINE_GROUPS.length}
+                  {PSITTACINE_CATALOG.length}
                 </span>
                 <span className="psitta-summary-label">
                   Grandes grupos
@@ -1516,7 +1606,7 @@ export default function PsittacinesMarketplace() {
               Ver todos
             </button>
 
-            {PSITTACINE_GROUPS.map((group) => (
+            {PSITTACINE_CATALOG.map((group) => (
               <button
                 key={group.id}
                 type="button"
@@ -1538,12 +1628,13 @@ export default function PsittacinesMarketplace() {
                   className="psitta-group-card"
                   delay={(index % 4) * 70}
                 >
-                  {group.image && (
+                  {group.image && !failedImages.has(group.id) ? (
                     <button
                       type="button"
                       className="psitta-card-visual"
                       onClick={() =>
                         setSelectedImage({
+                          groupId: group.id,
                           src: group.image,
                           alt: group.imageAlt || group.title,
                         })
@@ -1554,11 +1645,25 @@ export default function PsittacinesMarketplace() {
                         src={group.image}
                         alt={group.imageAlt || group.title}
                         loading="lazy"
+                        onError={() => markImageUnavailable(group.id)}
                       />
                       <span className="psitta-card-visual-label">
                         Abrir guia visual
                       </span>
                     </button>
+                  ) : (
+                    <div
+                      className="psitta-card-visual psitta-card-placeholder"
+                      aria-label={`Guia editorial de ${group.title} em produção`}
+                    >
+                      <div>
+                        <strong>Guia editorial em produção</strong>
+                        <span>
+                          O card permanece ativo e a imagem aparecerá
+                          automaticamente assim que o arquivo for publicado.
+                        </span>
+                      </div>
+                    </div>
                   )}
 
                   <div className="psitta-group-heading">
@@ -1572,7 +1677,7 @@ export default function PsittacinesMarketplace() {
 
                     <span className="psitta-group-number">
                       {String(
-                        PSITTACINE_GROUPS.findIndex(
+                        PSITTACINE_CATALOG.findIndex(
                           (item) => item.id === group.id
                         ) + 1
                       ).padStart(2, '0')}
@@ -1610,12 +1715,13 @@ export default function PsittacinesMarketplace() {
                   </div>
 
                   <div className="psitta-card-actions">
-                    {group.image && (
+                    {group.image && !failedImages.has(group.id) && (
                       <button
                         type="button"
                         className="psitta-button is-primary"
                         onClick={() =>
                           setSelectedImage({
+                            groupId: group.id,
                             src: group.image,
                             alt: group.imageAlt || group.title,
                           })
@@ -1627,7 +1733,9 @@ export default function PsittacinesMarketplace() {
 
                     <a
                       className={`psitta-button ${
-                        group.image ? '' : 'is-primary'
+                        group.image && !failedImages.has(group.id)
+                          ? ''
+                          : 'is-primary'
                       }`}
                       href="#contact"
                     >
@@ -1728,6 +1836,10 @@ export default function PsittacinesMarketplace() {
               className="psitta-lightbox-image"
               src={selectedImage.src}
               alt={selectedImage.alt}
+              onError={() => {
+                markImageUnavailable(selectedImage.groupId)
+                setSelectedImage(null)
+              }}
             />
           </div>
         </div>
