@@ -352,6 +352,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Aratinga, Pyrrhura, Eupsittula e outros',
     description:
       'Psitacídeos americanos de pequeno e médio porte, incluindo espécies brasileiras e mutações desenvolvidas em criação.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-conures-jandaias-tiribas-maritacas-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para conures, jandaias, tiribas e maritacas',
     species: [
       'Jandaia-sol',
       'Jandaia-verdadeira',
@@ -395,6 +399,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Forpus spp.',
     description:
       'Pequenos psitacídeos americanos com personalidade marcante e grande variedade de mutações domésticas.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-forpus-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Forpus',
     species: [
       'Forpus-coelestis',
       'Forpus-passarinus',
@@ -492,6 +500,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Psittacus e Poicephalus',
     description:
       'Papagaios africanos inteligentes e longevos, incluindo cinzentos, senegais e espécies do gênero Poicephalus.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-papagaios-africanos-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para papagaios africanos',
     species: [
       'Papagaio-cinzento-do-Congo',
       'Papagaio-cinzento-de-Timneh',
@@ -513,23 +525,23 @@ const PSITTACINE_GROUPS = [
     ],
   },
   {
-    id: 'pionus-caiques-eclectus',
-    title: 'Pionus, caiques, Eclectus e Vasa',
-    scientificName: 'Pionus, Pionites, Eclectus e Coracopsis',
+    id: 'pionus',
+    title: 'Pionus',
+    scientificName: 'Pionus spp.',
     description:
-      'Grupos distintos reunidos em uma área própria para pesquisa, criação responsável e produtos especializados.',
+      'Papagaios neotropicais reconhecidos pelo temperamento equilibrado, beleza discreta e vocalização moderada.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-pionus-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Pionus',
     species: [
-      'Pionus-de-cabeça-azul',
-      'Pionus-de-cabeça-branca',
       'Pionus-maximiliani',
+      'Pionus-menstruus',
+      'Pionus-senilis',
+      'Pionus-fuscus',
+      'Pionus-chalcopterus',
       'Pionus-sordidus',
-      'Caique-de-cabeça-preta',
-      'Caique-de-barriga-branca',
-      'Eclectus-de-Nova-Guiné',
-      'Eclectus-das-Salomão',
-      'Eclectus-de-Aru',
-      'Vasa-maior',
-      'Vasa-menor',
+      'Pionus-tumultuosus',
     ],
     mutations: [
       'Ancestral',
@@ -538,8 +550,75 @@ const PSITTACINE_GROUPS = [
       'Canela',
       'Pied',
       'Diluído',
+    ],
+  },
+  {
+    id: 'caiques',
+    title: 'Caiques',
+    scientificName: 'Pionites spp.',
+    description:
+      'Psitacídeos atléticos, curiosos e intensamente brincalhões, com manejo orientado ao enriquecimento e bem-estar.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-caiques-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para caiques',
+    species: [
+      'Caique-de-cabeça-preta',
+      'Caique-de-barriga-branca',
+      'Caique-de-coxa-verde',
+      'Caique-de-cauda-amarela',
+    ],
+    mutations: [
+      'Ancestral',
+      'Canela',
+      'Pied',
+      'Diluído',
+      'Lutino',
+    ],
+  },
+  {
+    id: 'eclectus',
+    title: 'Eclectus',
+    scientificName: 'Eclectus spp.',
+    description:
+      'Papagaios de dimorfismo sexual marcante, elegância singular e necessidades nutricionais e comportamentais específicas.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-eclectus-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para Eclectus',
+    species: [
+      'Eclectus-de-Nova-Guiné',
+      'Eclectus-das-Ilhas Salomão',
+      'Eclectus-de-Aru',
+      'Eclectus-vosmaeri',
+      'Eclectus-cornelia',
+      'Eclectus-maclura',
+    ],
+    mutations: [
+      'Ancestral',
       'Red-sided',
       'Vosmaeri',
+      'Azul',
+      'Lutino',
+      'Canela',
+      'Pied',
+    ],
+  },
+  {
+    id: 'vasa',
+    title: 'Papagaios Vasa',
+    scientificName: 'Coracopsis spp.',
+    description:
+      'Psitacídeos malgaxes singulares, reunidos em uma área própria para pesquisa, conservação e criação responsável.',
+    species: [
+      'Vasa-maior',
+      'Vasa-menor',
+      'Vasa-das-Comores',
+      'Vasa-de-Seychelles',
+    ],
+    mutations: [
+      'Ancestral',
+      'Variações naturais de plumagem',
     ],
   },
   {
@@ -548,6 +627,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Ara, Anodorhynchus, Primolius e Diopsittaca',
     description:
       'Araras de grande e pequeno porte, espécies puras, linhagens legalizadas e conteúdo educativo de conservação.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-araras-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para araras e mini-araras',
     species: [
       'Arara-canindé',
       'Arara-vermelha-grande',
@@ -577,6 +660,10 @@ const PSITTACINE_GROUPS = [
     scientificName: 'Cacatuidae',
     description:
       'Cacatuas brancas, rosas e negras, com conteúdo especializado sobre comportamento, alojamento e bem-estar.',
+    image:
+      '/images/marketplace/psitacideos/agronexus-cacatuas-marketplace.png',
+    imageAlt:
+      'Guia visual completo do Marketplace AgroNexus para cacatuas',
     species: [
       'Cacatua-galerita',
       'Cacatua-alba',
