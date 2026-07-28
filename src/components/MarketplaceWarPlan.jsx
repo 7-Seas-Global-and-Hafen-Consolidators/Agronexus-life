@@ -81,7 +81,7 @@ const MARKETPLACE_AREAS = [
   },
   {
     id: 'roedores',
-    href: '#contact',
+    href: '#hamsters-marketplace',
     eyebrow: 'Pequenos animais',
     title: 'Roedores',
     description:
@@ -187,6 +187,70 @@ const AQUA_EDITORIAL_GUIDES = [
     image:
       '/images/marketplace/aqua/agronexus-club-beneficios-marketplace.png',
     imageAlt: 'Apresentação editorial dos benefícios do AgroNexus Club',
+  },
+]
+
+
+const HAMSTER_EDITORIAL_GUIDES = [
+  {
+    id: 'hamster-sirio',
+    volume: 'Vol. 01',
+    eyebrow: 'O gigante solitário',
+    title: 'Hamster Sírio',
+    scientificName: 'Mesocricetus auratus',
+    description:
+      'Origem, comportamento territorial, alojamento individual, enriquecimento, alimentação e cuidados essenciais.',
+    image:
+      '/images/marketplace/hamsters/agronexus-hamster-sirio-guia-completo-marketplace-v2.png',
+    imageAlt: 'Guia editorial AgroNexus sobre Hamster Sírio',
+  },
+  {
+    id: 'hamster-roborovski',
+    volume: 'Vol. 02',
+    eyebrow: 'Velocidade em miniatura',
+    title: 'Hamster Roborovski',
+    scientificName: 'Phodopus roborovskii',
+    description:
+      'O menor e mais veloz dos hamsters domésticos: habitat, comportamento, manejo delicado e enriquecimento seguro.',
+    image:
+      '/images/marketplace/hamsters/agronexus-hamster-roborovski-guia-completo-marketplace.png',
+    imageAlt: 'Guia editorial AgroNexus sobre Hamster Roborovski',
+  },
+  {
+    id: 'hamster-winter-white',
+    volume: 'Vol. 03',
+    eyebrow: 'O pequeno filósofo da neve',
+    title: 'Hamster Winter White',
+    scientificName: 'Phodopus sungorus',
+    description:
+      'Mudança sazonal da pelagem, temperamento, ambiente adequado, genética, alimentação e bem-estar responsável.',
+    image:
+      '/images/marketplace/hamsters/agronexus-hamster-winter-white-guia-completo-marketplace-v2.png',
+    imageAlt: 'Guia editorial AgroNexus sobre Hamster Winter White',
+  },
+  {
+    id: 'hamster-campbell',
+    volume: 'Vol. 04',
+    eyebrow: 'O investigador do território',
+    title: 'Hamster Campbell',
+    scientificName: 'Phodopus campbelli',
+    description:
+      'Personalidade alerta, diferenças em relação ao Winter White, variedades, habitat, dieta e cuidados especializados.',
+    image:
+      '/images/marketplace/hamsters/agronexus-hamster-campbell-guia-completo-marketplace.png',
+    imageAlt: 'Guia editorial AgroNexus sobre Hamster Campbell',
+  },
+  {
+    id: 'hamster-chines',
+    volume: 'Vol. 05',
+    eyebrow: 'O ninja invisível',
+    title: 'Hamster Chinês',
+    scientificName: 'Cricetulus griseus',
+    description:
+      'Corpo alongado, cauda característica, habilidade de fuga, comportamento, alojamento seguro e manejo responsável.',
+    image:
+      '/images/marketplace/hamsters/agronexus-hamster-chines-guia-completo-marketplace.png',
+    imageAlt: 'Guia editorial AgroNexus sobre Hamster Chinês',
   },
 ]
 
@@ -653,7 +717,9 @@ export default function MarketplaceWarPlan() {
                 >
                   {area.id === 'aqua'
                     ? 'Explorar coleção Aqua'
-                    : 'Consultar disponibilidade'}
+                    : area.id === 'roedores'
+                      ? 'Explorar coleção Hamsters'
+                      : 'Consultar disponibilidade'}
                 </a>
               </article>
             </Reveal>
@@ -709,6 +775,232 @@ export default function MarketplaceWarPlan() {
             }}
           >
             {AQUA_EDITORIAL_GUIDES.map((guide, index) => {
+              const imageFailed = failedImages[guide.id]
+
+              return (
+                <Reveal key={guide.id} delay={index * 80}>
+                  <article
+                    style={{
+                      height: '100%',
+                      border: '1px solid rgba(42, 226, 255, 0.18)',
+                      borderRadius: 'var(--radius)',
+                      background:
+                        'linear-gradient(145deg, rgba(15, 31, 54, 0.97), rgba(5, 13, 25, 0.98))',
+                      boxShadow: '0 24px 64px rgba(0, 0, 0, 0.3)',
+                      overflow: 'hidden',
+                    }}
+                  >
+                    <button
+                      type="button"
+                      onClick={() => setSelectedGuide(guide)}
+                      aria-label={`Ampliar ${guide.title}`}
+                      style={{
+                        display: 'block',
+                        width: '100%',
+                        padding: '0',
+                        border: '0',
+                        background: '#030914',
+                        cursor: 'zoom-in',
+                      }}
+                    >
+                      <div
+                        style={{
+                          position: 'relative',
+                          aspectRatio: '2 / 3',
+                          overflow: 'hidden',
+                        }}
+                      >
+                        {!imageFailed ? (
+                          <img
+                            src={guide.image}
+                            alt={guide.imageAlt}
+                            loading="lazy"
+                            onError={() => markImageAsFailed(guide.id)}
+                            style={{
+                              width: '100%',
+                              height: '100%',
+                              objectFit: 'cover',
+                              objectPosition: 'top center',
+                              transition: 'transform 350ms ease',
+                            }}
+                            onMouseEnter={(event) => {
+                              event.currentTarget.style.transform = 'scale(1.025)'
+                            }}
+                            onMouseLeave={(event) => {
+                              event.currentTarget.style.transform = 'scale(1)'
+                            }}
+                          />
+                        ) : (
+                          <div
+                            role="img"
+                            aria-label={`Imagem indisponível: ${guide.imageAlt}`}
+                            style={{
+                              display: 'grid',
+                              placeItems: 'center',
+                              width: '100%',
+                              height: '100%',
+                              padding: '30px',
+                              background:
+                                'radial-gradient(circle at 50% 20%, rgba(42, 226, 255, 0.14), transparent 54%), #06101d',
+                              color: 'var(--text-muted)',
+                              textAlign: 'center',
+                              lineHeight: '1.6',
+                            }}
+                          >
+                            Guia editorial em preparação
+                          </div>
+                        )}
+
+                        <span
+                          style={{
+                            position: 'absolute',
+                            top: '16px',
+                            left: '16px',
+                            padding: '8px 12px',
+                            border: '1px solid rgba(42, 226, 255, 0.34)',
+                            borderRadius: '999px',
+                            background: 'rgba(2, 8, 17, 0.86)',
+                            color: 'var(--cyan)',
+                            fontSize: '0.68rem',
+                            fontWeight: '800',
+                            letterSpacing: '0.13em',
+                            textTransform: 'uppercase',
+                            backdropFilter: 'blur(10px)',
+                          }}
+                        >
+                          {guide.volume}
+                        </span>
+                      </div>
+                    </button>
+
+                    <div style={{ padding: '26px' }}>
+                      <span
+                        style={{
+                          display: 'block',
+                          color: 'var(--cyan)',
+                          fontSize: '0.7rem',
+                          fontWeight: '800',
+                          letterSpacing: '0.17em',
+                          lineHeight: '1.5',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {guide.eyebrow}
+                      </span>
+
+                      <h3
+                        style={{
+                          margin: '10px 0 0',
+                          fontSize: 'clamp(1.45rem, 3vw, 2rem)',
+                          textTransform: 'uppercase',
+                        }}
+                      >
+                        {guide.title}
+                      </h3>
+
+                      <span
+                        style={{
+                          display: 'block',
+                          marginTop: '7px',
+                          color: 'rgba(255, 255, 255, 0.58)',
+                          fontFamily: 'serif',
+                          fontSize: '0.93rem',
+                          fontStyle: 'italic',
+                        }}
+                      >
+                        {guide.scientificName}
+                      </span>
+
+                      <p
+                        style={{
+                          margin: '17px 0 0',
+                          color: 'var(--text-muted)',
+                          lineHeight: '1.7',
+                        }}
+                      >
+                        {guide.description}
+                      </p>
+
+                      <button
+                        type="button"
+                        onClick={() => setSelectedGuide(guide)}
+                        style={{
+                          display: 'inline-flex',
+                          alignItems: 'center',
+                          justifyContent: 'center',
+                          minHeight: '44px',
+                          marginTop: '22px',
+                          padding: '0 20px',
+                          border: '1px solid var(--cyan)',
+                          borderRadius: '999px',
+                          background: 'transparent',
+                          color: 'var(--cyan)',
+                          fontWeight: '800',
+                          letterSpacing: '0.08em',
+                          textTransform: 'uppercase',
+                          cursor: 'pointer',
+                        }}
+                      >
+                        Abrir guia completo
+                      </button>
+                    </div>
+                  </article>
+                </Reveal>
+              )
+            })}
+          </div>
+        </div>
+
+
+        <div
+          id="hamsters-marketplace"
+          style={{
+            scrollMarginTop: '110px',
+            marginTop: 'clamp(72px, 9vw, 120px)',
+          }}
+        >
+          <Reveal
+            style={{
+              maxWidth: '900px',
+              marginBottom: '34px',
+            }}
+          >
+            <span className="eyebrow">Coleção Editorial • Hamsters</span>
+
+            <h2
+              style={{
+                marginTop: '18px',
+                fontSize: 'clamp(2rem, 5vw, 3.7rem)',
+                textTransform: 'uppercase',
+              }}
+            >
+              Pequenos no tamanho.{' '}
+              <span className="hl-cyan">Gigantes em necessidades.</span>
+            </h2>
+
+            <p
+              style={{
+                marginTop: '20px',
+                maxWidth: '780px',
+                color: 'var(--text-muted)',
+                fontSize: '1.02rem',
+                lineHeight: '1.8',
+              }}
+            >
+              Guias visuais completos sobre espécies, comportamento, alojamento,
+              enriquecimento, alimentação, genética e bem-estar responsável.
+              Clique em qualquer capa para ampliar.
+            </p>
+          </Reveal>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns: 'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '26px',
+            }}
+          >
+            {HAMSTER_EDITORIAL_GUIDES.map((guide, index) => {
               const imageFailed = failedImages[guide.id]
 
               return (
