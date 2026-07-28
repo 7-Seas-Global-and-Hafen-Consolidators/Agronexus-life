@@ -1,1 +1,601 @@
+.agronexus-library {
+  position: relative;
+  overflow: hidden;
+  background:
+    radial-gradient(circle at 12% 12%, rgba(24, 200, 211, 0.08), transparent 32%),
+    radial-gradient(circle at 88% 82%, rgba(212, 175, 55, 0.06), transparent 28%),
+    #030813;
+}
+
+.agronexus-library::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  background-image:
+    linear-gradient(rgba(255, 255, 255, 0.018) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(255, 255, 255, 0.018) 1px, transparent 1px);
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, transparent, #000 18%, #000 82%, transparent);
+}
+
+.agronexus-library .container {
+  position: relative;
+  z-index: 1;
+}
+
+.agronexus-library__head {
+  max-width: 920px;
+  margin-bottom: 72px;
+}
+
+.agronexus-library__title {
+  max-width: 900px;
+  margin: 18px 0 24px;
+  font-size: clamp(2.5rem, 5vw, 5.2rem);
+  line-height: 0.98;
+  letter-spacing: -0.045em;
+}
+
+.agronexus-library__intro {
+  max-width: 760px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: clamp(1rem, 1.5vw, 1.18rem);
+  line-height: 1.8;
+}
+
+.agronexus-library__feature {
+  display: grid;
+  grid-template-columns: minmax(320px, 0.82fr) minmax(0, 1.18fr);
+  gap: clamp(42px, 7vw, 96px);
+  align-items: center;
+}
+
+.agronexus-library__cover-column {
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  align-items: end;
+  gap: 18px;
+}
+
+.agronexus-library__cover {
+  position: relative;
+  min-height: 610px;
+  overflow: hidden;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  padding: 38px 36px 34px;
+  border: 1px solid rgba(212, 175, 55, 0.46);
+  border-radius: 4px 26px 26px 4px;
+  background:
+    linear-gradient(145deg, rgba(8, 21, 34, 0.94), rgba(2, 6, 11, 0.98)),
+    #081522;
+  box-shadow:
+    -22px 24px 70px rgba(0, 0, 0, 0.38),
+    inset -14px 0 30px rgba(0, 0, 0, 0.22);
+}
+
+.agronexus-library__cover::before {
+  content: '';
+  position: absolute;
+  top: 0;
+  bottom: 0;
+  left: 17px;
+  width: 1px;
+  background: linear-gradient(
+    to bottom,
+    transparent,
+    rgba(212, 175, 55, 0.72) 18%,
+    rgba(212, 175, 55, 0.72) 82%,
+    transparent
+  );
+}
+
+.agronexus-library__cover::after {
+  content: '';
+  position: absolute;
+  inset: 14px;
+  border: 1px solid rgba(255, 255, 255, 0.06);
+  border-radius: 2px 18px 18px 2px;
+  pointer-events: none;
+}
+
+.agronexus-library__cover-glow {
+  position: absolute;
+  width: 280px;
+  height: 280px;
+  right: -92px;
+  top: 148px;
+  border-radius: 50%;
+  background: rgba(24, 200, 211, 0.12);
+  filter: blur(4px);
+}
+
+.agronexus-library__cover-top,
+.agronexus-library__cover-content,
+.agronexus-library__cover-footer {
+  position: relative;
+  z-index: 2;
+}
+
+.agronexus-library__cover-top {
+  display: flex;
+  justify-content: space-between;
+  gap: 22px;
+  align-items: flex-start;
+  color: #f3f0e8;
+}
+
+.agronexus-library__cover-top span {
+  color: var(--cyan);
+  font-size: 0.92rem;
+  font-weight: 800;
+  letter-spacing: 0.08em;
+}
+
+.agronexus-library__cover-top small {
+  max-width: 150px;
+  color: rgba(243, 240, 232, 0.58);
+  font-size: 0.63rem;
+  line-height: 1.5;
+  text-align: right;
+  letter-spacing: 0.18em;
+}
+
+.agronexus-library__cover-mark {
+  position: absolute;
+  z-index: 2;
+  top: 152px;
+  left: 38px;
+  display: flex;
+  gap: 8px;
+}
+
+.agronexus-library__cover-mark span {
+  width: 38px;
+  height: 2px;
+  background: #d4af37;
+}
+
+.agronexus-library__cover-mark span:nth-child(2) {
+  width: 18px;
+  background: var(--cyan);
+}
+
+.agronexus-library__cover-mark span:nth-child(3) {
+  width: 8px;
+  background: rgba(243, 240, 232, 0.4);
+}
+
+.agronexus-library__cover-content {
+  margin-top: auto;
+  margin-bottom: auto;
+  padding: 80px 0 54px;
+}
+
+.agronexus-library__cover-content p {
+  margin: 0 0 14px;
+  color: #d4af37;
+  font-size: 0.78rem;
+  font-weight: 800;
+  letter-spacing: 0.24em;
+}
+
+.agronexus-library__cover-content h3 {
+  margin: 0;
+  max-width: 430px;
+  color: #f3f0e8;
+  font-size: clamp(3rem, 5vw, 5.5rem);
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.agronexus-library__cover-content > span {
+  display: block;
+  max-width: 350px;
+  margin-top: 30px;
+  color: rgba(243, 240, 232, 0.68);
+  font-size: 0.93rem;
+  line-height: 1.75;
+}
+
+.agronexus-library__cover-footer {
+  display: flex;
+  flex-direction: column;
+  gap: 6px;
+  padding-top: 24px;
+  border-top: 1px solid rgba(212, 175, 55, 0.24);
+}
+
+.agronexus-library__cover-footer strong {
+  color: #f3f0e8;
+  font-size: 0.78rem;
+  letter-spacing: 0.06em;
+}
+
+.agronexus-library__cover-footer span {
+  color: rgba(243, 240, 232, 0.46);
+  font-size: 0.67rem;
+  letter-spacing: 0.08em;
+}
+
+.agronexus-library__volume {
+  writing-mode: vertical-rl;
+  transform: rotate(180deg);
+  display: flex;
+  gap: 10px;
+  align-items: center;
+  padding: 18px 10px;
+  border-left: 1px solid rgba(255, 255, 255, 0.08);
+  color: rgba(243, 240, 232, 0.52);
+}
+
+.agronexus-library__volume span {
+  color: #d4af37;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.22em;
+}
+
+.agronexus-library__volume strong {
+  color: #f3f0e8;
+  font-size: 0.72rem;
+  letter-spacing: 0.08em;
+}
+
+.agronexus-library__volume p {
+  margin: 0;
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+}
+
+.agronexus-library__edition {
+  display: inline-flex;
+  align-items: center;
+  min-height: 34px;
+  padding: 0 14px;
+  border: 1px solid rgba(212, 175, 55, 0.42);
+  border-radius: 999px;
+  color: #d4af37;
+  background: rgba(212, 175, 55, 0.06);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.agronexus-library__content h3 {
+  margin: 28px 0 4px;
+  color: #f3f0e8;
+  font-size: clamp(2.2rem, 4vw, 4.2rem);
+  line-height: 1;
+  letter-spacing: -0.045em;
+}
+
+.agronexus-library__content h4 {
+  margin: 0 0 28px;
+  color: var(--cyan);
+  font-size: clamp(1.35rem, 2.3vw, 2.1rem);
+  font-weight: 600;
+}
+
+.agronexus-library__lead {
+  max-width: 680px;
+  margin: 0;
+  color: var(--text-muted);
+  font-size: 1.04rem;
+  line-height: 1.85;
+}
+
+.agronexus-library__details {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 14px 24px;
+  margin: 34px 0 36px;
+}
+
+.agronexus-library__detail {
+  display: flex;
+  align-items: center;
+  gap: 12px;
+}
+
+.agronexus-library__detail span {
+  flex: 0 0 auto;
+  width: 7px;
+  height: 7px;
+  border-radius: 50%;
+  background: #d4af37;
+  box-shadow: 0 0 0 5px rgba(212, 175, 55, 0.08);
+}
+
+.agronexus-library__detail p {
+  margin: 0;
+  color: rgba(243, 240, 232, 0.84);
+  font-size: 0.92rem;
+  line-height: 1.5;
+}
+
+.agronexus-library__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+}
+
+.agronexus-library__download,
+.agronexus-library__support {
+  min-width: 230px;
+  justify-content: center;
+}
+
+.agronexus-library__access-note {
+  max-width: 620px;
+  margin: 18px 0 0;
+  color: rgba(243, 240, 232, 0.45);
+  font-size: 0.78rem;
+  line-height: 1.6;
+}
+
+.agronexus-library__support-panel {
+  display: grid;
+  grid-template-columns: minmax(0, 1.2fr) minmax(300px, 0.8fr);
+  gap: 38px;
+  align-items: stretch;
+  margin-top: 110px;
+  padding: clamp(32px, 5vw, 64px);
+  border: 1px solid rgba(24, 200, 211, 0.18);
+  border-radius: 28px;
+  background:
+    linear-gradient(135deg, rgba(8, 21, 34, 0.8), rgba(3, 8, 19, 0.94));
+}
+
+.agronexus-library__support-copy {
+  align-self: center;
+}
+
+.agronexus-library__support-copy h3 {
+  max-width: 710px;
+  margin: 16px 0 22px;
+  color: #f3f0e8;
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+  line-height: 1.04;
+  letter-spacing: -0.04em;
+}
+
+.agronexus-library__support-copy p {
+  max-width: 720px;
+  margin: 0;
+  color: var(--text-muted);
+  line-height: 1.8;
+}
+
+.agronexus-library__support-card {
+  padding: 30px;
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  border-radius: 20px;
+  background: rgba(2, 6, 11, 0.7);
+}
+
+.agronexus-library__support-label {
+  color: rgba(243, 240, 232, 0.54);
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.agronexus-library__support-card > strong {
+  display: block;
+  margin: 14px 0 10px;
+  color: #d4af37;
+  font-size: clamp(3rem, 5vw, 5rem);
+  line-height: 1;
+  letter-spacing: -0.05em;
+}
+
+.agronexus-library__support-card p {
+  margin: 0 0 24px;
+  color: var(--text-muted);
+  font-size: 0.9rem;
+  line-height: 1.7;
+}
+
+.agronexus-library__future {
+  margin-top: 110px;
+}
+
+.agronexus-library__future-head {
+  display: flex;
+  justify-content: space-between;
+  gap: 30px;
+  align-items: end;
+  margin-bottom: 38px;
+}
+
+.agronexus-library__future-head h3 {
+  max-width: 680px;
+  margin: 0;
+  color: #f3f0e8;
+  font-size: clamp(2rem, 3.8vw, 3.8rem);
+  line-height: 1.02;
+  text-align: right;
+  letter-spacing: -0.04em;
+}
+
+.agronexus-library__future-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+  border-top: 1px solid rgba(255, 255, 255, 0.1);
+  border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+}
+
+.agronexus-library__future-item {
+  min-height: 210px;
+  padding: 26px 24px;
+  border-right: 1px solid rgba(255, 255, 255, 0.1);
+  transition:
+    background 180ms ease,
+    transform 180ms ease;
+}
+
+.agronexus-library__future-item:last-child {
+  border-right: 0;
+}
+
+.agronexus-library__future-item:hover {
+  background: rgba(24, 200, 211, 0.045);
+  transform: translateY(-4px);
+}
+
+.agronexus-library__future-item > span {
+  color: #d4af37;
+  font-size: 0.72rem;
+  font-weight: 800;
+  letter-spacing: 0.2em;
+}
+
+.agronexus-library__future-item h4 {
+  margin: 52px 0 10px;
+  color: #f3f0e8;
+  font-size: 1.15rem;
+}
+
+.agronexus-library__future-item p {
+  margin: 0;
+  color: rgba(243, 240, 232, 0.44);
+  font-size: 0.78rem;
+}
+
+@media (max-width: 1080px) {
+  .agronexus-library__feature {
+    grid-template-columns: 1fr;
+  }
+
+  .agronexus-library__cover-column {
+    max-width: 700px;
+  }
+
+  .agronexus-library__cover {
+    min-height: 560px;
+  }
+
+  .agronexus-library__support-panel {
+    grid-template-columns: 1fr;
+  }
+
+  .agronexus-library__future-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .agronexus-library__future-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .agronexus-library__future-item:nth-child(-n + 2) {
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+}
+
+@media (max-width: 720px) {
+  .agronexus-library__head {
+    margin-bottom: 46px;
+  }
+
+  .agronexus-library__title {
+    line-height: 1.02;
+  }
+
+  .agronexus-library__cover-column {
+    grid-template-columns: 1fr;
+  }
+
+  .agronexus-library__cover {
+    min-height: 510px;
+    padding: 30px 26px 28px;
+  }
+
+  .agronexus-library__cover::before {
+    left: 12px;
+  }
+
+  .agronexus-library__cover-top {
+    flex-direction: column;
+  }
+
+  .agronexus-library__cover-top small {
+    max-width: none;
+    text-align: left;
+  }
+
+  .agronexus-library__cover-mark {
+    top: 145px;
+    left: 28px;
+  }
+
+  .agronexus-library__cover-content {
+    padding-top: 96px;
+  }
+
+  .agronexus-library__cover-content h3 {
+    font-size: clamp(2.9rem, 15vw, 4.5rem);
+  }
+
+  .agronexus-library__volume {
+    display: none;
+  }
+
+  .agronexus-library__details {
+    grid-template-columns: 1fr;
+  }
+
+  .agronexus-library__actions {
+    flex-direction: column;
+  }
+
+  .agronexus-library__actions .btn {
+    width: 100%;
+  }
+
+  .agronexus-library__support-panel {
+    margin-top: 78px;
+    padding: 28px 22px;
+  }
+
+  .agronexus-library__future {
+    margin-top: 78px;
+  }
+
+  .agronexus-library__future-head {
+    display: block;
+  }
+
+  .agronexus-library__future-head h3 {
+    margin-top: 16px;
+    text-align: left;
+  }
+
+  .agronexus-library__future-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agronexus-library__future-item {
+    min-height: 170px;
+    border-right: 0;
+    border-bottom: 1px solid rgba(255, 255, 255, 0.1);
+  }
+
+  .agronexus-library__future-item:nth-child(2) {
+    border-right: 0;
+  }
+
+  .agronexus-library__future-item:last-child {
+    border-bottom: 0;
+  }
+
+  .agronexus-library__future-item h4 {
+    margin-top: 34px;
+  }
+}
 
