@@ -6,6 +6,7 @@ import PsittacinesMarketplace from '../components/PsittacinesMarketplace'
 import GlobalPresence from '../components/GlobalPresence'
 import CommunityHub from '../components/CommunityHub'
 import LivingEcosystem from '../components/LivingEcosystem'
+import AgroNexusLibrary from '../components/AgroNexusLibrary'
 import Contact from '../components/Contact'
 
 export default function Home() {
@@ -26,6 +27,8 @@ export default function Home() {
       <CommunityHub />
 
       <LivingEcosystem />
+
+      <AgroNexusLibrary />
 
       <Contact />
     </main>
