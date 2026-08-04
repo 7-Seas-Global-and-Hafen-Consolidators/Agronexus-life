@@ -9,7 +9,7 @@ export default function Home() {
       <Hero />
       <Mission />
 
-      {/* PRIMEIRA LINHA DE CARTÕES */}
+      {/* AQUI COMEÇAM OS CARDS DE NAVEGAÇÃO */}
       <section style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
@@ -40,7 +40,7 @@ export default function Home() {
         </a>
       </section>
 
-      {/* SEGUNDA LINHA DE CARTÕES (Recuperando Manuais e Projetos) */}
+      {/* SEGUNDA LINHA DE CARDS */}
       <section style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
@@ -63,8 +63,8 @@ export default function Home() {
           </div>
         </a>
 
-        {/* ATENÇÃO: COLE O SEU LINK DO ASAAS ONDE ESTÁ ESCRITO "COLE_AQUI_O_LINK" */}
-        <a href="COLE_AQUI_O_LINK" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
+        {/* O SEU LINK DO ASAAS ESTÁ AQUI EMBAIXO */}
+        <a href="https://www.asaas.com/c/u6toboa8xhqsmosv" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
             <h3>Apoie o AgroNexus</h3>
             <p>Contribua com PIX, boleto ou cartão via Asaas.</p>
