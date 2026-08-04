@@ -63,7 +63,8 @@ export default function Home() {
           </div>
         </a>
 
-        <a href="/apoie" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
+        {/* ATENÇÃO: COLE O SEU LINK DO ASAAS ONDE ESTÁ ESCRITO "COLE_AQUI_O_LINK" */}
+        <a href="COLE_AQUI_O_LINK" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
             <h3>Apoie o AgroNexus</h3>
             <p>Contribua com PIX, boleto ou cartão via Asaas.</p>
