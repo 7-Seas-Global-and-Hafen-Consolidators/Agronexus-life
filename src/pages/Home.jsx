@@ -1,3 +1,4 @@
+import '../styles/agro-hub.css'
 import Hero from '../components/Hero'
 import Mission from '../components/Mission'
 import Portfolio from '../components/Portfolio'
