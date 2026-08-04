@@ -2,7 +2,13 @@ import Reveal from './Reveal'
 import '../styles/AgroNexusLibrary.css'
 
 const PERIQUITO_PURCHASE_URL =
-  'https://www.asaas.com/c/u6toboa8xhqsmosv'
+  'https://www.asaas.com/c/bzsxz4qaps5glfm4'
+
+const CALOPSITA_PURCHASE_URL =
+  'https://www.asaas.com/c/x17xj6s0gmqrhgnm'
+
+const COMBO_PURCHASE_URL =
+  'https://www.asaas.com/c/lkx8ivjw04c01a1w'
 
 const GUIDES = [
   {
@@ -13,7 +19,6 @@ const GUIDES = [
     pages: '230 páginas',
     price: 'R$ 9,90',
     purchaseUrl: PERIQUITO_PURCHASE_URL,
-    externalPurchase: true,
     status: 'Disponível agora',
     description:
       'Um material completo desenvolvido para tutores, criadores, estudantes e apaixonados pela espécie, com linguagem acessível, cuidado editorial e foco em criação responsável.',
@@ -27,13 +32,12 @@ const GUIDES = [
   {
     id: 'calopsita',
     volume: 'VOLUME 02',
-    species: 'Calopsita',
+    species: 'Calopsitas',
     scientificName: 'Nymphicus hollandicus',
     pages: '139 páginas',
     price: 'R$ 9,90',
-    purchaseUrl: '#/contato',
-    externalPurchase: false,
-    status: 'Lançamento',
+    purchaseUrl: CALOPSITA_PURCHASE_URL,
+    status: 'Disponível agora',
     description:
       'Uma publicação aprofundada sobre inteligência, comportamento, linguagem corporal, confiança, saúde, alimentação, ambiente, reprodução e convivência responsável.',
     details: [
@@ -57,8 +61,8 @@ function PurchaseButton({ guide }) {
     <a
       href={guide.purchaseUrl}
       className="btn btn-primary agronexus-library__download"
-      target={guide.externalPurchase ? '_blank' : undefined}
-      rel={guide.externalPurchase ? 'noopener noreferrer' : undefined}
+      target="_blank"
+      rel="noopener noreferrer"
     >
       Comprar por {guide.price}
       <span className="arrow" aria-hidden="true">
@@ -302,10 +306,12 @@ export default function AgroNexusLibrary() {
             </p>
 
             <a
-              href="#/contato"
+              href={COMBO_PURCHASE_URL}
               className="btn btn-primary"
+              target="_blank"
+              rel="noopener noreferrer"
             >
-              Solicitar o combo
+              Comprar o combo
               <span className="arrow" aria-hidden="true">
                 →
               </span>
