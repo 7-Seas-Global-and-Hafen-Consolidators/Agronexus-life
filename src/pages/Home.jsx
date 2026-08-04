@@ -9,7 +9,6 @@ export default function Home() {
       <Hero />
       <Mission />
 
-      {/* A VITRINE LEVE (CARTÕES BONITOS) */}
       <section style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
@@ -21,21 +20,21 @@ export default function Home() {
         
         <a href="/aves" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
-            <h3>🐦 Aves & Psitacídeos</h3>
+            <h3>Aves & Psitacídeos</h3>
             <p>Guias de Calopsitas, Agapornis, Periquitos e mais.</p>
           </div>
         </a>
 
         <a href="/mamiferos" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
-            <h3>🐹 Pequenos Mamíferos</h3>
+            <h3>Pequenos Mamíferos</h3>
             <p>Hamsters, Roedores e outros pequenos.</p>
           </div>
         </a>
 
         <a href="/aquarismo" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
-            <h3>🐟 Aquarismo</h3>
+            <h3>Aquarismo</h3>
             <p>Marinho, Água Doce e Plantado.</p>
           </div>
         </a>
