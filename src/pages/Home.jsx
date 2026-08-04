@@ -5,11 +5,13 @@ import Mission from '../components/Mission'
 import Portfolio from '../components/Portfolio'
 
 import avesImage from '../assets/images/editorial/AgroNexus-Birds.png'
-import aquarismoImage from '../assets/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png'
 import mamiferosImage from '../assets/images/editorial/agronexus-hamsters-editorial-guide-1.jpg'
 import marketplaceImage from '../assets/images/editorial/agronexus-reptiles-editorial-guide-1.jpg'
 import bibliotecaImage from '../assets/images/editorial/agronexus-cockatiels-editorial-guide.jpg'
 import comunidadeImage from '../assets/images/editorial/agronexus-rosellas-editorial-guide.jpg'
+
+const aquarismoImage =
+  '/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png'
 
 const AREAS = [
   {
