@@ -8,10 +8,10 @@ const BIRD_COLLECTIONS = [
     description:
       'Uma das espécies mais populares do mundo, celebrada por sua inteligência, sociabilidade e extraordinária diversidade de cores e mutações.',
     image:
-      '/images/editorial/agronexus-australian-budgerigars-editorial-guide.jpg',
-    imagePosition: 'center',
+      '/images/marketplace/psitacideos/agronexus-periquitos-australianos-marketplace.png',
+    imagePosition: 'center top',
     actionLabel: 'Acessar guia oficial',
-    href: '/#biblioteca',
+    href: '#/biblioteca',
   },
   {
     id: 'agapornis',
@@ -22,10 +22,10 @@ const BIRD_COLLECTIONS = [
     description:
       'Psitacídeos intensamente sociais, reconhecidos por seus vínculos afetivos, personalidade marcante e diversidade de espécies e mutações.',
     image:
-      '/images/editorial/agronexus-lovebirds-editorial-guide.jpg',
-    imagePosition: 'center',
+      '/images/marketplace/psitacideos/agronexus-agapornis-marketplace.png',
+    imagePosition: 'center top',
     actionLabel: 'Conhecer a coleção',
-    href: '/#contato',
+    href: '#/contato',
   },
   {
     id: 'ring-necks',
@@ -36,10 +36,10 @@ const BIRD_COLLECTIONS = [
     description:
       'Aves elegantes e inteligentes, conhecidas pela capacidade de vocalização e por uma das mais belas diversidades cromáticas entre os psitacídeos.',
     image:
-      '/images/editorial/agronexus-ring-neck-parakeets-editorial-guide.jpg',
-    imagePosition: 'center',
+      '/images/marketplace/psitacideos/agronexus-ring-necks-marketplace.png',
+    imagePosition: 'center top',
     actionLabel: 'Conhecer a coleção',
-    href: '/#contato',
+    href: '#/contato',
   },
   {
     id: 'rosellas',
@@ -50,21 +50,22 @@ const BIRD_COLLECTIONS = [
     description:
       'Espécies australianas de presença extraordinária, plumagens intensas e características próprias de comportamento, habitat e criação.',
     image:
-      '/images/editorial/agronexus-rosellas-editorial-guide.jpg',
-    imagePosition: 'center',
+      '/images/marketplace/psitacideos/agronexus-roselas-marketplace.png',
+    imagePosition: 'center top',
     actionLabel: 'Conhecer a coleção',
-    href: '/#contato',
+    href: '#/contato',
   },
 ]
 
 function CollectionCard({ collection }) {
   const handleImageError = (event) => {
-    event.currentTarget.style.display = 'none'
+    const image = event.currentTarget
+    const visual = image.parentElement
+    const fallback = visual?.querySelector(
+      '.birds-card__fallback'
+    )
 
-    const fallback =
-      event.currentTarget.parentElement?.querySelector(
-        '.birds-card__fallback'
-      )
+    image.style.display = 'none'
 
     if (fallback) {
       fallback.style.display = 'flex'
@@ -72,11 +73,14 @@ function CollectionCard({ collection }) {
   }
 
   return (
-    <article className="birds-card">
+    <article
+      id={collection.id}
+      className="birds-card"
+    >
       <div className="birds-card__visual">
         <img
           src={collection.image}
-          alt={`${collection.title} em composição fotográfica editorial AgroNexus`}
+          alt={`${collection.title} — coleção editorial AgroNexus`}
           className="birds-card__image"
           style={{
             objectPosition: collection.imagePosition,
@@ -90,7 +94,7 @@ function CollectionCard({ collection }) {
           <span>Imagem não localizada</span>
 
           <small>
-            Confira o nome do arquivo no GitHub:
+            Arquivo procurado:
           </small>
 
           <code>{collection.image}</code>
@@ -131,7 +135,9 @@ function CollectionCard({ collection }) {
         >
           {collection.actionLabel}
 
-          <span aria-hidden="true">→</span>
+          <span aria-hidden="true">
+            →
+          </span>
         </a>
       </div>
     </article>
@@ -154,28 +160,37 @@ export default function Aves() {
             --birds-border: rgba(212, 175, 55, 0.28);
 
             min-height: 100vh;
-            overflow: hidden;
+            overflow-x: hidden;
             background: var(--birds-bg);
             color: var(--birds-text);
           }
 
+          .birds-container {
+            position: relative;
+            z-index: 1;
+            width: min(1220px, calc(100% - 48px));
+            margin: 0 auto;
+          }
+
           .birds-hero {
             position: relative;
-            padding: clamp(130px, 14vw, 210px) 24px
-              clamp(85px, 10vw, 145px);
             overflow: hidden;
+            padding:
+              clamp(145px, 15vw, 215px)
+              0
+              clamp(90px, 10vw, 145px);
             border-bottom:
               1px solid rgba(37, 200, 209, 0.14);
             background:
               radial-gradient(
-                circle at 75% 25%,
-                rgba(37, 200, 209, 0.12),
+                circle at 78% 28%,
+                rgba(37, 200, 209, 0.13),
                 transparent 34%
               ),
               radial-gradient(
-                circle at 68% 44%,
+                circle at 65% 45%,
                 rgba(212, 175, 55, 0.08),
-                transparent 42%
+                transparent 40%
               ),
               #02060b;
           }
@@ -185,7 +200,7 @@ export default function Aves() {
             position: absolute;
             inset: 0;
             pointer-events: none;
-            opacity: 0.32;
+            opacity: 0.3;
             background-image:
               linear-gradient(
                 rgba(37, 200, 209, 0.025) 1px,
@@ -197,13 +212,6 @@ export default function Aves() {
                 transparent 1px
               );
             background-size: 76px 76px;
-          }
-
-          .birds-container {
-            position: relative;
-            z-index: 1;
-            width: min(1220px, 100%);
-            margin: 0 auto;
           }
 
           .birds-hero__eyebrow,
@@ -219,14 +227,15 @@ export default function Aves() {
 
           .birds-hero h1 {
             max-width: 1100px;
-            margin: 26px 0 30px;
+            margin: 28px 0 30px;
             font-family:
               "Cormorant Garamond",
               Georgia,
               serif;
-            font-size: clamp(4.3rem, 10vw, 9.5rem);
+            font-size:
+              clamp(4.4rem, 10vw, 9.3rem);
             font-weight: 400;
-            line-height: 0.84;
+            line-height: 0.85;
             letter-spacing: -0.05em;
           }
 
@@ -238,7 +247,8 @@ export default function Aves() {
             max-width: 760px;
             margin: 0;
             color: var(--birds-muted);
-            font-size: clamp(1rem, 1.8vw, 1.25rem);
+            font-size:
+              clamp(1rem, 1.8vw, 1.24rem);
             line-height: 1.85;
           }
 
@@ -250,7 +260,7 @@ export default function Aves() {
           }
 
           .birds-button {
-            min-height: 51px;
+            min-height: 52px;
             padding: 14px 24px;
             display: inline-flex;
             align-items: center;
@@ -261,11 +271,13 @@ export default function Aves() {
             font-size: 0.69rem;
             font-weight: 700;
             letter-spacing: 0.13em;
+            text-align: center;
             text-transform: uppercase;
             transition:
               transform 180ms ease,
               border-color 180ms ease,
-              background 180ms ease;
+              background 180ms ease,
+              color 180ms ease;
           }
 
           .birds-button:hover {
@@ -280,7 +292,7 @@ export default function Aves() {
 
           .birds-button--secondary {
             border:
-              1px solid rgba(243, 240, 232, 0.26);
+              1px solid rgba(243, 240, 232, 0.27);
             color: var(--birds-text);
             background: transparent;
           }
@@ -290,11 +302,14 @@ export default function Aves() {
           }
 
           .birds-overview {
-            padding: clamp(80px, 10vw, 145px) 24px;
+            padding:
+              clamp(80px, 10vw, 145px)
+              0;
           }
 
           .birds-section__header {
-            margin-bottom: clamp(46px, 7vw, 78px);
+            margin-bottom:
+              clamp(48px, 7vw, 80px);
             display: grid;
             grid-template-columns:
               minmax(0, 1.2fr)
@@ -309,7 +324,8 @@ export default function Aves() {
               "Cormorant Garamond",
               Georgia,
               serif;
-            font-size: clamp(3rem, 6vw, 6rem);
+            font-size:
+              clamp(3rem, 6vw, 6rem);
             font-weight: 400;
             line-height: 0.95;
             letter-spacing: -0.04em;
@@ -333,8 +349,11 @@ export default function Aves() {
           }
 
           .birds-card {
+            position: relative;
+            min-width: 0;
             overflow: hidden;
-            border: 1px solid var(--birds-border);
+            border:
+              1px solid var(--birds-border);
             background:
               linear-gradient(
                 145deg,
@@ -358,8 +377,15 @@ export default function Aves() {
           .birds-card__visual {
             position: relative;
             overflow: hidden;
+            width: 100%;
             aspect-ratio: 4 / 5;
-            background: #07111c;
+            background:
+              radial-gradient(
+                circle at 50% 45%,
+                rgba(37, 200, 209, 0.08),
+                transparent 55%
+              ),
+              #07111c;
           }
 
           .birds-card__image {
@@ -368,15 +394,12 @@ export default function Aves() {
             display: block;
             object-fit: cover;
             transition:
-              transform 700ms cubic-bezier(
-                0.2,
-                0.7,
-                0,
-                1
-              );
+              transform 700ms
+              cubic-bezier(0.2, 0.7, 0, 1);
           }
 
-          .birds-card:hover .birds-card__image {
+          .birds-card:hover
+          .birds-card__image {
             transform: scale(1.035);
           }
 
@@ -415,33 +438,34 @@ export default function Aves() {
 
           .birds-card__fallback code {
             max-width: 100%;
-            overflow-wrap: anywhere;
             color: var(--birds-cyan);
-            font-size: 0.7rem;
+            font-size: 0.68rem;
+            overflow-wrap: anywhere;
           }
 
           .birds-card__shade {
             position: absolute;
             inset: 0;
+            pointer-events: none;
             background:
               linear-gradient(
                 to top,
-                rgba(2, 6, 11, 0.85),
+                rgba(2, 6, 11, 0.86),
                 transparent 48%
               ),
               linear-gradient(
                 135deg,
-                rgba(2, 6, 11, 0.25),
+                rgba(2, 6, 11, 0.22),
                 transparent
               );
-            pointer-events: none;
           }
 
           .birds-card__number {
             position: absolute;
             top: 22px;
             left: 22px;
-            color: rgba(255, 255, 255, 0.9);
+            z-index: 2;
+            color: rgba(255, 255, 255, 0.92);
             font-family:
               "Cormorant Garamond",
               Georgia,
@@ -454,12 +478,13 @@ export default function Aves() {
             position: absolute;
             right: 18px;
             bottom: 18px;
+            z-index: 2;
             padding: 8px 12px;
             border:
               1px solid rgba(212, 175, 55, 0.48);
             border-radius: 999px;
             color: #f1d47b;
-            background: rgba(2, 6, 11, 0.76);
+            background: rgba(2, 6, 11, 0.78);
             backdrop-filter: blur(8px);
             font-size: 0.59rem;
             font-weight: 700;
@@ -468,7 +493,8 @@ export default function Aves() {
           }
 
           .birds-card__content {
-            padding: clamp(27px, 4vw, 42px);
+            padding:
+              clamp(28px, 4vw, 42px);
           }
 
           .birds-card__eyebrow {
@@ -488,7 +514,8 @@ export default function Aves() {
               "Cormorant Garamond",
               Georgia,
               serif;
-            font-size: clamp(2.5rem, 4vw, 4rem);
+            font-size:
+              clamp(2.5rem, 4vw, 4rem);
             font-weight: 400;
             line-height: 0.98;
           }
@@ -507,14 +534,15 @@ export default function Aves() {
           }
 
           .birds-card__button {
-            min-height: 48px;
+            min-height: 49px;
             padding: 13px 20px;
             display: inline-flex;
             align-items: center;
             justify-content: center;
             gap: 14px;
             border:
-              1px solid rgba(37, 200, 209, 0.52);
+              1px solid
+              rgba(37, 200, 209, 0.52);
             border-radius: 999px;
             color: var(--birds-text);
             background: transparent;
@@ -522,15 +550,18 @@ export default function Aves() {
             font-size: 0.67rem;
             font-weight: 700;
             letter-spacing: 0.12em;
+            text-align: center;
             text-transform: uppercase;
             transition:
               color 180ms ease,
               background 180ms ease,
-              transform 180ms ease;
+              transform 180ms ease,
+              border-color 180ms ease;
           }
 
           .birds-card__button:hover {
             transform: translateY(-2px);
+            border-color: var(--birds-cyan);
             color: #02060b;
             background: var(--birds-cyan);
           }
@@ -543,17 +574,19 @@ export default function Aves() {
           .birds-final {
             padding:
               clamp(30px, 6vw, 70px)
-              24px
-              clamp(90px, 10vw, 150px);
+              0
+              clamp(100px, 11vw, 160px);
           }
 
           .birds-final__box {
-            padding: clamp(35px, 7vw, 78px);
+            padding:
+              clamp(36px, 7vw, 78px);
             display: flex;
             align-items: center;
             justify-content: space-between;
             gap: 50px;
-            border: 1px solid var(--birds-border);
+            border:
+              1px solid var(--birds-border);
             background:
               radial-gradient(
                 circle at 90% 50%,
@@ -569,7 +602,8 @@ export default function Aves() {
               "Cormorant Garamond",
               Georgia,
               serif;
-            font-size: clamp(2.6rem, 5vw, 5rem);
+            font-size:
+              clamp(2.6rem, 5vw, 5rem);
             font-weight: 400;
             line-height: 0.96;
           }
@@ -594,8 +628,13 @@ export default function Aves() {
           }
 
           @media (max-width: 720px) {
+            .birds-container {
+              width:
+                min(100% - 30px, 1220px);
+            }
+
             .birds-hero {
-              padding-top: 120px;
+              padding-top: 125px;
             }
 
             .birds-hero h1 {
@@ -613,13 +652,6 @@ export default function Aves() {
           }
 
           @media (max-width: 520px) {
-            .birds-hero,
-            .birds-overview,
-            .birds-final {
-              padding-left: 15px;
-              padding-right: 15px;
-            }
-
             .birds-hero__actions {
               flex-direction: column;
             }
@@ -630,11 +662,11 @@ export default function Aves() {
             }
 
             .birds-card__content {
-              padding: 27px 21px 31px;
+              padding: 28px 21px 32px;
             }
 
             .birds-final__box {
-              padding: 31px 22px;
+              padding: 32px 22px;
             }
           }
 
@@ -647,7 +679,8 @@ export default function Aves() {
             }
 
             .birds-card:hover,
-            .birds-card:hover .birds-card__image,
+            .birds-card:hover
+            .birds-card__image,
             .birds-button:hover,
             .birds-card__button:hover {
               transform: none;
@@ -668,10 +701,10 @@ export default function Aves() {
           </h1>
 
           <p className="birds-hero__lead">
-            Fotografia editorial, biodiversidade, genética,
-            comportamento, conservação e criação responsável
-            reunidos em uma experiência visual dedicada a cada
-            espécie.
+            Fotografia editorial, biodiversidade,
+            genética, comportamento, conservação e
+            criação responsável reunidos em uma
+            experiência visual dedicada a cada espécie.
           </p>
 
           <div className="birds-hero__actions">
@@ -680,11 +713,13 @@ export default function Aves() {
               className="birds-button birds-button--primary"
             >
               Explorar coleções
-              <span aria-hidden="true">↓</span>
+              <span aria-hidden="true">
+                ↓
+              </span>
             </a>
 
             <a
-              href="/#biblioteca"
+              href="#/biblioteca"
               className="birds-button birds-button--secondary"
             >
               Biblioteca AgroNexus
@@ -711,20 +746,23 @@ export default function Aves() {
             </div>
 
             <p>
-              Imagens que despertam curiosidade e conduzem o
-              visitante ao conhecimento técnico, à biblioteca,
-              à comunidade e às futuras conexões responsáveis
-              do marketplace AgroNexus™.
+              Imagens que despertam curiosidade e conduzem
+              o visitante ao conhecimento técnico, à
+              biblioteca, à comunidade e às futuras
+              conexões responsáveis do marketplace
+              AgroNexus™.
             </p>
           </header>
 
           <div className="birds-grid">
-            {BIRD_COLLECTIONS.map((collection) => (
-              <CollectionCard
-                collection={collection}
-                key={collection.id}
-              />
-            ))}
+            {BIRD_COLLECTIONS.map(
+              (collection) => (
+                <CollectionCard
+                  collection={collection}
+                  key={collection.id}
+                />
+              )
+            )}
           </div>
         </div>
       </section>
@@ -737,22 +775,26 @@ export default function Aves() {
                 Conhecimento que orienta
               </span>
 
-              <h2>Biblioteca Editorial AgroNexus™</h2>
+              <h2>
+                Biblioteca Editorial AgroNexus™
+              </h2>
 
               <p>
-                Guias oficiais completos para quem acredita
-                que conhecer profundamente uma espécie é o
-                primeiro passo para cuidar com
-                responsabilidade.
+                Guias oficiais completos para quem
+                acredita que conhecer profundamente uma
+                espécie é o primeiro passo para cuidar
+                com responsabilidade.
               </p>
             </div>
 
             <a
-              href="/#biblioteca"
+              href="#/biblioteca"
               className="birds-button birds-button--primary"
             >
               Acessar biblioteca
-              <span aria-hidden="true">→</span>
+              <span aria-hidden="true">
+                →
+              </span>
             </a>
           </div>
         </div>
