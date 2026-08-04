@@ -1,0 +1,568 @@
+.aves-page {
+  --aves-bg: #02060b;
+  --aves-surface: #061019;
+  --aves-surface-light: #081522;
+  --aves-text: #f3f0e8;
+  --aves-muted: rgba(243, 240, 232, 0.66);
+  --aves-gold: #d4af37;
+  --aves-cyan: #22d3d8;
+  --aves-border: rgba(212, 175, 55, 0.25);
+
+  min-height: 100vh;
+  overflow: hidden;
+  background: var(--aves-bg);
+  color: var(--aves-text);
+}
+
+.aves-container {
+  width: min(1240px, calc(100% - 40px));
+  margin-inline: auto;
+}
+
+.aves-eyebrow {
+  display: block;
+  color: var(--aves-gold);
+  font-size: 0.72rem;
+  font-weight: 600;
+  letter-spacing: 0.22em;
+  line-height: 1.5;
+  text-transform: uppercase;
+}
+
+.aves-hero {
+  position: relative;
+  min-height: 660px;
+  display: flex;
+  align-items: center;
+  padding: 140px 0 100px;
+  border-bottom: 1px solid var(--aves-border);
+  background:
+    linear-gradient(
+      90deg,
+      rgba(2, 6, 11, 0.98) 0%,
+      rgba(2, 6, 11, 0.9) 46%,
+      rgba(2, 6, 11, 0.78) 100%
+    ),
+    radial-gradient(
+      circle at 78% 34%,
+      rgba(34, 211, 216, 0.14),
+      transparent 38%
+    ),
+    radial-gradient(
+      circle at 70% 40%,
+      rgba(212, 175, 55, 0.1),
+      transparent 48%
+    );
+}
+
+.aves-hero::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.5;
+  background-image:
+    linear-gradient(
+      rgba(212, 175, 55, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 175, 55, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 72px 72px;
+  mask-image: linear-gradient(to bottom, black, transparent 85%);
+}
+
+.aves-hero__glow {
+  position: absolute;
+  top: 18%;
+  right: 10%;
+  width: 420px;
+  height: 420px;
+  border-radius: 50%;
+  background: rgba(34, 211, 216, 0.06);
+  filter: blur(90px);
+  pointer-events: none;
+}
+
+.aves-hero__content {
+  position: relative;
+  z-index: 1;
+}
+
+.aves-hero h1 {
+  max-width: 900px;
+  margin: 24px 0 28px;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(4rem, 9vw, 8.5rem);
+  font-weight: 400;
+  line-height: 0.83;
+  letter-spacing: -0.045em;
+}
+
+.aves-hero h1 span,
+.aves-section-heading h2 span,
+.aves-journey h2 span {
+  color: var(--aves-cyan);
+}
+
+.aves-hero__lead {
+  max-width: 700px;
+  margin: 0;
+  color: var(--aves-muted);
+  font-size: clamp(1rem, 2vw, 1.22rem);
+  line-height: 1.8;
+}
+
+.aves-hero__actions {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 14px;
+  margin-top: 38px;
+}
+
+.aves-button {
+  min-height: 50px;
+  padding: 14px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 999px;
+  text-decoration: none;
+  font-size: 0.74rem;
+  font-weight: 700;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+  transition:
+    transform 200ms ease,
+    color 200ms ease,
+    border-color 200ms ease,
+    background 200ms ease;
+}
+
+.aves-button:hover {
+  transform: translateY(-2px);
+}
+
+.aves-button--primary {
+  border: 1px solid var(--aves-cyan);
+  color: #02060b;
+  background: var(--aves-cyan);
+}
+
+.aves-button--outline {
+  border: 1px solid rgba(243, 240, 232, 0.3);
+  color: var(--aves-text);
+  background: transparent;
+}
+
+.aves-button--outline:hover {
+  border-color: var(--aves-gold);
+  color: var(--aves-gold);
+}
+
+.aves-hero__metrics {
+  max-width: 760px;
+  margin-top: 64px;
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  border-top: 1px solid var(--aves-border);
+  border-bottom: 1px solid var(--aves-border);
+}
+
+.aves-hero__metrics div {
+  padding: 22px 20px;
+  border-right: 1px solid var(--aves-border);
+}
+
+.aves-hero__metrics div:last-child {
+  border-right: 0;
+}
+
+.aves-hero__metrics strong,
+.aves-hero__metrics span {
+  display: block;
+}
+
+.aves-hero__metrics strong {
+  margin-bottom: 6px;
+  color: var(--aves-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.55rem;
+  font-weight: 500;
+}
+
+.aves-hero__metrics span {
+  color: var(--aves-muted);
+  font-size: 0.75rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aves-species {
+  padding: clamp(80px, 10vw, 150px) 0;
+}
+
+.aves-section-heading {
+  margin-bottom: 60px;
+  display: grid;
+  grid-template-columns: minmax(0, 1.3fr) minmax(300px, 0.7fr);
+  gap: 60px;
+  align-items: end;
+}
+
+.aves-section-heading h2,
+.aves-journey h2,
+.aves-final-cta h2 {
+  margin: 18px 0 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.7rem, 5vw, 5.4rem);
+  font-weight: 400;
+  line-height: 0.98;
+  letter-spacing: -0.03em;
+}
+
+.aves-section-heading > p {
+  margin: 0;
+  color: var(--aves-muted);
+  line-height: 1.8;
+}
+
+.aves-species-grid {
+  display: grid;
+  grid-template-columns: repeat(2, minmax(0, 1fr));
+  gap: 28px;
+}
+
+.aves-species-card {
+  overflow: hidden;
+  border: 1px solid var(--aves-border);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 21, 34, 0.95),
+      rgba(3, 9, 15, 0.98)
+    );
+  transition:
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
+}
+
+.aves-species-card:hover {
+  transform: translateY(-6px);
+  border-color: rgba(212, 175, 55, 0.58);
+  box-shadow: 0 30px 80px rgba(0, 0, 0, 0.32);
+}
+
+.aves-species-card__image-link {
+  display: block;
+  color: inherit;
+  text-decoration: none;
+}
+
+.aves-species-card__image-wrap {
+  position: relative;
+  overflow: hidden;
+  aspect-ratio: 16 / 11;
+  background: #061019;
+}
+
+.aves-species-card__image {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  object-position: center;
+  transition: transform 700ms cubic-bezier(0.2, 0.7, 0, 1);
+}
+
+.aves-species-card:hover .aves-species-card__image {
+  transform: scale(1.035);
+}
+
+.aves-species-card__image-overlay {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(2, 6, 11, 0.82),
+      transparent 48%
+    ),
+    linear-gradient(
+      135deg,
+      rgba(2, 6, 11, 0.2),
+      transparent
+    );
+}
+
+.aves-species-card__number {
+  position: absolute;
+  top: 20px;
+  left: 20px;
+  color: rgba(255, 255, 255, 0.92);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.25rem;
+  letter-spacing: 0.08em;
+}
+
+.aves-species-card__status {
+  position: absolute;
+  right: 18px;
+  bottom: 18px;
+  padding: 8px 12px;
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  border-radius: 999px;
+  color: #f7d87b;
+  background: rgba(2, 6, 11, 0.74);
+  backdrop-filter: blur(8px);
+  font-size: 0.62rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
+}
+
+.aves-species-card__body {
+  padding: clamp(26px, 4vw, 42px);
+}
+
+.aves-species-card__category {
+  display: block;
+  margin-bottom: 13px;
+  color: var(--aves-gold);
+  font-size: 0.66rem;
+  font-weight: 600;
+  letter-spacing: 0.18em;
+  text-transform: uppercase;
+}
+
+.aves-species-card h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: clamp(2.2rem, 4vw, 3.8rem);
+  font-weight: 400;
+  line-height: 1;
+}
+
+.aves-species-card__scientific {
+  margin: 10px 0 0;
+  color: var(--aves-cyan);
+  font-family: Georgia, serif;
+  font-style: italic;
+}
+
+.aves-species-card__description {
+  margin: 24px 0;
+  color: var(--aves-muted);
+  line-height: 1.75;
+}
+
+.aves-species-card__highlights {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+  margin-bottom: 30px;
+}
+
+.aves-species-card__highlights span {
+  padding: 7px 10px;
+  border: 1px solid rgba(243, 240, 232, 0.12);
+  color: rgba(243, 240, 232, 0.68);
+  font-size: 0.66rem;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.aves-species-card__action {
+  display: inline-flex;
+  align-items: center;
+  gap: 15px;
+  color: var(--aves-text);
+  text-decoration: none;
+  font-size: 0.72rem;
+  font-weight: 700;
+  letter-spacing: 0.13em;
+  text-transform: uppercase;
+}
+
+.aves-species-card__action span {
+  color: var(--aves-gold);
+  font-size: 1.2rem;
+  transition: transform 200ms ease;
+}
+
+.aves-species-card__action:hover span {
+  transform: translateX(6px);
+}
+
+.aves-journey {
+  padding: clamp(80px, 10vw, 140px) 0;
+  border-top: 1px solid var(--aves-border);
+  border-bottom: 1px solid var(--aves-border);
+  background:
+    radial-gradient(
+      circle at 15% 20%,
+      rgba(34, 211, 216, 0.08),
+      transparent 34%
+    ),
+    var(--aves-surface);
+}
+
+.aves-journey .aves-container {
+  display: grid;
+  grid-template-columns: 0.9fr 1.1fr;
+  gap: clamp(50px, 8vw, 110px);
+  align-items: center;
+}
+
+.aves-journey__content p {
+  max-width: 580px;
+  margin: 28px 0 0;
+  color: var(--aves-muted);
+  line-height: 1.8;
+}
+
+.aves-journey__steps {
+  border-top: 1px solid var(--aves-border);
+}
+
+.aves-journey__steps article {
+  padding: 28px 8px;
+  display: grid;
+  grid-template-columns: 56px minmax(130px, 0.55fr) 1fr;
+  gap: 18px;
+  align-items: center;
+  border-bottom: 1px solid var(--aves-border);
+}
+
+.aves-journey__steps article > span {
+  color: var(--aves-gold);
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.2rem;
+}
+
+.aves-journey__steps h3 {
+  margin: 0;
+  font-family: "Cormorant Garamond", Georgia, serif;
+  font-size: 1.8rem;
+  font-weight: 400;
+}
+
+.aves-journey__steps p {
+  margin: 0;
+  color: var(--aves-muted);
+  line-height: 1.55;
+}
+
+.aves-final-cta {
+  padding: clamp(70px, 9vw, 120px) 0;
+}
+
+.aves-final-cta__inner {
+  padding: clamp(32px, 6vw, 70px);
+  display: flex;
+  justify-content: space-between;
+  gap: 50px;
+  align-items: center;
+  border: 1px solid var(--aves-border);
+  background:
+    radial-gradient(
+      circle at 90% 50%,
+      rgba(212, 175, 55, 0.1),
+      transparent 34%
+    ),
+    var(--aves-surface-light);
+}
+
+.aves-final-cta h2 {
+  font-size: clamp(2.4rem, 4.5vw, 4.7rem);
+}
+
+.aves-final-cta p {
+  max-width: 680px;
+  margin: 20px 0 0;
+  color: var(--aves-muted);
+  line-height: 1.75;
+}
+
+@media (max-width: 960px) {
+  .aves-section-heading,
+  .aves-journey .aves-container {
+    grid-template-columns: 1fr;
+  }
+
+  .aves-section-heading {
+    gap: 24px;
+  }
+
+  .aves-final-cta__inner {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+}
+
+@media (max-width: 760px) {
+  .aves-container {
+    width: min(100% - 28px, 1240px);
+  }
+
+  .aves-hero {
+    min-height: auto;
+    padding: 120px 0 76px;
+  }
+
+  .aves-hero h1 {
+    font-size: clamp(3.5rem, 18vw, 5.8rem);
+  }
+
+  .aves-hero__metrics {
+    grid-template-columns: 1fr;
+  }
+
+  .aves-hero__metrics div {
+    border-right: 0;
+    border-bottom: 1px solid var(--aves-border);
+  }
+
+  .aves-hero__metrics div:last-child {
+    border-bottom: 0;
+  }
+
+  .aves-species-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aves-species-card__image-wrap {
+    aspect-ratio: 4 / 5;
+  }
+
+  .aves-journey__steps article {
+    grid-template-columns: 42px 1fr;
+  }
+
+  .aves-journey__steps p {
+    grid-column: 2;
+  }
+}
+
+@media (max-width: 520px) {
+  .aves-hero__actions {
+    flex-direction: column;
+  }
+
+  .aves-button {
+    width: 100%;
+  }
+
+  .aves-species-card__body {
+    padding: 25px 20px 30px;
+  }
+
+  .aves-final-cta__inner {
+    padding: 30px 22px;
+  }
+}
