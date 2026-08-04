@@ -9,15 +9,15 @@ export default function Home() {
       <Hero />
       <Mission />
 
+      {/* PRIMEIRA LINHA DE CARTÕES */}
       <section style={{ 
         display: 'grid', 
         gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
         gap: '25px', 
-        padding: '60px 20px', 
+        padding: '60px 20px 20px', 
         maxWidth: '1200px', 
         margin: '0 auto' 
       }}>
-        
         <a href="/aves" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
           <div className="portal-card">
             <h3>Aves & Psitacídeos</h3>
@@ -38,7 +38,37 @@ export default function Home() {
             <p>Marinho, Água Doce e Plantado.</p>
           </div>
         </a>
-        
+      </section>
+
+      {/* SEGUNDA LINHA DE CARTÕES (Recuperando Manuais e Projetos) */}
+      <section style={{ 
+        display: 'grid', 
+        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
+        gap: '25px', 
+        padding: '20px 20px 60px', 
+        maxWidth: '1200px', 
+        margin: '0 auto' 
+      }}>
+        <a href="/manuais" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
+          <div className="portal-card">
+            <h3>📚 Manuais & Documentos</h3>
+            <p>Biblioteca AgroNexus, PDFs e guias de criação.</p>
+          </div>
+        </a>
+
+        <a href="/sobre" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
+          <div className="portal-card">
+            <h3>Sobre o Projeto</h3>
+            <p>Biodiversidade, ciência e o ecossistema AgroNexus.</p>
+          </div>
+        </a>
+
+        <a href="/apoie" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
+          <div className="portal-card">
+            <h3>Apoie o AgroNexus</h3>
+            <p>Contribua com PIX, boleto ou cartão via Asaas.</p>
+          </div>
+        </a>
       </section>
 
       <Contact />
