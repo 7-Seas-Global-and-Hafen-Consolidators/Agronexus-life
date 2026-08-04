@@ -56,6 +56,22 @@ const FUTURE_COLLECTIONS = [
   'Répteis, anfíbios e terrários',
 ]
 
+function PaymentDisclosure() {
+  return (
+    <p
+      style={{
+        margin: '14px 0 0',
+        color: 'rgba(243, 240, 232, 0.46)',
+        fontSize: '0.68rem',
+        lineHeight: 1.5,
+        letterSpacing: '0.04em',
+      }}
+    >
+      Pagamento seguro. Processado por GUIROPA WORLD.
+    </p>
+  )
+}
+
 function PurchaseButton({ guide }) {
   return (
     <a
@@ -206,6 +222,8 @@ function GuideContent({ guide }) {
         </a>
       </div>
 
+      <PaymentDisclosure />
+
       <p className="agronexus-library__access-note">
         A publicação completa é entregue exclusivamente após a
         confirmação da compra. O arquivo não fica disponível
@@ -316,6 +334,8 @@ export default function AgroNexusLibrary() {
                 →
               </span>
             </a>
+
+            <PaymentDisclosure />
           </Reveal>
         </div>
 
