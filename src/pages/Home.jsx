@@ -1,27 +1,27 @@
-import { useEffect, useRef, useState } from 'react'
 import '../styles/agro-hub.css'
 
 import Hero from '../components/Hero'
 import Mission from '../components/Mission'
 import Portfolio from '../components/Portfolio'
 
-import birdsImage from '../assets/images/editorial/AgroNexus-Birds.png'
-import budgerigarsImage from '../assets/images/editorial/agronexus-australian-budgerigars-editorial-guid-1.jpg'
-import hamstersImage from '../assets/images/editorial/agronexus-hamsters-editorial-guide-1.jpg'
-import reptilesImage from '../assets/images/editorial/agronexus-reptiles-editorial-guide-1.jpg'
-import rosellasImage from '../assets/images/editorial/agronexus-rosellas-editorial-guide.jpg'
-import cockatielsImage from '../assets/images/editorial/agronexus-cockatiels-editorial-guide.jpg'
+import avesImage from '../assets/images/editorial/AgroNexus-Birds.png'
+import aquarismoImage from '../assets/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png'
+import mamiferosImage from '../assets/images/editorial/agronexus-hamsters-editorial-guide-1.jpg'
+import marketplaceImage from '../assets/images/editorial/agronexus-reptiles-editorial-guide-1.jpg'
+import bibliotecaImage from '../assets/images/editorial/agronexus-cockatiels-editorial-guide.jpg'
+import comunidadeImage from '../assets/images/editorial/agronexus-rosellas-editorial-guide.jpg'
 
 const AREAS = [
   {
     title: 'Aves',
     subtitle: 'Psitacídeos e biodiversidade',
     description:
-      'Espécies, genética, mutações, comportamento, manejo responsável e conhecimento especializado.',
+      'Espécies, genética, mutações, comportamento, manejo responsável, criadores e conhecimento especializado.',
     href: '#/aves',
     number: '01',
-    image: birdsImage,
-    imagePosition: 'center',
+    image: avesImage,
+    imageAlt:
+      'Coleção editorial de aves e psitacídeos da AgroNexus',
   },
   {
     title: 'Aquarismo',
@@ -30,9 +30,9 @@ const AREAS = [
       'Peixes ornamentais, recifes, genética, equipamentos, conservação, saúde e bem-estar.',
     href: '#/aquarismo',
     number: '02',
-    image:
-      '/images/marketplace/aqua/agronexus-discus-marketplace.png',
-    imagePosition: 'center',
+    image: aquarismoImage,
+    imageAlt:
+      'Aquarismo e biodiversidade aquática AgroNexus',
   },
   {
     title: 'Mamíferos',
@@ -41,8 +41,9 @@ const AREAS = [
       'Comportamento, saúde, genética, ambientes adequados, enriquecimento e criação responsável.',
     href: '#/mamiferos',
     number: '03',
-    image: hamstersImage,
-    imagePosition: 'center',
+    image: mamiferosImage,
+    imageAlt:
+      'Pequenos mamíferos e criação responsável AgroNexus',
   },
   {
     title: 'Marketplace',
@@ -51,8 +52,9 @@ const AREAS = [
       'Criadores, produtores, serviços, publicações e conexões selecionadas dentro do ecossistema.',
     href: '#/marketplace',
     number: '04',
-    image: reptilesImage,
-    imagePosition: 'center',
+    image: marketplaceImage,
+    imageAlt:
+      'Biodiversidade e marketplace responsável AgroNexus',
   },
   {
     title: 'Biblioteca',
@@ -61,8 +63,9 @@ const AREAS = [
       'Guias oficiais, conteúdos técnicos, publicações especializadas e materiais educacionais.',
     href: '#/biblioteca',
     number: '05',
-    image: cockatielsImage,
-    imagePosition: 'center',
+    image: bibliotecaImage,
+    imageAlt:
+      'Biblioteca editorial e publicações oficiais AgroNexus',
   },
   {
     title: 'Comunidade',
@@ -71,378 +74,221 @@ const AREAS = [
       'Criadores, especialistas, instituições, clubes, consumidores e apaixonados por biodiversidade.',
     href: '#/comunidade',
     number: '06',
-    image: rosellasImage,
-    imagePosition: 'center',
+    image: comunidadeImage,
+    imageAlt:
+      'Comunidade internacional AgroNexus',
   },
 ]
 
-const METRICS = [
+const CONNECTIONS = [
   {
-    value: 28,
+    value: 13,
     suffix: '+',
     title: 'Criadores e produtores',
-    description:
-      'Referências identificadas para conexões responsáveis.',
+    text: 'Referências inicialmente identificadas para conexões responsáveis.',
   },
   {
-    value: 24,
+    value: 18,
     suffix: '+',
-    title: 'Clubes e entidades',
-    description:
-      'Associações, comunidades e organizações especializadas.',
+    title: 'Clubes e comunidades',
+    text: 'Federações, associações, fóruns e organizações especializadas mapeadas.',
   },
   {
-    value: 21,
+    value: 15,
     suffix: '+',
-    title: 'Ciência e educação',
-    description:
-      'Universidades, escolas, pesquisadores e instituições.',
+    title: 'Ciência e bem-estar',
+    text: 'Universidades, profissionais e potenciais conexões institucionais.',
   },
   {
-    value: 17,
+    value: 12,
     suffix: '+',
-    title: 'Saúde e bem-estar',
-    description:
-      'Clínicas, veterinários e profissionais especializados.',
-  },
-  {
-    value: 90,
-    suffix: '+',
-    title: 'Conexões mapeadas',
-    description:
-      'Uma rede multissetorial em desenvolvimento contínuo.',
-  },
-  {
-    value: 2,
-    suffix: '',
-    title: 'Publicações oficiais',
-    description:
-      'Guias editoriais completos produzidos pela AgroNexus™.',
+    title: 'Áreas especializadas',
+    text: 'Aves, mamíferos, aquarismo, produção, genética, botânica e conservação.',
   },
 ]
 
-const SPECIALTIES = [
-  'Aves',
-  'Psitacídeos',
-  'Aquarismo',
-  'Peixes ornamentais',
-  'Crustáceos',
-  'Répteis',
-  'Anfíbios',
-  'Roedores',
-  'Mamíferos',
-  'Equinos',
-  'Ovinos',
-  'Bovinos',
-  'Suínos',
-  'Botânica',
-  'Genética',
-  'Medicina veterinária',
-]
-
-function CountUpNumber({
-  value,
-  suffix,
-  active,
-  delay,
-}) {
-  const [currentValue, setCurrentValue] = useState(0)
-
-  useEffect(() => {
-    if (!active) {
-      return undefined
-    }
-
-    let animationFrame = null
-    let timeout = null
-
-    timeout = window.setTimeout(() => {
-      const duration = 1400
-      const start = window.performance.now()
-
-      const animate = (time) => {
-        const elapsed = time - start
-        const progress = Math.min(elapsed / duration, 1)
-        const eased = 1 - Math.pow(1 - progress, 4)
-
-        setCurrentValue(
-          Math.round(value * eased)
-        )
-
-        if (progress < 1) {
-          animationFrame =
-            window.requestAnimationFrame(animate)
-        }
-      }
-
-      animationFrame =
-        window.requestAnimationFrame(animate)
-    }, delay)
-
-    return () => {
-      window.clearTimeout(timeout)
-
-      if (animationFrame !== null) {
-        window.cancelAnimationFrame(animationFrame)
-      }
-    }
-  }, [active, delay, value])
-
+function AnimatedNumber({ value, suffix = '' }) {
   return (
-    <strong className="agro-metrics__value">
-      {currentValue}
-
-      {suffix && (
-        <small>{suffix}</small>
-      )}
+    <strong
+      className="agro-hub__metric-value"
+      data-count={value}
+    >
+      {value}
+      {suffix}
     </strong>
   )
 }
 
-function NetworkMetrics() {
-  const sectionRef = useRef(null)
-  const [active, setActive] = useState(false)
-
-  useEffect(() => {
-    const section = sectionRef.current
-
-    if (!section) {
-      return undefined
-    }
-
-    if (!('IntersectionObserver' in window)) {
-      setActive(true)
-      return undefined
-    }
-
-    const observer = new window.IntersectionObserver(
-      ([entry]) => {
-        if (entry.isIntersecting) {
-          setActive(true)
-          observer.disconnect()
-        }
-      },
-      {
-        threshold: 0.12,
-      }
-    )
-
-    observer.observe(section)
-
-    return () => {
-      observer.disconnect()
-    }
-  }, [])
-
-  return (
-    <section
-      ref={sectionRef}
-      className="agro-metrics"
-      aria-labelledby="agro-metrics-title"
-    >
-      <div className="agro-hub__container">
-        <header className="agro-metrics__header">
-          <span className="agro-hub__eyebrow">
-            Rede AgroNexus™
-          </span>
-
-          <h2 id="agro-metrics-title">
-            Um ecossistema construído por
-            <span> conexões reais.</span>
-          </h2>
-
-          <p>
-            Um trabalho contínuo de aproximação com
-            criadores, produtores, consumidores, clubes,
-            profissionais, instituições, escolas,
-            universidades, clínicas e especialistas.
-          </p>
-        </header>
-
-        <div className="agro-metrics__grid">
-          {METRICS.map((metric, index) => (
-            <article
-              className="agro-metrics__card"
-              key={metric.title}
-            >
-              <span className="agro-metrics__index">
-                {String(index + 1).padStart(2, '0')}
-              </span>
-
-              <CountUpNumber
-                value={metric.value}
-                suffix={metric.suffix}
-                active={active}
-                delay={index * 110}
-              />
-
-              <h3>{metric.title}</h3>
-
-              <p>{metric.description}</p>
-            </article>
-          ))}
-        </div>
-
-        <div className="agro-metrics__specialties">
-          {SPECIALTIES.map((specialty) => (
-            <span key={specialty}>
-              {specialty}
-            </span>
-          ))}
-        </div>
-
-        <p className="agro-metrics__note">
-          Os indicadores representam referências
-          mapeadas, contatos desenvolvidos e publicações
-          produzidas. Não significam necessariamente
-          parceria, afiliação ou endosso institucional.
-        </p>
-      </div>
-    </section>
-  )
-}
-
-function EcosystemAreaCard({ area }) {
-  const handleImageError = (event) => {
-    event.currentTarget.style.display = 'none'
-  }
-
-  return (
-    <a
-      className="agro-hub__card"
-      href={area.href}
-    >
-      <div className="agro-hub__visual">
-        <img
-          src={area.image}
-          alt={`${area.title} no ecossistema AgroNexus`}
-          className="agro-hub__image"
-          style={{
-            objectPosition: area.imagePosition,
-          }}
-          loading="lazy"
-          decoding="async"
-          onError={handleImageError}
-        />
-
-        <div
-          className="agro-hub__image-shade"
-          aria-hidden="true"
-        />
-
-        <span className="agro-hub__number">
-          {area.number}
-        </span>
-      </div>
-
-      <div className="agro-hub__content">
-        <span className="agro-hub__subtitle">
-          {area.subtitle}
-        </span>
-
-        <h3>{area.title}</h3>
-
-        <p>{area.description}</p>
-
-        <span className="agro-hub__action">
-          Explorar área
-
-          <span aria-hidden="true">
-            →
-          </span>
-        </span>
-      </div>
-    </a>
-  )
-}
-
 export default function Home() {
-  useEffect(() => {
-    const pendingTarget =
-      window.sessionStorage.getItem(
-        'agronexus-scroll-target'
-      )
-
-    if (!pendingTarget) {
-      return
-    }
-
-    window.sessionStorage.removeItem(
-      'agronexus-scroll-target'
-    )
-
-    const timeout = window.setTimeout(() => {
-      const target =
-        document.querySelector(pendingTarget)
-
-      if (target) {
-        target.scrollIntoView({
-          behavior: 'smooth',
-        })
-      }
-    }, 350)
-
-    return () => {
-      window.clearTimeout(timeout)
-    }
-  }, [])
-
   return (
-    <main className="agro-home">
-      <div
-        id="topo"
-        className="agro-anchor"
-        aria-hidden="true"
-      />
-
-      <div
-        id="sobre"
-        className="agro-anchor"
-        aria-hidden="true"
-      />
-
+    <main id="topo">
       <Hero />
-
-      <div
-        id="missao"
-        className="agro-anchor"
-        aria-hidden="true"
-      />
 
       <Mission />
 
-      <NetworkMetrics />
-
       <section
+        id="ecossistema"
         className="agro-hub"
         aria-labelledby="agro-hub-title"
       >
         <div className="agro-hub__container">
           <header className="agro-hub__header">
             <span className="agro-hub__eyebrow">
-              Living Ecosystem
+              AgroNexus Living Ecosystem™
             </span>
 
             <h2 id="agro-hub-title">
-              Explore o ecossistema
-              <span> AgroNexus™</span>
+              Explore o ecossistema AgroNexus™
             </h2>
 
             <p>
-              Cada ambiente conduz o visitante da
-              fotografia e da curiosidade ao conhecimento,
-              à responsabilidade e às conexões do
-              ecossistema.
+              Conhecimento, biodiversidade, ciência, mercado responsável
+              e conexão global organizados em ambientes próprios para uma
+              navegação mais rápida, clara e profunda.
             </p>
           </header>
 
           <div className="agro-hub__grid">
             {AREAS.map((area) => (
-              <EcosystemAreaCard
-                area={area}
+              <a
+                className="agro-hub__card"
+                href={area.href}
                 key={area.title}
-              />
+              >
+                <div className="agro-hub__media">
+                  <img
+                    src={area.image}
+                    alt={area.imageAlt}
+                    loading="lazy"
+                  />
+
+                  <div
+                    className="agro-hub__media-overlay"
+                    aria-hidden="true"
+                  />
+
+                  <span className="agro-hub__number">
+                    {area.number}
+                  </span>
+                </div>
+
+                <div className="agro-hub__content">
+                  <span className="agro-hub__subtitle">
+                    {area.subtitle}
+                  </span>
+
+                  <h3>{area.title}</h3>
+
+                  <p>{area.description}</p>
+
+                  <span className="agro-hub__action">
+                    Explorar área
+                    <span aria-hidden="true">→</span>
+                  </span>
+                </div>
+              </a>
             ))}
+          </div>
+
+          <div
+            className="agro-hub__metrics"
+            aria-label="Dimensão inicial da rede AgroNexus"
+          >
+            <header className="agro-hub__metrics-head">
+              <span className="agro-hub__eyebrow">
+                Rede em desenvolvimento
+              </span>
+
+              <h3>
+                Conexões reais construídas com pesquisa,
+                presença e relacionamento.
+              </h3>
+
+              <p>
+                Indicadores institucionais apresentados como referências
+                mapeadas e potenciais conexões do ecossistema.
+              </p>
+            </header>
+
+            <div className="agro-hub__metrics-grid">
+              {CONNECTIONS.map((connection) => (
+                <article
+                  className="agro-hub__metric"
+                  key={connection.title}
+                >
+                  <AnimatedNumber
+                    value={connection.value}
+                    suffix={connection.suffix}
+                  />
+
+                  <h4>{connection.title}</h4>
+
+                  <p>{connection.text}</p>
+                </article>
+              ))}
+            </div>
+          </div>
+
+          <div className="agro-hub__conversion">
+            <div className="agro-hub__conversion-copy">
+              <span className="agro-hub__eyebrow">
+                Conhecimento e conexão
+              </span>
+
+              <h3>
+                Escolha como deseja entrar no ecossistema.
+              </h3>
+
+              <p>
+                Conheça as publicações oficiais, apresente seu projeto,
+                encontre canais institucionais ou contribua com a
+                continuidade da AgroNexus.
+              </p>
+            </div>
+
+            <div className="agro-hub__conversion-actions">
+              <a
+                href="#/biblioteca"
+                className="agro-hub__conversion-link"
+              >
+                <span>
+                  Biblioteca editorial
+                  <small>
+                    Guias de Periquitos e Calopsitas
+                  </small>
+                </span>
+
+                <strong aria-hidden="true">→</strong>
+              </a>
+
+              <a
+                href="#/comunidade"
+                className="agro-hub__conversion-link"
+              >
+                <span>
+                  Fazer parte
+                  <small>
+                    Comunidade e conexões responsáveis
+                  </small>
+                </span>
+
+                <strong aria-hidden="true">→</strong>
+              </a>
+
+              <a
+                href="#/contato"
+                className="agro-hub__conversion-link"
+              >
+                <span>
+                  Contato institucional
+                  <small>
+                    WhatsApp, Telegram, telefone e formulário
+                  </small>
+                </span>
+
+                <strong aria-hidden="true">→</strong>
+              </a>
+            </div>
           </div>
 
           <div className="agro-hub__footer">
@@ -451,7 +297,10 @@ export default function Home() {
               <span aria-hidden="true">→</span>
             </a>
 
-            <a href="#contato">
+            <a
+              href="#/contato"
+              className="agro-hub__footer-primary"
+            >
               Fale com a AgroNexus™
               <span aria-hidden="true">→</span>
             </a>
@@ -459,67 +308,7 @@ export default function Home() {
         </div>
       </section>
 
-      <div
-        id="portfolio"
-        className="agro-anchor"
-        aria-hidden="true"
-      />
-
       <Portfolio />
-
-      <section
-        id="contato"
-        className="agro-contact"
-        aria-labelledby="agro-contact-title"
-      >
-        <div className="agro-hub__container">
-          <div className="agro-contact__panel">
-            <div className="agro-contact__copy">
-              <span className="agro-hub__eyebrow">
-                Conexões que transformam
-              </span>
-
-              <h2 id="agro-contact-title">
-                Faça parte do
-                <span> ecossistema.</span>
-              </h2>
-
-              <p>
-                Criadores, produtores, consumidores,
-                clubes, instituições, pesquisadores,
-                profissionais e empresas encontram na
-                AgroNexus™ um ambiente de conhecimento,
-                responsabilidade e conexão.
-              </p>
-            </div>
-
-            <div className="agro-contact__actions">
-              <a
-                href="mailto:hr@agronexus.life"
-                className="agro-contact__button agro-contact__button--primary"
-              >
-                Entrar em contato
-                <span aria-hidden="true">→</span>
-              </a>
-
-              <a
-                href="#/comunidade"
-                className="agro-contact__button agro-contact__button--secondary"
-              >
-                Conhecer a comunidade
-              </a>
-            </div>
-          </div>
-
-          <div className="agro-contact__identity">
-            <span>AgroNexus™</span>
-
-            <p>
-              Um ecossistema do Grupo Guiropa World.
-            </p>
-          </div>
-        </div>
-      </section>
     </main>
   )
 }
