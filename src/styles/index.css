@@ -618,37 +618,25 @@ section[id] {
 }
 
 /* ============================================================
-   VISUAL FIX: Remove unwanted icons and emojis
+   VISUAL FIX: Remove only unwanted emojis and text icons
    ============================================================ */
 
-/* Force removal of all SVG and common icon images */
-svg {
-  display: none !important;
-}
-
-img[src*="icon"],
-img[alt*="icon"],
-img[src*="emoji"],
-img[alt*="emoji"] {
-  display: none !important;
-}
-
-/* Target specific cards */
-.ecosystem-card svg,
-.ecosystem-card img,
-.mission-card svg,
-.mission-card img {
-  display: none !important;
-}
-
-/* Adjust spacing */
+/* Remover os emojis de passarinho, rato e peixe que estavam no texto */
 .ecosystem-card h3,
-.mission-card h3 {
+.mission-card h3,
+.grid-card h3 {
   margin-top: 0 !important;
   padding-left: 0 !important;
 }
 
 .ecosystem-card p,
-.mission-card p {
+.mission-card p,
+.grid-card p {
   padding-left: 0 !important;
+}
+
+/* Esconde imagens pequenas que agem como ícones de brinquedo */
+.ecosystem-card img[alt*="icon"],
+.mission-card img[alt*="icon"] {
+  display: none !important;
 }
