@@ -616,3 +616,40 @@ section[id] {
     font-size: 0.94rem;
   }
 }
+
+/* ============================================================
+   Ajustes visuais do Ethan (Remover ícones brinquedo)
+   ============================================================ */
+
+/* Esconde o ícone dos cards numerados (01, 02...) */
+.ecosystem-card .icon-box,
+.ecosystem-card svg:first-child,
+.mission-card .icon-wrapper,
+.mission-card svg:first-child {
+  display: none !important;
+}
+
+/* Esconde os ícones de passarinho/peixe/hamster que você não quer */
+.card-icon, 
+.feature-icon,
+.service-icon,
+.img-icon {
+  display: none !important;
+}
+
+/* Ajusta o espaço dos cards para ficarem bonitos sem os ícones */
+.mission-card,
+.ecosystem-card {
+  padding-top: 0 !important;
+}
+
+.mission-card h3,
+.ecosystem-card h3 {
+  margin-top: 0 !important;
+}
+
+/* Em alguns casos, os ícones estão dentro de tags <img> */
+.ecosystem-card img[alt*="icon"],
+.mission-card img[alt*="icon"] {
+  display: none !important;
+}
