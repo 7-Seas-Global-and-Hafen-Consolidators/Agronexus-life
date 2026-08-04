@@ -1,55 +1,13 @@
-.agro-hub {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(82px, 10vw, 150px) 20px;
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(8, 48, 58, 0.4),
-      transparent 36%
-    ),
-    radial-gradient(
-      circle at 100% 56%,
-      rgba(212, 175, 55, 0.055),
-      transparent 28%
-    ),
-    #02060b;
-  color: #f3f0e8;
-}
-
-.agro-hub::before {
-  content: '';
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background-image:
-    linear-gradient(
-      rgba(212, 175, 55, 0.026) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(212, 175, 55, 0.026) 1px,
-      transparent 1px
-    );
-  background-size: 64px 64px;
-  mask-image: linear-gradient(
-    to bottom,
-    black,
-    transparent 94%
-  );
+html {
+  scroll-behavior: smooth;
+  scroll-padding-top: 92px;
 }
 
 .agro-hub__container {
   position: relative;
-  z-index: 1;
+  z-index: 2;
   width: min(1240px, 100%);
   margin: 0 auto;
-}
-
-.agro-hub__header {
-  max-width: 850px;
-  margin-bottom: clamp(46px, 7vw, 80px);
 }
 
 .agro-hub__eyebrow {
@@ -58,65 +16,310 @@
   color: #d4af37;
   font-size: 0.7rem;
   font-weight: 700;
-  letter-spacing: 0.23em;
+  letter-spacing: 0.22em;
+  line-height: 1.55;
   text-transform: uppercase;
 }
 
-.agro-hub__header h2 {
-  max-width: 800px;
+/* =========================================================
+   APOIO AO PROJETO
+========================================================= */
+
+.agro-support {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(74px, 10vw, 145px) 20px;
+  border-top: 1px solid rgba(212, 175, 55, 0.16);
+  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
+  color: #f3f0e8;
+  background:
+    radial-gradient(
+      circle at 82% 40%,
+      rgba(212, 175, 55, 0.13),
+      transparent 32%
+    ),
+    radial-gradient(
+      circle at 12% 25%,
+      rgba(34, 211, 216, 0.09),
+      transparent 30%
+    ),
+    #040b14;
+}
+
+.agro-support::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.35;
+  background-image:
+    linear-gradient(
+      rgba(212, 175, 55, 0.03) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 175, 55, 0.03) 1px,
+      transparent 1px
+    );
+  background-size: 68px 68px;
+}
+
+.agro-support__panel {
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1.25fr)
+    minmax(300px, 0.75fr);
+  gap: clamp(44px, 8vw, 110px);
+  align-items: center;
+  padding: clamp(36px, 6vw, 75px);
+  border: 1px solid rgba(212, 175, 55, 0.36);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(10, 26, 40, 0.96),
+      rgba(2, 7, 13, 0.99)
+    );
+  box-shadow: 0 35px 95px rgba(0, 0, 0, 0.35);
+}
+
+.agro-support__copy h2 {
+  max-width: 780px;
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3rem, 7vw, 6.3rem);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 400;
-  line-height: 0.92;
-  letter-spacing: -0.04em;
+  line-height: 0.94;
+  letter-spacing: -0.045em;
+}
+
+.agro-support__copy h2 span {
+  color: #22d3d8;
+}
+
+.agro-support__copy > p {
+  max-width: 760px;
+  margin: 28px 0 0;
+  color: rgba(243, 240, 232, 0.68);
+  font-size: clamp(0.98rem, 1.6vw, 1.12rem);
+  line-height: 1.85;
+}
+
+.agro-support__points {
+  margin-top: 31px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 9px;
+}
+
+.agro-support__points span {
+  padding: 9px 13px;
+  border: 1px solid rgba(34, 211, 216, 0.2);
+  border-radius: 999px;
+  color: rgba(243, 240, 232, 0.75);
+  background: rgba(34, 211, 216, 0.045);
+  font-size: 0.65rem;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.agro-support__action {
+  padding: clamp(28px, 4vw, 44px);
+  border: 1px solid rgba(212, 175, 55, 0.5);
+  background:
+    radial-gradient(
+      circle at 80% 15%,
+      rgba(212, 175, 55, 0.12),
+      transparent 38%
+    ),
+    rgba(2, 6, 11, 0.82);
+}
+
+.agro-support__suggestion {
+  display: block;
+  color: #d4af37;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.17em;
+  text-transform: uppercase;
+}
+
+.agro-support__action strong {
+  display: block;
+  margin-top: 17px;
+  color: #f3f0e8;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(4.6rem, 8vw, 7rem);
+  font-weight: 400;
+  line-height: 0.8;
+  letter-spacing: -0.06em;
+}
+
+.agro-support__action p {
+  margin: 26px 0 0;
+  color: rgba(243, 240, 232, 0.62);
+  line-height: 1.7;
+}
+
+.agro-support__action a {
+  width: 100%;
+  min-height: 55px;
+  margin-top: 27px;
+  padding: 14px 23px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border: 1px solid #d4af37;
+  border-radius: 999px;
+  color: #02060b;
+  background: #d4af37;
+  text-decoration: none;
+  font-size: 0.7rem;
+  font-weight: 800;
+  letter-spacing: 0.12em;
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    transform 190ms ease,
+    box-shadow 190ms ease;
+}
+
+.agro-support__action a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 42px rgba(212, 175, 55, 0.18);
+}
+
+.agro-support__action small {
+  display: block;
+  margin-top: 20px;
+  color: rgba(243, 240, 232, 0.43);
+  font-size: 0.68rem;
+  line-height: 1.65;
+}
+
+/* =========================================================
+   ECOSSISTEMA PRINCIPAL
+========================================================= */
+
+.agro-hub {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(85px, 10vw, 150px) 20px;
+  color: #f3f0e8;
+  background:
+    radial-gradient(
+      circle at 50% 0%,
+      rgba(8, 48, 58, 0.38),
+      transparent 35%
+    ),
+    #02060b;
+}
+
+.agro-hub::before,
+.agro-seo::before {
+  content: "";
+  position: absolute;
+  inset: 0;
+  pointer-events: none;
+  opacity: 0.33;
+  background-image:
+    linear-gradient(
+      rgba(212, 175, 55, 0.025) 1px,
+      transparent 1px
+    ),
+    linear-gradient(
+      90deg,
+      rgba(212, 175, 55, 0.025) 1px,
+      transparent 1px
+    );
+  background-size: 68px 68px;
+  mask-image:
+    linear-gradient(
+      to bottom,
+      black,
+      transparent
+    );
+}
+
+.agro-hub__header {
+  max-width: 930px;
+  margin-bottom: clamp(48px, 7vw, 82px);
+}
+
+.agro-hub__header h2 {
+  margin: 0;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(3rem, 6.4vw, 6.4rem);
+  font-weight: 400;
+  line-height: 0.93;
+  letter-spacing: -0.045em;
 }
 
 .agro-hub__header p {
-  max-width: 720px;
-  margin: 30px 0 0;
-  color: rgba(243, 240, 232, 0.68);
-  font-size: clamp(1rem, 1.6vw, 1.16rem);
+  max-width: 830px;
+  margin: 28px 0 0;
+  color: rgba(243, 240, 232, 0.67);
+  font-size: clamp(1rem, 1.55vw, 1.13rem);
   line-height: 1.85;
+}
+
+.agro-hub__guiropa {
+  display: block;
+  margin-top: 25px;
+  color: rgba(212, 175, 55, 0.72);
+  font-size: 0.68rem;
+  font-weight: 600;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
 }
 
 .agro-hub__grid {
   display: grid;
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  border-top: 1px solid rgba(212, 175, 55, 0.32);
-  border-left: 1px solid rgba(212, 175, 55, 0.32);
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+  gap: 22px;
 }
 
 .agro-hub__card {
-  position: relative;
   min-width: 0;
   overflow: hidden;
   display: flex;
   flex-direction: column;
-  border-right: 1px solid rgba(212, 175, 55, 0.32);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.32);
+  border: 1px solid rgba(212, 175, 55, 0.29);
   color: inherit;
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 21, 34, 0.94),
+      rgba(2, 6, 11, 0.99)
+    );
   text-decoration: none;
-  background: #030a12;
   transition:
-    transform 260ms ease,
-    border-color 260ms ease,
-    box-shadow 260ms ease;
+    transform 240ms ease,
+    border-color 240ms ease,
+    box-shadow 240ms ease;
 }
 
 .agro-hub__card:hover {
-  z-index: 3;
   transform: translateY(-7px);
-  border-color: rgba(212, 175, 55, 0.72);
-  box-shadow:
-    0 32px 80px rgba(0, 0, 0, 0.5),
-    0 0 44px rgba(34, 211, 216, 0.055);
+  border-color: rgba(212, 175, 55, 0.68);
+  box-shadow: 0 30px 75px rgba(0, 0, 0, 0.38);
 }
 
 .agro-hub__media {
   position: relative;
-  height: 235px;
   overflow: hidden;
+  aspect-ratio: 16 / 10;
   background: #07111c;
 }
 
@@ -125,23 +328,11 @@
   height: 100%;
   display: block;
   object-fit: cover;
-  object-position: center;
-  filter:
-    saturate(0.88)
-    contrast(1.04)
-    brightness(0.76);
-  transform: scale(1.015);
-  transition:
-    transform 700ms ease,
-    filter 700ms ease;
+  transition: transform 750ms cubic-bezier(0.2, 0.7, 0, 1);
 }
 
 .agro-hub__card:hover .agro-hub__media img {
-  filter:
-    saturate(1.08)
-    contrast(1.06)
-    brightness(0.92);
-  transform: scale(1.075);
+  transform: scale(1.05);
 }
 
 .agro-hub__media-overlay {
@@ -150,363 +341,749 @@
   pointer-events: none;
   background:
     linear-gradient(
-      180deg,
-      rgba(2, 6, 11, 0.04),
-      rgba(2, 6, 11, 0.12) 48%,
-      #030a12 100%
-    ),
-    linear-gradient(
-      90deg,
-      rgba(2, 6, 11, 0.18),
-      transparent
+      to top,
+      rgba(2, 6, 11, 0.84),
+      transparent 58%
     );
 }
 
 .agro-hub__number {
   position: absolute;
+  top: 18px;
+  left: 19px;
   z-index: 2;
-  top: 22px;
-  left: 24px;
   color: #f3f0e8;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.08rem;
-  font-weight: 600;
-  letter-spacing: 0.12em;
-  text-shadow: 0 2px 18px rgba(0, 0, 0, 0.8);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: 1.18rem;
+  letter-spacing: 0.09em;
 }
 
 .agro-hub__content {
-  min-height: 330px;
+  min-height: 310px;
+  padding: clamp(25px, 3vw, 35px);
   display: flex;
   flex-direction: column;
-  padding: 31px 30px 32px;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 21, 34, 0.94),
-      rgba(2, 6, 11, 0.99)
-    );
 }
 
 .agro-hub__subtitle {
   display: block;
-  margin-bottom: 14px;
+  margin-bottom: 13px;
   color: #d4af37;
-  font-size: 0.67rem;
+  font-size: 0.64rem;
   font-weight: 700;
-  line-height: 1.5;
-  letter-spacing: 0.16em;
+  line-height: 1.55;
+  letter-spacing: 0.15em;
   text-transform: uppercase;
 }
 
 .agro-hub__card h3 {
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.4rem, 3.4vw, 3.5rem);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(2.2rem, 3.4vw, 3.4rem);
   font-weight: 400;
-  line-height: 0.96;
+  line-height: 0.95;
 }
 
 .agro-hub__card p {
-  margin: 20px 0 32px;
-  color: rgba(243, 240, 232, 0.64);
-  line-height: 1.75;
+  margin: 20px 0 30px;
+  color: rgba(243, 240, 232, 0.59);
+  line-height: 1.72;
 }
 
 .agro-hub__action {
+  margin-top: auto;
   display: inline-flex;
   align-items: center;
-  gap: 15px;
-  margin-top: auto;
+  gap: 14px;
   color: #f3f0e8;
-  font-size: 0.72rem;
+  font-size: 0.69rem;
   font-weight: 700;
-  letter-spacing: 0.14em;
+  letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
 .agro-hub__action span {
   color: #d4af37;
-  font-size: 1.12rem;
   transition: transform 220ms ease;
 }
 
 .agro-hub__card:hover .agro-hub__action span {
-  transform: translateX(7px);
+  transform: translateX(6px);
 }
 
+/* =========================================================
+   PESQUISAS POPULARES
+========================================================= */
+
+.agro-popular {
+  margin-top: clamp(70px, 9vw, 125px);
+  padding: clamp(34px, 5vw, 58px);
+  border: 1px solid rgba(34, 211, 216, 0.2);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 21, 34, 0.92),
+      rgba(2, 6, 11, 0.99)
+    );
+}
+
+.agro-popular__head {
+  max-width: 780px;
+}
+
+.agro-popular__head h3 {
+  margin: 0;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(2.5rem, 5vw, 4.6rem);
+  font-weight: 400;
+  line-height: 0.97;
+}
+
+.agro-popular__items {
+  margin-top: 38px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px;
+}
+
+.agro-popular__items a {
+  padding: 11px 15px;
+  display: inline-flex;
+  align-items: center;
+  gap: 10px;
+  border: 1px solid rgba(212, 175, 55, 0.24);
+  border-radius: 999px;
+  color: rgba(243, 240, 232, 0.75);
+  background: rgba(212, 175, 55, 0.035);
+  text-decoration: none;
+  font-size: 0.73rem;
+  transition:
+    color 180ms ease,
+    border-color 180ms ease,
+    background 180ms ease;
+}
+
+.agro-popular__items a:hover {
+  border-color: #d4af37;
+  color: #02060b;
+  background: #d4af37;
+}
+
+/* =========================================================
+   MÉTRICAS
+========================================================= */
+
 .agro-hub__metrics {
-  margin-top: clamp(80px, 10vw, 130px);
-  padding-top: clamp(50px, 7vw, 80px);
+  margin-top: clamp(80px, 10vw, 135px);
+  padding-top: clamp(50px, 7vw, 82px);
   border-top: 1px solid rgba(212, 175, 55, 0.22);
 }
 
 .agro-hub__metrics-head {
-  max-width: 800px;
+  max-width: 830px;
 }
 
 .agro-hub__metrics-head h3 {
-  max-width: 760px;
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.3rem, 5vw, 4.6rem);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
   font-weight: 400;
-  line-height: 1;
+  line-height: 0.97;
 }
 
 .agro-hub__metrics-head p {
-  max-width: 680px;
+  max-width: 760px;
   margin: 24px 0 0;
   color: rgba(243, 240, 232, 0.58);
   line-height: 1.8;
 }
 
 .agro-hub__metrics-grid {
+  margin-top: 46px;
   display: grid;
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  margin-top: 48px;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
   border-top: 1px solid rgba(34, 211, 216, 0.16);
   border-left: 1px solid rgba(34, 211, 216, 0.16);
 }
 
 .agro-hub__metric {
-  min-height: 240px;
-  padding: 28px 26px;
+  min-height: 245px;
+  padding: 28px 25px;
   border-right: 1px solid rgba(34, 211, 216, 0.16);
   border-bottom: 1px solid rgba(34, 211, 216, 0.16);
   background:
     linear-gradient(
       145deg,
-      rgba(34, 211, 216, 0.045),
-      rgba(8, 21, 34, 0.52)
+      rgba(34, 211, 216, 0.04),
+      rgba(8, 21, 34, 0.56)
     );
 }
 
 .agro-hub__metric-value {
   display: block;
   color: #22d3d8;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(3.2rem, 6vw, 5.5rem);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(3.5rem, 6vw, 5.7rem);
   font-weight: 400;
-  line-height: 0.9;
+  line-height: 0.85;
 }
 
 .agro-hub__metric h4 {
-  margin: 30px 0 12px;
+  margin: 31px 0 12px;
   color: #f3f0e8;
   font-size: 1rem;
 }
 
 .agro-hub__metric p {
   margin: 0;
-  color: rgba(243, 240, 232, 0.56);
+  color: rgba(243, 240, 232, 0.55);
   font-size: 0.86rem;
   line-height: 1.7;
 }
 
-.agro-hub__conversion {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 0.85fr)
-    minmax(420px, 1.15fr);
-  gap: clamp(40px, 8vw, 100px);
-  align-items: start;
-  margin-top: clamp(80px, 10vw, 140px);
-  padding: clamp(38px, 6vw, 72px);
-  border: 1px solid rgba(212, 175, 55, 0.28);
+/* =========================================================
+   MARKETPLACE SEO
+========================================================= */
+
+.agro-seo {
+  position: relative;
+  overflow: hidden;
+  padding: clamp(85px, 11vw, 165px) 20px;
+  border-top: 1px solid rgba(34, 211, 216, 0.12);
+  color: #f3f0e8;
   background:
     radial-gradient(
-      circle at 12% 22%,
-      rgba(34, 211, 216, 0.08),
-      transparent 30%
+      circle at 90% 10%,
+      rgba(34, 211, 216, 0.1),
+      transparent 32%
     ),
-    linear-gradient(
-      140deg,
-      rgba(8, 21, 34, 0.9),
-      rgba(2, 6, 11, 0.98)
-    );
+    #050b17;
 }
 
-.agro-hub__conversion-copy h3 {
-  max-width: 570px;
+.agro-seo__header {
+  max-width: 920px;
+}
+
+.agro-seo__header h2 {
   margin: 0;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: clamp(2.4rem, 5vw, 4.7rem);
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(3rem, 6vw, 6rem);
   font-weight: 400;
-  line-height: 0.98;
+  line-height: 0.94;
+  letter-spacing: -0.04em;
 }
 
-.agro-hub__conversion-copy p {
-  max-width: 590px;
-  margin: 26px 0 0;
-  color: rgba(243, 240, 232, 0.62);
-  line-height: 1.8;
+.agro-seo__header p {
+  max-width: 790px;
+  margin: 27px 0 0;
+  color: rgba(243, 240, 232, 0.65);
+  line-height: 1.82;
 }
 
-.agro-hub__conversion-actions {
+.agro-seo__search {
+  margin-top: 48px;
+  padding: clamp(25px, 4vw, 38px);
+  border: 1px solid rgba(212, 175, 55, 0.28);
+  background: rgba(2, 6, 11, 0.7);
+}
+
+.agro-seo__search label {
+  display: block;
+  margin-bottom: 13px;
+  color: #d4af37;
+  font-size: 0.67rem;
+  font-weight: 700;
+  letter-spacing: 0.15em;
+  text-transform: uppercase;
+}
+
+.agro-seo__search-control {
   display: flex;
-  flex-direction: column;
-  border-top: 1px solid rgba(243, 240, 232, 0.11);
+  gap: 10px;
 }
 
-.agro-hub__conversion-link {
-  min-height: 106px;
+.agro-seo__search input {
+  width: 100%;
+  min-height: 58px;
+  padding: 0 20px;
+  border: 1px solid rgba(34, 211, 216, 0.28);
+  border-radius: 0;
+  outline: none;
+  color: #f3f0e8;
+  background: #07111c;
+  font: inherit;
+}
+
+.agro-seo__search input:focus {
+  border-color: #22d3d8;
+  box-shadow: 0 0 0 3px rgba(34, 211, 216, 0.08);
+}
+
+.agro-seo__search input::placeholder {
+  color: rgba(243, 240, 232, 0.38);
+}
+
+.agro-seo__search button {
+  min-width: 105px;
+  border: 1px solid rgba(212, 175, 55, 0.45);
+  color: #d4af37;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.7rem;
+  font-weight: 700;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.agro-seo__results {
+  min-height: 52px;
+  padding: 15px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 26px;
-  padding: 22px 4px;
-  border-bottom: 1px solid rgba(243, 240, 232, 0.11);
-  color: #f3f0e8;
-  text-decoration: none;
-  transition:
-    color 220ms ease,
-    padding 220ms ease,
-    background 220ms ease;
+  gap: 18px;
+  color: rgba(243, 240, 232, 0.49);
+  font-size: 0.76rem;
 }
 
-.agro-hub__conversion-link:hover {
-  padding-left: 18px;
-  padding-right: 18px;
+.agro-seo__results a {
+  display: inline-flex;
+  align-items: center;
+  gap: 11px;
   color: #22d3d8;
-  background: rgba(34, 211, 216, 0.045);
+  text-decoration: none;
+  font-weight: 700;
 }
 
-.agro-hub__conversion-link > span {
-  display: flex;
-  flex-direction: column;
-  gap: 8px;
-  font-family: 'Cormorant Garamond', Georgia, serif;
-  font-size: 1.65rem;
+.agro-seo__grid {
+  display: grid;
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+  gap: 24px;
 }
 
-.agro-hub__conversion-link small {
-  color: rgba(243, 240, 232, 0.5);
-  font-family: Arial, sans-serif;
-  font-size: 0.75rem;
-  line-height: 1.5;
+.agro-seo__category {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid rgba(212, 175, 55, 0.26);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 21, 34, 0.96),
+      rgba(2, 6, 11, 0.995)
+    );
 }
 
-.agro-hub__conversion-link strong {
+.agro-seo__category-media {
+  position: relative;
+  height: 260px;
+  overflow: hidden;
+  background: #07111c;
+}
+
+.agro-seo__category-media img {
+  width: 100%;
+  height: 100%;
+  display: block;
+  object-fit: cover;
+  transition: transform 700ms ease;
+}
+
+.agro-seo__category:hover
+.agro-seo__category-media img {
+  transform: scale(1.04);
+}
+
+.agro-seo__category-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      to top,
+      rgba(2, 6, 11, 0.9),
+      transparent 65%
+    );
+}
+
+.agro-seo__category-content {
+  padding: clamp(27px, 4vw, 42px);
+}
+
+.agro-seo__category-eyebrow {
+  display: block;
   color: #d4af37;
-  font-size: 1.25rem;
-  transition: transform 220ms ease;
+  font-size: 0.65rem;
+  font-weight: 700;
+  letter-spacing: 0.16em;
+  text-transform: uppercase;
 }
 
-.agro-hub__conversion-link:hover strong {
-  transform: translateX(7px);
+.agro-seo__category h3 {
+  margin: 15px 0 0;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(2.2rem, 4vw, 3.7rem);
+  font-weight: 400;
+  line-height: 0.95;
 }
 
-.agro-hub__footer {
+.agro-seo__category-content > p {
+  margin: 22px 0 0;
+  color: rgba(243, 240, 232, 0.59);
+  line-height: 1.75;
+}
+
+.agro-seo__queries {
+  margin-top: 28px;
   display: flex;
-  justify-content: flex-end;
-  gap: 16px;
-  padding-top: 38px;
+  flex-wrap: wrap;
+  gap: 8px;
 }
 
-.agro-hub__footer a {
+.agro-seo__queries a {
+  padding: 8px 11px;
+  border: 1px solid rgba(34, 211, 216, 0.15);
+  border-radius: 999px;
+  color: rgba(243, 240, 232, 0.68);
+  background: rgba(34, 211, 216, 0.035);
+  text-decoration: none;
+  font-size: 0.68rem;
+  line-height: 1.45;
+  transition:
+    border-color 170ms ease,
+    color 170ms ease,
+    background 170ms ease;
+}
+
+.agro-seo__queries a:hover {
+  border-color: #22d3d8;
+  color: #02060b;
+  background: #22d3d8;
+}
+
+.agro-seo__expand {
+  margin-top: 18px;
+  padding: 0;
+  border: 0;
+  color: #d4af37;
+  background: transparent;
+  cursor: pointer;
+  font-size: 0.68rem;
+  font-weight: 700;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.agro-seo__specialist {
+  width: 100%;
   min-height: 52px;
-  padding: 0 24px;
+  margin-top: 28px;
+  padding: 13px 21px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 14px;
-  border: 1px solid rgba(212, 175, 55, 0.54);
+  border: 1px solid #22d3d8;
   border-radius: 999px;
-  color: #d4af37;
+  color: #02060b;
+  background: #22d3d8;
   text-decoration: none;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.13em;
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-align: center;
   text-transform: uppercase;
   transition:
-    color 200ms ease,
-    border-color 200ms ease,
-    background 200ms ease,
-    transform 200ms ease;
+    transform 180ms ease,
+    box-shadow 180ms ease;
 }
 
-.agro-hub__footer a:hover {
-  color: #02060b;
-  border-color: #d4af37;
-  background: #d4af37;
+.agro-seo__specialist:hover {
   transform: translateY(-3px);
+  box-shadow: 0 17px 40px rgba(34, 211, 216, 0.14);
 }
 
-.agro-hub__footer .agro-hub__footer-primary {
+.agro-seo__institution {
+  display: block;
+  margin-top: 16px;
+  color: rgba(243, 240, 232, 0.36);
+  font-size: 0.61rem;
+  line-height: 1.6;
+  text-align: center;
+}
+
+.agro-seo__empty {
+  padding: clamp(34px, 6vw, 70px);
+  border: 1px solid rgba(212, 175, 55, 0.3);
+  text-align: center;
+  background: rgba(2, 6, 11, 0.72);
+}
+
+.agro-seo__empty h3 {
+  margin: 0;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(2.5rem, 5vw, 4.5rem);
+  font-weight: 400;
+}
+
+.agro-seo__empty p {
+  max-width: 670px;
+  margin: 20px auto 28px;
+  color: rgba(243, 240, 232, 0.6);
+  line-height: 1.8;
+}
+
+.agro-seo__empty a {
+  min-height: 52px;
+  padding: 13px 23px;
+  display: inline-flex;
+  align-items: center;
+  gap: 14px;
+  border-radius: 999px;
   color: #02060b;
-  border-color: #d4af37;
-  background: #d4af37;
+  background: #22d3d8;
+  text-decoration: none;
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-transform: uppercase;
 }
 
-@media (max-width: 1040px) {
+/* =========================================================
+   CTA FINAL
+========================================================= */
+
+.agro-final-cta {
+  padding:
+    clamp(85px, 11vw, 160px)
+    20px
+    clamp(80px, 10vw, 140px);
+  border-top: 1px solid rgba(34, 211, 216, 0.12);
+  color: #f3f0e8;
+  background:
+    radial-gradient(
+      circle at 85% 50%,
+      rgba(34, 211, 216, 0.12),
+      transparent 35%
+    ),
+    #02060b;
+}
+
+.agro-final-cta__panel {
+  padding: clamp(38px, 7vw, 80px);
+  display: grid;
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+  gap: clamp(40px, 7vw, 90px);
+  align-items: center;
+  border: 1px solid rgba(212, 175, 55, 0.34);
+  background:
+    linear-gradient(
+      145deg,
+      rgba(8, 21, 34, 0.96),
+      rgba(2, 6, 11, 0.995)
+    );
+}
+
+.agro-final-cta h2 {
+  margin: 0;
+  font-family:
+    "Cormorant Garamond",
+    Georgia,
+    serif;
+  font-size: clamp(3rem, 6vw, 5.8rem);
+  font-weight: 400;
+  line-height: 0.94;
+}
+
+.agro-final-cta h2 span {
+  color: #22d3d8;
+}
+
+.agro-final-cta__panel p {
+  max-width: 750px;
+  margin: 25px 0 0;
+  color: rgba(243, 240, 232, 0.62);
+  line-height: 1.82;
+}
+
+.agro-final-cta__panel > a {
+  min-width: 260px;
+  min-height: 56px;
+  padding: 14px 24px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 14px;
+  border-radius: 999px;
+  color: #02060b;
+  background: #22d3d8;
+  text-decoration: none;
+  font-size: 0.69rem;
+  font-weight: 800;
+  letter-spacing: 0.11em;
+  text-align: center;
+  text-transform: uppercase;
+  transition:
+    transform 180ms ease,
+    box-shadow 180ms ease;
+}
+
+.agro-final-cta__panel > a:hover {
+  transform: translateY(-3px);
+  box-shadow: 0 18px 45px rgba(34, 211, 216, 0.16);
+}
+
+.agro-final-cta__institution {
+  margin: 29px 0 0;
+  color: rgba(212, 175, 55, 0.62);
+  font-size: 0.68rem;
+  letter-spacing: 0.09em;
+  text-align: center;
+  text-transform: uppercase;
+}
+
+/* =========================================================
+   RESPONSIVIDADE
+========================================================= */
+
+@media (max-width: 1050px) {
   .agro-hub__grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
   .agro-hub__metrics-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
-  .agro-hub__conversion {
-    grid-template-columns: 1fr;
-  }
-}
-
-@media (max-width: 680px) {
-  .agro-hub {
-    padding-inline: 15px;
-  }
-
-  .agro-hub__grid {
+  .agro-seo__grid {
     grid-template-columns: 1fr;
   }
 
-  .agro-hub__media {
-    height: 255px;
-  }
-
-  .agro-hub__content {
-    min-height: 300px;
-    padding: 28px 23px;
-  }
-
-  .agro-hub__metrics-grid {
+  .agro-final-cta__panel {
     grid-template-columns: 1fr;
   }
 
-  .agro-hub__metric {
-    min-height: auto;
-  }
-
-  .agro-hub__conversion {
-    min-width: 0;
-    padding: 32px 22px;
-  }
-
-  .agro-hub__conversion-link {
-    min-height: 96px;
-  }
-
-  .agro-hub__conversion-link > span {
-    font-size: 1.4rem;
-  }
-
-  .agro-hub__footer {
-    flex-direction: column;
-  }
-
-  .agro-hub__footer a {
+  .agro-final-cta__panel > a {
     width: 100%;
   }
 }
 
+@media (max-width: 850px) {
+  .agro-support__panel {
+    grid-template-columns: 1fr;
+  }
+}
+
+@media (max-width: 650px) {
+  .agro-support,
+  .agro-hub,
+  .agro-seo,
+  .agro-final-cta {
+    padding-right: 15px;
+    padding-left: 15px;
+  }
+
+  .agro-support__panel {
+    padding: 31px 21px;
+  }
+
+  .agro-hub__grid,
+  .agro-hub__metrics-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .agro-hub__content {
+    min-height: 285px;
+    padding: 26px 21px 30px;
+  }
+
+  .agro-popular {
+    padding: 31px 21px;
+  }
+
+  .agro-seo__search {
+    padding: 22px 17px;
+  }
+
+  .agro-seo__search-control {
+    flex-direction: column;
+  }
+
+  .agro-seo__search button {
+    min-height: 46px;
+  }
+
+  .agro-seo__results {
+    align-items: flex-start;
+    flex-direction: column;
+  }
+
+  .agro-seo__category-media {
+    height: 230px;
+  }
+
+  .agro-seo__category-content {
+    padding: 29px 21px 32px;
+  }
+
+  .agro-seo__specialist {
+    line-height: 1.5;
+  }
+
+  .agro-final-cta__panel {
+    padding: 34px 22px;
+  }
+}
+
 @media (prefers-reduced-motion: reduce) {
+  html {
+    scroll-behavior: auto;
+  }
+
+  .agro-support__action a,
   .agro-hub__card,
   .agro-hub__media img,
-  .agro-hub__conversion-link,
-  .agro-hub__conversion-link strong,
-  .agro-hub__footer a {
+  .agro-seo__category-media img,
+  .agro-seo__specialist,
+  .agro-final-cta__panel > a {
     transition: none;
+  }
+
+  .agro-support__action a:hover,
+  .agro-hub__card:hover,
+  .agro-hub__card:hover .agro-hub__media img,
+  .agro-seo__category:hover
+  .agro-seo__category-media img,
+  .agro-seo__specialist:hover,
+  .agro-final-cta__panel > a:hover {
+    transform: none;
   }
 }
