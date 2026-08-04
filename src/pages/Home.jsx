@@ -1,76 +1,34 @@
 import Hero from '../components/Hero'
 import Mission from '../components/Mission'
+import Portfolio from '../components/Portfolio'
+import MarketplaceWarPlan from '../components/MarketplaceWarPlan'
+import PsittacinesMarketplace from '../components/PsittacinesMarketplace'
+import GlobalPresence from '../components/GlobalPresence'
+import CommunityHub from '../components/CommunityHub'
+import LivingEcosystem from '../components/LivingEcosystem'
+import AgroNexusLibrary from '../components/AgroNexusLibrary'
 import Contact from '../components/Contact'
 
 export default function Home() {
   return (
-    <main style={{ backgroundColor: '#0b0a0a', minHeight: '100vh' }}>
-      
+    <main>
       <Hero />
+
       <Mission />
 
-      {/* AQUI COMEÇAM OS CARDS DE NAVEGAÇÃO */}
-      <section style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: '25px', 
-        padding: '60px 20px 20px', 
-        maxWidth: '1200px', 
-        margin: '0 auto' 
-      }}>
-        <a href="/aves" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>Aves & Psitacídeos</h3>
-            <p>Guias de Calopsitas, Agapornis, Periquitos e mais.</p>
-          </div>
-        </a>
+      <Portfolio />
 
-        <a href="/mamiferos" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>Pequenos Mamíferos</h3>
-            <p>Hamsters, Roedores e outros pequenos.</p>
-          </div>
-        </a>
+      <MarketplaceWarPlan />
 
-        <a href="/aquarismo" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>Aquarismo</h3>
-            <p>Marinho, Água Doce e Plantado.</p>
-          </div>
-        </a>
-      </section>
+      <PsittacinesMarketplace />
 
-      {/* SEGUNDA LINHA DE CARDS */}
-      <section style={{ 
-        display: 'grid', 
-        gridTemplateColumns: 'repeat(auto-fit, minmax(250px, 1fr))', 
-        gap: '25px', 
-        padding: '20px 20px 60px', 
-        maxWidth: '1200px', 
-        margin: '0 auto' 
-      }}>
-        <a href="/manuais" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>📚 Manuais & Documentos</h3>
-            <p>Biblioteca AgroNexus, PDFs e guias de criação.</p>
-          </div>
-        </a>
+      <GlobalPresence />
 
-        <a href="/sobre" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>Sobre o Projeto</h3>
-            <p>Biodiversidade, ciência e o ecossistema AgroNexus.</p>
-          </div>
-        </a>
+      <CommunityHub />
 
-        {/* O SEU LINK DO ASAAS ESTÁ AQUI EMBAIXO */}
-        <a href="https://www.asaas.com/c/u6toboa8xhqsmosv" target="_blank" style={{ textDecoration: 'none', color: '#f0e6d2' }}>
-          <div className="portal-card">
-            <h3>Apoie o AgroNexus</h3>
-            <p>Contribua com PIX, boleto ou cartão via Asaas.</p>
-          </div>
-        </a>
-      </section>
+      <LivingEcosystem />
+
+      <AgroNexusLibrary />
 
       <Contact />
     </main>
