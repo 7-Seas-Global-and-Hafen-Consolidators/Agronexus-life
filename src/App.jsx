@@ -1,4 +1,4 @@
-import { useEffect, useState } from 'react'
+import { useEffect, useMemo, useState } from 'react'
 
 import Navbar from './components/Navbar'
 import Footer from './components/Footer'
@@ -16,14 +16,28 @@ import LivingEcosystem from './components/LivingEcosystem'
 import AgroNexusLibrary from './components/AgroNexusLibrary'
 import Contact from './components/Contact'
 
-function getCurrentRoute() {
-  const hash = window.location.hash || '#/'
-  return hash.replace('#', '') || '/'
+function normalizeRoute(value) {
+  if (!value) {
+    return '/'
+  }
+
+  const routeWithoutQuery = value.split('?')[0]
+  const routeWithoutTrailingSlash =
+    routeWithoutQuery.length > 1
+      ? routeWithoutQuery.replace(/\/+$/, '')
+      : routeWithoutQuery
+
+  return routeWithoutTrailingSlash || '/'
 }
 
-function PageContainer({ children }) {
+function getCurrentRoute() {
+  const hash = window.location.hash || '#/'
+  return normalizeRoute(hash.replace(/^#/, ''))
+}
+
+function PageContainer({ children, className = '' }) {
   return (
-    <main className="page-container">
+    <main className={`page-container ${className}`.trim()}>
       {children}
     </main>
   )
@@ -31,7 +45,7 @@ function PageContainer({ children }) {
 
 function MarketplacePage() {
   return (
-    <PageContainer>
+    <PageContainer className="page-container--marketplace">
       <MarketplaceWarPlan />
       <PsittacinesMarketplace />
     </PageContainer>
@@ -40,7 +54,7 @@ function MarketplacePage() {
 
 function GlobalPresencePage() {
   return (
-    <PageContainer>
+    <PageContainer className="page-container--global">
       <GlobalPresence />
     </PageContainer>
   )
@@ -48,7 +62,7 @@ function GlobalPresencePage() {
 
 function CommunityPage() {
   return (
-    <PageContainer>
+    <PageContainer className="page-container--community">
       <CommunityHub />
       <LivingEcosystem />
     </PageContainer>
@@ -57,7 +71,7 @@ function CommunityPage() {
 
 function LibraryPage() {
   return (
-    <PageContainer>
+    <PageContainer className="page-container--library">
       <AgroNexusLibrary />
     </PageContainer>
   )
@@ -65,7 +79,7 @@ function LibraryPage() {
 
 function ContactPage() {
   return (
-    <PageContainer>
+    <PageContainer className="page-container--contact">
       <Contact />
     </PageContainer>
   )
@@ -75,12 +89,13 @@ function NotFound() {
   return (
     <main
       style={{
-        minHeight: '70vh',
+        minHeight: '76vh',
         display: 'flex',
         alignItems: 'center',
         justifyContent: 'center',
-        padding: '120px 24px 60px',
-        background: '#02060b',
+        padding: '150px 24px 80px',
+        background:
+          'radial-gradient(circle at 50% 20%, rgba(34, 211, 216, 0.08), transparent 34%), #02060b',
         color: '#f3f0e8',
         textAlign: 'center',
       }}
@@ -88,19 +103,22 @@ function NotFound() {
       <div>
         <p
           style={{
-            margin: '0 0 12px',
+            margin: '0 0 16px',
             color: '#d4af37',
-            letterSpacing: '0.18em',
+            fontSize: '0.76rem',
+            fontWeight: 700,
+            letterSpacing: '0.22em',
             textTransform: 'uppercase',
           }}
         >
-          AgroNexus™
+          AgroNexus Living Ecosystem™
         </p>
 
         <h1
           style={{
-            margin: '0 0 18px',
-            fontSize: 'clamp(2rem, 6vw, 4.5rem)',
+            margin: '0 0 22px',
+            fontSize: 'clamp(2.4rem, 7vw, 5.4rem)',
+            lineHeight: 1,
           }}
         >
           Página não encontrada
@@ -109,27 +127,32 @@ function NotFound() {
         <p
           style={{
             maxWidth: '620px',
-            margin: '0 auto 30px',
-            lineHeight: 1.7,
-            opacity: 0.8,
+            margin: '0 auto 34px',
+            color: 'rgba(243, 240, 232, 0.68)',
+            fontSize: '1.05rem',
+            lineHeight: 1.8,
           }}
         >
-          O conteúdo solicitado não está disponível ou foi transferido para
-          uma nova área do ecossistema.
+          O conteúdo solicitado não está disponível ou foi transferido
+          para uma nova área do ecossistema.
         </p>
 
         <a
           href="#/"
           style={{
+            minHeight: '52px',
             display: 'inline-flex',
-            padding: '14px 26px',
+            alignItems: 'center',
+            justifyContent: 'center',
+            padding: '0 28px',
             border: '1px solid #d4af37',
             borderRadius: '999px',
             color: '#d4af37',
             textDecoration: 'none',
             textTransform: 'uppercase',
-            letterSpacing: '0.12em',
-            fontSize: '0.82rem',
+            letterSpacing: '0.13em',
+            fontSize: '0.78rem',
+            fontWeight: 700,
           }}
         >
           Voltar ao início
@@ -139,52 +162,103 @@ function NotFound() {
   )
 }
 
-function renderRoute(route) {
-  switch (route) {
-    case '/':
-    case '/home':
-      return <Home />
+function getRouteConfiguration(route) {
+  const routes = {
+    '/': {
+      component: <Home />,
+      scrollTarget: null,
+    },
 
-    case '/aves':
-      return <Aves />
+    '/home': {
+      component: <Home />,
+      scrollTarget: null,
+    },
 
-    case '/aquarismo':
-      return <Aquarismo />
+    '/inicio': {
+      component: <Home />,
+      scrollTarget: null,
+    },
 
-    case '/mamiferos':
-      return <Mamiferos />
+    '/sobre': {
+      component: <Home />,
+      scrollTarget: '#sobre',
+    },
 
-    case '/marketplace':
-      return <MarketplacePage />
+    '/missao': {
+      component: <Home />,
+      scrollTarget: '#missao',
+    },
 
-    case '/presenca-global':
-      return <GlobalPresencePage />
+    '/ecossistema': {
+      component: <Home />,
+      scrollTarget: '#ecossistema',
+    },
 
-    case '/comunidade':
-      return <CommunityPage />
+    '/portfolio': {
+      component: <Home />,
+      scrollTarget: '#portfolio',
+    },
 
-    case '/biblioteca':
-      return <LibraryPage />
+    '/aves': {
+      component: <Aves />,
+      scrollTarget: null,
+    },
 
-    case '/contato':
-      return <ContactPage />
+    '/aquarismo': {
+      component: <Aquarismo />,
+      scrollTarget: null,
+    },
 
-    default:
-      return <NotFound />
+    '/mamiferos': {
+      component: <Mamiferos />,
+      scrollTarget: null,
+    },
+
+    '/marketplace': {
+      component: <MarketplacePage />,
+      scrollTarget: null,
+    },
+
+    '/presenca-global': {
+      component: <GlobalPresencePage />,
+      scrollTarget: null,
+    },
+
+    '/comunidade': {
+      component: <CommunityPage />,
+      scrollTarget: null,
+    },
+
+    '/biblioteca': {
+      component: <LibraryPage />,
+      scrollTarget: null,
+    },
+
+    '/contato': {
+      component: <ContactPage />,
+      scrollTarget: null,
+    },
   }
+
+  return (
+    routes[route] || {
+      component: <NotFound />,
+      scrollTarget: null,
+    }
+  )
 }
 
 export default function App() {
-  const [route, setRoute] = useState(getCurrentRoute())
+  const [route, setRoute] = useState(getCurrentRoute)
+
+  const routeConfiguration = useMemo(
+    () => getRouteConfiguration(route),
+    [route]
+  )
 
   useEffect(() => {
     function handleRouteChange() {
       setRoute(getCurrentRoute())
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'instant',
-      })
     }
 
     window.addEventListener('hashchange', handleRouteChange)
@@ -194,10 +268,56 @@ export default function App() {
     }
   }, [])
 
+  useEffect(() => {
+    const { scrollTarget } = routeConfiguration
+
+    const scrollPage = () => {
+      if (scrollTarget) {
+        const target = document.querySelector(scrollTarget)
+
+        if (target) {
+          const navbarHeight = 92
+          const targetPosition =
+            target.getBoundingClientRect().top +
+            window.scrollY -
+            navbarHeight
+
+          window.scrollTo({
+            top: Math.max(targetPosition, 0),
+            left: 0,
+            behavior: 'smooth',
+          })
+
+          return
+        }
+      }
+
+      window.scrollTo({
+        top: 0,
+        left: 0,
+        behavior: 'instant',
+      })
+    }
+
+    const firstFrame = window.requestAnimationFrame(() => {
+      const secondFrame = window.requestAnimationFrame(scrollPage)
+
+      return () => {
+        window.cancelAnimationFrame(secondFrame)
+      }
+    })
+
+    return () => {
+      window.cancelAnimationFrame(firstFrame)
+    }
+  }, [routeConfiguration])
+
   return (
     <>
-      <Navbar />
-      {renderRoute(route)}
+      <Navbar currentRoute={route} />
+
+      {routeConfiguration.component}
+
       <Footer />
     </>
   )
