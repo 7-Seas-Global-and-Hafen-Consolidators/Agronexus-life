@@ -1,18 +1,26 @@
-import { useEffect, useMemo, useState } from 'react'
+import {
+  useEffect,
+  useMemo,
+  useState,
+} from 'react'
+
 import '../styles/agro-hub.css'
-
-import avesImage from '../assets/images/editorial/AgroNexus-Birds.png'
-import avesCantantesImage from '../assets/images/editorial/agronexus-aves-cantantes-canarios-passeriformes-marketplace.jpg'
-import mamiferosImage from '../assets/images/editorial/agronexus-hamsters-editorial-guide-1.jpg'
-import repteisImage from '../assets/images/editorial/agronexus-reptiles-editorial-guide-1.jpg'
-
-const WHATSAPP_NUMBER = '5547991353900'
 
 const SUPPORT_URL =
   'https://www.asaas.com/c/u6toboa8xhqsmosv'
 
-const aquaImage =
-  '/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png'
+const HERO_VIDEOS = [
+  {
+    id: 'calopsitas',
+    src: '/agronexus-calopsitas.mp4',
+    label: 'Calopsitas',
+  },
+  {
+    id: 'hamsters',
+    src: '/chinese-longhair-hamster.mp4',
+    label: 'Hamsters',
+  },
+]
 
 const SUPPORT_VALUES = [
   'R$ 2',
@@ -23,51 +31,18 @@ const SUPPORT_VALUES = [
   'R$ 100',
 ]
 
-function createWhatsAppLink(subject) {
-  const message = [
-    'Olá, AgroNexus!',
-    '',
-    `Tenho interesse em: ${subject}.`,
-    '',
-    'Gostaria de receber informações.',
-  ].join('\n')
-
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    message
-  )}`
-}
-
 const CATEGORIES = [
   {
     id: 'aves',
     title: 'Aves',
     description:
       'Periquitos, Calopsitas, Ring Necks, Agapornis, Lóris, canários, psitacídeos, passeriformes, alimentação, viveiros e acessórios.',
-    image: avesImage,
     href: '#/aves',
     searches: [
-      'Comprar Ring Neck',
-      'Comprar Calopsita',
-      'Comprar Agapornis',
-      'Comprar Periquito Australiano',
-    ],
-  },
-
-  {
-    id: 'canarios',
-    title: 'Canários e Passeriformes',
-    description:
-      'Canários, aves cantantes, alimentação, sementes, gaiolas, viveiros e produtos especializados.',
-    image: avesCantantesImage,
-    href: createWhatsAppLink(
-      'Canários e passeriformes'
-    ),
-    external: true,
-    searches: [
-      'Comprar Canário Belga',
-      'Canário Gloster',
-      'Canário Timbrado',
-      'Viveiro para Canários',
+      'Ring Neck',
+      'Calopsita',
+      'Agapornis',
+      'Periquito Australiano',
     ],
   },
 
@@ -75,14 +50,13 @@ const CATEGORIES = [
     id: 'aquarismo',
     title: 'Aquarismo',
     description:
-      'Peixes ornamentais, água doce, marinho, reef, ciclídeos, Bettas, Kinguios, filtros, bombas, aquários e alimentação.',
-    image: aquaImage,
+      'Peixes ornamentais, água doce, marinho, reef, Bettas, Kinguios, filtros, bombas, aquários, plantas e alimentação.',
     href: '#/aquarismo',
     searches: [
-      'Comprar Betta',
-      'Comprar Kinguio',
+      'Betta',
+      'Kinguio',
       'Aquário plantado',
-      'Montar Mini Reef',
+      'Mini Reef',
     ],
   },
 
@@ -90,32 +64,55 @@ const CATEGORIES = [
     id: 'mamiferos',
     title: 'Pequenos Mamíferos',
     description:
-      'Hamsters, porquinhos-da-índia, chinchilas, coelhos, furões, habitats, substratos, alimentação e acessórios.',
-    image: mamiferosImage,
+      'Hamsters, chinchilas, coelhos, porquinhos-da-índia, gerbilos, pequenos roedores, habitats, alimentação e acessórios.',
     href: '#/mamiferos',
     searches: [
-      'Comprar Hamster Sírio',
-      'Hamster Roborovski',
-      'Habitat para Hamster',
-      'Ração para Hamster',
+      'Hamster Sírio',
+      'Roborovski',
+      'Chinchila',
+      'Coelho',
     ],
   },
 
   {
-    id: 'caes-gatos',
-    title: 'Cães e Gatos',
+    id: 'caes',
+    title: 'Cães',
     description:
-      'Raças, filhotes, alimentação, higiene, enriquecimento, transporte, acessórios e produtos especializados.',
-    image: repteisImage,
-    href: createWhatsAppLink(
-      'Marketplace de cães e gatos'
-    ),
-    external: true,
+      'Raças, filhotes, alimentação, higiene, camas, transporte, brinquedos, enriquecimento e acessórios.',
+    href: '#/marketplace',
     searches: [
-      'Comprar Labrador',
-      'Comprar Border Collie',
-      'Comprar Gato Persa',
-      'Comprar Maine Coon',
+      'Labrador',
+      'Border Collie',
+      'Spitz Alemão',
+      'Golden Retriever',
+    ],
+  },
+
+  {
+    id: 'gatos',
+    title: 'Gatos',
+    description:
+      'Raças, alimentação, fontes, caixas sanitárias, areia, arranhadores, transporte, higiene e acessórios.',
+    href: '#/marketplace',
+    searches: [
+      'Maine Coon',
+      'Persa',
+      'Sphynx',
+      'Ragdoll',
+    ],
+  },
+
+  {
+    id: 'repteis',
+    title: 'Répteis e Terrários',
+    description:
+      'Espécies comercializáveis, terrários, iluminação UVB, aquecimento, substratos, alimentação e equipamentos.',
+    href: '#/marketplace',
+    searches: [
+      'Terrários',
+      'UVB',
+      'Aquecimento',
+      'Substratos',
     ],
   },
 
@@ -124,16 +121,54 @@ const CATEGORIES = [
     title: 'Plantas e Bonsais',
     description:
       'Bonsais, mini árvores frutíferas, orquídeas, plantas ornamentais, vasos, substratos, fertilizantes e ferramentas.',
-    image: repteisImage,
-    href: createWhatsAppLink(
-      'Marketplace de plantas e bonsais'
-    ),
-    external: true,
+    href: '#/marketplace',
     searches: [
-      'Bonsai de Jabuticaba',
-      'Mini Jabuticabeira',
-      'Bonsai para apartamento',
-      'Comprar Orquídea',
+      'Bonsai',
+      'Jabuticabeira',
+      'Orquídeas',
+      'Plantas ornamentais',
+    ],
+  },
+
+  {
+    id: 'alimentacao',
+    title: 'Alimentação',
+    description:
+      'Rações, extrusadas, sementes, néctares, fenos, pellets, alimentos vivos e produtos especializados por espécie.',
+    href: '#/marketplace',
+    searches: [
+      'Rações',
+      'Sementes',
+      'Néctares',
+      'Alimentos vivos',
+    ],
+  },
+
+  {
+    id: 'habitats',
+    title: 'Habitats',
+    description:
+      'Gaiolas, viveiros, aquários, terrários, cercados, ninhos, tocas, poleiros e estruturas adequadas.',
+    href: '#/marketplace',
+    searches: [
+      'Gaiolas',
+      'Viveiros',
+      'Aquários',
+      'Terrários',
+    ],
+  },
+
+  {
+    id: 'equipamentos',
+    title: 'Equipamentos',
+    description:
+      'Filtros, bombas, iluminação, climatização, aquecimento, incubação, automação e equipamentos especializados.',
+    href: '#/marketplace',
+    searches: [
+      'Filtros',
+      'Bombas',
+      'Iluminação',
+      'Incubação',
     ],
   },
 ]
@@ -161,9 +196,38 @@ const POPULAR_SEARCHES = [
   'Néctar para Lóris',
 ]
 
+const FEATURED_PRODUCTS = [
+  {
+    id: 'guia-periquito',
+    label: 'Guia Oficial',
+    title:
+      'Guia Oficial AgroNexus — Periquito Australiano',
+    description:
+      '369 páginas dedicadas a comportamento, alimentação, manejo, genética, saúde, reprodução, mutações e bem-estar.',
+    price: 'R$ 19,59',
+    checkout:
+      'https://www.asaas.com/c/bzsxz4qaps5glfm4',
+  },
+
+  {
+    id: 'guia-calopsitas',
+    label: 'Guia Oficial',
+    title:
+      'Guia Oficial AgroNexus — Calopsitas',
+    description:
+      'Publicação aprofundada sobre comportamento, alimentação, saúde, mutações, reprodução, ambiente e convivência responsável.',
+    price: 'R$ 19,59',
+    checkout:
+      'https://www.asaas.com/c/x17xj6s0gmqrhgnm',
+  },
+]
+
 export default function Home() {
   const [searchTerm, setSearchTerm] =
     useState('')
+
+  const [heroIndex, setHeroIndex] =
+    useState(0)
 
   useEffect(() => {
     const previousTitle = document.title
@@ -184,7 +248,7 @@ export default function Home() {
     if (metaDescription) {
       metaDescription.setAttribute(
         'content',
-        'Marketplace AgroNexus de aves, aquarismo, peixes ornamentais, cães, gatos, hamsters, plantas, bonsais, alimentação, equipamentos, viveiros, aquários, terrários, acessórios e publicações especializadas.'
+        'Marketplace AgroNexus de aves, aquarismo, peixes ornamentais, cães, gatos, hamsters, plantas, bonsais, alimentação, equipamentos, habitats, acessórios e publicações especializadas.'
       )
     }
 
@@ -239,15 +303,48 @@ export default function Home() {
       }
     })
 
-    return [...results]
+    return [...results].slice(0, 8)
   }, [normalizedSearch])
+
+  function showNextHero() {
+    setHeroIndex(
+      (currentIndex) =>
+        (currentIndex + 1) %
+        HERO_VIDEOS.length
+    )
+  }
+
+  const activeHero =
+    HERO_VIDEOS[heroIndex]
 
   return (
     <main
       id="topo"
       className="commerce-home"
     >
+      {/* ======================================================
+          HERO VIVO
+          ====================================================== */}
+
       <section className="commerce-hero">
+        <video
+          key={activeHero.id}
+          className="commerce-hero__video"
+          autoPlay
+          muted
+          playsInline
+          preload="auto"
+          onEnded={showNextHero}
+          aria-label={`AgroNexus — ${activeHero.label}`}
+        >
+          <source
+            src={activeHero.src}
+            type="video/mp4"
+          />
+        </video>
+
+        <div className="commerce-hero__overlay" />
+
         <div className="commerce-container">
           <div className="commerce-hero__content">
             <span className="commerce-kicker">
@@ -284,14 +381,10 @@ export default function Home() {
               </a>
 
               <a
-                href={createWhatsAppLink(
-                  'Atendimento comercial AgroNexus'
-                )}
+                href="#produtos"
                 className="commerce-button commerce-button--secondary"
-                target="_blank"
-                rel="noopener noreferrer"
               >
-                Falar com especialista
+                Ver produtos
               </a>
             </div>
 
@@ -300,8 +393,22 @@ export default function Home() {
               Guiropa World
             </span>
           </div>
+
+          <div className="commerce-hero__media-note">
+            <span>
+              Biodiversidade em movimento
+            </span>
+
+            <strong>
+              {activeHero.label}
+            </strong>
+          </div>
         </div>
       </section>
+
+      {/* ======================================================
+          BUSCA
+          ====================================================== */}
 
       <section className="commerce-search">
         <div className="commerce-container">
@@ -320,9 +427,16 @@ export default function Home() {
                     event.target.value
                   )
                 }
-                placeholder="Ring Neck, Betta, hamster, ração, aquário, bonsai, alpaca..."
+                placeholder="Ring Neck, Betta, hamster, ração, aquário, bonsai..."
                 autoComplete="off"
               />
+
+              <a
+                className="commerce-search__marketplace"
+                href="#/marketplace"
+              >
+                Buscar
+              </a>
 
               {searchTerm ? (
                 <button
@@ -343,11 +457,7 @@ export default function Home() {
                     (result) => (
                       <a
                         key={result}
-                        href={createWhatsAppLink(
-                          result
-                        )}
-                        target="_blank"
-                        rel="noopener noreferrer"
+                        href="#/marketplace"
                       >
                         <span>
                           {result}
@@ -360,16 +470,11 @@ export default function Home() {
                     )
                   )
                 ) : (
-                  <a
-                    href={createWhatsAppLink(
-                      searchTerm
-                    )}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
+                  <a href="#/marketplace">
                     <span>
                       Procurar “
-                      {searchTerm}”
+                      {searchTerm}” no
+                      Marketplace
                     </span>
 
                     <strong>
@@ -383,6 +488,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ======================================================
+          CATEGORIAS
+          ====================================================== */}
+
       <section className="commerce-categories">
         <div className="commerce-container">
           <header className="commerce-section-head">
@@ -391,43 +500,27 @@ export default function Home() {
             </span>
 
             <h2>
-              Marketplace AgroNexus
+              Um ecossistema inteiro.
             </h2>
 
             <p>
-              Escolha uma categoria e vá
-              diretamente ao que interessa.
+              Escolha uma área e entre
+              diretamente no catálogo.
             </p>
           </header>
 
           <div className="commerce-category-grid">
             {CATEGORIES.map(
-              (category) => (
+              (category, index) => (
                 <article
                   className="commerce-category"
                   key={category.id}
                 >
-                  <a
-                    href={category.href}
-                    target={
-                      category.external
-                        ? '_blank'
-                        : undefined
-                    }
-                    rel={
-                      category.external
-                        ? 'noopener noreferrer'
-                        : undefined
-                    }
-                    className="commerce-category__image"
-                  >
-                    <img
-                      src={category.image}
-                      alt={category.title}
-                      loading="lazy"
-                      decoding="async"
-                    />
-                  </a>
+                  <div className="commerce-category__number">
+                    {String(
+                      index + 1
+                    ).padStart(2, '0')}
+                  </div>
 
                   <div className="commerce-category__body">
                     <h3>
@@ -445,11 +538,7 @@ export default function Home() {
                         (item) => (
                           <a
                             key={item}
-                            href={createWhatsAppLink(
-                              item
-                            )}
-                            target="_blank"
-                            rel="noopener noreferrer"
+                            href={category.href}
                           >
                             {item}
                           </a>
@@ -459,19 +548,9 @@ export default function Home() {
 
                     <a
                       href={category.href}
-                      target={
-                        category.external
-                          ? '_blank'
-                          : undefined
-                      }
-                      rel={
-                        category.external
-                          ? 'noopener noreferrer'
-                          : undefined
-                      }
                       className="commerce-category__action"
                     >
-                      Ver categoria
+                      Abrir categoria
 
                       <span aria-hidden="true">
                         →
@@ -485,6 +564,128 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ======================================================
+          PRODUTOS EM DESTAQUE
+          ====================================================== */}
+
+      <section
+        className="commerce-products"
+        id="produtos"
+      >
+        <div className="commerce-container">
+          <header className="commerce-section-head">
+            <span>
+              Compra imediata
+            </span>
+
+            <h2>
+              Produto.
+              <br />
+              Preço.
+              <br />
+              Compra.
+            </h2>
+
+            <p>
+              Produtos disponíveis entram com
+              preço visível e checkout direto.
+            </p>
+          </header>
+
+          <div className="commerce-products__grid">
+            {FEATURED_PRODUCTS.map(
+              (product) => (
+                <article
+                  className="commerce-product"
+                  key={product.id}
+                >
+                  <span className="commerce-product__label">
+                    {product.label}
+                  </span>
+
+                  <h3>
+                    {product.title}
+                  </h3>
+
+                  <p>
+                    {product.description}
+                  </p>
+
+                  <div className="commerce-product__bottom">
+                    <div className="commerce-product__price">
+                      <small>
+                        Preço de lançamento
+                      </small>
+
+                      <strong>
+                        {product.price}
+                      </strong>
+                    </div>
+
+                    <a
+                      href={product.checkout}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Comprar agora
+                      <span aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  </div>
+
+                  <small className="commerce-product__operation">
+                    Checkout processado pela
+                    Guiropa World.
+                  </small>
+                </article>
+              )
+            )}
+
+            <article className="commerce-product commerce-product--marketplace">
+              <span className="commerce-product__label">
+                Marketplace
+              </span>
+
+              <h3>
+                Muito além das publicações.
+              </h3>
+
+              <p>
+                O catálogo AgroNexus está sendo
+                estruturado para animais,
+                alimentação, habitats,
+                aquarismo, plantas,
+                equipamentos e acessórios.
+              </p>
+
+              <div className="commerce-product__bottom">
+                <div className="commerce-product__price">
+                  <small>
+                    Catálogo
+                  </small>
+
+                  <strong>
+                    Explore
+                  </strong>
+                </div>
+
+                <a href="#/marketplace">
+                  Abrir Marketplace
+                  <span aria-hidden="true">
+                    →
+                  </span>
+                </a>
+              </div>
+            </article>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
+          PESQUISAS POPULARES
+          ====================================================== */}
+
       <section className="commerce-popular">
         <div className="commerce-container">
           <header className="commerce-section-head">
@@ -493,7 +694,7 @@ export default function Home() {
             </span>
 
             <h2>
-              O que as pessoas procuram
+              O que as pessoas procuram.
             </h2>
           </header>
 
@@ -502,11 +703,7 @@ export default function Home() {
               (item) => (
                 <a
                   key={item}
-                  href={createWhatsAppLink(
-                    item
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
+                  href="#/marketplace"
                 >
                   <span>
                     {item}
@@ -522,6 +719,10 @@ export default function Home() {
         </div>
       </section>
 
+      {/* ======================================================
+          GUIAS
+          ====================================================== */}
+
       <section className="commerce-guides">
         <div className="commerce-container">
           <div className="commerce-guides__panel">
@@ -536,14 +737,14 @@ export default function Home() {
               </h2>
 
               <p>
-                Guias digitais especializados
-                com compra imediata e acesso
-                direto ao conteúdo AgroNexus.
+                Publicações especializadas com
+                compra imediata e acesso direto
+                ao conteúdo AgroNexus.
               </p>
             </div>
 
             <a
-              href="#/marketplace"
+              href="#produtos"
               className="commerce-button commerce-button--light"
             >
               Ver produtos disponíveis
@@ -555,6 +756,10 @@ export default function Home() {
           </div>
         </div>
       </section>
+
+      {/* ======================================================
+          APOIO
+          ====================================================== */}
 
       <section
         className="commerce-support"
@@ -611,8 +816,8 @@ export default function Home() {
 
               <strong>
                 R$ 2
+
                 <small>
-                  {' '}
                   ou qualquer outro valor
                 </small>
               </strong>
@@ -637,7 +842,9 @@ export default function Home() {
 
               <div className="commerce-support__payment-methods">
                 <span>Pix</span>
-                <span>Cartão de crédito</span>
+                <span>
+                  Cartão de crédito
+                </span>
                 <span>Boleto</span>
               </div>
 
@@ -652,36 +859,33 @@ export default function Home() {
         </div>
       </section>
 
-      <section className="commerce-contact">
+      {/* ======================================================
+          FECHAMENTO
+          ====================================================== */}
+
+      <section className="commerce-final">
         <div className="commerce-container">
-          <div className="commerce-contact__panel">
+          <div className="commerce-final__panel">
             <div>
               <span className="commerce-kicker">
-                Atendimento AgroNexus
+                Marketplace AgroNexus™
               </span>
 
               <h2>
-                Não encontrou?
-                <br />
-                Fale conosco.
+                Ainda não encontrou?
               </h2>
 
               <p>
-                Produto, espécie,
-                alimentação, equipamento,
-                habitat, planta ou projeto
-                especializado.
+                Continue pesquisando no
+                Marketplace. O catálogo cresce
+                conforme novos produtos,
+                espécies e fornecedores são
+                integrados.
               </p>
             </div>
 
-            <a
-              href={createWhatsAppLink(
-                'Atendimento comercial AgroNexus'
-              )}
-              target="_blank"
-              rel="noopener noreferrer"
-            >
-              Falar agora
+            <a href="#/marketplace">
+              Pesquisar no Marketplace
 
               <span aria-hidden="true">
                 →
@@ -689,10 +893,10 @@ export default function Home() {
             </a>
           </div>
 
-          <p className="commerce-contact__institution">
+          <p className="commerce-final__institution">
             AgroNexus™ · Marketplace de
-            biodiversidade · Uma iniciativa
-            da Guiropa World
+            biodiversidade · Uma iniciativa da
+            Guiropa World
           </p>
         </div>
       </section>
