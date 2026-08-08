@@ -9,12 +9,16 @@ import Aquarismo from './pages/Aquarismo'
 import Mamiferos from './pages/Mamiferos'
 
 import MarketplaceWarPlan from './components/MarketplaceWarPlan'
-import PsittacinesMarketplace from './components/PsittacinesMarketplace'
 import GlobalPresence from './components/GlobalPresence'
 import CommunityHub from './components/CommunityHub'
 import LivingEcosystem from './components/LivingEcosystem'
 import AgroNexusLibrary from './components/AgroNexusLibrary'
 import Contact from './components/Contact'
+
+
+/* ============================================================
+   ROUTING
+   ============================================================ */
 
 function normalizeRoute(value) {
   if (!value) {
@@ -39,6 +43,11 @@ function getCurrentRoute() {
   )
 }
 
+
+/* ============================================================
+   PAGE WRAPPER
+   ============================================================ */
+
 function PageContainer({
   children,
   className = '',
@@ -52,14 +61,25 @@ function PageContainer({
   )
 }
 
+
+/* ============================================================
+   MARKETPLACE
+   IMPORTANTE:
+   O PsittacinesMarketplace legado NÃO é carregado aqui.
+   ============================================================ */
+
 function MarketplacePage() {
   return (
     <PageContainer className="page-container--marketplace">
       <MarketplaceWarPlan />
-      <PsittacinesMarketplace />
     </PageContainer>
   )
 }
+
+
+/* ============================================================
+   PRESENÇA GLOBAL
+   ============================================================ */
 
 function GlobalPresencePage() {
   return (
@@ -68,6 +88,11 @@ function GlobalPresencePage() {
     </PageContainer>
   )
 }
+
+
+/* ============================================================
+   COMUNIDADE
+   ============================================================ */
 
 function CommunityPage() {
   return (
@@ -78,6 +103,11 @@ function CommunityPage() {
   )
 }
 
+
+/* ============================================================
+   BIBLIOTECA
+   ============================================================ */
+
 function LibraryPage() {
   return (
     <PageContainer className="page-container--library">
@@ -85,6 +115,11 @@ function LibraryPage() {
     </PageContainer>
   )
 }
+
+
+/* ============================================================
+   CONTATO
+   ============================================================ */
 
 function ContactPage() {
   return (
@@ -94,18 +129,29 @@ function ContactPage() {
   )
 }
 
+
+/* ============================================================
+   GUIROPA WORLD — IDENTIFICAÇÃO GLOBAL
+   ============================================================ */
+
 function InstitutionalBar() {
   return (
     <div
+      className="institutional-bar"
       style={{
         width: '100%',
-        padding: '9px 18px',
-        background: '#111111',
-        borderBottom: '1px solid #2a2a2a',
+        minHeight: '30px',
+        padding: '7px 18px',
+        display: 'flex',
+        alignItems: 'center',
+        justifyContent: 'center',
+        background: '#111411',
+        borderBottom: '1px solid #2a2f2b',
         color: '#d6d6d6',
-        fontSize: '0.72rem',
-        fontWeight: 600,
-        letterSpacing: '0.08em',
+        fontSize: '0.68rem',
+        fontWeight: 750,
+        letterSpacing: '0.075em',
+        lineHeight: 1.4,
         textAlign: 'center',
         textTransform: 'uppercase',
       }}
@@ -114,6 +160,11 @@ function InstitutionalBar() {
     </div>
   )
 }
+
+
+/* ============================================================
+   404
+   ============================================================ */
 
 function NotFound() {
   return (
@@ -124,8 +175,8 @@ function NotFound() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '150px 24px 80px',
-        background: '#f5f5f5',
-        color: '#111111',
+        background: '#f4f6f4',
+        color: '#111411',
         textAlign: 'center',
       }}
     >
@@ -133,10 +184,10 @@ function NotFound() {
         <p
           style={{
             margin: '0 0 16px',
-            color: '#555555',
+            color: '#087a4b',
             fontSize: '0.76rem',
-            fontWeight: 700,
-            letterSpacing: '0.22em',
+            fontWeight: 800,
+            letterSpacing: '0.16em',
             textTransform: 'uppercase',
           }}
         >
@@ -146,8 +197,11 @@ function NotFound() {
         <h1
           style={{
             margin: '0 0 22px',
+            color: '#111411',
             fontSize: 'clamp(2.4rem, 7vw, 5.4rem)',
-            lineHeight: 1,
+            fontWeight: 900,
+            lineHeight: 0.95,
+            letterSpacing: '-0.05em',
           }}
         >
           Página não encontrada
@@ -157,13 +211,13 @@ function NotFound() {
           style={{
             maxWidth: '620px',
             margin: '0 auto 34px',
-            color: '#555555',
+            color: '#4b554e',
             fontSize: '1.05rem',
             lineHeight: 1.8,
           }}
         >
           O conteúdo solicitado não está disponível
-          ou foi transferido para uma nova área da AgroNexus.
+          ou foi transferido para outra área da AgroNexus.
         </p>
 
         <a
@@ -174,15 +228,15 @@ function NotFound() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: '0 28px',
-            border: '1px solid #111111',
+            border: '1px solid #111411',
             borderRadius: '4px',
-            background: '#111111',
+            background: '#111411',
             color: '#ffffff',
             textDecoration: 'none',
             textTransform: 'uppercase',
             letterSpacing: '0.1em',
             fontSize: '0.78rem',
-            fontWeight: 700,
+            fontWeight: 800,
           }}
         >
           Voltar ao início
@@ -191,6 +245,11 @@ function NotFound() {
     </main>
   )
 }
+
+
+/* ============================================================
+   CONFIGURAÇÃO DAS ROTAS
+   ============================================================ */
 
 function getRouteConfiguration(route) {
   const routes = {
@@ -211,22 +270,22 @@ function getRouteConfiguration(route) {
 
     '/sobre': {
       component: <Home />,
-      scrollTarget: '#sobre',
+      scrollTarget: null,
     },
 
     '/missao': {
       component: <Home />,
-      scrollTarget: '#missao',
+      scrollTarget: null,
     },
 
     '/ecossistema': {
       component: <Home />,
-      scrollTarget: '#ecossistema',
+      scrollTarget: null,
     },
 
     '/portfolio': {
       component: <Home />,
-      scrollTarget: '#portfolio',
+      scrollTarget: null,
     },
 
     '/aves': {
@@ -278,6 +337,11 @@ function getRouteConfiguration(route) {
   )
 }
 
+
+/* ============================================================
+   APP
+   ============================================================ */
+
 export default function App() {
   const [route, setRoute] =
     useState(getCurrentRoute)
@@ -312,7 +376,9 @@ export default function App() {
     const scrollPage = () => {
       if (scrollTarget) {
         const target =
-          document.querySelector(scrollTarget)
+          document.querySelector(
+            scrollTarget
+          )
 
         if (target) {
           const navbarHeight = 92
