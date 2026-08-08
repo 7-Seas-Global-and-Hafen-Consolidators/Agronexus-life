@@ -1,1089 +1,792 @@
-html {
-  scroll-behavior: smooth;
-  scroll-padding-top: 92px;
+/* ============================================================
+   AGRONEXUS™ — COMMERCE HOME
+   Venda, busca, conversão e confiança.
+   ============================================================ */
+
+.commerce-home {
+  min-height: 100vh;
+  background: #f4f6f4;
+  color: #111411;
 }
 
-.agro-hub__container {
+.commerce-container {
+  width: min(1280px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+
+/* ============================================================
+   HERO
+   ============================================================ */
+
+.commerce-hero {
   position: relative;
-  z-index: 2;
-  width: min(1240px, 100%);
-  margin: 0 auto;
-}
+  padding:
+    clamp(82px, 10vw, 145px)
+    0
+    clamp(70px, 8vw, 112px);
 
-.agro-hub__eyebrow {
-  display: block;
-  margin-bottom: 18px;
-  color: #d4af37;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.22em;
-  line-height: 1.55;
-  text-transform: uppercase;
-}
-
-/* =========================================================
-   APOIO AO PROJETO
-========================================================= */
-
-.agro-support {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(74px, 10vw, 145px) 20px;
-  border-top: 1px solid rgba(212, 175, 55, 0.16);
-  border-bottom: 1px solid rgba(212, 175, 55, 0.16);
-  color: #f3f0e8;
   background:
-    radial-gradient(
-      circle at 82% 40%,
-      rgba(212, 175, 55, 0.13),
-      transparent 32%
-    ),
-    radial-gradient(
-      circle at 12% 25%,
-      rgba(34, 211, 216, 0.09),
-      transparent 30%
-    ),
-    #040b14;
-}
-
-.agro-support::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.35;
-  background-image:
-    linear-gradient(
-      rgba(212, 175, 55, 0.03) 1px,
-      transparent 1px
-    ),
     linear-gradient(
       90deg,
-      rgba(212, 175, 55, 0.03) 1px,
-      transparent 1px
-    );
-  background-size: 68px 68px;
-}
-
-.agro-support__panel {
-  display: grid;
-  grid-template-columns:
-    minmax(0, 1.25fr)
-    minmax(300px, 0.75fr);
-  gap: clamp(44px, 8vw, 110px);
-  align-items: center;
-  padding: clamp(36px, 6vw, 75px);
-  border: 1px solid rgba(212, 175, 55, 0.36);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(10, 26, 40, 0.96),
-      rgba(2, 7, 13, 0.99)
-    );
-  box-shadow: 0 35px 95px rgba(0, 0, 0, 0.35);
-}
-
-.agro-support__copy h2 {
-  max-width: 780px;
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 400;
-  line-height: 0.94;
-  letter-spacing: -0.045em;
-}
-
-.agro-support__copy h2 span {
-  color: #22d3d8;
-}
-
-.agro-support__copy > p {
-  max-width: 760px;
-  margin: 28px 0 0;
-  color: rgba(243, 240, 232, 0.68);
-  font-size: clamp(0.98rem, 1.6vw, 1.12rem);
-  line-height: 1.85;
-}
-
-.agro-support__points {
-  margin-top: 31px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 9px;
-}
-
-.agro-support__points span {
-  padding: 9px 13px;
-  border: 1px solid rgba(34, 211, 216, 0.2);
-  border-radius: 999px;
-  color: rgba(243, 240, 232, 0.75);
-  background: rgba(34, 211, 216, 0.045);
-  font-size: 0.65rem;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
-}
-
-.agro-support__action {
-  padding: clamp(28px, 4vw, 44px);
-  border: 1px solid rgba(212, 175, 55, 0.5);
-  background:
-    radial-gradient(
-      circle at 80% 15%,
-      rgba(212, 175, 55, 0.12),
-      transparent 38%
+      rgba(8, 16, 11, 0.98),
+      rgba(8, 16, 11, 0.88)
     ),
-    rgba(2, 6, 11, 0.82);
+    url('/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png')
+      center / cover no-repeat;
+
+  color: #ffffff;
 }
 
-.agro-support__suggestion {
+.commerce-hero__content {
+  max-width: 900px;
+}
+
+.commerce-kicker {
   display: block;
-  color: #d4af37;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.17em;
-  text-transform: uppercase;
-}
 
-.agro-support__action strong {
-  display: block;
-  margin-top: 17px;
-  color: #f3f0e8;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(4.6rem, 8vw, 7rem);
-  font-weight: 400;
-  line-height: 0.8;
-  letter-spacing: -0.06em;
-}
+  color: #68c493;
 
-.agro-support__action p {
-  margin: 26px 0 0;
-  color: rgba(243, 240, 232, 0.62);
-  line-height: 1.7;
-}
-
-.agro-support__action a {
-  width: 100%;
-  min-height: 55px;
-  margin-top: 27px;
-  padding: 14px 23px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  border: 1px solid #d4af37;
-  border-radius: 999px;
-  color: #02060b;
-  background: #d4af37;
-  text-decoration: none;
-  font-size: 0.7rem;
-  font-weight: 800;
-  letter-spacing: 0.12em;
-  text-align: center;
-  text-transform: uppercase;
-  transition:
-    transform 190ms ease,
-    box-shadow 190ms ease;
-}
-
-.agro-support__action a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 42px rgba(212, 175, 55, 0.18);
-}
-
-.agro-support__action small {
-  display: block;
-  margin-top: 20px;
-  color: rgba(243, 240, 232, 0.43);
-  font-size: 0.68rem;
-  line-height: 1.65;
-}
-
-/* =========================================================
-   ECOSSISTEMA PRINCIPAL
-========================================================= */
-
-.agro-hub {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(85px, 10vw, 150px) 20px;
-  color: #f3f0e8;
-  background:
-    radial-gradient(
-      circle at 50% 0%,
-      rgba(8, 48, 58, 0.38),
-      transparent 35%
-    ),
-    #02060b;
-}
-
-.agro-hub::before,
-.agro-seo::before {
-  content: "";
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  opacity: 0.33;
-  background-image:
-    linear-gradient(
-      rgba(212, 175, 55, 0.025) 1px,
-      transparent 1px
-    ),
-    linear-gradient(
-      90deg,
-      rgba(212, 175, 55, 0.025) 1px,
-      transparent 1px
-    );
-  background-size: 68px 68px;
-  mask-image:
-    linear-gradient(
-      to bottom,
-      black,
-      transparent
-    );
-}
-
-.agro-hub__header {
-  max-width: 930px;
-  margin-bottom: clamp(48px, 7vw, 82px);
-}
-
-.agro-hub__header h2 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(3rem, 6.4vw, 6.4rem);
-  font-weight: 400;
-  line-height: 0.93;
-  letter-spacing: -0.045em;
-}
-
-.agro-hub__header p {
-  max-width: 830px;
-  margin: 28px 0 0;
-  color: rgba(243, 240, 232, 0.67);
-  font-size: clamp(1rem, 1.55vw, 1.13rem);
-  line-height: 1.85;
-}
-
-.agro-hub__guiropa {
-  display: block;
-  margin-top: 25px;
-  color: rgba(212, 175, 55, 0.72);
-  font-size: 0.68rem;
-  font-weight: 600;
-  letter-spacing: 0.11em;
-  text-transform: uppercase;
-}
-
-.agro-hub__grid {
-  display: grid;
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-  gap: 22px;
-}
-
-.agro-hub__card {
-  min-width: 0;
-  overflow: hidden;
-  display: flex;
-  flex-direction: column;
-  border: 1px solid rgba(212, 175, 55, 0.29);
-  color: inherit;
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 21, 34, 0.94),
-      rgba(2, 6, 11, 0.99)
-    );
-  text-decoration: none;
-  transition:
-    transform 240ms ease,
-    border-color 240ms ease,
-    box-shadow 240ms ease;
-}
-
-.agro-hub__card:hover {
-  transform: translateY(-7px);
-  border-color: rgba(212, 175, 55, 0.68);
-  box-shadow: 0 30px 75px rgba(0, 0, 0, 0.38);
-}
-
-.agro-hub__media {
-  position: relative;
-  overflow: hidden;
-  aspect-ratio: 16 / 10;
-  background: #07111c;
-}
-
-.agro-hub__media img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 750ms cubic-bezier(0.2, 0.7, 0, 1);
-}
-
-.agro-hub__card:hover .agro-hub__media img {
-  transform: scale(1.05);
-}
-
-.agro-hub__media-overlay {
-  position: absolute;
-  inset: 0;
-  pointer-events: none;
-  background:
-    linear-gradient(
-      to top,
-      rgba(2, 6, 11, 0.84),
-      transparent 58%
-    );
-}
-
-.agro-hub__number {
-  position: absolute;
-  top: 18px;
-  left: 19px;
-  z-index: 2;
-  color: #f3f0e8;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: 1.18rem;
-  letter-spacing: 0.09em;
-}
-
-.agro-hub__content {
-  min-height: 310px;
-  padding: clamp(25px, 3vw, 35px);
-  display: flex;
-  flex-direction: column;
-}
-
-.agro-hub__subtitle {
-  display: block;
-  margin-bottom: 13px;
-  color: #d4af37;
-  font-size: 0.64rem;
-  font-weight: 700;
-  line-height: 1.55;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.agro-hub__card h3 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(2.2rem, 3.4vw, 3.4rem);
-  font-weight: 400;
-  line-height: 0.95;
-}
-
-.agro-hub__card p {
-  margin: 20px 0 30px;
-  color: rgba(243, 240, 232, 0.59);
-  line-height: 1.72;
-}
-
-.agro-hub__action {
-  margin-top: auto;
-  display: inline-flex;
-  align-items: center;
-  gap: 14px;
-  color: #f3f0e8;
-  font-size: 0.69rem;
-  font-weight: 700;
+  font-size: 0.72rem;
+  font-weight: 850;
   letter-spacing: 0.13em;
   text-transform: uppercase;
 }
 
-.agro-hub__action span {
-  color: #d4af37;
-  transition: transform 220ms ease;
-}
-
-.agro-hub__card:hover .agro-hub__action span {
-  transform: translateX(6px);
-}
-
-/* =========================================================
-   PESQUISAS POPULARES
-========================================================= */
-
-.agro-popular {
-  margin-top: clamp(70px, 9vw, 125px);
-  padding: clamp(34px, 5vw, 58px);
-  border: 1px solid rgba(34, 211, 216, 0.2);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 21, 34, 0.92),
-      rgba(2, 6, 11, 0.99)
-    );
-}
-
-.agro-popular__head {
-  max-width: 780px;
-}
-
-.agro-popular__head h3 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(2.5rem, 5vw, 4.6rem);
-  font-weight: 400;
-  line-height: 0.97;
-}
-
-.agro-popular__items {
-  margin-top: 38px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px;
-}
-
-.agro-popular__items a {
-  padding: 11px 15px;
-  display: inline-flex;
-  align-items: center;
-  gap: 10px;
-  border: 1px solid rgba(212, 175, 55, 0.24);
-  border-radius: 999px;
-  color: rgba(243, 240, 232, 0.75);
-  background: rgba(212, 175, 55, 0.035);
-  text-decoration: none;
-  font-size: 0.73rem;
-  transition:
-    color 180ms ease,
-    border-color 180ms ease,
-    background 180ms ease;
-}
-
-.agro-popular__items a:hover {
-  border-color: #d4af37;
-  color: #02060b;
-  background: #d4af37;
-}
-
-/* =========================================================
-   MÉTRICAS
-========================================================= */
-
-.agro-hub__metrics {
-  margin-top: clamp(80px, 10vw, 135px);
-  padding-top: clamp(50px, 7vw, 82px);
-  border-top: 1px solid rgba(212, 175, 55, 0.22);
-}
-
-.agro-hub__metrics-head {
-  max-width: 830px;
-}
-
-.agro-hub__metrics-head h3 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(2.5rem, 5vw, 4.8rem);
-  font-weight: 400;
-  line-height: 0.97;
-}
-
-.agro-hub__metrics-head p {
-  max-width: 760px;
-  margin: 24px 0 0;
-  color: rgba(243, 240, 232, 0.58);
-  line-height: 1.8;
-}
-
-.agro-hub__metrics-grid {
-  margin-top: 46px;
-  display: grid;
-  grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-  border-top: 1px solid rgba(34, 211, 216, 0.16);
-  border-left: 1px solid rgba(34, 211, 216, 0.16);
-}
-
-.agro-hub__metric {
-  min-height: 245px;
-  padding: 28px 25px;
-  border-right: 1px solid rgba(34, 211, 216, 0.16);
-  border-bottom: 1px solid rgba(34, 211, 216, 0.16);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(34, 211, 216, 0.04),
-      rgba(8, 21, 34, 0.56)
-    );
-}
-
-.agro-hub__metric-value {
-  display: block;
-  color: #22d3d8;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(3.5rem, 6vw, 5.7rem);
-  font-weight: 400;
-  line-height: 0.85;
-}
-
-.agro-hub__metric h4 {
-  margin: 31px 0 12px;
-  color: #f3f0e8;
-  font-size: 1rem;
-}
-
-.agro-hub__metric p {
-  margin: 0;
-  color: rgba(243, 240, 232, 0.55);
-  font-size: 0.86rem;
-  line-height: 1.7;
-}
-
-/* =========================================================
-   MARKETPLACE SEO
-========================================================= */
-
-.agro-seo {
-  position: relative;
-  overflow: hidden;
-  padding: clamp(85px, 11vw, 165px) 20px;
-  border-top: 1px solid rgba(34, 211, 216, 0.12);
-  color: #f3f0e8;
-  background:
-    radial-gradient(
-      circle at 90% 10%,
-      rgba(34, 211, 216, 0.1),
-      transparent 32%
-    ),
-    #050b17;
-}
-
-.agro-seo__header {
-  max-width: 920px;
-}
-
-.agro-seo__header h2 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(3rem, 6vw, 6rem);
-  font-weight: 400;
-  line-height: 0.94;
-  letter-spacing: -0.04em;
-}
-
-.agro-seo__header p {
-  max-width: 790px;
-  margin: 27px 0 0;
-  color: rgba(243, 240, 232, 0.65);
-  line-height: 1.82;
-}
-
-.agro-seo__search {
-  margin-top: 48px;
-  padding: clamp(25px, 4vw, 38px);
-  border: 1px solid rgba(212, 175, 55, 0.28);
-  background: rgba(2, 6, 11, 0.7);
-}
-
-.agro-seo__search label {
-  display: block;
-  margin-bottom: 13px;
-  color: #d4af37;
-  font-size: 0.67rem;
-  font-weight: 700;
-  letter-spacing: 0.15em;
-  text-transform: uppercase;
-}
-
-.agro-seo__search-control {
-  display: flex;
-  gap: 10px;
-}
-
-.agro-seo__search input {
-  width: 100%;
-  min-height: 58px;
-  padding: 0 20px;
-  border: 1px solid rgba(34, 211, 216, 0.28);
-  border-radius: 0;
-  outline: none;
-  color: #f3f0e8;
-  background: #07111c;
-  font: inherit;
-}
-
-.agro-seo__search input:focus {
-  border-color: #22d3d8;
-  box-shadow: 0 0 0 3px rgba(34, 211, 216, 0.08);
-}
-
-.agro-seo__search input::placeholder {
-  color: rgba(243, 240, 232, 0.38);
-}
-
-.agro-seo__search button {
-  min-width: 105px;
-  border: 1px solid rgba(212, 175, 55, 0.45);
-  color: #d4af37;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.7rem;
-  font-weight: 700;
-  letter-spacing: 0.1em;
-  text-transform: uppercase;
-}
-
-.agro-seo__results {
-  min-height: 52px;
-  padding: 15px 0;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 18px;
-  color: rgba(243, 240, 232, 0.49);
-  font-size: 0.76rem;
-}
-
-.agro-seo__results a {
-  display: inline-flex;
-  align-items: center;
-  gap: 11px;
-  color: #22d3d8;
-  text-decoration: none;
-  font-weight: 700;
-}
-
-.agro-seo__grid {
-  display: grid;
-  grid-template-columns:
-    repeat(2, minmax(0, 1fr));
-  gap: 24px;
-}
-
-.agro-seo__category {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid rgba(212, 175, 55, 0.26);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 21, 34, 0.96),
-      rgba(2, 6, 11, 0.995)
-    );
-}
-
-.agro-seo__category-media {
-  position: relative;
-  height: 260px;
-  overflow: hidden;
-  background: #07111c;
-}
-
-.agro-seo__category-media img {
-  width: 100%;
-  height: 100%;
-  display: block;
-  object-fit: cover;
-  transition: transform 700ms ease;
-}
-
-.agro-seo__category:hover
-.agro-seo__category-media img {
-  transform: scale(1.04);
-}
-
-.agro-seo__category-shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      to top,
-      rgba(2, 6, 11, 0.9),
-      transparent 65%
-    );
-}
-
-.agro-seo__category-content {
-  padding: clamp(27px, 4vw, 42px);
-}
-
-.agro-seo__category-eyebrow {
-  display: block;
-  color: #d4af37;
-  font-size: 0.65rem;
-  font-weight: 700;
-  letter-spacing: 0.16em;
-  text-transform: uppercase;
-}
-
-.agro-seo__category h3 {
-  margin: 15px 0 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(2.2rem, 4vw, 3.7rem);
-  font-weight: 400;
-  line-height: 0.95;
-}
-
-.agro-seo__category-content > p {
+.commerce-hero h1 {
   margin: 22px 0 0;
-  color: rgba(243, 240, 232, 0.59);
+
+  color: #ffffff;
+
+  font-family: Inter, system-ui, sans-serif;
+  font-size:
+    clamp(4.2rem, 11vw, 9rem);
+
+  font-weight: 900;
+  line-height: 0.82;
+  letter-spacing: -0.075em;
+  text-transform: uppercase;
+}
+
+.commerce-hero h1 strong {
+  color: #68c493;
+  font-weight: inherit;
+}
+
+.commerce-hero p {
+  max-width: 700px;
+
+  margin-top: 34px;
+
+  color: rgba(255, 255, 255, 0.75);
+
+  font-size:
+    clamp(1rem, 1.7vw, 1.18rem);
+
   line-height: 1.75;
 }
 
-.agro-seo__queries {
-  margin-top: 28px;
+.commerce-hero__actions {
   display: flex;
   flex-wrap: wrap;
-  gap: 8px;
+  gap: 10px;
+
+  margin-top: 34px;
 }
 
-.agro-seo__queries a {
-  padding: 8px 11px;
-  border: 1px solid rgba(34, 211, 216, 0.15);
-  border-radius: 999px;
-  color: rgba(243, 240, 232, 0.68);
-  background: rgba(34, 211, 216, 0.035);
-  text-decoration: none;
-  font-size: 0.68rem;
-  line-height: 1.45;
-  transition:
-    border-color 170ms ease,
-    color 170ms ease,
-    background 170ms ease;
+.commerce-button {
+  min-height: 52px;
+
+  padding: 13px 22px;
+
+  display: inline-flex;
+  align-items: center;
+  justify-content: center;
+  gap: 16px;
+
+  border-radius: 4px;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
 }
 
-.agro-seo__queries a:hover {
-  border-color: #22d3d8;
-  color: #02060b;
-  background: #22d3d8;
+.commerce-button--primary {
+  background: #ffffff;
+  color: #111411;
 }
 
-.agro-seo__expand {
-  margin-top: 18px;
-  padding: 0;
-  border: 0;
-  color: #d4af37;
-  background: transparent;
-  cursor: pointer;
-  font-size: 0.68rem;
-  font-weight: 700;
+.commerce-button--secondary {
+  border: 1px solid rgba(255, 255, 255, 0.52);
+  color: #ffffff;
+}
+
+.commerce-button--light {
+  background: #ffffff;
+  color: #111411;
+}
+
+.commerce-guiropa {
+  display: block;
+
+  margin-top: 28px;
+
+  color: rgba(255, 255, 255, 0.5);
+
+  font-size: 0.67rem;
+  font-weight: 750;
   letter-spacing: 0.08em;
   text-transform: uppercase;
 }
 
-.agro-seo__specialist {
-  width: 100%;
-  min-height: 52px;
-  margin-top: 28px;
-  padding: 13px 21px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: center;
-  gap: 14px;
-  border: 1px solid #22d3d8;
-  border-radius: 999px;
-  color: #02060b;
-  background: #22d3d8;
-  text-decoration: none;
-  font-size: 0.68rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-align: center;
-  text-transform: uppercase;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+
+/* ============================================================
+   BUSCA
+   ============================================================ */
+
+.commerce-search {
+  position: relative;
+  z-index: 3;
+
+  margin-top: -28px;
 }
 
-.agro-seo__specialist:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 17px 40px rgba(34, 211, 216, 0.14);
+.commerce-search__box {
+  padding: 24px;
+
+  border: 1px solid #d6ddd7;
+
+  background: #ffffff;
+
+  box-shadow:
+    0 14px 38px rgba(18, 30, 22, 0.1);
 }
 
-.agro-seo__institution {
+.commerce-search label {
   display: block;
-  margin-top: 16px;
-  color: rgba(243, 240, 232, 0.36);
-  font-size: 0.61rem;
-  line-height: 1.6;
-  text-align: center;
+
+  margin-bottom: 11px;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
 }
 
-.agro-seo__empty {
-  padding: clamp(34px, 6vw, 70px);
-  border: 1px solid rgba(212, 175, 55, 0.3);
-  text-align: center;
-  background: rgba(2, 6, 11, 0.72);
+.commerce-search__control {
+  display: flex;
+  gap: 8px;
 }
 
-.agro-seo__empty h3 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(2.5rem, 5vw, 4.5rem);
-  font-weight: 400;
+.commerce-search input {
+  min-height: 56px;
+  flex: 1;
+
+  border: 1px solid #abb6ae;
+  border-radius: 3px;
+
+  background: #ffffff;
 }
 
-.agro-seo__empty p {
-  max-width: 670px;
-  margin: 20px auto 28px;
-  color: rgba(243, 240, 232, 0.6);
-  line-height: 1.8;
+.commerce-search button {
+  min-width: 110px;
+
+  border: 0;
+  border-radius: 3px;
+
+  background: #111411;
+  color: #ffffff;
+
+  font-size: 0.7rem;
+  font-weight: 850;
+  text-transform: uppercase;
+
+  cursor: pointer;
 }
 
-.agro-seo__empty a {
-  min-height: 52px;
-  padding: 13px 23px;
-  display: inline-flex;
+.commerce-search__results {
+  margin-top: 10px;
+
+  border:
+    1px solid #d6ddd7;
+}
+
+.commerce-search__results a {
+  min-height: 48px;
+
+  padding: 10px 15px;
+
+  display: flex;
   align-items: center;
-  gap: 14px;
-  border-radius: 999px;
-  color: #02060b;
-  background: #22d3d8;
-  text-decoration: none;
-  font-size: 0.69rem;
-  font-weight: 800;
+  justify-content: space-between;
+  gap: 20px;
+
+  border-bottom:
+    1px solid #e2e6e3;
+
+  color: #111411;
+
+  background: #ffffff;
+
+  font-size: 0.85rem;
+}
+
+.commerce-search__results a:last-child {
+  border-bottom: 0;
+}
+
+.commerce-search__results a:hover {
+  background: #eef3ef;
+}
+
+.commerce-search__results strong {
+  color: #087a4b;
+}
+
+
+/* ============================================================
+   SEÇÕES
+   ============================================================ */
+
+.commerce-categories,
+.commerce-popular {
+  padding:
+    clamp(76px, 9vw, 128px)
+    0;
+}
+
+.commerce-section-head {
+  max-width: 820px;
+
+  margin-bottom: 40px;
+}
+
+.commerce-section-head > span {
+  color: #087a4b;
+
+  font-size: 0.7rem;
+  font-weight: 900;
   letter-spacing: 0.11em;
   text-transform: uppercase;
 }
 
-/* =========================================================
-   CTA FINAL
-========================================================= */
+.commerce-section-head h2 {
+  margin-top: 12px;
 
-.agro-final-cta {
-  padding:
-    clamp(85px, 11vw, 160px)
-    20px
-    clamp(80px, 10vw, 140px);
-  border-top: 1px solid rgba(34, 211, 216, 0.12);
-  color: #f3f0e8;
-  background:
-    radial-gradient(
-      circle at 85% 50%,
-      rgba(34, 211, 216, 0.12),
-      transparent 35%
-    ),
-    #02060b;
+  font-size:
+    clamp(2.7rem, 6vw, 5.5rem);
+
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
 }
 
-.agro-final-cta__panel {
-  padding: clamp(38px, 7vw, 80px);
+.commerce-section-head p {
+  margin-top: 15px;
+
+  color: #59635c;
+}
+
+
+/* ============================================================
+   CATEGORIAS
+   ============================================================ */
+
+.commerce-category-grid {
   display: grid;
+
+  grid-template-columns:
+    repeat(3, minmax(0, 1fr));
+
+  border-top: 1px solid #d5dcd6;
+  border-left: 1px solid #d5dcd6;
+}
+
+.commerce-category {
+  min-width: 0;
+
+  display: flex;
+  flex-direction: column;
+
+  border-right: 1px solid #d5dcd6;
+  border-bottom: 1px solid #d5dcd6;
+
+  background: #ffffff;
+}
+
+.commerce-category__image {
+  display: block;
+
+  aspect-ratio: 16 / 10;
+
+  overflow: hidden;
+
+  background: #e8ece9;
+}
+
+.commerce-category__image img {
+  width: 100%;
+  height: 100%;
+
+  object-fit: cover;
+
+  transition:
+    transform 220ms ease;
+}
+
+.commerce-category:hover
+.commerce-category__image img {
+  transform: scale(1.025);
+}
+
+.commerce-category__body {
+  flex: 1;
+
+  padding: 25px;
+
+  display: flex;
+  flex-direction: column;
+}
+
+.commerce-category h3 {
+  font-size:
+    clamp(1.6rem, 2.6vw, 2.25rem);
+
+  font-weight: 850;
+  letter-spacing: -0.035em;
+}
+
+.commerce-category p {
+  margin-top: 12px;
+
+  color: #5d675f;
+
+  font-size: 0.88rem;
+  line-height: 1.65;
+}
+
+.commerce-category__searches {
+  margin-top: 20px;
+
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.commerce-category__searches a {
+  padding: 7px 9px;
+
+  border: 1px solid #d5dcd6;
+  border-radius: 3px;
+
+  color: #4e5851;
+
+  background: #f7f9f7;
+
+  font-size: 0.67rem;
+}
+
+.commerce-category__searches a:hover {
+  border-color: #087a4b;
+  color: #087a4b;
+}
+
+.commerce-category__action {
+  min-height: 48px;
+
+  margin-top: 25px;
+
+  padding: 11px 15px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border-radius: 3px;
+
+  background: #111411;
+  color: #ffffff;
+
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
+.commerce-category__action:hover {
+  background: #087a4b;
+}
+
+
+/* ============================================================
+   PESQUISAS POPULARES
+   ============================================================ */
+
+.commerce-popular {
+  border-top: 1px solid #d5dcd6;
+
+  background: #ffffff;
+}
+
+.commerce-popular__grid {
+  display: grid;
+
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+
+  border-top: 1px solid #d5dcd6;
+  border-left: 1px solid #d5dcd6;
+}
+
+.commerce-popular__grid a {
+  min-height: 72px;
+
+  padding: 15px 17px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border-right: 1px solid #d5dcd6;
+  border-bottom: 1px solid #d5dcd6;
+
+  color: #111411;
+
+  font-size: 0.78rem;
+  font-weight: 700;
+}
+
+.commerce-popular__grid a:hover {
+  background: #eef3ef;
+}
+
+.commerce-popular__grid strong {
+  color: #087a4b;
+}
+
+
+/* ============================================================
+   GUIAS
+   ============================================================ */
+
+.commerce-guides {
+  padding:
+    clamp(72px, 9vw, 120px)
+    0;
+
+  background: #087a4b;
+}
+
+.commerce-guides__panel {
+  display: grid;
+
   grid-template-columns:
     minmax(0, 1fr)
     auto;
-  gap: clamp(40px, 7vw, 90px);
+
+  gap: 40px;
+
   align-items: center;
-  border: 1px solid rgba(212, 175, 55, 0.34);
-  background:
-    linear-gradient(
-      145deg,
-      rgba(8, 21, 34, 0.96),
-      rgba(2, 6, 11, 0.995)
-    );
 }
 
-.agro-final-cta h2 {
-  margin: 0;
-  font-family:
-    "Cormorant Garamond",
-    Georgia,
-    serif;
-  font-size: clamp(3rem, 6vw, 5.8rem);
-  font-weight: 400;
-  line-height: 0.94;
+.commerce-guides h2 {
+  margin-top: 14px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(2.7rem, 6vw, 5.4rem);
+
+  font-weight: 900;
+  line-height: 0.93;
+  letter-spacing: -0.055em;
 }
 
-.agro-final-cta h2 span {
-  color: #22d3d8;
+.commerce-guides p {
+  max-width: 650px;
+
+  margin-top: 17px;
+
+  color: rgba(255, 255, 255, 0.73);
 }
 
-.agro-final-cta__panel p {
-  max-width: 750px;
-  margin: 25px 0 0;
-  color: rgba(243, 240, 232, 0.62);
-  line-height: 1.82;
+
+/* ============================================================
+   APOIO
+   ============================================================ */
+
+.commerce-support {
+  padding:
+    clamp(75px, 9vw, 125px)
+    0;
+
+  background: #111411;
+  color: #ffffff;
 }
 
-.agro-final-cta__panel > a {
-  min-width: 260px;
-  min-height: 56px;
-  padding: 14px 24px;
-  display: inline-flex;
+.commerce-support__panel {
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    minmax(360px, 0.7fr);
+
+  gap:
+    clamp(35px, 7vw, 90px);
+
+  align-items: center;
+}
+
+.commerce-support h2 {
+  margin-top: 14px;
+
+  color: #ffffff;
+
+  font-size:
+    clamp(2.7rem, 6vw, 5.4rem);
+
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.055em;
+}
+
+.commerce-support p {
+  max-width: 690px;
+
+  margin-top: 20px;
+
+  color: rgba(255, 255, 255, 0.67);
+}
+
+.commerce-support__guiropa {
+  display: block;
+
+  margin-top: 25px;
+
+  color: #89cfa8;
+
+  font-size: 0.68rem;
+  font-weight: 800;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.commerce-support__values {
+  display: grid;
+
+  grid-template-columns:
+    repeat(2, minmax(0, 1fr));
+
+  border-top: 1px solid #434943;
+  border-left: 1px solid #434943;
+}
+
+.commerce-support__values a {
+  min-height: 70px;
+
+  padding: 14px;
+
+  display: flex;
   align-items: center;
   justify-content: center;
-  gap: 14px;
-  border-radius: 999px;
-  color: #02060b;
-  background: #22d3d8;
-  text-decoration: none;
-  font-size: 0.69rem;
-  font-weight: 800;
-  letter-spacing: 0.11em;
-  text-align: center;
-  text-transform: uppercase;
-  transition:
-    transform 180ms ease,
-    box-shadow 180ms ease;
+
+  border-right: 1px solid #434943;
+  border-bottom: 1px solid #434943;
+
+  color: #ffffff;
+
+  font-size: 1.05rem;
+  font-weight: 850;
 }
 
-.agro-final-cta__panel > a:hover {
-  transform: translateY(-3px);
-  box-shadow: 0 18px 45px rgba(34, 211, 216, 0.16);
+.commerce-support__values a:hover {
+  background: #ffffff;
+  color: #111411;
 }
 
-.agro-final-cta__institution {
-  margin: 29px 0 0;
-  color: rgba(212, 175, 55, 0.62);
+.commerce-support__note {
+  margin-top: 24px !important;
+
+  color:
+    rgba(255, 255, 255, 0.38) !important;
+
   font-size: 0.68rem;
-  letter-spacing: 0.09em;
+}
+
+
+/* ============================================================
+   CONTATO
+   ============================================================ */
+
+.commerce-contact {
+  padding:
+    clamp(75px, 9vw, 125px)
+    0;
+
+  background: #f4f6f4;
+}
+
+.commerce-contact__panel {
+  padding:
+    clamp(30px, 6vw, 70px);
+
+  display: grid;
+
+  grid-template-columns:
+    minmax(0, 1fr)
+    auto;
+
+  gap: 50px;
+
+  align-items: center;
+
+  border:
+    1px solid #b7c1b9;
+
+  background: #ffffff;
+}
+
+.commerce-contact h2 {
+  margin-top: 14px;
+
+  font-size:
+    clamp(2.8rem, 6vw, 5.6rem);
+
+  font-weight: 900;
+  line-height: 0.88;
+  letter-spacing: -0.06em;
+}
+
+.commerce-contact p {
+  max-width: 650px;
+
+  margin-top: 20px;
+}
+
+.commerce-contact__panel > a {
+  min-width: 240px;
+  min-height: 54px;
+
+  padding: 13px 19px;
+
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 18px;
+
+  border-radius: 3px;
+
+  background: #111411;
+  color: #ffffff;
+
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.commerce-contact__panel > a:hover {
+  background: #087a4b;
+}
+
+.commerce-contact__institution {
+  margin-top: 20px;
+
+  color: #707a72;
+
+  font-size: 0.66rem;
+  font-weight: 700;
+  letter-spacing: 0.07em;
   text-align: center;
   text-transform: uppercase;
 }
 
-/* =========================================================
-   RESPONSIVIDADE
-========================================================= */
+
+/* ============================================================
+   RESPONSIVO
+   ============================================================ */
 
 @media (max-width: 1050px) {
-  .agro-hub__grid {
+  .commerce-category-grid {
     grid-template-columns:
       repeat(2, minmax(0, 1fr));
   }
 
-  .agro-hub__metrics-grid {
+  .commerce-popular__grid {
     grid-template-columns:
-      repeat(2, minmax(0, 1fr));
+      repeat(3, minmax(0, 1fr));
   }
 
-  .agro-seo__grid {
-    grid-template-columns: 1fr;
-  }
-
-  .agro-final-cta__panel {
-    grid-template-columns: 1fr;
-  }
-
-  .agro-final-cta__panel > a {
-    width: 100%;
-  }
-}
-
-@media (max-width: 850px) {
-  .agro-support__panel {
+  .commerce-guides__panel,
+  .commerce-support__panel,
+  .commerce-contact__panel {
     grid-template-columns: 1fr;
   }
 }
 
-@media (max-width: 650px) {
-  .agro-support,
-  .agro-hub,
-  .agro-seo,
-  .agro-final-cta {
-    padding-right: 15px;
-    padding-left: 15px;
+@media (max-width: 720px) {
+  .commerce-container {
+    width:
+      min(100% - 28px, 1280px);
   }
 
-  .agro-support__panel {
-    padding: 31px 21px;
+  .commerce-hero {
+    padding:
+      78px
+      0
+      72px;
   }
 
-  .agro-hub__grid,
-  .agro-hub__metrics-grid {
-    grid-template-columns: 1fr;
+  .commerce-hero h1 {
+    font-size:
+      clamp(3.6rem, 18vw, 6rem);
   }
 
-  .agro-hub__content {
-    min-height: 285px;
-    padding: 26px 21px 30px;
-  }
-
-  .agro-popular {
-    padding: 31px 21px;
-  }
-
-  .agro-seo__search {
-    padding: 22px 17px;
-  }
-
-  .agro-seo__search-control {
+  .commerce-hero__actions {
     flex-direction: column;
   }
 
-  .agro-seo__search button {
+  .commerce-button {
+    width: 100%;
+  }
+
+  .commerce-search {
+    margin-top: 0;
+  }
+
+  .commerce-search__box {
+    padding: 18px;
+  }
+
+  .commerce-search__control {
+    flex-direction: column;
+  }
+
+  .commerce-search button {
     min-height: 46px;
   }
 
-  .agro-seo__results {
-    align-items: flex-start;
-    flex-direction: column;
+  .commerce-category-grid {
+    grid-template-columns: 1fr;
   }
 
-  .agro-seo__category-media {
-    height: 230px;
+  .commerce-popular__grid {
+    grid-template-columns: 1fr;
   }
 
-  .agro-seo__category-content {
-    padding: 29px 21px 32px;
+  .commerce-support__values {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
   }
 
-  .agro-seo__specialist {
-    line-height: 1.5;
+  .commerce-contact__panel {
+    padding: 28px 20px;
   }
 
-  .agro-final-cta__panel {
-    padding: 34px 22px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
-  }
-
-  .agro-support__action a,
-  .agro-hub__card,
-  .agro-hub__media img,
-  .agro-seo__category-media img,
-  .agro-seo__specialist,
-  .agro-final-cta__panel > a {
-    transition: none;
-  }
-
-  .agro-support__action a:hover,
-  .agro-hub__card:hover,
-  .agro-hub__card:hover .agro-hub__media img,
-  .agro-seo__category:hover
-  .agro-seo__category-media img,
-  .agro-seo__specialist:hover,
-  .agro-final-cta__panel > a:hover {
-    transform: none;
+  .commerce-contact__panel > a {
+    width: 100%;
   }
 }
