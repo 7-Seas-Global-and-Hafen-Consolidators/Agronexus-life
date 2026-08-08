@@ -4,9 +4,6 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 import Home from './pages/Home'
-import Aves from './pages/Aves'
-import Aquarismo from './pages/Aquarismo'
-import Mamiferos from './pages/Mamiferos'
 
 import MarketplaceWarPlan from './components/MarketplaceWarPlan'
 import GlobalPresence from './components/GlobalPresence'
@@ -24,7 +21,8 @@ function normalizeRoute(value) {
     return '/'
   }
 
-  const routeWithoutQuery = value.split('?')[0]
+  const routeWithoutQuery =
+    value.split('?')[0]
 
   const routeWithoutTrailingSlash =
     routeWithoutQuery.length > 1
@@ -35,7 +33,8 @@ function normalizeRoute(value) {
 }
 
 function getCurrentRoute() {
-  const hash = window.location.hash || '#/'
+  const hash =
+    window.location.hash || '#/'
 
   return normalizeRoute(
     hash.replace(/^#/, '')
@@ -63,10 +62,14 @@ function PageContainer({
    MARKETPLACE
    ============================================================ */
 
-function MarketplacePage() {
+function MarketplacePage({
+  initialCategory = 'todos',
+}) {
   return (
-    <PageContainer className="marketplace-page">
-      <MarketplaceWarPlan />
+    <PageContainer className="page-container--marketplace">
+      <MarketplaceWarPlan
+        initialCategory={initialCategory}
+      />
     </PageContainer>
   )
 }
@@ -77,7 +80,7 @@ function MarketplacePage() {
 
 function GlobalPresencePage() {
   return (
-    <PageContainer className="global-presence-page">
+    <PageContainer>
       <GlobalPresence />
     </PageContainer>
   )
@@ -89,7 +92,7 @@ function GlobalPresencePage() {
 
 function CommunityPage() {
   return (
-    <PageContainer className="community-page">
+    <PageContainer>
       <CommunityHub />
       <LivingEcosystem />
     </PageContainer>
@@ -102,7 +105,7 @@ function CommunityPage() {
 
 function LibraryPage() {
   return (
-    <PageContainer className="library-page">
+    <PageContainer>
       <AgroNexusLibrary />
     </PageContainer>
   )
@@ -114,40 +117,9 @@ function LibraryPage() {
 
 function ContactPage() {
   return (
-    <PageContainer className="contact-page">
+    <PageContainer>
       <Contact />
     </PageContainer>
-  )
-}
-
-/* ============================================================
-   GUIROPA WORLD — IDENTIFICAÇÃO GLOBAL
-   ============================================================ */
-
-function InstitutionalBar() {
-  return (
-    <div
-      className="institutional-bar"
-      style={{
-        width: '100%',
-        minHeight: '30px',
-        padding: '7px 18px',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        background: '#111411',
-        borderBottom: '1px solid #2a2f2b',
-        color: '#d6d6d6',
-        fontSize: '0.68rem',
-        fontWeight: 750,
-        letterSpacing: '0.075em',
-        lineHeight: 1.4,
-        textAlign: 'center',
-        textTransform: 'uppercase',
-      }}
-    >
-      AgroNexus™ · Uma iniciativa da Guiropa World
-    </div>
   )
 }
 
@@ -187,7 +159,8 @@ function NotFound() {
           style={{
             margin: '0 0 22px',
             color: '#111411',
-            fontSize: 'clamp(2.4rem, 7vw, 5.4rem)',
+            fontSize:
+              'clamp(2.4rem, 7vw, 5.4rem)',
             fontWeight: 900,
             lineHeight: 0.95,
             letterSpacing: '-0.05em',
@@ -205,8 +178,9 @@ function NotFound() {
             lineHeight: 1.8,
           }}
         >
-          O conteúdo solicitado não está disponível
-          ou foi transferido para outra área da AgroNexus.
+          O conteúdo solicitado não está
+          disponível ou foi transferido para
+          outra área da AgroNexus.
         </p>
 
         <a
@@ -237,6 +211,10 @@ function NotFound() {
 
 /* ============================================================
    CONFIGURAÇÃO DAS ROTAS
+
+   As antigas páginas vazias de Aves, Aquarismo e Mamíferos
+   deixam de ser destinos comerciais. Todas as categorias
+   passam a usar o mesmo Marketplace.
    ============================================================ */
 
 function getRouteConfiguration(route) {
@@ -276,23 +254,85 @@ function getRouteConfiguration(route) {
       scrollTarget: '#portfolio',
     },
 
+    '/marketplace': {
+      component: <MarketplacePage />,
+      scrollTarget: null,
+    },
+
     '/aves': {
-      component: <Aves />,
+      component: (
+        <MarketplacePage initialCategory="aves" />
+      ),
       scrollTarget: null,
     },
 
     '/aquarismo': {
-      component: <Aquarismo />,
+      component: (
+        <MarketplacePage initialCategory="aquarismo" />
+      ),
       scrollTarget: null,
     },
 
     '/mamiferos': {
-      component: <Mamiferos />,
+      component: (
+        <MarketplacePage initialCategory="mamiferos" />
+      ),
       scrollTarget: null,
     },
 
-    '/marketplace': {
-      component: <MarketplacePage />,
+    '/caes': {
+      component: (
+        <MarketplacePage initialCategory="caes" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/gatos': {
+      component: (
+        <MarketplacePage initialCategory="gatos" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/repteis': {
+      component: (
+        <MarketplacePage initialCategory="repteis" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/plantas': {
+      component: (
+        <MarketplacePage initialCategory="botanica" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/alimentacao': {
+      component: (
+        <MarketplacePage initialCategory="alimentacao" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/habitats': {
+      component: (
+        <MarketplacePage initialCategory="habitats" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/equipamentos': {
+      component: (
+        <MarketplacePage initialCategory="equipamentos" />
+      ),
+      scrollTarget: null,
+    },
+
+    '/guias': {
+      component: (
+        <MarketplacePage initialCategory="publicacoes" />
+      ),
       scrollTarget: null,
     },
 
@@ -409,8 +449,6 @@ export default function App() {
 
   return (
     <>
-      <InstitutionalBar />
-
       <Navbar />
 
       {routeConfiguration.component}
