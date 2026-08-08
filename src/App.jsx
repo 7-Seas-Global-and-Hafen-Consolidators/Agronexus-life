@@ -22,6 +22,7 @@ function normalizeRoute(value) {
   }
 
   const routeWithoutQuery = value.split('?')[0]
+
   const routeWithoutTrailingSlash =
     routeWithoutQuery.length > 1
       ? routeWithoutQuery.replace(/\/+$/, '')
@@ -32,12 +33,20 @@ function normalizeRoute(value) {
 
 function getCurrentRoute() {
   const hash = window.location.hash || '#/'
-  return normalizeRoute(hash.replace(/^#/, ''))
+
+  return normalizeRoute(
+    hash.replace(/^#/, '')
+  )
 }
 
-function PageContainer({ children, className = '' }) {
+function PageContainer({
+  children,
+  className = '',
+}) {
   return (
-    <main className={`page-container ${className}`.trim()}>
+    <main
+      className={`page-container ${className}`.trim()}
+    >
       {children}
     </main>
   )
@@ -85,6 +94,27 @@ function ContactPage() {
   )
 }
 
+function InstitutionalBar() {
+  return (
+    <div
+      style={{
+        width: '100%',
+        padding: '9px 18px',
+        background: '#111111',
+        borderBottom: '1px solid #2a2a2a',
+        color: '#d6d6d6',
+        fontSize: '0.72rem',
+        fontWeight: 600,
+        letterSpacing: '0.08em',
+        textAlign: 'center',
+        textTransform: 'uppercase',
+      }}
+    >
+      AgroNexus™ · Uma iniciativa da Guiropa World
+    </div>
+  )
+}
+
 function NotFound() {
   return (
     <main
@@ -94,9 +124,8 @@ function NotFound() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '150px 24px 80px',
-        background:
-          'radial-gradient(circle at 50% 20%, rgba(34, 211, 216, 0.08), transparent 34%), #02060b',
-        color: '#f3f0e8',
+        background: '#f5f5f5',
+        color: '#111111',
         textAlign: 'center',
       }}
     >
@@ -104,14 +133,14 @@ function NotFound() {
         <p
           style={{
             margin: '0 0 16px',
-            color: '#d4af37',
+            color: '#555555',
             fontSize: '0.76rem',
             fontWeight: 700,
             letterSpacing: '0.22em',
             textTransform: 'uppercase',
           }}
         >
-          AgroNexus Living Ecosystem™
+          AgroNexus™ · Guiropa World
         </p>
 
         <h1
@@ -128,13 +157,13 @@ function NotFound() {
           style={{
             maxWidth: '620px',
             margin: '0 auto 34px',
-            color: 'rgba(243, 240, 232, 0.68)',
+            color: '#555555',
             fontSize: '1.05rem',
             lineHeight: 1.8,
           }}
         >
-          O conteúdo solicitado não está disponível ou foi transferido
-          para uma nova área do ecossistema.
+          O conteúdo solicitado não está disponível
+          ou foi transferido para uma nova área da AgroNexus.
         </p>
 
         <a
@@ -145,12 +174,13 @@ function NotFound() {
             alignItems: 'center',
             justifyContent: 'center',
             padding: '0 28px',
-            border: '1px solid #d4af37',
-            borderRadius: '999px',
-            color: '#d4af37',
+            border: '1px solid #111111',
+            borderRadius: '4px',
+            background: '#111111',
+            color: '#ffffff',
             textDecoration: 'none',
             textTransform: 'uppercase',
-            letterSpacing: '0.13em',
+            letterSpacing: '0.1em',
             fontSize: '0.78rem',
             fontWeight: 700,
           }}
@@ -249,7 +279,8 @@ function getRouteConfiguration(route) {
 }
 
 export default function App() {
-  const [route, setRoute] = useState(getCurrentRoute)
+  const [route, setRoute] =
+    useState(getCurrentRoute)
 
   const routeConfiguration = useMemo(
     () => getRouteConfiguration(route),
@@ -261,29 +292,41 @@ export default function App() {
       setRoute(getCurrentRoute())
     }
 
-    window.addEventListener('hashchange', handleRouteChange)
+    window.addEventListener(
+      'hashchange',
+      handleRouteChange
+    )
 
     return () => {
-      window.removeEventListener('hashchange', handleRouteChange)
+      window.removeEventListener(
+        'hashchange',
+        handleRouteChange
+      )
     }
   }, [])
 
   useEffect(() => {
-    const { scrollTarget } = routeConfiguration
+    const { scrollTarget } =
+      routeConfiguration
 
     const scrollPage = () => {
       if (scrollTarget) {
-        const target = document.querySelector(scrollTarget)
+        const target =
+          document.querySelector(scrollTarget)
 
         if (target) {
           const navbarHeight = 92
+
           const targetPosition =
             target.getBoundingClientRect().top +
             window.scrollY -
             navbarHeight
 
           window.scrollTo({
-            top: Math.max(targetPosition, 0),
+            top: Math.max(
+              targetPosition,
+              0
+            ),
             left: 0,
             behavior: 'smooth',
           })
@@ -295,26 +338,27 @@ export default function App() {
       window.scrollTo({
         top: 0,
         left: 0,
-        behavior: 'instant',
+        behavior: 'auto',
       })
     }
 
-    const firstFrame = window.requestAnimationFrame(() => {
-      const secondFrame = window.requestAnimationFrame(scrollPage)
-
-      return () => {
-        window.cancelAnimationFrame(secondFrame)
-      }
-    })
+    const firstFrame =
+      window.requestAnimationFrame(
+        scrollPage
+      )
 
     return () => {
-      window.cancelAnimationFrame(firstFrame)
+      window.cancelAnimationFrame(
+        firstFrame
+      )
     }
   }, [routeConfiguration])
 
   return (
     <>
-      <Navbar currentRoute={route} />
+      <Navbar />
+
+      <InstitutionalBar />
 
       {routeConfiguration.component}
 
