@@ -1,6 +1,9 @@
 import { useMemo, useState } from 'react'
 import '../styles/MarketplaceWarPlan.css'
 
+const PEXELS = (id) =>
+  `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1000&fit=crop`
+
 const PRODUCTS = [
   {
     id: 'guia-periquito-australiano',
@@ -11,10 +14,22 @@ const PRODUCTS = [
       'Publicação digital completa com 369 páginas sobre comportamento, alimentação, manejo, genética, saúde, reprodução, mutações, bem-estar e criação responsável.',
     price: 19.59,
     oldPrice: null,
+    installments: null,
     checkout:
       'https://www.asaas.com/c/bzsxz4qaps5glfm4',
     badge: 'Preço de lançamento',
     delivery: 'Produto digital',
+    image: PEXELS(34039458),
+    imageAlt:
+      'Periquitos australianos coloridos pousados em um galho',
+    variants: [
+      'Verde',
+      'Azul',
+      'Amarelo',
+      'Branco',
+      'Violeta',
+      'Cobalto',
+    ],
   },
 
   {
@@ -26,10 +41,22 @@ const PRODUCTS = [
       'Publicação digital aprofundada sobre comportamento, alimentação, manejo, saúde, mutações, reprodução, ambiente, linguagem corporal e bem-estar.',
     price: 19.59,
     oldPrice: null,
+    installments: null,
     checkout:
       'https://www.asaas.com/c/x17xj6s0gmqrhgnm',
     badge: 'Preço de lançamento',
     delivery: 'Produto digital',
+    image: PEXELS(12181403),
+    imageAlt:
+      'Aves coloridas em ambiente de criação doméstica',
+    variants: [
+      'Cinza',
+      'Lutino',
+      'Pérola',
+      'Arlequim',
+      'Cara branca',
+      'Canela',
+    ],
   },
 ]
 
@@ -39,10 +66,22 @@ const CATEGORIES = [
     name: 'Aves',
     shortName: 'Aves',
     description:
-      'Periquitos, calopsitas, Ring Necks, Agapornis, Lóris, canários, psitacídeos, passeriformes, alimentação, viveiros e acessórios.',
+      'Periquitos, calopsitas, canários, Ring Necks, Agapornis, Forpus, Roselas, Kakarikis, Lóris e muito mais.',
     keywords:
-      'periquito calopsita ring neck agapornis loris canario psitacideo passeriforme ave',
+      'periquito calopsita ring neck agapornis loris canario forpus rosela kakariki bourke ave',
     route: '#/aves',
+    image: PEXELS(36133129),
+    imageAlt:
+      'Periquitos australianos de plumagem colorida',
+    highlight: 'Cores, mutações e espécies',
+    chips: [
+      'Periquitos',
+      'Calopsitas',
+      'Canários',
+      'Ring Neck',
+      'Agapornis',
+      'Forpus',
+    ],
   },
 
   {
@@ -50,10 +89,22 @@ const CATEGORIES = [
     name: 'Aquarismo',
     shortName: 'Aquarismo',
     description:
-      'Peixes de água doce e marinhos, reef, aquários, filtragem, bombas, iluminação, alimentação, plantas e manutenção.',
+      'Bettas, kinguios, camarões, plantados, nano aquários, Ocellaris, marinho, nano reef, mini reef, reef e corais.',
     keywords:
-      'aquario betta kinguio reef marinho ciclideo filtro bomba skimmer planta',
+      'aquario betta kinguio oranda ranchu reef marinho ocellaris coral camarao plantado nano mini',
     route: '#/aquarismo',
+    image: PEXELS(29216700),
+    imageAlt:
+      'Peixes-palhaço em aquário marinho com corais coloridos',
+    highlight: 'Nano Reef · Kinguios · Bettas',
+    chips: [
+      'Betta',
+      'Kinguios',
+      'Nano Reef',
+      'Ocellaris',
+      'Corais',
+      'Plantados',
+    ],
   },
 
   {
@@ -61,10 +112,21 @@ const CATEGORIES = [
     name: 'Pequenos Mamíferos',
     shortName: 'Mamíferos',
     description:
-      'Hamsters, chinchilas, coelhos, porquinhos-da-índia, gerbilos, pequenos roedores, habitats, alimentação e acessórios.',
+      'Hamsters, chinchilas, mini coelhos, porquinhos-da-índia, gerbilos, habitats, alimentação e acessórios.',
     keywords:
-      'hamster chinchila coelho gerbilo rato porquinho india mamifero',
+      'hamster chinchila coelho mini lop netherland gerbilo porquinho india mamifero',
     route: '#/mamiferos',
+    image: PEXELS(4520480),
+    imageAlt:
+      'Hamster pequeno e fofo fotografado de perto',
+    highlight: 'Pequenos espaços',
+    chips: [
+      'Hamster',
+      'Chinchila',
+      'Mini Coelho',
+      'Gerbilo',
+      'Porquinho-da-índia',
+    ],
   },
 
   {
@@ -72,9 +134,21 @@ const CATEGORIES = [
     name: 'Cães',
     shortName: 'Cães',
     description:
-      'Raças, alimentação, higiene, camas, transporte, brinquedos, enriquecimento, tecnologia e acessórios.',
+      'Raças pequenas e procuradas para a vida urbana, além de alimentação, higiene, camas, transporte e brinquedos.',
     keywords:
-      'cachorro cao labrador golden border collie spitz bulldog pinscher cane corso racao cama brinquedo',
+      'cachorro cao spitz pomeranian shih tzu yorkshire dachshund bulldog frances chihuahua schnauzer pug',
+    image: PEXELS(17880515),
+    imageAlt:
+      'Spitz Alemão branco fotografado em estúdio',
+    highlight: 'Pequenos para apartamento',
+    chips: [
+      'Spitz Alemão',
+      'Shih Tzu',
+      'Dachshund',
+      'Bulldog Francês',
+      'Yorkshire',
+      'Schnauzer Mini',
+    ],
   },
 
   {
@@ -82,9 +156,20 @@ const CATEGORIES = [
     name: 'Gatos',
     shortName: 'Gatos',
     description:
-      'Raças, alimentação, fontes, caixas sanitárias, areia, arranhadores, brinquedos, transporte e acessórios.',
+      'Siamês, Persa, Ragdoll e outras raças, além de alimentação, areia, fontes, caixas, arranhadores e brinquedos.',
     keywords:
-      'gato persa sphynx maine coon siames ragdoll areia arranhador fonte caixa',
+      'gato siames persa ragdoll british shorthair maine coon areia arranhador fonte caixa',
+    image: PEXELS(9916903),
+    imageAlt:
+      'Gato siamês de olhos azuis fotografado de perto',
+    highlight: 'Siamês · Persa · Ragdoll',
+    chips: [
+      'Siamês',
+      'Persa',
+      'Ragdoll',
+      'British Shorthair',
+      'Maine Coon',
+    ],
   },
 
   {
@@ -92,19 +177,43 @@ const CATEGORIES = [
     name: 'Répteis e Terrários',
     shortName: 'Répteis',
     description:
-      'Espécies comercializáveis, terrários, UVB, aquecimento, substratos, alimentação, decoração e equipamentos.',
+      'Iguanas, geckos e outras espécies comercializáveis, terrários, iluminação UVB, aquecimento, substratos e alimentação.',
     keywords:
       'reptil terrario jabuti gecko iguana serpente cobra uvb substrato aquecimento',
+    image: PEXELS(18118236),
+    imageAlt:
+      'Gecko em terrário com ambiente naturalizado',
+    highlight: 'Terrários e espécies',
+    chips: [
+      'Iguana',
+      'Gecko',
+      'Terrários',
+      'UVB',
+      'Aquecimento',
+      'Substratos',
+    ],
   },
 
   {
     id: 'botanica',
-    name: 'Plantas e Botânica',
+    name: 'Plantas, Flores e Bonsais',
     shortName: 'Plantas',
     description:
-      'Bonsais, árvores frutíferas, orquídeas, plantas ornamentais, vasos, substratos, fertilizantes e ferramentas.',
+      'Carnívoras, orquídeas, violetas, mini rosas, bonsais, mini frutíferas, vasos, substratos, adubos e ferramentas.',
     keywords:
-      'bonsai jabuticaba planta orquidea arvore frutifera vaso substrato adubo fertilizante',
+      'dionaea nepenthes drosera carnivora bonsai jabuticaba pitanga acerola roma planta orquidea violeta mini rosa vaso adubo',
+    image: PEXELS(3691258),
+    imageAlt:
+      'Planta carnívora Dionaea muscipula em macro',
+    highlight: 'Carnívoras · Flores · Mini frutíferas',
+    chips: [
+      'Dionaea',
+      'Nepenthes',
+      'Orquídeas',
+      'Violetas',
+      'Bonsais',
+      'Mini Frutíferas',
+    ],
   },
 
   {
@@ -112,9 +221,21 @@ const CATEGORIES = [
     name: 'Alimentação',
     shortName: 'Alimentação',
     description:
-      'Rações, extrusadas, farinhadas, sementes, néctares, fenos, pellets, alimentos vivos e produtos especializados.',
+      'Rações, extrusadas, farinhadas, sementes, néctares, fenos, pellets, alimentos vivos e alimentação especializada.',
     keywords:
-      'racao alimento extrusada farinhada semente nectar feno pellet artemia tenebrio',
+      'racao alimento extrusada farinhada semente nectar feno pellet artemia tenebrio comida pet',
+    image: PEXELS(12928244),
+    imageAlt:
+      'Ração seca em pote para alimentação de animais',
+    highlight: 'Compra recorrente',
+    chips: [
+      'Cães',
+      'Gatos',
+      'Aves',
+      'Peixes',
+      'Roedores',
+      'Répteis',
+    ],
   },
 
   {
@@ -122,9 +243,21 @@ const CATEGORIES = [
     name: 'Habitats',
     shortName: 'Habitats',
     description:
-      'Gaiolas, viveiros, aquários, terrários, cercados, ninhos, tocas, poleiros e estruturas.',
+      'Aquários, gaiolas, viveiros, terrários, cercados, ninhos, tocas, poleiros e estruturas para cada espécie.',
     keywords:
-      'gaiola viveiro aquario terrario cercado habitat poleiro toca ninho',
+      'gaiola viveiro aquario terrario cercado habitat poleiro toca ninho vidro',
+    image: PEXELS(6364370),
+    imageAlt:
+      'Aves em viveiro com poleiros e ambiente preparado',
+    highlight: 'Do aquário ao viveiro',
+    chips: [
+      'Aquários',
+      'Viveiros',
+      'Gaiolas',
+      'Terrários',
+      'Cercados',
+      'Poleiros',
+    ],
   },
 
   {
@@ -132,19 +265,101 @@ const CATEGORIES = [
     name: 'Equipamentos',
     shortName: 'Equipamentos',
     description:
-      'Filtros, bombas, iluminação, climatização, aquecimento, incubação, automação e equipamentos especializados.',
+      'Filtros, bombas, skimmers, termostatos, iluminação, climatização, incubação, automação e equipamentos especializados.',
     keywords:
-      'filtro bomba skimmer iluminacao aquecimento chocadeira incubadora equipamento automacao',
+      'filtro bomba skimmer iluminacao termostato aquecimento chocadeira incubadora equipamento automacao reef',
+    image: PEXELS(8915250),
+    imageAlt:
+      'Aquário marinho iluminado com peixes e corais',
+    highlight: 'Aquarismo, aves e cultivo',
+    chips: [
+      'Bombas',
+      'Filtros',
+      'Skimmers',
+      'Termostatos',
+      'Iluminação',
+      'Automação',
+    ],
   },
 
   {
     id: 'publicacoes',
-    name: 'Guias Oficiais AgroNexus',
+    name: 'Guias Oficiais',
     shortName: 'Guias',
     description:
-      'Publicações digitais AgroNexus com compra imediata, conteúdo aprofundado e checkout direto.',
+      'Publicações digitais AgroNexus com conteúdo aprofundado, preço visível e checkout direto.',
     keywords:
       'guia livro ebook publicacao periquito calopsita manual',
+    image: PEXELS(34039458),
+    imageAlt:
+      'Periquitos australianos coloridos',
+    highlight: 'A partir de R$ 19,59',
+    chips: [
+      'Periquitos',
+      'Calopsitas',
+      'Aquarismo',
+      'Plantas',
+      'Cuidados',
+    ],
+  },
+]
+
+const TRENDING = [
+  {
+    category: 'caes',
+    label: 'Em alta',
+    title: 'Spitz Alemão',
+    subtitle: 'Branco · Creme · Laranja · Preto · Sable',
+    image: PEXELS(17880515),
+  },
+  {
+    category: 'gatos',
+    label: 'Para apartamento',
+    title: 'Siamês',
+    subtitle: 'Seal Point · Blue Point · Chocolate Point',
+    image: PEXELS(9916903),
+  },
+  {
+    category: 'mamiferos',
+    label: 'Pequenos espaços',
+    title: 'Hamsters',
+    subtitle: 'Sírio · Anão · Pelo longo · Várias cores',
+    image: PEXELS(3586056),
+  },
+  {
+    category: 'aves',
+    label: 'Muitas cores',
+    title: 'Periquitos Australianos',
+    subtitle: 'Azul · Verde · Amarelo · Branco · Violeta',
+    image: PEXELS(36133129),
+  },
+  {
+    category: 'aquarismo',
+    label: 'Em alta',
+    title: 'Nano Reef',
+    subtitle: 'Ocellaris · Corais · Iluminação · Skimmer',
+    image: PEXELS(29216700),
+  },
+  {
+    category: 'aquarismo',
+    label: 'Clássico',
+    title: 'Kinguios',
+    subtitle: 'Oranda · Ranchu · Ryukin · Telescópio',
+    image: PEXELS(26756414),
+  },
+  {
+    category: 'botanica',
+    label: 'Modinha',
+    title: 'Plantas Carnívoras',
+    subtitle: 'Dionaea · Nepenthes · Drosera',
+    image: PEXELS(3691258),
+  },
+  {
+    category: 'botanica',
+    label: 'Apartamento',
+    title: 'Flores e Mini Frutíferas',
+    subtitle: 'Orquídeas · Violetas · Bonsais · Jabuticaba',
+    image: PEXELS(4090814),
   },
 ]
 
@@ -155,9 +370,20 @@ function formatBRL(value) {
   }).format(value)
 }
 
+function getInstallmentText(product) {
+  if (!product.installments) {
+    return null
+  }
+
+  return `${product.installments.count}x de ${formatBRL(
+    product.price / product.installments.count
+  )}`
+}
+
 export default function MarketplaceWarPlan() {
   const [searchTerm, setSearchTerm] = useState('')
-  const [activeCategory, setActiveCategory] = useState('todos')
+  const [activeCategory, setActiveCategory] =
+    useState('todos')
 
   const normalizedSearch = searchTerm
     .trim()
@@ -174,6 +400,8 @@ export default function MarketplaceWarPlan() {
         category.shortName,
         category.description,
         category.keywords,
+        category.highlight,
+        ...category.chips,
       ]
         .join(' ')
         .toLocaleLowerCase('pt-BR')
@@ -197,6 +425,7 @@ export default function MarketplaceWarPlan() {
         product.categoryLabel,
         product.description,
         product.badge,
+        ...product.variants,
       ]
         .join(' ')
         .toLocaleLowerCase('pt-BR')
@@ -240,7 +469,6 @@ export default function MarketplaceWarPlan() {
       className="marketplace-war"
     >
       <div className="marketplace-war__container">
-
         <header className="marketplace-war__hero">
           <div className="marketplace-war__hero-copy">
             <span className="marketplace-war__eyebrow">
@@ -248,15 +476,19 @@ export default function MarketplaceWarPlan() {
             </span>
 
             <h1>
-              Encontre o que
-              <strong> procura.</strong>
+              Escolha.
+              <br />
+              Veja o preço.
+              <br />
+              <strong>Compre.</strong>
             </h1>
 
             <p>
               Animais, aves, peixes, plantas,
-              alimentação, habitats, equipamentos,
-              acessórios e publicações em um único
-              ecossistema comercial.
+              flores, alimentação, habitats,
+              equipamentos, acessórios e
+              publicações. Produto publicado
+              entra para ser comprado.
             </p>
           </div>
 
@@ -273,7 +505,7 @@ export default function MarketplaceWarPlan() {
                 onChange={(event) =>
                   setSearchTerm(event.target.value)
                 }
-                placeholder="Betta, Calopsita, hamster, ração, filtro, bonsai..."
+                placeholder="Spitz, Siamês, Calopsita, Kinguio, Nano Reef, Dionaea, ração, skimmer..."
                 autoComplete="off"
               />
 
@@ -326,6 +558,53 @@ export default function MarketplaceWarPlan() {
           ))}
         </nav>
 
+        <section className="marketplace-war__trend">
+          <header className="marketplace-war__section-head">
+            <div>
+              <span>Em alta</span>
+
+              <h2>
+                O que chama atenção agora.
+              </h2>
+            </div>
+
+            <p>
+              Apartamento, cor, variedade,
+              hobbies e produtos que fazem a
+              pessoa parar, olhar e querer.
+            </p>
+          </header>
+
+          <div className="marketplace-war__trend-grid">
+            {TRENDING.map((item) => (
+              <button
+                type="button"
+                key={`${item.category}-${item.title}`}
+                className="marketplace-war__trend-card"
+                onClick={() =>
+                  selectCategory(item.category)
+                }
+              >
+                <img
+                  src={item.image}
+                  alt=""
+                  loading="lazy"
+                />
+
+                <span className="marketplace-war__trend-shade" />
+
+                <span className="marketplace-war__trend-copy">
+                  <small>{item.label}</small>
+
+                  <strong>{item.title}</strong>
+
+                  <span>{item.subtitle}</span>
+                </span>
+              </button>
+            ))}
+          </div>
+        </section>
+
         <section
           id="catalogo-marketplace"
           className="marketplace-war__section"
@@ -340,8 +619,9 @@ export default function MarketplaceWarPlan() {
             </div>
 
             <p>
-              Escolha uma área ou use a busca para
-              encontrar exatamente o que procura.
+              Escolha uma área ou use a busca
+              para encontrar exatamente o que
+              procura.
             </p>
           </header>
 
@@ -353,9 +633,21 @@ export default function MarketplaceWarPlan() {
                     className="marketplace-war__category"
                     key={category.id}
                   >
-                    <div>
+                    <div className="marketplace-war__category-image">
+                      <img
+                        src={category.image}
+                        alt={category.imageAlt}
+                        loading="lazy"
+                      />
+
+                      <span>
+                        {category.highlight}
+                      </span>
+                    </div>
+
+                    <div className="marketplace-war__category-body">
                       <span className="marketplace-war__category-label">
-                        AgroNexus
+                        {category.shortName}
                       </span>
 
                       <h3>{category.name}</h3>
@@ -363,30 +655,40 @@ export default function MarketplaceWarPlan() {
                       <p>
                         {category.description}
                       </p>
-                    </div>
 
-                    {category.route ? (
-                      <a href={category.route}>
-                        Abrir categoria
-                        <span aria-hidden="true">
-                          →
-                        </span>
-                      </a>
-                    ) : (
-                      <button
-                        type="button"
-                        onClick={() =>
-                          selectCategory(
-                            category.id
+                      <div className="marketplace-war__chips">
+                        {category.chips.map(
+                          (chip) => (
+                            <span key={chip}>
+                              {chip}
+                            </span>
                           )
-                        }
-                      >
-                        Ver categoria
-                        <span aria-hidden="true">
-                          →
-                        </span>
-                      </button>
-                    )}
+                        )}
+                      </div>
+
+                      {category.route ? (
+                        <a href={category.route}>
+                          Ver produtos
+                          <span aria-hidden="true">
+                            →
+                          </span>
+                        </a>
+                      ) : (
+                        <button
+                          type="button"
+                          onClick={() =>
+                            selectCategory(
+                              category.id
+                            )
+                          }
+                        >
+                          Ver produtos
+                          <span aria-hidden="true">
+                            →
+                          </span>
+                        </button>
+                      )}
+                    </div>
                   </article>
                 )
               )}
@@ -394,7 +696,8 @@ export default function MarketplaceWarPlan() {
           ) : (
             <div className="marketplace-war__no-results">
               <strong>
-                Nenhuma categoria corresponde à busca.
+                Nenhuma categoria corresponde
+                à busca.
               </strong>
 
               <button
@@ -421,82 +724,112 @@ export default function MarketplaceWarPlan() {
             </div>
 
             <p>
-              Preço visível, checkout direto e
-              pagamento processado pela Guiropa World.
+              Fotografia, variação, preço e
+              checkout. Sem consulta para
+              descobrir quanto custa.
             </p>
           </header>
 
           {hasProductResults ? (
             <div className="marketplace-war__products">
               {filteredProducts.map(
-                (product) => (
-                  <article
-                    className="marketplace-war__product"
-                    key={product.id}
-                  >
-                    <div className="marketplace-war__product-top">
-                      <span className="marketplace-war__badge">
-                        {product.badge}
-                      </span>
+                (product) => {
+                  const installmentText =
+                    getInstallmentText(product)
 
-                      <span>
-                        {product.delivery}
-                      </span>
-                    </div>
-
-                    <div className="marketplace-war__product-copy">
-                      <span className="marketplace-war__product-category">
-                        {product.categoryLabel}
-                      </span>
-
-                      <h3>
-                        {product.name}
-                      </h3>
-
-                      <p>
-                        {product.description}
-                      </p>
-                    </div>
-
-                    <div className="marketplace-war__price-block">
-                      {product.oldPrice ? (
-                        <del>
-                          {formatBRL(
-                            product.oldPrice
-                          )}
-                        </del>
-                      ) : null}
-
-                      <strong>
-                        {formatBRL(
-                          product.price
-                        )}
-                      </strong>
-
-                      <span>
-                        Preço de lançamento
-                      </span>
-                    </div>
-
-                    <a
-                      href={product.checkout}
-                      className="marketplace-war__buy"
-                      target="_blank"
-                      rel="noopener noreferrer"
+                  return (
+                    <article
+                      className="marketplace-war__product"
+                      key={product.id}
                     >
-                      Comprar agora
+                      <div className="marketplace-war__product-image">
+                        <img
+                          src={product.image}
+                          alt={product.imageAlt}
+                          loading="lazy"
+                        />
 
-                      <span aria-hidden="true">
-                        →
-                      </span>
-                    </a>
+                        <span className="marketplace-war__badge">
+                          {product.badge}
+                        </span>
+                      </div>
 
-                    <small>
-                      Checkout seguro processado pela
-                      Guiropa World.
-                    </small>
-                  </article>
-                )
+                      <div className="marketplace-war__product-top">
+                        <span>
+                          {product.categoryLabel}
+                        </span>
+
+                        <span>
+                          {product.delivery}
+                        </span>
+                      </div>
+
+                      <div className="marketplace-war__product-copy">
+                        <h3>
+                          {product.name}
+                        </h3>
+
+                        <p>
+                          {product.description}
+                        </p>
+
+                        <div className="marketplace-war__variants">
+                          {product.variants.map(
+                            (variant) => (
+                              <span key={variant}>
+                                {variant}
+                              </span>
+                            )
+                          )}
+                        </div>
+                      </div>
+
+                      <div className="marketplace-war__price-block">
+                        {product.oldPrice ? (
+                          <del>
+                            {formatBRL(
+                              product.oldPrice
+                            )}
+                          </del>
+                        ) : null}
+
+                        <strong>
+                          {formatBRL(
+                            product.price
+                          )}
+                        </strong>
+
+                        {installmentText ? (
+                          <span>
+                            {installmentText}
+                          </span>
+                        ) : (
+                          <span>
+                            Pagamento no checkout
+                          </span>
+                        )}
+                      </div>
+
+                      <a
+                        href={product.checkout}
+                        className="marketplace-war__buy"
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Comprar
+
+                        <span aria-hidden="true">
+                          →
+                        </span>
+                      </a>
+
+                      <small>
+                        Checkout processado pela
+                        Guiropa World.
+                      </small>
+                    </article>
+                  )
+                }
               )}
             </div>
           ) : (
@@ -512,16 +845,16 @@ export default function MarketplaceWarPlan() {
               </span>
 
               <h3>
-                Catálogo desta categoria
+                Produtos entram aqui com
+                preço e checkout.
               </h3>
 
               <p>
-                Esta área já está integrada ao novo
-                Marketplace AgroNexus e receberá os
-                produtos publicados para esta
-                categoria sem depender de atendimento
-                externo ou redirecionamento para
-                WhatsApp.
+                Esta categoria já está pronta
+                para receber os produtos
+                cadastrados. Nenhum item entra
+                como produto sem preço e
+                checkout direto.
               </p>
 
               <button
@@ -536,36 +869,41 @@ export default function MarketplaceWarPlan() {
 
         <section className="marketplace-war__principles">
           <div>
-            <strong>Preço visível</strong>
+            <strong>Preço na tela</strong>
             <span>
-              Sem consulta para descobrir quanto custa.
+              O cliente vê quanto custa antes
+              de clicar.
             </span>
           </div>
 
           <div>
-            <strong>Compra direta</strong>
+            <strong>Parcelamento visível</strong>
             <span>
-              Produto publicado entra para ser comprado.
+              Quando houver parcelamento, ele
+              aparece junto do preço.
             </span>
           </div>
 
           <div>
-            <strong>Catálogo independente</strong>
+            <strong>Compra unitária</strong>
             <span>
-              Cada item pode ser comprado separadamente.
+              Cada produto pode ser comprado
+              separadamente.
             </span>
           </div>
 
           <div>
             <strong>Guiropa World</strong>
             <span>
-              Operação financeira claramente identificada.
+              Operação financeira claramente
+              identificada no checkout.
             </span>
           </div>
         </section>
 
         <footer className="marketplace-war__footer-note">
-          AgroNexus™ · Uma iniciativa da Guiropa World
+          AgroNexus™ · Uma iniciativa da
+          Guiropa World
         </footer>
       </div>
     </main>
