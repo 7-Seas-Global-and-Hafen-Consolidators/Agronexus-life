@@ -8,8 +8,34 @@ import repteisImage from '../assets/images/editorial/agronexus-reptiles-editoria
 
 const WHATSAPP_NUMBER = '5547991353900'
 
+const SUPPORT_URL =
+  'https://www.asaas.com/c/u6toboa8xhqsmosv'
+
 const aquaImage =
   '/images/marketplace/aqua/agronexus-ciclideos-africanos-tres-grandes-lagos-marketplace.png'
+
+const SUPPORT_VALUES = [
+  'R$ 2',
+  'R$ 5',
+  'R$ 10',
+  'R$ 25',
+  'R$ 50',
+  'R$ 100',
+]
+
+function createWhatsAppLink(subject) {
+  const message = [
+    'Olá, AgroNexus!',
+    '',
+    `Tenho interesse em: ${subject}.`,
+    '',
+    'Gostaria de receber informações.',
+  ].join('\n')
+
+  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
+    message
+  )}`
+}
 
 const CATEGORIES = [
   {
@@ -26,13 +52,16 @@ const CATEGORIES = [
       'Comprar Periquito Australiano',
     ],
   },
+
   {
     id: 'canarios',
     title: 'Canários e Passeriformes',
     description:
       'Canários, aves cantantes, alimentação, sementes, gaiolas, viveiros e produtos especializados.',
     image: avesCantantesImage,
-    href: createWhatsAppLink('Canários e passeriformes'),
+    href: createWhatsAppLink(
+      'Canários e passeriformes'
+    ),
     external: true,
     searches: [
       'Comprar Canário Belga',
@@ -41,6 +70,7 @@ const CATEGORIES = [
       'Viveiro para Canários',
     ],
   },
+
   {
     id: 'aquarismo',
     title: 'Aquarismo',
@@ -55,6 +85,7 @@ const CATEGORIES = [
       'Montar Mini Reef',
     ],
   },
+
   {
     id: 'mamiferos',
     title: 'Pequenos Mamíferos',
@@ -69,13 +100,16 @@ const CATEGORIES = [
       'Ração para Hamster',
     ],
   },
+
   {
     id: 'caes-gatos',
     title: 'Cães e Gatos',
     description:
       'Raças, filhotes, alimentação, higiene, enriquecimento, transporte, acessórios e produtos especializados.',
     image: repteisImage,
-    href: createWhatsAppLink('Marketplace de cães e gatos'),
+    href: createWhatsAppLink(
+      'Marketplace de cães e gatos'
+    ),
     external: true,
     searches: [
       'Comprar Labrador',
@@ -84,13 +118,16 @@ const CATEGORIES = [
       'Comprar Maine Coon',
     ],
   },
+
   {
     id: 'plantas',
     title: 'Plantas e Bonsais',
     description:
       'Bonsais, mini árvores frutíferas, orquídeas, plantas ornamentais, vasos, substratos, fertilizantes e ferramentas.',
     image: repteisImage,
-    href: createWhatsAppLink('Marketplace de plantas e bonsais'),
+    href: createWhatsAppLink(
+      'Marketplace de plantas e bonsais'
+    ),
     external: true,
     searches: [
       'Bonsai de Jabuticaba',
@@ -124,52 +161,43 @@ const POPULAR_SEARCHES = [
   'Néctar para Lóris',
 ]
 
-const SUPPORT_VALUES = [
-  2,
-  5,
-  10,
-  25,
-  50,
-  100,
-]
-
-function createWhatsAppLink(subject) {
-  const message = [
-    'Olá, AgroNexus!',
-    '',
-    `Tenho interesse em: ${subject}.`,
-    '',
-    'Gostaria de receber informações.',
-  ].join('\n')
-
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    message
-  )}`
-}
-
-function createSupportWhatsAppLink(value) {
-  const message = [
-    'Olá, AgroNexus!',
-    '',
-    value === 'outro'
-      ? 'Quero apoiar a AgroNexus com outro valor.'
-      : `Quero apoiar a AgroNexus com R$ ${value}.`,
-    '',
-    'Pode me enviar o link de pagamento?',
-  ].join('\n')
-
-  return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(
-    message
-  )}`
-}
-
 export default function Home() {
   const [searchTerm, setSearchTerm] =
     useState('')
 
   useEffect(() => {
+    const previousTitle = document.title
+
+    const metaDescription =
+      document.querySelector(
+        'meta[name="description"]'
+      )
+
+    const previousDescription =
+      metaDescription?.getAttribute(
+        'content'
+      ) || ''
+
     document.title =
       'AgroNexus™ — Marketplace de Animais, Aquarismo, Plantas e Biodiversidade'
+
+    if (metaDescription) {
+      metaDescription.setAttribute(
+        'content',
+        'Marketplace AgroNexus de aves, aquarismo, peixes ornamentais, cães, gatos, hamsters, plantas, bonsais, alimentação, equipamentos, viveiros, aquários, terrários, acessórios e publicações especializadas.'
+      )
+    }
+
+    return () => {
+      document.title = previousTitle
+
+      if (metaDescription) {
+        metaDescription.setAttribute(
+          'content',
+          previousDescription
+        )
+      }
+    }
   }, [])
 
   const normalizedSearch = searchTerm
@@ -184,13 +212,13 @@ export default function Home() {
     const results = new Set()
 
     CATEGORIES.forEach((category) => {
-      const content = [
+      const searchableItems = [
         category.title,
         category.description,
         ...category.searches,
       ]
 
-      content.forEach((item) => {
+      searchableItems.forEach((item) => {
         if (
           item
             .toLocaleLowerCase('pt-BR')
@@ -229,8 +257,10 @@ export default function Home() {
             <h1>
               Encontre.
               <br />
+
               Compare.
               <br />
+
               <strong>Compre.</strong>
             </h1>
 
@@ -247,7 +277,10 @@ export default function Home() {
                 className="commerce-button commerce-button--primary"
               >
                 Abrir Marketplace
-                <span aria-hidden="true">→</span>
+
+                <span aria-hidden="true">
+                  →
+                </span>
               </a>
 
               <a
@@ -283,7 +316,9 @@ export default function Home() {
                 type="search"
                 value={searchTerm}
                 onChange={(event) =>
-                  setSearchTerm(event.target.value)
+                  setSearchTerm(
+                    event.target.value
+                  )
                 }
                 placeholder="Ring Neck, Betta, hamster, ração, aquário, bonsai, alpaca..."
                 autoComplete="off"
@@ -304,19 +339,26 @@ export default function Home() {
             {searchTerm ? (
               <div className="commerce-search__results">
                 {searchResults.length > 0 ? (
-                  searchResults.map((result) => (
-                    <a
-                      key={result}
-                      href={createWhatsAppLink(
-                        result
-                      )}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      <span>{result}</span>
-                      <strong>→</strong>
-                    </a>
-                  ))
+                  searchResults.map(
+                    (result) => (
+                      <a
+                        key={result}
+                        href={createWhatsAppLink(
+                          result
+                        )}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        <span>
+                          {result}
+                        </span>
+
+                        <strong>
+                          →
+                        </strong>
+                      </a>
+                    )
+                  )
                 ) : (
                   <a
                     href={createWhatsAppLink(
@@ -326,9 +368,13 @@ export default function Home() {
                     rel="noopener noreferrer"
                   >
                     <span>
-                      Procurar “{searchTerm}”
+                      Procurar “
+                      {searchTerm}”
                     </span>
-                    <strong>→</strong>
+
+                    <strong>
+                      →
+                    </strong>
                   </a>
                 )}
               </div>
@@ -340,7 +386,9 @@ export default function Home() {
       <section className="commerce-categories">
         <div className="commerce-container">
           <header className="commerce-section-head">
-            <span>Comprar por categoria</span>
+            <span>
+              Comprar por categoria
+            </span>
 
             <h2>
               Marketplace AgroNexus
@@ -353,56 +401,12 @@ export default function Home() {
           </header>
 
           <div className="commerce-category-grid">
-            {CATEGORIES.map((category) => (
-              <article
-                className="commerce-category"
-                key={category.id}
-              >
-                <a
-                  href={category.href}
-                  target={
-                    category.external
-                      ? '_blank'
-                      : undefined
-                  }
-                  rel={
-                    category.external
-                      ? 'noopener noreferrer'
-                      : undefined
-                  }
-                  className="commerce-category__image"
+            {CATEGORIES.map(
+              (category) => (
+                <article
+                  className="commerce-category"
+                  key={category.id}
                 >
-                  <img
-                    src={category.image}
-                    alt={category.title}
-                    loading="lazy"
-                  />
-                </a>
-
-                <div className="commerce-category__body">
-                  <h3>{category.title}</h3>
-
-                  <p>
-                    {category.description}
-                  </p>
-
-                  <div className="commerce-category__searches">
-                    {category.searches.map(
-                      (item) => (
-                        <a
-                          key={item}
-                          href={createWhatsAppLink(
-                            item
-                          )}
-                          target="_blank"
-                          rel="noopener noreferrer"
-                        >
-                          {item}
-                        </a>
-                      )
-                    )}
-                  </div>
-
                   <a
                     href={category.href}
                     target={
@@ -415,16 +419,68 @@ export default function Home() {
                         ? 'noopener noreferrer'
                         : undefined
                     }
-                    className="commerce-category__action"
+                    className="commerce-category__image"
                   >
-                    Ver categoria
-                    <span aria-hidden="true">
-                      →
-                    </span>
+                    <img
+                      src={category.image}
+                      alt={category.title}
+                      loading="lazy"
+                      decoding="async"
+                    />
                   </a>
-                </div>
-              </article>
-            ))}
+
+                  <div className="commerce-category__body">
+                    <h3>
+                      {category.title}
+                    </h3>
+
+                    <p>
+                      {
+                        category.description
+                      }
+                    </p>
+
+                    <div className="commerce-category__searches">
+                      {category.searches.map(
+                        (item) => (
+                          <a
+                            key={item}
+                            href={createWhatsAppLink(
+                              item
+                            )}
+                            target="_blank"
+                            rel="noopener noreferrer"
+                          >
+                            {item}
+                          </a>
+                        )
+                      )}
+                    </div>
+
+                    <a
+                      href={category.href}
+                      target={
+                        category.external
+                          ? '_blank'
+                          : undefined
+                      }
+                      rel={
+                        category.external
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                      className="commerce-category__action"
+                    >
+                      Ver categoria
+
+                      <span aria-hidden="true">
+                        →
+                      </span>
+                    </a>
+                  </div>
+                </article>
+              )
+            )}
           </div>
         </div>
       </section>
@@ -442,17 +498,26 @@ export default function Home() {
           </header>
 
           <div className="commerce-popular__grid">
-            {POPULAR_SEARCHES.map((item) => (
-              <a
-                key={item}
-                href={createWhatsAppLink(item)}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                <span>{item}</span>
-                <strong>→</strong>
-              </a>
-            ))}
+            {POPULAR_SEARCHES.map(
+              (item) => (
+                <a
+                  key={item}
+                  href={createWhatsAppLink(
+                    item
+                  )}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                >
+                  <span>
+                    {item}
+                  </span>
+
+                  <strong>
+                    →
+                  </strong>
+                </a>
+              )
+            )}
           </div>
         </div>
       </section>
@@ -466,7 +531,8 @@ export default function Home() {
               </span>
 
               <h2>
-                Informação também é produto.
+                Informação também é
+                produto.
               </h2>
 
               <p>
@@ -481,6 +547,7 @@ export default function Home() {
               className="commerce-button commerce-button--light"
             >
               Ver produtos disponíveis
+
               <span aria-hidden="true">
                 →
               </span>
@@ -506,50 +573,82 @@ export default function Home() {
               </h2>
 
               <p>
-                Sua contribuição ajuda a manter
-                guias, conteúdos, pesquisa,
-                educação e infraestrutura da
-                AgroNexus.
+                Sua contribuição ajuda a
+                manter guias, conteúdos,
+                pesquisa, educação e a
+                infraestrutura que sustenta
+                a AgroNexus.
               </p>
 
+              <div className="commerce-support__suggestions">
+                <span>
+                  Sugestões de apoio
+                </span>
+
+                <div>
+                  {SUPPORT_VALUES.map(
+                    (value) => (
+                      <strong
+                        key={value}
+                      >
+                        {value}
+                      </strong>
+                    )
+                  )}
+                </div>
+              </div>
+
               <span className="commerce-support__guiropa">
-                Pagamentos e operação:
-                Guiropa World
+                AgroNexus™ · Operação e
+                pagamentos: Guiropa World
               </span>
             </div>
 
-            <div className="commerce-support__values">
-              {SUPPORT_VALUES.map((value) => (
-                <a
-                  key={value}
-                  href={createSupportWhatsAppLink(
-                    value
-                  )}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                >
-                  R$ {value}
-                </a>
-              ))}
+            <div className="commerce-support__checkout">
+              <span className="commerce-support__checkout-label">
+                Você escolhe o valor
+              </span>
+
+              <strong>
+                R$ 2
+                <small>
+                  {' '}
+                  ou qualquer outro valor
+                </small>
+              </strong>
+
+              <p>
+                No checkout você informa
+                quanto deseja contribuir e
+                escolhe a forma de pagamento.
+              </p>
 
               <a
-                href={createSupportWhatsAppLink(
-                  'outro'
-                )}
+                href={SUPPORT_URL}
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Outro valor
+                Escolher valor e contribuir
+
+                <span aria-hidden="true">
+                  →
+                </span>
               </a>
+
+              <div className="commerce-support__payment-methods">
+                <span>Pix</span>
+                <span>Cartão de crédito</span>
+                <span>Boleto</span>
+              </div>
+
+              <small>
+                O checkout será exibido em
+                nome da Guiropa World,
+                responsável pela operação de
+                pagamento da AgroNexus.
+              </small>
             </div>
           </div>
-
-          <p className="commerce-support__note">
-            Os botões de apoio serão ligados
-            diretamente aos respectivos checkouts
-            assim que cada link de pagamento
-            estiver configurado.
-          </p>
         </div>
       </section>
 
@@ -568,9 +667,10 @@ export default function Home() {
               </h2>
 
               <p>
-                Produto, espécie, alimentação,
-                equipamento, habitat, planta ou
-                projeto especializado.
+                Produto, espécie,
+                alimentação, equipamento,
+                habitat, planta ou projeto
+                especializado.
               </p>
             </div>
 
@@ -582,6 +682,7 @@ export default function Home() {
               rel="noopener noreferrer"
             >
               Falar agora
+
               <span aria-hidden="true">
                 →
               </span>
@@ -590,8 +691,8 @@ export default function Home() {
 
           <p className="commerce-contact__institution">
             AgroNexus™ · Marketplace de
-            biodiversidade · Uma iniciativa da
-            Guiropa World
+            biodiversidade · Uma iniciativa
+            da Guiropa World
           </p>
         </div>
       </section>
