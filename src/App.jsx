@@ -15,7 +15,6 @@ import LivingEcosystem from './components/LivingEcosystem'
 import AgroNexusLibrary from './components/AgroNexusLibrary'
 import Contact from './components/Contact'
 
-
 /* ============================================================
    ROUTING
    ============================================================ */
@@ -43,7 +42,6 @@ function getCurrentRoute() {
   )
 }
 
-
 /* ============================================================
    PAGE WRAPPER
    ============================================================ */
@@ -61,21 +59,17 @@ function PageContainer({
   )
 }
 
-
 /* ============================================================
    MARKETPLACE
-   IMPORTANTE:
-   O PsittacinesMarketplace legado NÃO é carregado aqui.
    ============================================================ */
 
 function MarketplacePage() {
   return (
-    <PageContainer className="page-container--marketplace">
+    <PageContainer className="marketplace-page">
       <MarketplaceWarPlan />
     </PageContainer>
   )
 }
-
 
 /* ============================================================
    PRESENÇA GLOBAL
@@ -83,12 +77,11 @@ function MarketplacePage() {
 
 function GlobalPresencePage() {
   return (
-    <PageContainer className="page-container--global">
+    <PageContainer className="global-presence-page">
       <GlobalPresence />
     </PageContainer>
   )
 }
-
 
 /* ============================================================
    COMUNIDADE
@@ -96,13 +89,12 @@ function GlobalPresencePage() {
 
 function CommunityPage() {
   return (
-    <PageContainer className="page-container--community">
+    <PageContainer className="community-page">
       <CommunityHub />
       <LivingEcosystem />
     </PageContainer>
   )
 }
-
 
 /* ============================================================
    BIBLIOTECA
@@ -110,12 +102,11 @@ function CommunityPage() {
 
 function LibraryPage() {
   return (
-    <PageContainer className="page-container--library">
+    <PageContainer className="library-page">
       <AgroNexusLibrary />
     </PageContainer>
   )
 }
-
 
 /* ============================================================
    CONTATO
@@ -123,12 +114,11 @@ function LibraryPage() {
 
 function ContactPage() {
   return (
-    <PageContainer className="page-container--contact">
+    <PageContainer className="contact-page">
       <Contact />
     </PageContainer>
   )
 }
-
 
 /* ============================================================
    GUIROPA WORLD — IDENTIFICAÇÃO GLOBAL
@@ -161,7 +151,6 @@ function InstitutionalBar() {
   )
 }
 
-
 /* ============================================================
    404
    ============================================================ */
@@ -175,7 +164,7 @@ function NotFound() {
         alignItems: 'center',
         justifyContent: 'center',
         padding: '150px 24px 80px',
-        background: '#f4f6f4',
+        background: '#f5f7f5',
         color: '#111411',
         textAlign: 'center',
       }}
@@ -246,7 +235,6 @@ function NotFound() {
   )
 }
 
-
 /* ============================================================
    CONFIGURAÇÃO DAS ROTAS
    ============================================================ */
@@ -270,22 +258,22 @@ function getRouteConfiguration(route) {
 
     '/sobre': {
       component: <Home />,
-      scrollTarget: null,
+      scrollTarget: '#sobre',
     },
 
     '/missao': {
       component: <Home />,
-      scrollTarget: null,
+      scrollTarget: '#missao',
     },
 
     '/ecossistema': {
       component: <Home />,
-      scrollTarget: null,
+      scrollTarget: '#ecossistema',
     },
 
     '/portfolio': {
       component: <Home />,
-      scrollTarget: null,
+      scrollTarget: '#portfolio',
     },
 
     '/aves': {
@@ -336,7 +324,6 @@ function getRouteConfiguration(route) {
     }
   )
 }
-
 
 /* ============================================================
    APP
@@ -422,9 +409,9 @@ export default function App() {
 
   return (
     <>
-      <Navbar />
-
       <InstitutionalBar />
+
+      <Navbar />
 
       {routeConfiguration.component}
 
