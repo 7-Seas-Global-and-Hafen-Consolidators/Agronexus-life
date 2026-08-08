@@ -1,17 +1,14 @@
 /* ============================================================
-   AGRONEXUS™ MARKETPLACE
-   Nova arquitetura comercial
-   Branco · Produto · Preço · Compra
+   AGRONEXUS™ MARKETPLACE — VITRINE FOTOGRÁFICA
+   Branco · Fotografia · Cor · Preço · Compra
    ============================================================ */
 
 .marketplace-war {
   min-height: 100vh;
-
   padding:
     clamp(46px, 6vw, 84px)
     0
     clamp(80px, 9vw, 130px);
-
   background: #f5f7f5;
   color: #111411;
 }
@@ -31,34 +28,31 @@
   font: inherit;
 }
 
+.marketplace-war img {
+  display: block;
+  width: 100%;
+}
+
 .marketplace-war__container {
   width: min(1380px, calc(100% - 48px));
   margin-inline: auto;
 }
 
-
-/* ============================================================
-   HERO
-   ============================================================ */
+/* HERO */
 
 .marketplace-war__hero {
-  padding:
-    clamp(40px, 6vw, 82px);
-
+  padding: clamp(40px, 6vw, 82px);
   border: 1px solid #dbe1dc;
-
   background: #ffffff;
 }
 
 .marketplace-war__hero-copy {
-  max-width: 980px;
+  max-width: 1040px;
 }
 
 .marketplace-war__eyebrow {
   display: block;
-
   color: #087a4b;
-
   font-size: 0.72rem;
   font-weight: 900;
   letter-spacing: 0.12em;
@@ -66,17 +60,12 @@
 }
 
 .marketplace-war__hero h1 {
-  max-width: 1000px;
-
+  max-width: 1100px;
   margin: 17px 0 0;
-
   color: #111411;
-
-  font-size:
-    clamp(3.7rem, 8vw, 7.8rem);
-
+  font-size: clamp(3.7rem, 8vw, 7.8rem);
   font-weight: 900;
-  line-height: 0.9;
+  line-height: 0.88;
   letter-spacing: -0.065em;
 }
 
@@ -86,39 +75,25 @@
 }
 
 .marketplace-war__hero-copy > p {
-  max-width: 800px;
-
-  margin: 26px 0 0;
-
+  max-width: 820px;
+  margin: 28px 0 0;
   color: #59625c;
-
-  font-size:
-    clamp(1rem, 1.5vw, 1.12rem);
-
+  font-size: clamp(1rem, 1.5vw, 1.12rem);
   line-height: 1.72;
 }
 
-
-/* ============================================================
-   BUSCA
-   ============================================================ */
+/* BUSCA */
 
 .marketplace-war__search {
-  margin-top:
-    clamp(34px, 5vw, 58px);
-
+  margin-top: clamp(34px, 5vw, 58px);
   padding-top: 28px;
-
   border-top: 1px solid #dbe1dc;
 }
 
 .marketplace-war__search label {
   display: block;
-
   margin-bottom: 10px;
-
   color: #111411;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.08em;
@@ -134,19 +109,13 @@
   flex: 1;
   min-width: 0;
   min-height: 58px;
-
   padding: 0 18px;
-
   border: 1px solid #b9c3bc;
   border-radius: 4px;
-
   outline: none;
-
   background: #ffffff;
   color: #111411;
-
   font-size: 0.96rem;
-
   transition:
     border-color 150ms ease,
     box-shadow 150ms ease;
@@ -154,7 +123,6 @@
 
 .marketplace-war__search-row input:focus {
   border-color: #087a4b;
-
   box-shadow:
     0 0 0 3px
     rgba(8, 122, 75, 0.08);
@@ -167,63 +135,41 @@
 .marketplace-war__search-row button {
   min-width: 110px;
   min-height: 58px;
-
   padding: 0 18px;
-
   border: 1px solid #111411;
   border-radius: 4px;
-
   background: #111411;
   color: #ffffff;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-
   cursor: pointer;
 }
 
-
-/* ============================================================
-   FAIXA DE CATEGORIAS
-   ============================================================ */
+/* CATEGORIAS — FAIXA */
 
 .marketplace-war__category-strip {
   margin-top: 14px;
-
   display: flex;
   align-items: center;
   gap: 7px;
-
   overflow-x: auto;
-
-  padding:
-    13px
-    0
-    8px;
-
+  padding: 13px 0 8px;
   scrollbar-width: thin;
 }
 
 .marketplace-war__category-strip button {
   flex: 0 0 auto;
-
   min-height: 40px;
-
   padding: 8px 15px;
-
   border: 1px solid #d3dad5;
   border-radius: 999px;
-
   background: #ffffff;
   color: #303832;
-
   font-size: 0.72rem;
   font-weight: 750;
-
   cursor: pointer;
-
   transition:
     background 150ms ease,
     border-color 150ms ease,
@@ -237,42 +183,31 @@
 
 .marketplace-war__category-strip button.is-active {
   border-color: #087a4b;
-
   background: #087a4b;
   color: #ffffff;
 }
 
+/* CABEÇALHO DE SEÇÃO */
 
-/* ============================================================
-   SEÇÕES
-   ============================================================ */
-
+.marketplace-war__trend,
 .marketplace-war__section {
-  margin-top:
-    clamp(64px, 8vw, 112px);
+  margin-top: clamp(64px, 8vw, 112px);
 }
 
 .marketplace-war__section-head {
   margin-bottom: 30px;
-
   display: grid;
-
   grid-template-columns:
     minmax(0, 1fr)
     minmax(260px, 460px);
-
   gap: 40px;
-
   align-items: end;
 }
 
 .marketplace-war__section-head > div > span {
   display: block;
-
   margin-bottom: 9px;
-
   color: #087a4b;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -281,12 +216,8 @@
 
 .marketplace-war__section-head h2 {
   margin: 0;
-
   color: #111411;
-
-  font-size:
-    clamp(2.5rem, 5vw, 4.8rem);
-
+  font-size: clamp(2.5rem, 5vw, 4.8rem);
   font-weight: 900;
   line-height: 0.94;
   letter-spacing: -0.055em;
@@ -294,42 +225,106 @@
 
 .marketplace-war__section-head > p {
   margin: 0;
-
   color: #626b65;
-
   font-size: 0.92rem;
   line-height: 1.65;
 }
 
+/* EM ALTA */
 
-/* ============================================================
-   CATEGORIAS
-   ============================================================ */
+.marketplace-war__trend-grid {
+  display: grid;
+  grid-template-columns:
+    repeat(4, minmax(0, 1fr));
+  gap: 12px;
+}
+
+.marketplace-war__trend-card {
+  position: relative;
+  min-height: 310px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 7px;
+  background: #111411;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.marketplace-war__trend-card img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 260ms ease;
+}
+
+.marketplace-war__trend-shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(6, 10, 7, 0.04) 18%,
+      rgba(6, 10, 7, 0.82) 100%
+    );
+}
+
+.marketplace-war__trend-copy {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+}
+
+.marketplace-war__trend-copy small {
+  display: block;
+  margin: 0 0 8px;
+  color: #a7e5bf;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.09em;
+  text-transform: uppercase;
+}
+
+.marketplace-war__trend-copy strong {
+  display: block;
+  color: #ffffff;
+  font-size: clamp(1.35rem, 2vw, 2rem);
+  font-weight: 900;
+  line-height: 1;
+  letter-spacing: -0.035em;
+}
+
+.marketplace-war__trend-copy > span {
+  display: block;
+  margin-top: 9px;
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.marketplace-war__trend-card:hover img {
+  transform: scale(1.035);
+}
+
+/* CATEGORIAS — CARDS FOTOGRÁFICOS */
 
 .marketplace-war__category-grid {
   display: grid;
-
   grid-template-columns:
-    repeat(4, minmax(0, 1fr));
-
-  gap: 12px;
+    repeat(3, minmax(0, 1fr));
+  gap: 14px;
 }
 
 .marketplace-war__category {
   min-width: 0;
-  min-height: 255px;
-
-  padding: 25px;
-
-  display: flex;
-  flex-direction: column;
-  justify-content: space-between;
-
+  overflow: hidden;
   border: 1px solid #d8dfda;
-  border-radius: 6px;
-
+  border-radius: 7px;
   background: #ffffff;
-
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
@@ -338,21 +333,59 @@
 
 .marketplace-war__category:hover {
   border-color: #aab7ae;
-
   box-shadow:
-    0 8px 24px
-    rgba(22, 34, 26, 0.055);
-
+    0 10px 28px
+    rgba(22, 34, 26, 0.065);
   transform: translateY(-2px);
+}
+
+.marketplace-war__category-image {
+  position: relative;
+  height: 245px;
+  overflow: hidden;
+  background: #e8ece9;
+}
+
+.marketplace-war__category-image img {
+  height: 100%;
+  object-fit: cover;
+  transition: transform 260ms ease;
+}
+
+.marketplace-war__category:hover
+.marketplace-war__category-image img {
+  transform: scale(1.025);
+}
+
+.marketplace-war__category-image > span {
+  position: absolute;
+  right: 14px;
+  bottom: 14px;
+  left: 14px;
+  width: max-content;
+  max-width: calc(100% - 28px);
+  padding: 7px 10px;
+  border-radius: 3px;
+  background: rgba(17, 20, 17, 0.86);
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.055em;
+  text-transform: uppercase;
+  backdrop-filter: blur(4px);
+}
+
+.marketplace-war__category-body {
+  min-height: 315px;
+  padding: 24px;
+  display: flex;
+  flex-direction: column;
 }
 
 .marketplace-war__category-label {
   display: block;
-
-  margin-bottom: 14px;
-
+  margin-bottom: 12px;
   color: #087a4b;
-
   font-size: 0.64rem;
   font-weight: 900;
   letter-spacing: 0.1em;
@@ -361,12 +394,8 @@
 
 .marketplace-war__category h3 {
   margin: 0;
-
   color: #111411;
-
-  font-size:
-    clamp(1.4rem, 2vw, 1.85rem);
-
+  font-size: clamp(1.45rem, 2.2vw, 2rem);
   font-weight: 850;
   line-height: 1.05;
   letter-spacing: -0.035em;
@@ -374,89 +403,83 @@
 
 .marketplace-war__category p {
   margin: 13px 0 0;
-
   color: #626b65;
-
   font-size: 0.86rem;
   line-height: 1.62;
 }
 
-.marketplace-war__category > a,
-.marketplace-war__category > button {
+.marketplace-war__chips {
+  margin-top: 20px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
+.marketplace-war__chips span,
+.marketplace-war__variants span {
+  padding: 6px 8px;
+  border: 1px solid #dde3df;
+  border-radius: 999px;
+  background: #f7f9f7;
+  color: #4f5a53;
+  font-size: 0.62rem;
+  font-weight: 750;
+  line-height: 1.2;
+}
+
+.marketplace-war__category-body > a,
+.marketplace-war__category-body > button {
   width: 100%;
-  min-height: 46px;
-
-  margin-top: 24px;
-
+  min-height: 48px;
+  margin-top: auto;
   padding: 11px 14px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-
-  border: 1px solid #d3dad5;
+  border: 1px solid #111411;
   border-radius: 4px;
-
-  background: #f7f9f7;
-  color: #111411;
-
+  background: #111411;
+  color: #ffffff;
   font-size: 0.68rem;
   font-weight: 900;
   letter-spacing: 0.05em;
   text-transform: uppercase;
-
   cursor: pointer;
-
   transition:
     background 150ms ease,
     border-color 150ms ease,
     color 150ms ease;
 }
 
-.marketplace-war__category > a:hover,
-.marketplace-war__category > button:hover {
+.marketplace-war__category-body > a:hover,
+.marketplace-war__category-body > button:hover {
   border-color: #087a4b;
-
   background: #087a4b;
-  color: #ffffff;
 }
 
-
-/* ============================================================
-   PRODUTOS
-   ============================================================ */
+/* PRODUTOS */
 
 .marketplace-war__section--products {
-  padding-top:
-    clamp(60px, 8vw, 100px);
-
+  padding-top: clamp(60px, 8vw, 100px);
   border-top: 1px solid #d8dfda;
 }
 
 .marketplace-war__products {
   display: grid;
-
   grid-template-columns:
     repeat(3, minmax(0, 1fr));
-
   gap: 14px;
 }
 
 .marketplace-war__product {
   min-width: 0;
-  min-height: 480px;
-
-  padding: 26px;
-
+  overflow: hidden;
   display: flex;
   flex-direction: column;
-
   border: 1px solid #d8dfda;
-  border-radius: 6px;
-
+  border-radius: 7px;
   background: #ffffff;
-
   transition:
     border-color 160ms ease,
     box-shadow 160ms ease,
@@ -465,62 +488,63 @@
 
 .marketplace-war__product:hover {
   border-color: #aab7ae;
-
   box-shadow:
     0 9px 26px
     rgba(22, 34, 26, 0.06);
-
   transform: translateY(-2px);
 }
 
+.marketplace-war__product-image {
+  position: relative;
+  height: 250px;
+  overflow: hidden;
+  background: #e8ece9;
+}
+
+.marketplace-war__product-image img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.marketplace-war__product-image
+.marketplace-war__badge {
+  position: absolute;
+  top: 14px;
+  left: 14px;
+}
+
+.marketplace-war__badge {
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #087a4b;
+  color: #ffffff;
+  font-size: 0.62rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+}
+
 .marketplace-war__product-top {
+  padding: 19px 24px 0;
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 14px;
-
   color: #747d77;
-
   font-size: 0.63rem;
   font-weight: 800;
   letter-spacing: 0.07em;
   text-transform: uppercase;
 }
 
-.marketplace-war__badge {
-  padding: 5px 8px;
-
-  border-radius: 3px;
-
-  background: #e8f4ed;
-  color: #087a4b;
-}
-
 .marketplace-war__product-copy {
-  margin-top: 30px;
-}
-
-.marketplace-war__product-category {
-  display: block;
-
-  margin-bottom: 9px;
-
-  color: #087a4b;
-
-  font-size: 0.65rem;
-  font-weight: 900;
-  letter-spacing: 0.08em;
-  text-transform: uppercase;
+  padding: 24px 24px 0;
 }
 
 .marketplace-war__product h3 {
   margin: 0;
-
   color: #111411;
-
-  font-size:
-    clamp(1.55rem, 2.4vw, 2.2rem);
-
+  font-size: clamp(1.55rem, 2.4vw, 2.2rem);
   font-weight: 850;
   line-height: 1.05;
   letter-spacing: -0.04em;
@@ -528,37 +552,34 @@
 
 .marketplace-war__product-copy p {
   margin-top: 16px;
-
   color: #626b65;
-
   font-size: 0.87rem;
   line-height: 1.68;
 }
 
+.marketplace-war__variants {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 6px;
+}
+
 .marketplace-war__price-block {
   margin-top: auto;
-
-  padding-top: 35px;
+  padding: 34px 24px 0;
 }
 
 .marketplace-war__price-block del {
   display: block;
-
   margin-bottom: 6px;
-
   color: #8a928d;
-
   font-size: 0.78rem;
 }
 
 .marketplace-war__price-block strong {
   display: block;
-
   color: #087a4b;
-
-  font-size:
-    clamp(2.5rem, 4vw, 3.8rem);
-
+  font-size: clamp(2.5rem, 4vw, 3.8rem);
   font-weight: 900;
   line-height: 0.95;
   letter-spacing: -0.06em;
@@ -566,38 +587,28 @@
 
 .marketplace-war__price-block span {
   display: block;
-
   margin-top: 8px;
-
   color: #687169;
-
   font-size: 0.72rem;
   font-weight: 700;
 }
 
 .marketplace-war__buy {
   min-height: 52px;
-
-  margin-top: 24px;
-
+  margin: 24px 24px 0;
   padding: 12px 17px;
-
   display: flex;
   align-items: center;
   justify-content: space-between;
   gap: 16px;
-
   border: 1px solid #111411;
   border-radius: 4px;
-
   background: #111411;
   color: #ffffff;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.065em;
   text-transform: uppercase;
-
   transition:
     background 150ms ease,
     border-color 150ms ease,
@@ -606,42 +617,30 @@
 
 .marketplace-war__buy:hover {
   border-color: #087a4b;
-
   background: #087a4b;
-
   transform: translateY(-1px);
 }
 
-.marketplace-war__product small {
+.marketplace-war__product > small {
   display: block;
-
-  margin-top: 13px;
-
+  margin: 13px 24px 24px;
   color: #818983;
-
   font-size: 0.63rem;
   line-height: 1.5;
 }
 
-
-/* ============================================================
-   CATEGORIA SEM PRODUTOS PUBLICADOS
-   ============================================================ */
+/* VAZIO / FILTRO */
 
 .marketplace-war__category-focus,
 .marketplace-war__no-results {
-  padding:
-    clamp(30px, 5vw, 54px);
-
+  padding: clamp(30px, 5vw, 54px);
   border: 1px solid #d8dfda;
   border-radius: 6px;
-
   background: #ffffff;
 }
 
 .marketplace-war__category-focus > span {
   color: #087a4b;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.09em;
@@ -650,14 +649,9 @@
 
 .marketplace-war__category-focus h3 {
   max-width: 760px;
-
   margin: 10px 0 0;
-
   color: #111411;
-
-  font-size:
-    clamp(2rem, 4vw, 3.8rem);
-
+  font-size: clamp(2rem, 4vw, 3.8rem);
   font-weight: 900;
   line-height: 0.96;
   letter-spacing: -0.05em;
@@ -665,121 +659,90 @@
 
 .marketplace-war__category-focus p {
   max-width: 720px;
-
   margin-top: 18px;
-
   color: #616a64;
-
   line-height: 1.7;
 }
 
 .marketplace-war__category-focus button,
 .marketplace-war__no-results button {
   min-height: 48px;
-
   margin-top: 24px;
-
   padding: 11px 18px;
-
   border: 1px solid #111411;
   border-radius: 4px;
-
   background: #111411;
   color: #ffffff;
-
   font-size: 0.7rem;
   font-weight: 900;
   letter-spacing: 0.06em;
   text-transform: uppercase;
-
   cursor: pointer;
 }
 
 .marketplace-war__no-results strong {
   display: block;
-
   color: #111411;
-
   font-size: 1.3rem;
 }
 
-
-/* ============================================================
-   PRINCÍPIOS COMERCIAIS
-   ============================================================ */
+/* PRINCÍPIOS */
 
 .marketplace-war__principles {
-  margin-top:
-    clamp(70px, 9vw, 120px);
-
+  margin-top: clamp(70px, 9vw, 120px);
   display: grid;
-
   grid-template-columns:
     repeat(4, minmax(0, 1fr));
-
   border-top: 1px solid #d8dfda;
   border-left: 1px solid #d8dfda;
 }
 
 .marketplace-war__principles > div {
   min-height: 150px;
-
   padding: 23px;
-
   border-right: 1px solid #d8dfda;
   border-bottom: 1px solid #d8dfda;
-
   background: #ffffff;
 }
 
 .marketplace-war__principles strong {
   display: block;
-
   color: #111411;
-
   font-size: 1rem;
 }
 
 .marketplace-war__principles span {
   display: block;
-
   margin-top: 9px;
-
   color: #667069;
-
   font-size: 0.82rem;
   line-height: 1.55;
 }
 
-
-/* ============================================================
-   RODAPÉ INSTITUCIONAL DA ÁREA
-   ============================================================ */
+/* RODAPÉ */
 
 .marketplace-war__footer-note {
   margin-top: 32px;
-
   padding-top: 20px;
-
   border-top: 1px solid #d8dfda;
-
   color: #747d77;
-
   font-size: 0.65rem;
   font-weight: 750;
   letter-spacing: 0.065em;
   text-transform: uppercase;
 }
 
-
-/* ============================================================
-   RESPONSIVO
-   ============================================================ */
+/* RESPONSIVO */
 
 @media (max-width: 1100px) {
+  .marketplace-war__trend-grid {
+    grid-template-columns:
+      repeat(2, minmax(0, 1fr));
+  }
+
   .marketplace-war__category-grid {
     grid-template-columns:
-      repeat(3, minmax(0, 1fr));
+      repeat(2, minmax(0, 1fr));
   }
 
   .marketplace-war__products {
@@ -795,8 +758,7 @@
 
 @media (max-width: 820px) {
   .marketplace-war__container {
-    width:
-      min(100% - 30px, 1380px);
+    width: min(100% - 30px, 1380px);
   }
 
   .marketplace-war__hero {
@@ -806,11 +768,6 @@
   .marketplace-war__section-head {
     grid-template-columns: 1fr;
     gap: 14px;
-  }
-
-  .marketplace-war__category-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
   }
 }
 
@@ -823,8 +780,7 @@
   }
 
   .marketplace-war__container {
-    width:
-      min(100% - 22px, 1380px);
+    width: min(100% - 22px, 1380px);
   }
 
   .marketplace-war__hero {
@@ -832,8 +788,7 @@
   }
 
   .marketplace-war__hero h1 {
-    font-size:
-      clamp(3.2rem, 16vw, 5.2rem);
+    font-size: clamp(3.2rem, 16vw, 5.2rem);
   }
 
   .marketplace-war__search-row {
@@ -844,36 +799,56 @@
     width: 100%;
   }
 
+  .marketplace-war__trend-grid,
   .marketplace-war__category-grid,
   .marketplace-war__products,
   .marketplace-war__principles {
     grid-template-columns: 1fr;
   }
 
-  .marketplace-war__category {
-    min-height: 230px;
+  .marketplace-war__trend-card {
+    min-height: 320px;
+  }
 
+  .marketplace-war__category-image,
+  .marketplace-war__product-image {
+    height: 235px;
+  }
+
+  .marketplace-war__category-body {
+    min-height: 0;
     padding: 21px;
   }
 
-  .marketplace-war__product {
-    min-height: auto;
-
-    padding: 22px;
+  .marketplace-war__category-body > a,
+  .marketplace-war__category-body > button {
+    margin-top: 26px;
   }
 
+  .marketplace-war__product-top,
+  .marketplace-war__product-copy,
   .marketplace-war__price-block {
-    margin-top: 32px;
+    padding-right: 21px;
+    padding-left: 21px;
+  }
+
+  .marketplace-war__buy {
+    margin-right: 21px;
+    margin-left: 21px;
+  }
+
+  .marketplace-war__product > small {
+    margin-right: 21px;
+    margin-left: 21px;
   }
 }
 
-
-/* ============================================================
-   MOVIMENTO REDUZIDO
-   ============================================================ */
+/* MOVIMENTO REDUZIDO */
 
 @media (prefers-reduced-motion: reduce) {
+  .marketplace-war__trend-card img,
   .marketplace-war__category,
+  .marketplace-war__category-image img,
   .marketplace-war__product,
   .marketplace-war__buy {
     transition: none;
@@ -882,6 +857,12 @@
   .marketplace-war__category:hover,
   .marketplace-war__product:hover,
   .marketplace-war__buy:hover {
+    transform: none;
+  }
+
+  .marketplace-war__trend-card:hover img,
+  .marketplace-war__category:hover
+  .marketplace-war__category-image img {
     transform: none;
   }
 }
