@@ -69,7 +69,6 @@ const CATEGORIES = [
       'Periquitos, calopsitas, canários, Ring Necks, Agapornis, Forpus, Roselas, Kakarikis, Lóris e muito mais.',
     keywords:
       'periquito calopsita ring neck agapornis loris canario forpus rosela kakariki bourke ave',
-    route: '#/aves',
     image: PEXELS(36133129),
     imageAlt:
       'Periquitos australianos de plumagem colorida',
@@ -92,7 +91,6 @@ const CATEGORIES = [
       'Bettas, kinguios, camarões, plantados, nano aquários, Ocellaris, marinho, nano reef, mini reef, reef e corais.',
     keywords:
       'aquario betta kinguio oranda ranchu reef marinho ocellaris coral camarao plantado nano mini',
-    route: '#/aquarismo',
     image: PEXELS(29216700),
     imageAlt:
       'Peixes-palhaço em aquário marinho com corais coloridos',
@@ -115,7 +113,6 @@ const CATEGORIES = [
       'Hamsters, chinchilas, mini coelhos, porquinhos-da-índia, gerbilos, habitats, alimentação e acessórios.',
     keywords:
       'hamster chinchila coelho mini lop netherland gerbilo porquinho india mamifero',
-    route: '#/mamiferos',
     image: PEXELS(4520480),
     imageAlt:
       'Hamster pequeno e fofo fotografado de perto',
@@ -380,10 +377,21 @@ function getInstallmentText(product) {
   )}`
 }
 
-export default function MarketplaceWarPlan() {
+export default function MarketplaceWarPlan({
+  initialCategory = 'todos',
+  embedded = false,
+}) {
+  const safeInitialCategory =
+    initialCategory === 'todos' ||
+    CATEGORIES.some(
+      (category) => category.id === initialCategory
+    )
+      ? initialCategory
+      : 'todos'
+
   const [searchTerm, setSearchTerm] = useState('')
   const [activeCategory, setActiveCategory] =
-    useState('todos')
+    useState(safeInitialCategory)
 
   const normalizedSearch = searchTerm
     .trim()
@@ -469,6 +477,7 @@ export default function MarketplaceWarPlan() {
       className="marketplace-war"
     >
       <div className="marketplace-war__container">
+        {!embedded ? (
         <header className="marketplace-war__hero">
           <div className="marketplace-war__hero-copy">
             <span className="marketplace-war__eyebrow">
@@ -521,6 +530,7 @@ export default function MarketplaceWarPlan() {
             </div>
           </div>
         </header>
+        ) : null}
 
         <nav
           className="marketplace-war__category-strip"
@@ -665,29 +675,17 @@ export default function MarketplaceWarPlan() {
                           )
                         )}
                       </div>
-
-                      {category.route ? (
-                        <a href={category.route}>
-                          Ver produtos
-                          <span aria-hidden="true">
-                            →
-                          </span>
-                        </a>
-                      ) : (
-                        <button
-                          type="button"
-                          onClick={() =>
-                            selectCategory(
-                              category.id
-                            )
-                          }
-                        >
-                          Ver produtos
-                          <span aria-hidden="true">
-                            →
-                          </span>
-                        </button>
-                      )}
+                      <button
+                        type="button"
+                        onClick={() =>
+                          selectCategory(category.id)
+                        }
+                      >
+                        Ver produtos
+                        <span aria-hidden="true">
+                          →
+                        </span>
+                      </button>
                     </div>
                   </article>
                 )
