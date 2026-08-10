@@ -1,10 +1,21 @@
-import { useState } from 'react'
+import {
+  useEffect,
+  useState,
+} from 'react'
+
 import Reveal from './Reveal'
 import icons from '../assets/icons'
 import { sendContactMessage } from '../services/contactService'
 import '../styles/Contact.css'
 
-const SUPPORT_URL = 'https://www.asaas.com/c/u6toboa8xhqsmosv'
+const SUPPORT_URL =
+  'https://www.asaas.com/c/u6toboa8xhqsmosv'
+
+/* ============================================================
+   CONTATOS PÚBLICOS
+   O e-mail interno NÃO é exibido no site.
+   O recebimento do formulário é controlado pelo Formspree.
+   ============================================================ */
 
 const CONTACTS = [
   {
@@ -34,16 +45,66 @@ const CONTACTS = [
     value: '+44 7594 716370',
     href: 'https://t.me/m/t6seeX61ZTlk',
   },
-  {
-    type: 'image',
-    icon: icons.email,
-    label: 'E-mail institucional',
-    value: 'hr@agronexus.life',
-    href: 'mailto:hr@agronexus.life',
-  },
 ]
 
+/* ============================================================
+   AÇÕES VINDAS DA HOME
+   #/contato?acao=...
+   Cada botão chega ao formulário já identificado.
+   ============================================================ */
+
+const ACTION_PRESETS = {
+  vender: {
+    interesse: 'Quero vender na AgroNexus',
+    mensagem:
+      'Quero vender produtos no Marketplace AgroNexus.',
+  },
+
+  anunciar: {
+    interesse: 'Quero anunciar na AgroNexus',
+    mensagem:
+      'Quero anunciar minha empresa, serviço, marca ou negócio na AgroNexus.',
+  },
+
+  'cadastrar-clinica': {
+    interesse: 'Cadastrar clínica veterinária',
+    mensagem:
+      'Quero cadastrar minha clínica veterinária na AgroNexus.',
+  },
+
+  'cadastrar-petshop': {
+    interesse: 'Cadastrar pet shop',
+    mensagem:
+      'Quero cadastrar meu pet shop na AgroNexus.',
+  },
+
+  'cadastrar-ong': {
+    interesse: 'Cadastrar ONG',
+    mensagem:
+      'Quero cadastrar minha ONG na AgroNexus.',
+  },
+
+  adotar: {
+    interesse: 'Quero adotar',
+    mensagem:
+      'Quero iniciar meu cadastro para adoção responsável.',
+  },
+
+  doar: {
+    interesse: 'Quero doar',
+    mensagem:
+      'Quero doar produtos para uma ONG parceira da AgroNexus.',
+  },
+}
+
 const INTERESTS = [
+  'Quero vender na AgroNexus',
+  'Quero anunciar na AgroNexus',
+  'Cadastrar clínica veterinária',
+  'Cadastrar pet shop',
+  'Cadastrar ONG',
+  'Quero adotar',
+  'Quero doar',
   'Sou criador ou produtor',
   'Procuro um criador ou produto',
   'Sou veterinário ou biólogo',
@@ -59,14 +120,16 @@ const INTERESTS = [
 ]
 
 const AREAS = [
-  'Genética animal e vegetal',
+  'Marketplace',
+  'Clínicas veterinárias',
+  'Pet shops',
+  'ONGs',
+  'Adoção',
+  'Doação',
   'Aquarismo & Reef',
   'Botânica e biodiversidade',
-  'Veterinários e biólogos',
   'Criadores e consumidores',
-  'Marketplace responsável',
   'Pesquisa e conservação',
-  'Conexão nacional e internacional',
 ]
 
 const SUPPORT_POINTS = [
@@ -86,7 +149,28 @@ const EMPTY = {
   mensagem: '',
 }
 
-const emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+const emailRegex =
+  /^[^\s@]+@[^\s@]+\.[^\s@]+$/
+
+function getActionFromHash() {
+  const hash =
+    window.location.hash || ''
+
+  const queryIndex =
+    hash.indexOf('?')
+
+  if (queryIndex === -1) {
+    return ''
+  }
+
+  const queryString =
+    hash.slice(queryIndex + 1)
+
+  const params =
+    new URLSearchParams(queryString)
+
+  return params.get('acao') || ''
+}
 
 function TelegramIcon() {
   return (
@@ -130,54 +214,114 @@ function validate(values) {
   const errors = {}
 
   if (!values.nome.trim()) {
-    errors.nome = 'Informe seu nome.'
-  } else if (values.nome.trim().length < 2) {
-    errors.nome = 'Nome muito curto.'
+    errors.nome =
+      'Informe seu nome.'
+  } else if (
+    values.nome.trim().length < 2
+  ) {
+    errors.nome =
+      'Nome muito curto.'
   }
 
   if (!values.email.trim()) {
-    errors.email = 'Informe um e-mail.'
-  } else if (!emailRegex.test(values.email.trim())) {
-    errors.email = 'E-mail inválido.'
+    errors.email =
+      'Informe um e-mail.'
+  } else if (
+    !emailRegex.test(
+      values.email.trim()
+    )
+  ) {
+    errors.email =
+      'E-mail inválido.'
   }
 
-  if (values.telefone.trim() && values.telefone.trim().length < 8) {
-    errors.telefone = 'Informe um telefone válido.'
+  if (
+    values.telefone.trim() &&
+    values.telefone.trim().length < 8
+  ) {
+    errors.telefone =
+      'Informe um telefone válido.'
   }
 
   if (!values.localizacao.trim()) {
-    errors.localizacao = 'Informe sua cidade e país.'
-  } else if (values.localizacao.trim().length < 3) {
-    errors.localizacao = 'Localização muito curta.'
+    errors.localizacao =
+      'Informe sua cidade e país.'
+  } else if (
+    values.localizacao.trim().length < 3
+  ) {
+    errors.localizacao =
+      'Localização muito curta.'
   }
 
-  if (values.empresa.trim() && values.empresa.trim().length < 2) {
+  if (
+    values.empresa.trim() &&
+    values.empresa.trim().length < 2
+  ) {
     errors.empresa =
       'Nome da empresa ou organização muito curto.'
   }
 
   if (!values.interesse) {
-    errors.interesse = 'Selecione um perfil de interesse.'
+    errors.interesse =
+      'Selecione um perfil de interesse.'
   }
 
   if (!values.mensagem.trim()) {
-    errors.mensagem = 'Conte-nos como deseja se conectar.'
-  } else if (values.mensagem.trim().length < 10) {
     errors.mensagem =
-      'Conte um pouco mais, com pelo menos 10 caracteres.'
+      'Descreva sua solicitação.'
+  } else if (
+    values.mensagem.trim().length < 10
+  ) {
+    errors.mensagem =
+      'Escreva pelo menos 10 caracteres.'
   }
 
   return errors
 }
 
 export default function Contact() {
-  const [values, setValues] = useState(EMPTY)
-  const [errors, setErrors] = useState({})
-  const [touched, setTouched] = useState({})
-  const [status, setStatus] = useState('idle')
+  const [values, setValues] =
+    useState(EMPTY)
+
+  const [errors, setErrors] =
+    useState({})
+
+  const [touched, setTouched] =
+    useState({})
+
+  const [status, setStatus] =
+    useState('idle')
+
+  /* ==========================================================
+     PRÉ-PREENCHIMENTO AUTOMÁTICO
+     Lê ?acao=... dos botões da Home.
+     ========================================================== */
+
+  useEffect(() => {
+    const action =
+      getActionFromHash()
+
+    const preset =
+      ACTION_PRESETS[action]
+
+    if (!preset) {
+      return
+    }
+
+    setValues((current) => ({
+      ...current,
+      interesse:
+        preset.interesse,
+      mensagem:
+        preset.mensagem,
+    }))
+  }, [])
 
   const handleChange = (event) => {
-    const { name, value } = event.target
+    const {
+      name,
+      value,
+    } = event.target
 
     const nextValues = {
       ...values,
@@ -187,7 +331,9 @@ export default function Contact() {
     setValues(nextValues)
 
     if (touched[name]) {
-      setErrors(validate(nextValues))
+      setErrors(
+        validate(nextValues)
+      )
     }
 
     if (status !== 'idle') {
@@ -196,91 +342,113 @@ export default function Contact() {
   }
 
   const handleBlur = (event) => {
-    const { name } = event.target
+    const { name } =
+      event.target
 
     setTouched((current) => ({
       ...current,
       [name]: true,
     }))
 
-    setErrors(validate(values))
+    setErrors(
+      validate(values)
+    )
   }
 
-  const handleSubmit = async (event) => {
-    event.preventDefault()
+  const handleSubmit =
+    async (event) => {
+      event.preventDefault()
 
-    const foundErrors = validate(values)
+      const foundErrors =
+        validate(values)
 
-    setErrors(foundErrors)
+      setErrors(foundErrors)
 
-    setTouched({
-      nome: true,
-      email: true,
-      telefone: true,
-      localizacao: true,
-      empresa: true,
-      interesse: true,
-      mensagem: true,
-    })
-
-    if (Object.keys(foundErrors).length > 0) {
-      return
-    }
-
-    try {
-      setStatus('sending')
-
-      await sendContactMessage({
-        ...values,
-        destinatario: 'hr@agronexus.life',
-        origem: 'Formulário do site AgroNexus.Life',
+      setTouched({
+        nome: true,
+        email: true,
+        telefone: true,
+        localizacao: true,
+        empresa: true,
+        interesse: true,
+        mensagem: true,
       })
 
-      setStatus('success')
-      setValues(EMPTY)
-      setTouched({})
-      setErrors({})
-    } catch (error) {
-      console.error(error)
-      setStatus('error')
+      if (
+        Object.keys(
+          foundErrors
+        ).length > 0
+      ) {
+        return
+      }
+
+      try {
+        setStatus('sending')
+
+        await sendContactMessage({
+          ...values,
+          origem:
+            'Formulário do site AgroNexus.Life',
+        })
+
+        setStatus('success')
+        setValues(EMPTY)
+        setTouched({})
+        setErrors({})
+      } catch (error) {
+        console.error(error)
+        setStatus('error')
+      }
     }
-  }
 
   const fieldClass = (name) =>
     `field ${
-      touched[name] && errors[name] ? 'field--error' : ''
+      touched[name] &&
+      errors[name]
+        ? 'field--error'
+        : ''
     }`
 
   return (
-    <section id="contato" className="section contact">
+    <section
+      id="contato"
+      className="section contact"
+    >
       <div className="container contact__grid">
+
         <Reveal className="contact__intro">
+
           <span className="eyebrow eyebrow--purple">
-            Conecte-se ao Ecossistema
+            Contato AgroNexus
           </span>
 
           <h2 className="contact__title">
-            Vamos construir
-            <span className="hl-cyan"> uma conexão?</span>
+            O que você quer
+            <span className="hl-cyan">
+              {' '}fazer?
+            </span>
           </h2>
 
           <p className="contact__text">
-            Criadores, consumidores, produtores, veterinários,
-            biólogos, pesquisadores, instituições e parceiros
-            encontram na AgroNexus um ambiente para compartilhar
-            conhecimento, desenvolver projetos e criar conexões
-            responsáveis entre biodiversidade, ciência e mercado
-            nacional e internacional.
+            Comprar, vender, anunciar,
+            cadastrar uma clínica,
+            cadastrar um pet shop,
+            cadastrar uma ONG, adotar,
+            doar ou falar com a AgroNexus.
+            Escolha a opção e envie.
           </p>
 
           <div className="contact__areas">
             <span className="contact__areas-label">
-              Áreas de conexão
+              Áreas
             </span>
 
             <div className="contact__areas-grid">
               {AREAS.map((area) => (
-                <span className="contact__area" key={area}>
+                <span
+                  className="contact__area"
+                  key={area}
+                >
                   {area}
                 </span>
               ))}
@@ -288,112 +456,184 @@ export default function Contact() {
           </div>
 
           <ul className="contact__list">
-            {CONTACTS.map((contact) => {
-              const opensExternally =
-                contact.href.startsWith('http')
+            {CONTACTS.map(
+              (contact) => {
+                const opensExternally =
+                  contact.href.startsWith(
+                    'http'
+                  )
 
-              return (
-                <li key={contact.label}>
-                  <a
-                    href={contact.href}
-                    className="contact__item"
-                    target={
-                      opensExternally ? '_blank' : undefined
-                    }
-                    rel={
-                      opensExternally
-                        ? 'noopener noreferrer'
-                        : undefined
+                return (
+                  <li
+                    key={
+                      contact.label
                     }
                   >
-                    <span className="contact__item-icon">
-                      {contact.type === 'telegram' ? (
-                        <TelegramIcon />
-                      ) : (
-                        <img
-                          src={contact.icon}
-                          alt=""
-                          aria-hidden="true"
-                        />
-                      )}
-                    </span>
+                    <a
+                      href={
+                        contact.href
+                      }
+                      className="contact__item"
+                      target={
+                        opensExternally
+                          ? '_blank'
+                          : undefined
+                      }
+                      rel={
+                        opensExternally
+                          ? 'noopener noreferrer'
+                          : undefined
+                      }
+                    >
+                      <span className="contact__item-icon">
+                        {contact.type ===
+                        'telegram' ? (
+                          <TelegramIcon />
+                        ) : (
+                          <img
+                            src={
+                              contact.icon
+                            }
+                            alt=""
+                            aria-hidden="true"
+                          />
+                        )}
+                      </span>
 
-                    <span className="contact__item-text">
-                      <strong>{contact.label}</strong>
-                      <span>{contact.value}</span>
-                    </span>
-                  </a>
-                </li>
-              )
-            })}
+                      <span className="contact__item-text">
+                        <strong>
+                          {
+                            contact.label
+                          }
+                        </strong>
+
+                        <span>
+                          {
+                            contact.value
+                          }
+                        </span>
+                      </span>
+                    </a>
+                  </li>
+                )
+              }
+            )}
           </ul>
+
         </Reveal>
 
-        <Reveal className="contact__formwrap" delay={120}>
+        <Reveal
+          className="contact__formwrap"
+          delay={120}
+        >
           <form
             className="contact__form"
-            onSubmit={handleSubmit}
+            onSubmit={
+              handleSubmit
+            }
             noValidate
           >
+
             <div className="contact__form-head">
+
               <span className="form__eyebrow">
-                Como deseja se conectar?
+                Cadastro e contato
               </span>
 
               <h3>
-                Conte-nos sobre seu interesse, projeto ou proposta.
+                Preencha e envie.
               </h3>
 
               <p>
-                A AgroNexus analisará sua mensagem e encaminhará o
-                contato para a área mais adequada do ecossistema.
+                Sua solicitação será recebida
+                pela equipe AgroNexus.
               </p>
+
             </div>
 
-            <div className={fieldClass('nome')}>
-              <label htmlFor="nome">Nome completo</label>
+            <div
+              className={
+                fieldClass('nome')
+              }
+            >
+              <label htmlFor="nome">
+                Nome completo
+              </label>
 
               <input
                 id="nome"
                 name="nome"
                 type="text"
                 placeholder="Digite seu nome"
-                value={values.nome}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={
+                  values.nome
+                }
+                onChange={
+                  handleChange
+                }
+                onBlur={
+                  handleBlur
+                }
                 autoComplete="name"
               />
 
-              {touched.nome && errors.nome && (
-                <small className="field__msg">
-                  {errors.nome}
-                </small>
-              )}
+              {touched.nome &&
+                errors.nome && (
+                  <small className="field__msg">
+                    {
+                      errors.nome
+                    }
+                  </small>
+                )}
             </div>
 
             <div className="contact__form-row">
-              <div className={fieldClass('email')}>
-                <label htmlFor="email">E-mail</label>
+
+              <div
+                className={
+                  fieldClass(
+                    'email'
+                  )
+                }
+              >
+                <label htmlFor="email">
+                  E-mail
+                </label>
 
                 <input
                   id="email"
                   name="email"
                   type="email"
                   placeholder="seu@email.com"
-                  value={values.email}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={
+                    values.email
+                  }
+                  onChange={
+                    handleChange
+                  }
+                  onBlur={
+                    handleBlur
+                  }
                   autoComplete="email"
                 />
 
-                {touched.email && errors.email && (
-                  <small className="field__msg">
-                    {errors.email}
-                  </small>
-                )}
+                {touched.email &&
+                  errors.email && (
+                    <small className="field__msg">
+                      {
+                        errors.email
+                      }
+                    </small>
+                  )}
               </div>
 
-              <div className={fieldClass('telefone')}>
+              <div
+                className={
+                  fieldClass(
+                    'telefone'
+                  )
+                }
+              >
                 <label htmlFor="telefone">
                   Telefone ou WhatsApp
                 </label>
@@ -403,22 +643,39 @@ export default function Contact() {
                   name="telefone"
                   type="tel"
                   placeholder="+55..."
-                  value={values.telefone}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={
+                    values.telefone
+                  }
+                  onChange={
+                    handleChange
+                  }
+                  onBlur={
+                    handleBlur
+                  }
                   autoComplete="tel"
                 />
 
-                {touched.telefone && errors.telefone && (
-                  <small className="field__msg">
-                    {errors.telefone}
-                  </small>
-                )}
+                {touched.telefone &&
+                  errors.telefone && (
+                    <small className="field__msg">
+                      {
+                        errors.telefone
+                      }
+                    </small>
+                  )}
               </div>
+
             </div>
 
             <div className="contact__form-row">
-              <div className={fieldClass('localizacao')}>
+
+              <div
+                className={
+                  fieldClass(
+                    'localizacao'
+                  )
+                }
+              >
                 <label htmlFor="localizacao">
                   Cidade e país
                 </label>
@@ -428,21 +685,35 @@ export default function Contact() {
                   name="localizacao"
                   type="text"
                   placeholder="São Paulo, Brasil"
-                  value={values.localizacao}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={
+                    values.localizacao
+                  }
+                  onChange={
+                    handleChange
+                  }
+                  onBlur={
+                    handleBlur
+                  }
                   autoComplete="address-level2"
                 />
 
                 {touched.localizacao &&
                   errors.localizacao && (
                     <small className="field__msg">
-                      {errors.localizacao}
+                      {
+                        errors.localizacao
+                      }
                     </small>
                   )}
               </div>
 
-              <div className={fieldClass('empresa')}>
+              <div
+                className={
+                  fieldClass(
+                    'empresa'
+                  )
+                }
+              >
                 <label htmlFor="empresa">
                   Empresa ou organização
                 </label>
@@ -452,107 +723,175 @@ export default function Contact() {
                   name="empresa"
                   type="text"
                   placeholder="Opcional"
-                  value={values.empresa}
-                  onChange={handleChange}
-                  onBlur={handleBlur}
+                  value={
+                    values.empresa
+                  }
+                  onChange={
+                    handleChange
+                  }
+                  onBlur={
+                    handleBlur
+                  }
                   autoComplete="organization"
                 />
 
-                {touched.empresa && errors.empresa && (
-                  <small className="field__msg">
-                    {errors.empresa}
-                  </small>
-                )}
+                {touched.empresa &&
+                  errors.empresa && (
+                    <small className="field__msg">
+                      {
+                        errors.empresa
+                      }
+                    </small>
+                  )}
               </div>
+
             </div>
 
-            <div className={fieldClass('interesse')}>
+            <div
+              className={
+                fieldClass(
+                  'interesse'
+                )
+              }
+            >
               <label htmlFor="interesse">
-                Perfil de interesse
+                O que você quer fazer?
               </label>
 
               <select
                 id="interesse"
                 name="interesse"
-                value={values.interesse}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                value={
+                  values.interesse
+                }
+                onChange={
+                  handleChange
+                }
+                onBlur={
+                  handleBlur
+                }
               >
                 <option value="">
-                  Selecione a opção mais adequada
+                  Selecione
                 </option>
 
-                {INTERESTS.map((interest) => (
-                  <option value={interest} key={interest}>
-                    {interest}
-                  </option>
-                ))}
+                {INTERESTS.map(
+                  (interest) => (
+                    <option
+                      value={
+                        interest
+                      }
+                      key={
+                        interest
+                      }
+                    >
+                      {
+                        interest
+                      }
+                    </option>
+                  )
+                )}
               </select>
 
-              {touched.interesse && errors.interesse && (
-                <small className="field__msg">
-                  {errors.interesse}
-                </small>
-              )}
+              {touched.interesse &&
+                errors.interesse && (
+                  <small className="field__msg">
+                    {
+                      errors.interesse
+                    }
+                  </small>
+                )}
             </div>
 
-            <div className={fieldClass('mensagem')}>
+            <div
+              className={
+                fieldClass(
+                  'mensagem'
+                )
+              }
+            >
               <label htmlFor="mensagem">
-                Como deseja se conectar?
+                Mensagem
               </label>
 
               <textarea
                 id="mensagem"
                 name="mensagem"
                 rows="6"
-                placeholder="Conte-nos sobre seu projeto, interesse, necessidade ou ideia de parceria..."
-                value={values.mensagem}
-                onChange={handleChange}
-                onBlur={handleBlur}
+                placeholder="Descreva sua solicitação..."
+                value={
+                  values.mensagem
+                }
+                onChange={
+                  handleChange
+                }
+                onBlur={
+                  handleBlur
+                }
               />
 
-              {touched.mensagem && errors.mensagem && (
-                <small className="field__msg">
-                  {errors.mensagem}
-                </small>
-              )}
+              {touched.mensagem &&
+                errors.mensagem && (
+                  <small className="field__msg">
+                    {
+                      errors.mensagem
+                    }
+                  </small>
+                )}
             </div>
 
             <button
               type="submit"
               className="btn btn-primary form__submit"
-              disabled={status === 'sending'}
+              disabled={
+                status ===
+                'sending'
+              }
             >
-              {status === 'sending'
-                ? 'Iniciando conexão…'
-                : 'Iniciar conexão'}
+              {status ===
+              'sending'
+                ? 'Enviando…'
+                : 'Enviar'}
             </button>
 
-            {status === 'success' && (
+            {status ===
+              'success' && (
               <p
                 className="form__feedback form__feedback--ok"
                 role="status"
               >
-                Sua conexão foi iniciada. Nossa equipe analisará sua
-                mensagem e retornará em breve.
+                Enviado com sucesso.
+                A AgroNexus recebeu
+                sua solicitação.
               </p>
             )}
 
-            {status === 'error' && (
+            {status ===
+              'error' && (
               <p
                 className="form__feedback form__feedback--err"
                 role="alert"
               >
-                Não foi possível enviar sua mensagem agora. Tente
-                novamente em instantes.
+                Não foi possível
+                enviar agora.
+                Tente novamente.
               </p>
             )}
+
           </form>
         </Reveal>
+
       </div>
 
+      {/* ======================================================
+          APOIO
+          ====================================================== */}
+
       <div className="container contact__support-container">
-        <Reveal className="contact__support" delay={180}>
+        <Reveal
+          className="contact__support"
+          delay={180}
+        >
           <div
             className="contact__support-decoration"
             aria-hidden="true"
@@ -563,38 +902,42 @@ export default function Contact() {
           </div>
 
           <div className="contact__support-content">
+
             <span className="contact__support-eyebrow">
-              Projeto independente
+              Apoio
             </span>
 
             <h3 className="contact__support-title">
-              Ajude a expandir o
-              <span> Atlas Mundial da Biodiversidade.</span>
+              Apoie a
+              <span> AgroNexus.</span>
             </h3>
 
             <p className="contact__support-text">
-              Cada contribuição ajuda a AgroNexus a pesquisar novos
-              territórios, documentar espécies, desenvolver atlas
-              editoriais e manter o conhecimento disponível
-              gratuitamente.
+              Sua contribuição ajuda
+              a manter conteúdo,
+              pesquisa e infraestrutura.
             </p>
 
             <div
               className="contact__support-points"
               aria-label="Áreas beneficiadas pelo apoio"
             >
-              {SUPPORT_POINTS.map((point) => (
-                <span
-                  className="contact__support-point"
-                  key={point}
-                >
-                  {point}
-                </span>
-              ))}
+              {SUPPORT_POINTS.map(
+                (point) => (
+                  <span
+                    className="contact__support-point"
+                    key={point}
+                  >
+                    {point}
+                  </span>
+                )
+              )}
             </div>
+
           </div>
 
           <div className="contact__support-action">
+
             <span className="contact__support-label">
               Apoio voluntário
             </span>
@@ -604,7 +947,7 @@ export default function Contact() {
             </strong>
 
             <span className="contact__support-choice">
-              Você escolhe o valor da contribuição.
+              Você escolhe o valor.
             </span>
 
             <a
@@ -614,13 +957,18 @@ export default function Contact() {
               rel="noopener noreferrer"
               aria-label="Apoiar a AgroNexus pelo Asaas"
             >
-              <span>Apoiar a AgroNexus</span>
+              <span>
+                Apoiar a AgroNexus
+              </span>
+
               <SupportArrowIcon />
             </a>
 
             <small className="contact__support-note">
-              Pagamento seguro via Asaas com Pix, cartão ou boleto.
+              Pagamento seguro via Asaas
+              com Pix, cartão ou boleto.
             </small>
+
           </div>
         </Reveal>
       </div>
