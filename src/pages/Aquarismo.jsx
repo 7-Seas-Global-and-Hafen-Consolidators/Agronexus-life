@@ -23,14 +23,16 @@ const AQUARISMO_CATEGORIES = [
     name: 'Kinguios',
     description:
       'Oranda, Ranchu, Ryukin, Telescópio, Red Cap, Calico, Black Moor e outras variedades.',
-    image: PEXELS(26756414),
+    image: COMMONS('OrangeWhite Ryukin.jpg'),
+    imagePosition: 'center 45%',
   },
   {
     id: 'marinho',
     name: 'Marinho e Reef',
     description:
       'Ocellaris, peixes marinhos, invertebrados, corais, anêmonas, nano reef, mini reef e reef.',
-    image: PEXELS(29216700),
+    image: COMMONS('Ocellaris clownfish bright.jpg'),
+    imagePosition: 'center 48%',
   },
   {
     id: 'aquarios',
@@ -104,9 +106,10 @@ const PRODUCTS = [
       'Uma das variedades mais reconhecidas de Kinguio ornamental.',
     price: 19.9,
     installments: null,
-    image: COMMONS('Fish Food pellets.jpg'),
-    imageAlt: 'Pellets de alimentação para peixes',
-    imageCredit: 'USFWS / Wikimedia Commons · CC BY 2.0',
+    image: COMMONS('Red cap gold.jpg'),
+    imageAlt: 'Kinguio Oranda Red Cap branco e vermelho em close',
+    imageCredit: 'Souravgg8 / Wikimedia Commons · CC BY-SA 4.0',
+    imagePosition: 'center 45%',
     variants: ['Pequeno', 'Médio', 'Grande'],
   },
   {
@@ -118,8 +121,9 @@ const PRODUCTS = [
       'Variedade ornamental clássica, inclusive em versões Black Moor, Calico e Albino.',
     price: 14.9,
     installments: null,
-    image: UNSPLASH('photo-1763770448943-11a878b4e1a2'),
-    imageAlt: 'Kinguio em aquário escuro',
+    image: COMMONS('Black Moor Goldfish.jpg'),
+    imageAlt: 'Kinguio Telescópio Black Moor preto em perfil',
+    imagePosition: 'center 48%',
     variants: ['Preto', 'Calico', 'Albino'],
   },
   {
@@ -131,8 +135,10 @@ const PRODUCTS = [
       'Variedade ornamental de corpo arredondado e perfil característico.',
     price: 69.9,
     installments: 2,
-    image: UNSPLASH('photo-1674966545351-e4a468beeb0c'),
-    imageAlt: 'Dois kinguios ornamentais em aquário',
+    image: COMMONS('ZImage7.jpg'),
+    imageAlt: 'Kinguio Ranchu Calico multicolorido',
+    imageCredit: 'Debaserr / Wikimedia Commons · GFDL',
+    imagePosition: 'center 48%',
     variants: ['Red', 'Red White', 'Calico', 'Black'],
   },
   {
@@ -144,8 +150,10 @@ const PRODUCTS = [
       'Peixe-palhaço ornamental para sistemas marinhos compatíveis.',
     price: 119.9,
     installments: 3,
-    image: UNSPLASH('photo-1755628140716-eafd1f60def1'),
-    imageAlt: 'Ocellaris em aquário reef',
+    image: COMMONS('Black clownfish.jpg'),
+    imageAlt: 'Ocellaris Black entre anêmonas',
+    imageCredit: 'Shek Graham / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 48%',
     variants: ['Orange', 'Black', 'Designer'],
   },
   {
@@ -170,8 +178,9 @@ const PRODUCTS = [
       'Aquário de vidro compacto para pequenos espaços e projetos de aquarismo.',
     price: 169.9,
     installments: 5,
-    image: UNSPLASH('photo-1781695125669-b21426a2bdf3'),
-    imageAlt: 'Nano aquário plantado com iluminação superior',
+    image: COMMONS('Planted Nano Aquarium.JPG'),
+    imageAlt: 'Nano aquário plantado compacto',
+    imagePosition: 'center 50%',
     variants: ['20 L', '30 L', '40 L'],
   },
   {
@@ -183,8 +192,9 @@ const PRODUCTS = [
       'Aquário vazio em vidro para montagem personalizada.',
     price: 129.9,
     installments: 4,
-    image: UNSPLASH('photo-1687482383862-aaa7360e8a57'),
-    imageAlt: 'Aquário de vidro compacto com plantas',
+    image: COMMONS('Empty aquarium.jpg'),
+    imageAlt: 'Aquário de vidro vazio',
+    imagePosition: 'center 50%',
     variants: ['20 cm', '25 cm', '30 cm', '40 cm'],
   },
   {
@@ -266,8 +276,10 @@ const PRODUCTS = [
       'Alimento específico para Kinguios e variedades ornamentais.',
     price: 19.9,
     installments: null,
-    image: PEXELS(26756414),
-    imageAlt: 'Kinguio ornamental em aquário',
+    image: COMMONS('Fish Feed Pellets.jpg'),
+    imageAlt: 'Pellets de alimentação para peixes ornamentais',
+    imageCredit: 'Narek75 / Wikimedia Commons · CC BY-SA 4.0',
+    imagePosition: 'center 50%',
     variants: ['30 g', '100 g', '300 g'],
   },
 ]
@@ -415,6 +427,11 @@ export default function Aquarismo() {
                     src={category.image}
                     alt=""
                     loading="lazy"
+                    style={{
+                      objectPosition:
+                        category.imagePosition ||
+                        'center',
+                    }}
                   />
 
                   <span className="aqua-category__shade" />
@@ -458,6 +475,11 @@ export default function Aquarismo() {
                       src={product.image}
                       alt={product.imageAlt}
                       loading="lazy"
+                      style={{
+                        objectPosition:
+                          product.imagePosition ||
+                          'center',
+                      }}
                     />
 
                     <span>
