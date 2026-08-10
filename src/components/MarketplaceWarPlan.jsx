@@ -1,21 +1,30 @@
 import { useMemo, useState } from 'react'
 import '../styles/MarketplaceWarPlan.css'
 
+/* ============================================================
+   AGRONEXUS™ — MARKETPLACE WAR PLAN
+   Arquitetura comercial centralizada
+   - Categorias responsivas
+   - Produtos com múltiplas categorias
+   - Guias Oficiais visíveis em todas as páginas
+   - Checkout direto quando configurado
+   ============================================================ */
+
 const PEXELS = (id) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1000&fit=crop`
 
 /* ============================================================
-   PRODUTOS REAIS
-   ------------------------------------------------------------
+   PRODUTOS
    Um produto pode pertencer a várias categorias.
-   Exemplo:
+
+   Exemplos:
    - Guia Periquito = Aves + Guias Oficiais
    - Guia Calopsitas = Aves + Guias Oficiais
+   - Guia Nano Reef = Aquarismo + Equipamentos + Guias Oficiais
 
-   Não cadastrar produto aqui sem:
-   1. produto real
-   2. preço definido
-   3. checkout real
+   REGRA:
+   Produto sem checkout real pode aparecer em pré-lançamento,
+   mas o botão de compra fica desabilitado até o link ser inserido.
    ============================================================ */
 
 const PRODUCTS = [
@@ -27,7 +36,8 @@ const PRODUCTS = [
       'publicacoes',
     ],
 
-    categoryLabel: 'Guias Oficiais · Aves',
+    categoryLabel:
+      'Guias Oficiais · Aves',
 
     name:
       'Guia Oficial AgroNexus — Periquito Australiano',
@@ -54,12 +64,12 @@ const PRODUCTS = [
       'Periquitos australianos coloridos pousados em um galho',
 
     variants: [
-      'Verde',
-      'Azul',
-      'Amarelo',
-      'Branco',
-      'Violeta',
-      'Cobalto',
+      '369 páginas',
+      'Comportamento',
+      'Genética',
+      'Mutações',
+      'Saúde',
+      'Reprodução',
     ],
   },
 
@@ -71,7 +81,8 @@ const PRODUCTS = [
       'publicacoes',
     ],
 
-    categoryLabel: 'Guias Oficiais · Aves',
+    categoryLabel:
+      'Guias Oficiais · Aves',
 
     name:
       'Guia Oficial AgroNexus — Calopsitas',
@@ -95,15 +106,61 @@ const PRODUCTS = [
     image: PEXELS(12181403),
 
     imageAlt:
-      'Aves coloridas em ambiente de criação doméstica',
+      'Calopsitas em ambiente de criação doméstica',
 
     variants: [
-      'Cinza',
-      'Lutino',
-      'Pérola',
-      'Arlequim',
-      'Cara branca',
-      'Canela',
+      'Comportamento',
+      'Mutações',
+      'Manejo',
+      'Saúde',
+      'Reprodução',
+      'Bem-estar',
+    ],
+  },
+
+  {
+    id: 'guia-marinho-nano-reef',
+
+    categories: [
+      'aquarismo',
+      'equipamentos',
+      'publicacoes',
+    ],
+
+    categoryLabel:
+      'Guias Oficiais · Aquarismo',
+
+    name:
+      'Guia Oficial AgroNexus — Marinho Nano Reef',
+
+    description:
+      'Publicação digital completa com 231 páginas sobre montagem, ciclagem, parâmetros, filtragem, iluminação, fauna, corais, equipamentos, manutenção e estabilidade de sistemas marinhos e nano reef.',
+
+    price: 19.90,
+
+    oldPrice: null,
+
+    installments: null,
+
+    checkout:
+      'https://www.asaas.com/c/aguqwb595g73fw43',
+
+    badge: 'Preço de lançamento',
+
+    delivery: 'Produto digital · 231 páginas',
+
+    image: PEXELS(29216700),
+
+    imageAlt:
+      'Aquário marinho nano reef com peixes-palhaço e corais',
+
+    variants: [
+      '231 páginas',
+      'Nano Reef',
+      'Marinho',
+      'Corais',
+      'Ocellaris',
+      'Equipamentos',
     ],
   },
 ]
@@ -410,7 +467,7 @@ const CATEGORIES = [
       'Publicações digitais AgroNexus com conteúdo aprofundado, preço visível e checkout direto.',
 
     keywords:
-      'guia livro ebook publicacao periquito calopsita manual',
+      'guia livro ebook publicacao periquito calopsita nano reef marinho manual',
 
     image: PEXELS(34039458),
 
@@ -423,6 +480,7 @@ const CATEGORIES = [
     chips: [
       'Periquitos',
       'Calopsitas',
+      'Nano Reef',
       'Aquarismo',
       'Plantas',
       'Cuidados',
@@ -531,6 +589,143 @@ function getInstallmentText(product) {
 }
 
 /* ============================================================
+   CARD DE PRODUTO
+   Reutilizado no catálogo e na faixa global de Guias Oficiais.
+   ============================================================ */
+
+function ProductCard({ product, guideCard = false }) {
+  const installmentText =
+    getInstallmentText(product)
+
+  const hasCheckout =
+    Boolean(product.checkout)
+
+  return (
+    <article
+      className={`marketplace-war__product ${
+        guideCard
+          ? 'marketplace-war__product--guide'
+          : ''
+      }`.trim()}
+    >
+
+      <div className="marketplace-war__product-image">
+
+        <img
+          src={product.image}
+          alt={product.imageAlt}
+          loading="lazy"
+        />
+
+        <span className="marketplace-war__badge">
+          {product.badge}
+        </span>
+
+      </div>
+
+      <div className="marketplace-war__product-top">
+
+        <span>
+          {product.categoryLabel}
+        </span>
+
+        <span>
+          {product.delivery}
+        </span>
+
+      </div>
+
+      <div className="marketplace-war__product-copy">
+
+        <h3>
+          {product.name}
+        </h3>
+
+        <p>
+          {product.description}
+        </p>
+
+        <div className="marketplace-war__variants">
+
+          {product.variants.map(
+            (variant) => (
+              <span key={variant}>
+                {variant}
+              </span>
+            )
+          )}
+
+        </div>
+
+      </div>
+
+      <div className="marketplace-war__price-block">
+
+        {product.oldPrice ? (
+          <del>
+            {formatBRL(
+              product.oldPrice
+            )}
+          </del>
+        ) : null}
+
+        <strong>
+          {formatBRL(
+            product.price
+          )}
+        </strong>
+
+        {installmentText ? (
+          <span>
+            {installmentText}
+          </span>
+        ) : (
+          <span>
+            Pagamento no checkout
+          </span>
+        )}
+
+      </div>
+
+      {hasCheckout ? (
+        <a
+          href={product.checkout}
+          className="marketplace-war__buy"
+          target="_blank"
+          rel="noopener noreferrer"
+        >
+          Comprar
+
+          <span aria-hidden="true">
+            →
+          </span>
+        </a>
+      ) : (
+        <button
+          type="button"
+          className="marketplace-war__buy marketplace-war__buy--disabled"
+          disabled
+          aria-disabled="true"
+        >
+          Checkout em configuração
+
+          <span aria-hidden="true">
+            →
+          </span>
+        </button>
+      )}
+
+      <small>
+        {hasCheckout
+          ? 'Checkout processado pela Guiropa World.'
+          : 'Produto publicado. Checkout será ativado após inserção do link de pagamento.'}
+      </small>
+
+    </article>
+  )
+}
+
+/* ============================================================
    MARKETPLACE
    ============================================================ */
 
@@ -596,17 +791,7 @@ export default function MarketplaceWarPlan({
 
   /* ==========================================================
      PRODUTOS
-     ----------------------------------------------------------
-     AQUI ESTÁ A CORREÇÃO PRINCIPAL.
-
-     Antes:
-       product.category === activeCategory
-
-     Agora:
-       product.categories.includes(activeCategory)
-
-     Isso permite que o mesmo produto apareça
-     em mais de uma categoria.
+     O mesmo produto pode aparecer em várias categorias.
      ========================================================== */
 
   const filteredProducts = useMemo(() => {
@@ -644,6 +829,21 @@ export default function MarketplaceWarPlan({
     activeCategory,
     normalizedSearch,
   ])
+
+  /* ==========================================================
+     GUIAS OFICIAIS GLOBAIS
+     Esta coleção independe da categoria ativa.
+     Por isso os Guias aparecem em TODAS as páginas.
+     ========================================================== */
+
+  const officialGuides = useMemo(() => {
+    return PRODUCTS.filter(
+      (product) =>
+        product.categories.includes(
+          'publicacoes'
+        )
+    )
+  }, [])
 
   /* ==========================================================
      CATEGORIA
@@ -695,10 +895,7 @@ export default function MarketplaceWarPlan({
      ========================================================== */
 
   return (
-    <main
-      id="marketplace"
-      className="marketplace-war"
-    >
+    <main className="marketplace-war">
       <div className="marketplace-war__container">
 
         {!embedded ? (
@@ -787,7 +984,7 @@ export default function MarketplaceWarPlan({
                 : ''
             }
             onClick={() =>
-              setActiveCategory('todos')
+              selectCategory('todos')
             }
           >
             Todos
@@ -1062,138 +1259,12 @@ export default function MarketplaceWarPlan({
             <div className="marketplace-war__products">
 
               {filteredProducts.map(
-                (product) => {
-
-                  const installmentText =
-                    getInstallmentText(
-                      product
-                    )
-
-                  return (
-
-                    <article
-                      className="marketplace-war__product"
-                      key={product.id}
-                    >
-
-                      <div className="marketplace-war__product-image">
-
-                        <img
-                          src={product.image}
-                          alt={
-                            product.imageAlt
-                          }
-                          loading="lazy"
-                        />
-
-                        <span className="marketplace-war__badge">
-                          {product.badge}
-                        </span>
-
-                      </div>
-
-                      <div className="marketplace-war__product-top">
-
-                        <span>
-                          {
-                            product.categoryLabel
-                          }
-                        </span>
-
-                        <span>
-                          {
-                            product.delivery
-                          }
-                        </span>
-
-                      </div>
-
-                      <div className="marketplace-war__product-copy">
-
-                        <h3>
-                          {product.name}
-                        </h3>
-
-                        <p>
-                          {
-                            product.description
-                          }
-                        </p>
-
-                        <div className="marketplace-war__variants">
-
-                          {product.variants.map(
-                            (variant) => (
-                              <span
-                                key={variant}
-                              >
-                                {variant}
-                              </span>
-                            )
-                          )}
-
-                        </div>
-
-                      </div>
-
-                      <div className="marketplace-war__price-block">
-
-                        {product.oldPrice ? (
-                          <del>
-                            {formatBRL(
-                              product.oldPrice
-                            )}
-                          </del>
-                        ) : null}
-
-                        <strong>
-                          {formatBRL(
-                            product.price
-                          )}
-                        </strong>
-
-                        {installmentText ? (
-                          <span>
-                            {
-                              installmentText
-                            }
-                          </span>
-                        ) : (
-                          <span>
-                            Pagamento no
-                            checkout
-                          </span>
-                        )}
-
-                      </div>
-
-                      <a
-                        href={
-                          product.checkout
-                        }
-                        className="marketplace-war__buy"
-                        target="_blank"
-                        rel="noopener noreferrer"
-                      >
-                        Comprar
-
-                        <span
-                          aria-hidden="true"
-                        >
-                          →
-                        </span>
-
-                      </a>
-
-                      <small>
-                        Checkout processado pela
-                        Guiropa World.
-                      </small>
-
-                    </article>
-
-                  )
-                }
+                (product) => (
+                  <ProductCard
+                    key={product.id}
+                    product={product}
+                  />
+                )
               )}
 
             </div>
@@ -1235,6 +1306,53 @@ export default function MarketplaceWarPlan({
             </div>
 
           )}
+
+        </section>
+
+        {/* ====================================================
+            GUIAS OFICIAIS — VISÍVEIS EM TODAS AS PÁGINAS
+            ==================================================== */}
+
+        <section
+          id="guias-oficiais"
+          className="marketplace-war__section marketplace-war__section--guides"
+        >
+
+          <header className="marketplace-war__section-head">
+
+            <div>
+
+              <span>
+                Guias Oficiais AgroNexus
+              </span>
+
+              <h2>
+                Informação também é produto.
+              </h2>
+
+            </div>
+
+            <p>
+              Publicações digitais especializadas,
+              conteúdo aprofundado, preço visível
+              e acesso direto pelo checkout.
+            </p>
+
+          </header>
+
+          <div className="marketplace-war__products marketplace-war__products--guides">
+
+            {officialGuides.map(
+              (product) => (
+                <ProductCard
+                  key={`guide-${product.id}`}
+                  product={product}
+                  guideCard
+                />
+              )
+            )}
+
+          </div>
 
         </section>
 
