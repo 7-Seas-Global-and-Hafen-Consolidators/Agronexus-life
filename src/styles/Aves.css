@@ -578,3 +578,125 @@
     transform: none;
   }
 }
+
+
+/* ============================================================
+   ARSENAL V3 — MAIS DENSIDADE, MAIS VIDA, MAIS COMPRA
+   ============================================================ */
+
+.birds-store__category-grid {
+  grid-template-columns: repeat(4, minmax(0, 1fr));
+}
+
+.bird-category {
+  min-height: 260px;
+}
+
+.birds-store__product-grid {
+  grid-template-columns: repeat(5, minmax(0, 1fr));
+}
+
+.bird-product__media {
+  height: 215px;
+}
+
+.bird-product__body {
+  min-height: 410px;
+  padding: 18px;
+}
+
+.bird-product h3 {
+  font-size: 1.22rem;
+}
+
+.bird-product__price strong {
+  font-size: clamp(1.85rem, 2.5vw, 2.45rem);
+}
+
+.birds-store__commercial-strip {
+  margin-top: clamp(70px, 8vw, 110px);
+  padding: clamp(30px, 5vw, 58px);
+  display: grid;
+  grid-template-columns: minmax(0, 1fr) auto;
+  gap: 34px;
+  align-items: center;
+  background: #087a4b;
+  color: #ffffff;
+}
+
+.birds-store__commercial-strip > div > span {
+  display: block;
+  color: rgba(255, 255, 255, 0.72);
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .1em;
+  text-transform: uppercase;
+}
+
+.birds-store__commercial-strip strong {
+  display: block;
+  margin-top: 8px;
+  font-size: clamp(2rem, 4vw, 3.8rem);
+  line-height: .95;
+  letter-spacing: -.05em;
+}
+
+.birds-store__commercial-strip p {
+  max-width: 700px;
+  margin: 16px 0 0;
+  color: rgba(255, 255, 255, .82);
+  line-height: 1.65;
+}
+
+.birds-store__commercial-strip button {
+  min-width: 210px;
+  min-height: 50px;
+  padding: 12px 18px;
+  border: 1px solid #ffffff;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111411;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+@media (max-width: 1240px) {
+  .birds-store__product-grid {
+    grid-template-columns: repeat(4, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 1040px) {
+  .birds-store__category-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+
+  .birds-store__product-grid {
+    grid-template-columns: repeat(3, minmax(0, 1fr));
+  }
+}
+
+@media (max-width: 760px) {
+  .birds-store__category-grid,
+  .birds-store__product-grid {
+    grid-template-columns: repeat(2, minmax(0, 1fr));
+  }
+
+  .birds-store__commercial-strip {
+    grid-template-columns: 1fr;
+  }
+
+  .birds-store__commercial-strip button {
+    width: 100%;
+  }
+}
+
+@media (max-width: 560px) {
+  .birds-store__category-grid,
+  .birds-store__product-grid {
+    grid-template-columns: 1fr;
+  }
+}
