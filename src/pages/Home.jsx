@@ -141,6 +141,15 @@ export default function Home() {
   const activeHero =
     HERO_VIDEOS[heroIndex]
 
+  function scrollToSection(sectionId) {
+    document
+      .getElementById(sectionId)
+      ?.scrollIntoView({
+        behavior: 'smooth',
+        block: 'start',
+      })
+  }
+
   return (
     <main>
 
@@ -190,7 +199,7 @@ export default function Home() {
 
             <div className="commerce-hero__actions">
               <a
-                href="#catalogo-marketplace"
+                href="#/marketplace"
                 className="commerce-button commerce-button--primary"
               >
                 Comprar
@@ -200,12 +209,15 @@ export default function Home() {
                 </span>
               </a>
 
-              <a
-                href="#acoes-agronexus"
+              <button
+                type="button"
                 className="commerce-button commerce-button--secondary"
+                onClick={() =>
+                  scrollToSection('acoes-agronexus')
+                }
               >
                 Vender ou anunciar
-              </a>
+              </button>
             </div>
 
             <span className="commerce-guiropa">
@@ -468,7 +480,7 @@ export default function Home() {
             </div>
 
             <a
-              href="#produtos-disponiveis"
+              href="#/marketplace"
               className="commerce-button commerce-button--light"
             >
               Comprar guias
@@ -680,13 +692,18 @@ export default function Home() {
               </p>
             </div>
 
-            <a href="#acoes-agronexus">
+            <button
+              type="button"
+              onClick={() =>
+                scrollToSection('acoes-agronexus')
+              }
+            >
               Ver opções
 
               <span aria-hidden="true">
                 →
               </span>
-            </a>
+            </button>
           </div>
 
           <p className="commerce-final__institution">
