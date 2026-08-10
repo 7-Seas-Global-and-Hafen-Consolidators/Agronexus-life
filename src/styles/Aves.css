@@ -1,789 +1,520 @@
 /* ============================================================
-   AGRONEXUS™ — AVES TOTAL WAR
-   Branco · Fotografia · Cor · Preço · Compra
+   AGRONEXUS™ — AVES V7
+   Marketplace fotográfico · sem RPG · sem CSS empilhado
    ============================================================ */
+
+.birds-store,
+.birds-store *,
+.birds-store *::before,
+.birds-store *::after { box-sizing: border-box; }
 
 .birds-store {
   min-height: 100vh;
-  background: #f5f7f5;
-  color: #111411;
+  background: #f4f6f4;
+  color: #101410;
 }
 
-.birds-store *,
-.birds-store *::before,
-.birds-store *::after {
-  box-sizing: border-box;
-}
-
-.birds-store img {
-  display: block;
-  width: 100%;
-}
-
-.birds-store a {
-  text-decoration: none;
-}
-
+.birds-store img { display:block; width:100%; }
+.birds-store a { text-decoration:none; }
 .birds-store button,
-.birds-store input {
-  font: inherit;
-}
+.birds-store input { font:inherit; }
 
 .birds-store__container {
-  width: min(1380px, calc(100% - 48px));
-  margin-inline: auto;
+  width:min(1420px, calc(100% - 48px));
+  margin-inline:auto;
 }
 
 /* HERO */
-
 .birds-store__hero {
-  position: relative;
-  min-height: 600px;
-  overflow: hidden;
-  background: #07100c;
-  color: #ffffff;
+  position:relative;
+  min-height:690px;
+  overflow:hidden;
+  background:#07100c;
+  color:#fff;
 }
 
 .birds-store__hero-image,
-.birds-store__hero-shade {
-  position: absolute;
-  inset: 0;
+.birds-store__hero-overlay {
+  position:absolute;
+  inset:0;
 }
 
 .birds-store__hero-image {
-  height: 100%;
-  object-fit: cover;
-  object-position: center 42%;
+  height:100%;
+  object-fit:cover;
+  object-position:center 46%;
+  filter:saturate(1.05) contrast(1.04);
 }
 
-.birds-store__hero-shade {
-  background:
-    linear-gradient(
-      90deg,
-      rgba(5, 10, 7, 0.94) 0%,
-      rgba(5, 10, 7, 0.76) 38%,
-      rgba(5, 10, 7, 0.18) 75%,
-      rgba(5, 10, 7, 0.04) 100%
-    );
+.birds-store__hero-overlay {
+  background:linear-gradient(90deg, rgba(3,8,5,.94) 0%, rgba(3,8,5,.78) 34%, rgba(3,8,5,.38) 58%, rgba(3,8,5,.08) 100%);
 }
 
-.birds-store__hero-inner {
-  position: relative;
-  z-index: 2;
-  min-height: 600px;
-  padding: 84px 0;
-  display: flex;
-  align-items: flex-start;
-  justify-content: center;
-  flex-direction: column;
+.birds-store__hero-content {
+  position:relative;
+  z-index:2;
+  width:min(1420px, calc(100% - 48px));
+  min-height:690px;
+  margin-inline:auto;
+  padding:116px 0 88px;
+  display:flex;
+  justify-content:center;
+  align-items:flex-start;
+  flex-direction:column;
 }
 
-.birds-store__hero-inner > span {
-  color: #a1e6bd;
-  font-size: 0.72rem;
-  font-weight: 900;
-  letter-spacing: 0.12em;
-  text-transform: uppercase;
+.birds-store__hero-content > span,
+.birds-store__section-head > span,
+.birds-store__section-head > div > span,
+.birds-store__search span,
+.birds-store__manifesto > span {
+  color:#087a4b;
+  font-size:.7rem;
+  font-weight:900;
+  letter-spacing:.12em;
+  text-transform:uppercase;
 }
+
+.birds-store__hero-content > span { color:#9be5b9; }
 
 .birds-store__hero h1 {
-  margin: 16px 0 0;
-  color: #ffffff;
-  font-size: clamp(4rem, 10vw, 8.6rem);
-  font-weight: 900;
-  line-height: 0.84;
-  letter-spacing: -0.07em;
-  text-transform: uppercase;
+  max-width:800px;
+  margin:17px 0 0;
+  color:#fff;
+  font-size:clamp(4.8rem,10vw,9rem);
+  font-weight:950;
+  line-height:.8;
+  letter-spacing:-.075em;
+  text-transform:uppercase;
 }
 
-.birds-store__hero h1 strong {
-  color: #9ee8bd;
-  font-weight: inherit;
-}
+.birds-store__hero h1 strong { color:#9be5b9; font-weight:inherit; }
 
 .birds-store__hero p {
-  max-width: 720px;
-  margin: 27px 0 0;
-  color: rgba(255,255,255,.82);
-  font-size: 1.03rem;
-  line-height: 1.72;
+  max-width:610px;
+  margin:30px 0 0;
+  color:rgba(255,255,255,.78);
+  font-size:1.08rem;
+  line-height:1.7;
 }
 
 .birds-store__hero a {
-  min-height: 52px;
-  margin-top: 30px;
-  padding: 12px 20px;
-  display: inline-flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 34px;
-  border-radius: 4px;
-  background: #ffffff;
-  color: #111411;
-  font-size: .7rem;
-  font-weight: 900;
-  letter-spacing: .07em;
-  text-transform: uppercase;
+  min-width:168px;
+  min-height:54px;
+  margin-top:34px;
+  padding:0 18px;
+  display:inline-flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:28px;
+  border-radius:3px;
+  background:#fff;
+  color:#101410;
+  font-size:.69rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  transition:transform 160ms ease, background 160ms ease;
 }
 
-.birds-store__hero a:hover {
-  background: #98e4b6;
-}
+.birds-store__hero a:hover { transform:translateY(-2px); background:#a0e7bd; }
 
 /* BUSCA */
-
 .birds-store__search {
-  margin-top: 28px;
-  padding: 26px;
-  border: 1px solid #d8dfda;
-  background: #ffffff;
+  margin-top:30px;
+  padding:18px;
+  display:grid;
+  grid-template-columns:minmax(0,1fr) auto;
+  gap:10px;
+  align-items:end;
+  border:1px solid #d6ddd7;
+  background:#fff;
 }
 
-.birds-store__search label {
-  display: block;
-  margin-bottom: 10px;
-  font-size: .7rem;
-  font-weight: 900;
-  letter-spacing: .08em;
-  text-transform: uppercase;
-}
-
-.birds-store__search > div {
-  display: flex;
-  gap: 8px;
-}
+.birds-store__search > div { min-width:0; }
+.birds-store__search span { display:block; margin-bottom:9px; }
 
 .birds-store__search input {
-  flex: 1;
-  min-width: 0;
-  min-height: 56px;
-  padding: 0 17px;
-  border: 1px solid #b9c3bc;
-  border-radius: 4px;
-  outline: none;
-  background: #ffffff;
-  color: #111411;
+  width:100%;
+  min-height:56px;
+  padding:0 18px;
+  border:1px solid #c8d0ca;
+  border-radius:3px;
+  outline:none;
+  background:#fff;
+  color:#101410;
 }
 
 .birds-store__search input:focus {
-  border-color: #087a4b;
-  box-shadow: 0 0 0 3px rgba(8,122,75,.08);
+  border-color:#087a4b;
+  box-shadow:0 0 0 3px rgba(8,122,75,.08);
 }
 
-.birds-store__search button {
-  min-width: 110px;
-  min-height: 56px;
-  padding: 0 18px;
-  border: 1px solid #111411;
-  border-radius: 4px;
-  background: #111411;
-  color: #ffffff;
-  font-size: .7rem;
-  font-weight: 900;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  cursor: pointer;
+.birds-store__search button,
+.birds-store__empty button {
+  min-height:56px;
+  padding:0 22px;
+  border:0;
+  border-radius:3px;
+  background:#101410;
+  color:#fff;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
+  cursor:pointer;
 }
 
 /* SEÇÕES */
-
 .birds-store__categories,
-.birds-store__products {
-  padding: clamp(74px, 8vw, 116px) 0 0;
-}
+.birds-store__products { padding-top:clamp(84px,8vw,124px); }
 
-.birds-store__section-head {
-  margin-bottom: 30px;
-}
+.birds-store__section-head { margin-bottom:34px; }
 
-.birds-store__section-head > span {
-  display: block;
-  margin-bottom: 10px;
-  color: #087a4b;
-  font-size: .7rem;
-  font-weight: 900;
-  letter-spacing: .1em;
-  text-transform: uppercase;
+.birds-store__section-head > span,
+.birds-store__section-head > div > span {
+  display:block;
+  margin-bottom:11px;
 }
 
 .birds-store__section-head h2 {
-  max-width: 1050px;
-  margin: 0;
-  color: #111411;
-  font-size: clamp(2.7rem, 6vw, 5.4rem);
-  font-weight: 900;
-  line-height: .92;
-  letter-spacing: -.06em;
+  max-width:1120px;
+  margin:0;
+  color:#101410;
+  font-size:clamp(3rem,6vw,6rem);
+  font-weight:950;
+  line-height:.88;
+  letter-spacing:-.065em;
+}
+
+.birds-store__section-head--products {
+  display:flex;
+  align-items:flex-end;
+  justify-content:space-between;
+  gap:28px;
+}
+
+.birds-store__section-head--products > p {
+  flex:0 0 auto;
+  margin:0 0 8px;
+  color:#707a73;
+  font-size:.8rem;
+  font-weight:750;
 }
 
 /* CATEGORIAS */
-
 .birds-store__category-grid {
-  display: grid;
-  grid-template-columns: repeat(3, minmax(0,1fr));
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(2,minmax(0,1fr));
+  gap:16px;
 }
 
 .bird-category {
-  position: relative;
-  min-height: 300px;
-  padding: 0;
-  overflow: hidden;
-  border: 0;
-  border-radius: 7px;
-  background: #111411;
-  color: #ffffff;
-  text-align: left;
-  cursor: pointer;
+  position:relative;
+  min-height:470px;
+  padding:0;
+  overflow:hidden;
+  border:0;
+  border-radius:7px;
+  background:#0d120e;
+  color:#fff;
+  text-align:left;
+  cursor:pointer;
+}
+
+.bird-category img,
+.bird-category__overlay {
+  position:absolute;
+  inset:0;
 }
 
 .bird-category img {
-  position: absolute;
-  inset: 0;
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform 220ms ease,
-    filter 220ms ease;
+  height:100%;
+  object-fit:cover;
+  transition:transform 260ms ease, filter 260ms ease;
 }
 
-.bird-category__shade {
-  position: absolute;
-  inset: 0;
-  background:
-    linear-gradient(
-      180deg,
-      rgba(5,9,6,.04) 15%,
-      rgba(5,9,6,.88) 100%
-    );
+.bird-category__overlay {
+  background:linear-gradient(180deg, rgba(4,8,5,.02) 15%, rgba(4,8,5,.18) 48%, rgba(4,8,5,.93) 100%);
 }
 
 .bird-category__copy {
-  position: absolute;
-  z-index: 2;
-  right: 20px;
-  bottom: 20px;
-  left: 20px;
+  position:absolute;
+  z-index:2;
+  right:26px;
+  bottom:26px;
+  left:26px;
 }
 
 .bird-category__copy strong {
-  display: block;
-  color: #ffffff;
-  font-size: 1.55rem;
-  font-weight: 900;
-  line-height: 1;
+  display:block;
+  color:#fff;
+  font-size:clamp(2rem,3vw,3.4rem);
+  font-weight:900;
+  line-height:.95;
+  letter-spacing:-.05em;
 }
 
-.bird-category__copy small {
-  display: block;
-  margin-top: 8px;
-  color: rgba(255,255,255,.74);
-  font-size: .72rem;
-  line-height: 1.45;
+.bird-category__copy em {
+  display:block;
+  margin-top:10px;
+  color:rgba(255,255,255,.72);
+  font-size:.8rem;
+  font-style:normal;
 }
 
 .bird-category:hover img {
-  transform: scale(1.035);
-  filter: saturate(1.08) contrast(1.03);
+  transform:scale(1.025);
+  filter:saturate(1.08) contrast(1.03);
 }
 
-.bird-category.is-active {
-  box-shadow: 0 0 0 3px #087a4b;
-}
+.bird-category.is-active { box-shadow:0 0 0 3px #087a4b; }
 
 /* PRODUTOS */
-
 .birds-store__product-grid {
-  display: grid;
-  grid-template-columns: repeat(4, minmax(0,1fr));
-  gap: 12px;
+  display:grid;
+  grid-template-columns:repeat(3,minmax(0,1fr));
+  gap:18px;
 }
 
 .bird-product {
-  min-width: 0;
-  overflow: hidden;
-  border: 1px solid #d8dfda;
-  border-radius: 7px;
-  background: #ffffff;
-  transition:
-    transform 150ms ease,
-    border-color 150ms ease,
-    box-shadow 150ms ease;
+  min-width:0;
+  overflow:hidden;
+  border:1px solid #d7ddd8;
+  border-radius:7px;
+  background:#fff;
+  transition:transform 180ms ease, box-shadow 180ms ease, border-color 180ms ease;
 }
 
 .bird-product:hover {
-  transform: translateY(-2px);
-  border-color: #aeb9b1;
-  box-shadow: 0 10px 28px rgba(19,31,23,.06);
+  transform:translateY(-3px);
+  border-color:#aab5ad;
+  box-shadow:0 16px 38px rgba(17,30,21,.08);
 }
 
 .bird-product__media {
-  position: relative;
-  height: 240px;
-  overflow: hidden;
-  background: #e7ebe8;
+  position:relative;
+  height:420px;
+  overflow:hidden;
+  background:#dfe5e0;
 }
 
 .bird-product__media img {
-  height: 100%;
-  object-fit: cover;
-  transition:
-    transform 240ms ease,
-    filter 240ms ease;
+  height:100%;
+  object-fit:cover;
+  transition:transform 280ms ease;
 }
 
-.bird-product:hover .bird-product__media img {
-  transform: scale(1.035);
-  filter: saturate(1.08) contrast(1.03);
-}
+.bird-product:hover .bird-product__media img { transform:scale(1.025); }
 
 .bird-product__media > span {
-  position: absolute;
-  top: 13px;
-  left: 13px;
-  padding: 6px 9px;
-  border-radius: 3px;
-  background: #087a4b;
-  color: #ffffff;
-  font-size: .6rem;
-  font-weight: 900;
-  letter-spacing: .065em;
-  text-transform: uppercase;
+  position:absolute;
+  top:16px;
+  left:16px;
+  padding:7px 10px;
+  border-radius:2px;
+  background:#087a4b;
+  color:#fff;
+  font-size:.59rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
 }
 
 .bird-product__body {
-  min-height: 425px;
-  padding: 22px;
-  display: flex;
-  flex-direction: column;
+  min-height:420px;
+  padding:26px;
+  display:flex;
+  flex-direction:column;
+  justify-content:space-between;
+  gap:34px;
 }
 
 .bird-product h3 {
-  margin: 0;
-  color: #111411;
-  font-size: 1.38rem;
-  font-weight: 850;
-  line-height: 1.05;
-  letter-spacing: -.035em;
+  margin:0;
+  color:#101410;
+  font-size:clamp(1.6rem,2vw,2.2rem);
+  font-weight:900;
+  line-height:.98;
+  letter-spacing:-.045em;
 }
 
 .bird-product p {
-  margin: 13px 0 0;
-  color: #626b65;
-  font-size: .82rem;
-  line-height: 1.62;
+  max-width:520px;
+  margin:15px 0 0;
+  color:#626c65;
+  font-size:.9rem;
+  line-height:1.65;
 }
 
 .bird-product__variants {
-  margin-top: 18px;
-  display: flex;
-  flex-wrap: wrap;
-  gap: 5px;
+  margin-top:18px;
+  display:flex;
+  flex-wrap:wrap;
+  gap:6px;
 }
 
 .bird-product__variants span {
-  padding: 5px 7px;
-  border: 1px solid #dde3df;
-  border-radius: 999px;
-  background: #f7f9f7;
-  color: #4f5a53;
-  font-size: .58rem;
-  font-weight: 750;
-}
-
-.bird-product__price {
-  margin-top: auto;
-  padding-top: 28px;
+  padding:6px 8px;
+  border:1px solid #dce2dd;
+  border-radius:999px;
+  background:#f8faf8;
+  color:#4e5951;
+  font-size:.59rem;
+  font-weight:750;
 }
 
 .bird-product__price del {
-  display: block;
-  margin-bottom: 6px;
-  color: #8a928d;
-  font-size: .68rem;
+  display:block;
+  margin-bottom:6px;
+  color:#919a94;
+  font-size:.7rem;
 }
 
 .bird-product__price strong {
-  display: block;
-  color: #087a4b;
-  font-size: clamp(2rem, 3vw, 2.8rem);
-  font-weight: 900;
-  line-height: .95;
-  letter-spacing: -.055em;
+  display:block;
+  color:#087a4b;
+  font-size:clamp(2.6rem,4vw,4rem);
+  font-weight:950;
+  line-height:.9;
+  letter-spacing:-.065em;
 }
 
 .bird-product__price > span {
-  display: block;
-  margin-top: 7px;
-  color: #687169;
-  font-size: .7rem;
-  font-weight: 700;
+  display:block;
+  margin-top:8px;
+  color:#687169;
+  font-size:.72rem;
+  font-weight:750;
 }
 
-.bird-product__body > a {
-  min-height: 49px;
-  margin-top: 20px;
-  padding: 11px 14px;
-  display: flex;
-  align-items: center;
-  justify-content: space-between;
-  gap: 14px;
-  border-radius: 4px;
-  background: #111411;
-  color: #ffffff;
-  font-size: .68rem;
-  font-weight: 900;
-  letter-spacing: .065em;
-  text-transform: uppercase;
+.bird-product__bottom > a {
+  min-height:54px;
+  margin-top:22px;
+  padding:0 16px;
+  display:flex;
+  align-items:center;
+  justify-content:space-between;
+  gap:18px;
+  border-radius:3px;
+  background:#101410;
+  color:#fff;
+  font-size:.68rem;
+  font-weight:900;
+  letter-spacing:.07em;
+  text-transform:uppercase;
 }
 
-.bird-product__body > a:hover {
-  background: #087a4b;
+.bird-product__bottom > a:hover { background:#087a4b; }
+
+/* FINAL */
+.birds-store__manifesto {
+  margin-top:clamp(90px,10vw,150px);
+  padding:clamp(44px,6vw,76px);
+  background:#087a4b;
+  color:#fff;
 }
 
-/* NOTA E FOOTER */
+.birds-store__manifesto > span { color:rgba(255,255,255,.68); }
 
-.birds-store__note {
-  margin-top: 34px;
-  padding: 18px 20px;
-  border: 1px solid #d8dfda;
-  background: #ffffff;
-  color: #626b65;
-  font-size: .78rem;
-  line-height: 1.55;
+.birds-store__manifesto > strong {
+  display:block;
+  max-width:930px;
+  margin-top:10px;
+  font-size:clamp(2.6rem,5vw,5.4rem);
+  font-weight:950;
+  line-height:.9;
+  letter-spacing:-.06em;
 }
 
-.birds-store__note strong {
-  color: #111411;
+.birds-store__manifesto p {
+  max-width:780px;
+  margin:24px 0 0;
+  color:rgba(255,255,255,.78);
+  font-size:1rem;
+  line-height:1.7;
 }
 
 .birds-store__empty {
-  margin-top: 18px;
-  padding: 30px;
-  border: 1px solid #d8dfda;
-  background: #ffffff;
+  padding:34px;
+  border:1px solid #d7ddd8;
+  background:#fff;
 }
 
-.birds-store__empty button {
-  margin-top: 18px;
-  min-height: 46px;
-  padding: 10px 16px;
-  border: 0;
-  border-radius: 4px;
-  background: #111411;
-  color: #ffffff;
-  font-weight: 900;
-  cursor: pointer;
+.birds-store__empty p { color:#667068; }
+
+.birds-store__note {
+  margin-top:26px;
+  padding:18px 20px;
+  border:1px solid #d7ddd8;
+  background:#fff;
+  color:#657068;
+  font-size:.78rem;
+  line-height:1.55;
 }
+
+.birds-store__note strong { color:#101410; }
 
 .birds-store__footer {
-  margin-top: 80px;
-  padding: 24px 0 38px;
-  border-top: 1px solid #d8dfda;
-  color: #747d77;
-  font-size: .64rem;
-  font-weight: 750;
-  letter-spacing: .065em;
-  text-transform: uppercase;
+  margin-top:74px;
+  padding:24px 0 40px;
+  border-top:1px solid #d7ddd8;
+  color:#747d77;
+  font-size:.64rem;
+  font-weight:750;
+  letter-spacing:.07em;
+  text-transform:uppercase;
 }
 
-/* RESPONSIVO */
-
-@media (max-width: 1120px) {
-  .birds-store__product-grid {
-    grid-template-columns: repeat(3, minmax(0,1fr));
-  }
+@media (max-width:1120px) {
+  .birds-store__product-grid { grid-template-columns:repeat(2,minmax(0,1fr)); }
+  .bird-category { min-height:400px; }
 }
 
-@media (max-width: 900px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: repeat(2, minmax(0,1fr));
-  }
-}
-
-@media (max-width: 680px) {
-  .birds-store__container {
-    width: min(100% - 24px, 1380px);
+@media (max-width:760px) {
+  .birds-store__container,
+  .birds-store__hero-content {
+    width:min(100% - 24px,1420px);
   }
 
   .birds-store__hero,
-  .birds-store__hero-inner {
-    min-height: 620px;
+  .birds-store__hero-content { min-height:650px; }
+
+  .birds-store__hero-content { padding:96px 0 70px; }
+
+  .birds-store__hero h1 { font-size:clamp(4rem,20vw,6.2rem); }
+
+  .birds-store__hero-overlay {
+    background:linear-gradient(180deg, rgba(3,8,5,.2) 0%, rgba(3,8,5,.65) 48%, rgba(3,8,5,.94) 100%);
   }
 
-  .birds-store__hero-inner {
-    padding: 72px 0;
-  }
-
-  .birds-store__hero h1 {
-    font-size: clamp(3.6rem, 18vw, 5.5rem);
-  }
-
-  .birds-store__hero-shade {
-    background:
-      linear-gradient(
-        180deg,
-        rgba(5,10,7,.38) 0%,
-        rgba(5,10,7,.78) 62%,
-        rgba(5,10,7,.92) 100%
-      );
-  }
-
-  .birds-store__search {
-    padding: 18px;
-  }
-
-  .birds-store__search > div {
-    flex-direction: column;
-  }
-
-  .birds-store__search button {
-    width: 100%;
-    min-height: 48px;
-  }
+  .birds-store__search { grid-template-columns:1fr; }
+  .birds-store__search button { width:100%; }
 
   .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: 1fr;
+  .birds-store__product-grid { grid-template-columns:1fr; }
+
+  .bird-category { min-height:340px; }
+
+  .birds-store__section-head--products {
+    align-items:flex-start;
+    flex-direction:column;
   }
 
-  .bird-category {
-    min-height: 300px;
+  .bird-product__media { height:min(115vw,460px); }
+  .bird-product__body { min-height:0; }
+}
+
+@media (max-width:460px) {
+  .birds-store__hero h1 { font-size:clamp(3.5rem,19vw,5.2rem); }
+  .birds-store__section-head h2 { font-size:clamp(2.6rem,13vw,4rem); }
+  .bird-product__body { padding:22px; }
+}
+
+@media (prefers-reduced-motion:reduce) {
+  .birds-store *,
+  .birds-store *::before,
+  .birds-store *::after {
+    transition:none !important;
   }
-
-  .bird-product__media {
-    height: 280px;
-  }
-
-  .bird-product__body {
-    min-height: 0;
-  }
-
-  .bird-product__price {
-    margin-top: 30px;
-  }
-}
-
-@media (prefers-reduced-motion: reduce) {
-  .bird-category img,
-  .bird-product,
-  .bird-product__media img {
-    transition: none;
-  }
-
-  .bird-category:hover img,
-  .bird-product:hover,
-  .bird-product:hover .bird-product__media img {
-    transform: none;
-  }
-}
-
-
-/* ============================================================
-   ARSENAL V3 — MAIS DENSIDADE, MAIS VIDA, MAIS COMPRA
-   ============================================================ */
-
-.birds-store__category-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-}
-
-.bird-category {
-  min-height: 260px;
-}
-
-.birds-store__product-grid {
-  grid-template-columns: repeat(5, minmax(0, 1fr));
-}
-
-.bird-product__media {
-  height: 215px;
-}
-
-.bird-product__body {
-  min-height: 410px;
-  padding: 18px;
-}
-
-.bird-product h3 {
-  font-size: 1.22rem;
-}
-
-.bird-product__price strong {
-  font-size: clamp(1.85rem, 2.5vw, 2.45rem);
-}
-
-.birds-store__commercial-strip {
-  margin-top: clamp(70px, 8vw, 110px);
-  padding: clamp(30px, 5vw, 58px);
-  display: grid;
-  grid-template-columns: minmax(0, 1fr) auto;
-  gap: 34px;
-  align-items: center;
-  background: #087a4b;
-  color: #ffffff;
-}
-
-.birds-store__commercial-strip > div > span {
-  display: block;
-  color: rgba(255, 255, 255, 0.72);
-  font-size: .68rem;
-  font-weight: 900;
-  letter-spacing: .1em;
-  text-transform: uppercase;
-}
-
-.birds-store__commercial-strip strong {
-  display: block;
-  margin-top: 8px;
-  font-size: clamp(2rem, 4vw, 3.8rem);
-  line-height: .95;
-  letter-spacing: -.05em;
-}
-
-.birds-store__commercial-strip p {
-  max-width: 700px;
-  margin: 16px 0 0;
-  color: rgba(255, 255, 255, .82);
-  line-height: 1.65;
-}
-
-.birds-store__commercial-strip button {
-  min-width: 210px;
-  min-height: 50px;
-  padding: 12px 18px;
-  border: 1px solid #ffffff;
-  border-radius: 4px;
-  background: #ffffff;
-  color: #111411;
-  font-size: .68rem;
-  font-weight: 900;
-  letter-spacing: .06em;
-  text-transform: uppercase;
-  cursor: pointer;
-}
-
-@media (max-width: 1240px) {
-  .birds-store__product-grid {
-    grid-template-columns: repeat(4, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 1040px) {
-  .birds-store__category-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-
-  .birds-store__product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 760px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-
-  .birds-store__commercial-strip {
-    grid-template-columns: 1fr;
-  }
-
-  .birds-store__commercial-strip button {
-    width: 100%;
-  }
-}
-
-@media (max-width: 560px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: 1fr;
-  }
-}
-
-
-/* ============================================================
-   AVES V4 — CORREÇÃO DE IMAGENS E DENSIDADE
-   ============================================================ */
-
-.birds-store__category-grid {
-  grid-template-columns: repeat(3, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.bird-category {
-  min-height: 285px;
-}
-
-.bird-category img {
-  opacity: 1 !important;
-}
-
-.birds-store__product-grid {
-  grid-template-columns: repeat(4, minmax(0, 1fr));
-  gap: 14px;
-}
-
-.bird-product__media {
-  height: 245px;
-}
-
-.bird-product__media img {
-  opacity: 1 !important;
-  object-position: center;
-}
-
-.bird-product__body {
-  min-height: 430px;
-  padding: 21px;
-}
-
-.bird-product h3 {
-  font-size: 1.34rem;
-}
-
-.bird-product p {
-  font-size: .84rem;
-}
-
-@media (max-width: 1120px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: repeat(3, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 820px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: repeat(2, minmax(0, 1fr));
-  }
-}
-
-@media (max-width: 560px) {
-  .birds-store__category-grid,
-  .birds-store__product-grid {
-    grid-template-columns: 1fr;
-  }
-
-  .bird-product__media {
-    height: 290px;
-  }
-}
-
-/* V5 — estabilidade visual */
-.birds-store__category-grid { grid-template-columns: repeat(3,minmax(0,1fr)); }
-.birds-store__product-grid { grid-template-columns: repeat(4,minmax(0,1fr)); }
-.bird-product__media { height: 250px; }
-.bird-product__media img, .bird-category img { width:100%; height:100%; object-fit:cover; opacity:1 !important; }
-.bird-product__credit {
-  position:absolute; right:8px; bottom:8px; max-width:calc(100% - 16px);
-  padding:4px 6px; border-radius:3px; background:rgba(17,20,17,.72);
-  color:rgba(255,255,255,.78); font-size:.45rem; line-height:1.25;
-}
-@media (max-width: 900px) {
-  .birds-store__category-grid, .birds-store__product-grid { grid-template-columns: repeat(2,minmax(0,1fr)); }
-}
-@media (max-width: 560px) {
-  .birds-store__category-grid, .birds-store__product-grid { grid-template-columns: 1fr; }
 }
