@@ -535,3 +535,21 @@
     transform: none;
   }
 }
+.aqua-product__credit {
+  position: absolute;
+  right: 8px;
+  bottom: 8px;
+  left: auto;
+  max-width: calc(100% - 16px);
+  padding: 4px 6px;
+  border-radius: 3px;
+  background: rgba(17, 20, 17, 0.74);
+  color: rgba(255, 255, 255, 0.76);
+  font-size: 0.46rem;
+  font-weight: 650;
+  line-height: 1.25;
+  letter-spacing: 0;
+  text-transform: none;
+  backdrop-filter: blur(4px);
+  -webkit-backdrop-filter: blur(4px);
+}
