@@ -162,7 +162,360 @@ const PRODUCTS = [
       'Ocellaris',
       'Equipamentos',
     ],
+  },,
+
+  /* ==========================================================
+     NUTRÓPICA — LINHA COMERCIAL
+     Preços AgroNexus definidos alguns centavos abaixo das
+     referências informadas pelo usuário.
+     Itens sem referência exata usam preço sugerido por analogia
+     com produtos próximos da mesma linha.
+     ========================================================== */
+
+  {
+    id: 'nutropica-agapornis-frutas',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Nutrópica para Agapornis com Frutas',
+    description: 'Alimento especializado Nutrópica para Agapornis, com apresentação comercial pronta para compra.',
+    price: 46.89,
+    oldPrice: 47.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica para Agapornis com Frutas.png'),
+    imageAlt: 'Ração Nutrópica para Agapornis com Frutas',
+    variants: ['Agapornis', 'Com frutas'],
   },
+
+  {
+    id: 'nutropica-periquitos-300g',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Extrusada Nutrópica para Periquitos 300 g',
+    description: 'Ração extrusada Nutrópica para Periquitos, em embalagem de 300 g.',
+    price: 38.89,
+    oldPrice: 39.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico · 300 g',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada Nutrópica para Periquitos 300 g.png'),
+    imageAlt: 'Ração Extrusada Nutrópica para Periquitos 300 g',
+    variants: ['Periquitos', 'Extrusada', '300 g'],
+  },
+
+  {
+    id: 'nutropica-periquitos-sementes',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Extrusada Nutrópica com Sementes para Periquito',
+    description: 'Linha Nutrópica para Periquitos com sementes, voltada à alimentação diária.',
+    price: 46.89,
+    oldPrice: 47.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço sugerido',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada Nutrópica com Sementes para Periquito2.png'),
+    imageAlt: 'Ração Extrusada Nutrópica com Sementes para Periquito',
+    variants: ['Periquitos', 'Sementes'],
+  },
+
+  {
+    id: 'nutropica-canarios-extrusada',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Extrusada para Canários',
+    description: 'Alimento extrusado Nutrópica desenvolvido para Canários.',
+    price: 36.89,
+    oldPrice: 37.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada para Canários.png'),
+    imageAlt: 'Ração Extrusada para Canários',
+    variants: ['Canários', 'Extrusada'],
+  },
+
+  {
+    id: 'nutropica-coleiros-farinhada-umida',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Farinhada Úmida Nutrópica para Coleiros',
+    description: 'Farinhada úmida Nutrópica destinada à alimentação especializada de Coleiros.',
+    price: 110.59,
+    oldPrice: 110.71,
+    installments: { count: 2 },
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Farinhada Úmida Nutrópica para Coleiros.png'),
+    imageAlt: 'Farinhada Úmida Nutrópica para Coleiros',
+    variants: ['Coleiros', 'Farinhada úmida'],
+  },
+
+  {
+    id: 'nutropica-farinhada-psitacideos',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Farinhada Nutrópica à base de Mel e Ovos para Psitacídeos',
+    description: 'Farinhada Nutrópica à base de mel e ovos para alimentação de Psitacídeos.',
+    price: 98.49,
+    oldPrice: 98.60,
+    installments: { count: 2 },
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Farinhada Nutrópica a base de Mel e Ovos para psitacídeos.png'),
+    imageAlt: 'Farinhada Nutrópica à base de Mel e Ovos para Psitacídeos',
+    variants: ['Psitacídeos', 'Mel', 'Ovos'],
+  },
+
+  {
+    id: 'nutropica-papa-arara',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Papa Nutrópica para Arara',
+    description: 'Papa Nutrópica formulada para Araras e manejo alimentar especializado.',
+    price: 96.89,
+    oldPrice: 97.00,
+    installments: { count: 2 },
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Papa Nutrópica para Arara.png'),
+    imageAlt: 'Papa Nutrópica para Arara',
+    variants: ['Araras', 'Papa'],
+  },
+
+  {
+    id: 'nutropica-papa-loris',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Nutrópica Papa para Lóris',
+    description: 'Papa Nutrópica destinada à alimentação especializada de Lóris.',
+    price: 88.89,
+    oldPrice: 89.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica Papa para Lóris.png'),
+    imageAlt: 'Ração Nutrópica Papa para Lóris',
+    variants: ['Lóris', 'Papa'],
+  },
+
+  {
+    id: 'nutropica-papagaio-gourmet',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Nutrópica Papagaio Gourmet',
+    description: 'Linha Gourmet Nutrópica destinada à alimentação de Papagaios.',
+    price: 88.89,
+    oldPrice: 89.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica Papagaio Gourmet.png'),
+    imageAlt: 'Ração Nutrópica Papagaio Gourmet',
+    variants: ['Papagaios', 'Gourmet'],
+  },
+
+  {
+    id: 'nutropica-papinha-psitacideos',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Papinha Nutrópica para Psitacídeos',
+    description: 'Papinha Nutrópica para alimentação e manejo de Psitacídeos.',
+    price: 84.89,
+    oldPrice: 85.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Papinha Nutrópica para Psitacídeos.png'),
+    imageAlt: 'Papinha Nutrópica para Psitacídeos',
+    variants: ['Psitacídeos', 'Papinha'],
+  },
+
+  {
+    id: 'nutropica-trinca-ferro-fit',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Extrusada Fit Nutrópica para Trinca Ferro',
+    description: 'Ração extrusada Fit Nutrópica para Trinca Ferro, com proposta de controle de peso.',
+    price: 84.89,
+    oldPrice: 85.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada Fit Nutrópica para Trinca Ferro (Controle de Peso).png'),
+    imageAlt: 'Ração Extrusada Fit Nutrópica para Trinca Ferro',
+    variants: ['Trinca Ferro', 'Fit', 'Controle de peso'],
+  },
+
+  {
+    id: 'nutropica-ringneck-natural',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Extrusada Natural para Ringneck',
+    description: 'Ração extrusada natural Nutrópica destinada a Ring Necks.',
+    price: 68.89,
+    oldPrice: 69.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada Natural para Ringneck.png'),
+    imageAlt: 'Ração Extrusada Natural para Ringneck',
+    variants: ['Ring Neck', 'Natural', 'Extrusada'],
+  },
+
+  {
+    id: 'nutropica-nectar-beija-flor',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Néctar Nutrópica para Beija-Flor',
+    description: 'Néctar Nutrópica destinado à alimentação de Beija-Flores.',
+    price: 58.89,
+    oldPrice: 59.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Néctar Nutrópica para Beija-Flor.png'),
+    imageAlt: 'Néctar Nutrópica para Beija-Flor',
+    variants: ['Beija-Flor', 'Néctar'],
+  },
+
+  {
+    id: 'nutropica-farinhada-canario',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Farinhada Nutrópica para Canário à Base de Mel e Ovos',
+    description: 'Farinhada Nutrópica para Canários, à base de mel e ovos.',
+    price: 48.89,
+    oldPrice: 49.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Farinhada Nutrópica para Canário a Base de Mel e Ovos.png'),
+    imageAlt: 'Farinhada Nutrópica para Canário à Base de Mel e Ovos',
+    variants: ['Canários', 'Mel', 'Ovos'],
+  },
+
+  {
+    id: 'nutropica-calopsita-gourmet',
+    categories: ['aves', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Aves',
+    name: 'Ração Nutrópica Calopsita Gourmet',
+    description: 'Linha Gourmet Nutrópica destinada à alimentação de Calopsitas.',
+    price: 48.89,
+    oldPrice: 49.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica Calopsita Gourmet2.png'),
+    imageAlt: 'Ração Nutrópica Calopsita Gourmet',
+    variants: ['Calopsitas', 'Gourmet'],
+  },
+
+  /* Pequenos mamíferos — mantidos no mesmo acervo de imagem,
+     mas distribuídos corretamente nas categorias Mamíferos
+     e Alimentação. */
+
+  {
+    id: 'nutropica-coelho-filhote',
+    categories: ['mamiferos', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Pequenos Mamíferos',
+    name: 'Ração Nutrópica para Coelho Filhote',
+    description: 'Ração Nutrópica destinada à alimentação de coelhos filhotes.',
+    price: 52.89,
+    oldPrice: 53.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica para Coelho Filhote.png'),
+    imageAlt: 'Ração Nutrópica para Coelho Filhote',
+    variants: ['Coelhos', 'Filhotes'],
+  },
+
+  {
+    id: 'nutropica-coelho-adulto',
+    categories: ['mamiferos', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Pequenos Mamíferos',
+    name: 'Ração Extrusada Nutrópica para Coelho Adulto',
+    description: 'Ração extrusada Nutrópica destinada à alimentação de coelhos adultos.',
+    price: 48.89,
+    oldPrice: 49.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada Nutrópica para Coelho Adulto.png'),
+    imageAlt: 'Ração Extrusada Nutrópica para Coelho Adulto',
+    variants: ['Coelhos', 'Adultos'],
+  },
+
+  {
+    id: 'nutropica-porquinho-india',
+    categories: ['mamiferos', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Pequenos Mamíferos',
+    name: 'Ração Nutrópica para Porquinho da Índia',
+    description: 'Ração Nutrópica destinada à alimentação de Porquinhos-da-Índia.',
+    price: 48.89,
+    oldPrice: 49.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço AgroNexus',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica para Porquinho da Índia.png'),
+    imageAlt: 'Ração Nutrópica para Porquinho da Índia',
+    variants: ['Porquinho-da-Índia'],
+  },
+
+  {
+    id: 'nutropica-hamster-muesli-300g',
+    categories: ['mamiferos', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Pequenos Mamíferos',
+    name: 'Ração Extrusada para Hamster Muesli 300 g',
+    description: 'Linha Muesli Nutrópica para Hamsters em embalagem de 300 g.',
+    price: 39.89,
+    oldPrice: 40.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço sugerido',
+    delivery: 'Produto físico · 300 g',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Extrusada para Hamster Muesli 300 g 2.png'),
+    imageAlt: 'Ração Extrusada para Hamster Muesli 300 g',
+    variants: ['Hamsters', 'Muesli', '300 g'],
+  },
+
+  {
+    id: 'nutropica-hamster-gourmet',
+    categories: ['mamiferos', 'alimentacao'],
+    categoryLabel: 'Nutrópica · Pequenos Mamíferos',
+    name: 'Ração Nutrópica Gourmet para Hamster',
+    description: 'Linha Gourmet Nutrópica destinada à alimentação de Hamsters.',
+    price: 46.89,
+    oldPrice: 47.00,
+    installments: null,
+    checkout: null,
+    badge: 'Preço sugerido',
+    delivery: 'Produto físico',
+    image: encodeURI('/images/aves/categories/products/nutropica/Ração Nutrópica Gourmet para Hamster2.png'),
+    imageAlt: 'Ração Nutrópica Gourmet para Hamster',
+    variants: ['Hamsters', 'Gourmet'],
+  }
+
 ]
 
 /* ============================================================
@@ -701,24 +1054,22 @@ function ProductCard({ product, guideCard = false }) {
           </span>
         </a>
       ) : (
-        <button
-          type="button"
-          className="marketplace-war__buy marketplace-war__buy--disabled"
-          disabled
-          aria-disabled="true"
+        <a
+          href={`#/contato?produto=${encodeURIComponent(product.id)}`}
+          className="marketplace-war__buy"
         >
-          Checkout em configuração
+          Comprar
 
           <span aria-hidden="true">
             →
           </span>
-        </button>
+        </a>
       )}
 
       <small>
         {hasCheckout
           ? 'Checkout processado pela Guiropa World.'
-          : 'Produto publicado. Checkout será ativado após inserção do link de pagamento.'}
+          : 'Compra encaminhada para atendimento comercial AgroNexus.'}
       </small>
 
     </article>
