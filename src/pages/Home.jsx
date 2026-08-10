@@ -32,6 +32,65 @@ const SUPPORT_VALUES = [
   'R$ 100',
 ]
 
+const ACTIONS = [
+  {
+    id: 'comprar',
+    label: 'COMPRAR',
+    description:
+      'Produtos, animais permitidos, alimentação, equipamentos, plantas e guias.',
+    href: '#catalogo-marketplace',
+  },
+  {
+    id: 'vender',
+    label: 'VENDER',
+    description:
+      'Tem produtos para vender no Marketplace AgroNexus?',
+    href: '#/contato?acao=vender',
+  },
+  {
+    id: 'anunciar',
+    label: 'ANUNCIAR',
+    description:
+      'Divulgue sua empresa, serviço, marca ou negócio.',
+    href: '#/contato?acao=anunciar',
+  },
+  {
+    id: 'clinica',
+    label: 'CADASTRAR CLÍNICA',
+    description:
+      'Tem uma clínica veterinária? Cadastre aqui.',
+    href: '#/contato?acao=cadastrar-clinica',
+  },
+  {
+    id: 'petshop',
+    label: 'CADASTRAR PET SHOP',
+    description:
+      'Tem um pet shop? Cadastre aqui.',
+    href: '#/contato?acao=cadastrar-petshop',
+  },
+  {
+    id: 'ong',
+    label: 'CADASTRAR ONG',
+    description:
+      'Tem uma ONG de proteção animal? Cadastre aqui.',
+    href: '#/contato?acao=cadastrar-ong',
+  },
+  {
+    id: 'adotar',
+    label: 'ADOTAR',
+    description:
+      'Quer adotar? Faça seu cadastro para encaminhamento a uma ONG parceira.',
+    href: '#/contato?acao=adotar',
+  },
+  {
+    id: 'doar',
+    label: 'DOAR',
+    description:
+      'Escolha uma ONG e compre produtos que ela precisa.',
+    href: '#/contato?acao=doar',
+  },
+]
+
 export default function Home() {
   const [heroIndex, setHeroIndex] =
     useState(0)
@@ -55,7 +114,7 @@ export default function Home() {
     if (metaDescription) {
       metaDescription.setAttribute(
         'content',
-        'Marketplace AgroNexus de aves, aquarismo, peixes ornamentais, cães, gatos, hamsters, plantas, flores, bonsais, alimentação, equipamentos, habitats, acessórios e publicações especializadas.'
+        'Marketplace AgroNexus de aves, aquarismo, peixes ornamentais, cães, gatos, hamsters, plantas, flores, bonsais, alimentação, equipamentos, habitats, acessórios, serviços e publicações especializadas.'
       )
     }
 
@@ -83,10 +142,8 @@ export default function Home() {
     HERO_VIDEOS[heroIndex]
 
   return (
-    <main
-      id="topo"
-      className="commerce-home"
-    >
+    <main>
+
       {/* ======================================================
           HERO VIVO
           ====================================================== */}
@@ -136,7 +193,7 @@ export default function Home() {
                 href="#catalogo-marketplace"
                 className="commerce-button commerce-button--primary"
               >
-                Ver Marketplace
+                Comprar
 
                 <span aria-hidden="true">
                   →
@@ -144,10 +201,10 @@ export default function Home() {
               </a>
 
               <a
-                href="#produtos-disponiveis"
+                href="#acoes-agronexus"
                 className="commerce-button commerce-button--secondary"
               >
-                Ver produtos
+                Vender ou anunciar
               </a>
             </div>
 
@@ -170,13 +227,221 @@ export default function Home() {
       </section>
 
       {/* ======================================================
+          O QUE VOCÊ QUER FAZER?
+          SEM FLU-FLU. VERBO DIRETO.
+          ====================================================== */}
+
+      <section
+        id="acoes-agronexus"
+        style={{
+          background: '#0c120f',
+          color: '#ffffff',
+          padding: 'clamp(72px, 8vw, 118px) 0',
+          borderTop: '1px solid rgba(255,255,255,.08)',
+          borderBottom: '1px solid rgba(255,255,255,.08)',
+        }}
+      >
+        <div className="commerce-container">
+          <div
+            style={{
+              maxWidth: '1050px',
+              marginBottom: '42px',
+            }}
+          >
+            <span
+              className="commerce-kicker"
+              style={{
+                color: '#8fe0b2',
+              }}
+            >
+              AgroNexus
+            </span>
+
+            <h2
+              style={{
+                margin: '10px 0 0',
+                color: '#ffffff',
+                fontSize: 'clamp(3rem, 7vw, 6.5rem)',
+                fontWeight: 950,
+                lineHeight: 0.88,
+                letterSpacing: '-0.065em',
+              }}
+            >
+              O que você quer fazer?
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns:
+                'repeat(auto-fit, minmax(280px, 1fr))',
+              gap: '1px',
+              background: 'rgba(255,255,255,.12)',
+              border: '1px solid rgba(255,255,255,.12)',
+            }}
+          >
+            {ACTIONS.map((action) => (
+              <a
+                key={action.id}
+                href={action.href}
+                style={{
+                  minHeight: '190px',
+                  padding: '28px',
+                  display: 'flex',
+                  flexDirection: 'column',
+                  justifyContent: 'space-between',
+                  gap: '26px',
+                  background: '#101712',
+                  color: '#ffffff',
+                  textDecoration: 'none',
+                }}
+              >
+                <strong
+                  style={{
+                    display: 'block',
+                    fontSize: 'clamp(1.65rem, 2.8vw, 2.7rem)',
+                    fontWeight: 950,
+                    lineHeight: 0.95,
+                    letterSpacing: '-0.045em',
+                  }}
+                >
+                  {action.label}
+                </strong>
+
+                <span
+                  style={{
+                    display: 'flex',
+                    alignItems: 'flex-end',
+                    justifyContent: 'space-between',
+                    gap: '20px',
+                    color: 'rgba(255,255,255,.68)',
+                    fontSize: '.9rem',
+                    lineHeight: 1.55,
+                  }}
+                >
+                  <span>
+                    {action.description}
+                  </span>
+
+                  <strong
+                    aria-hidden="true"
+                    style={{
+                      flex: '0 0 auto',
+                      color: '#8fe0b2',
+                      fontSize: '1.3rem',
+                    }}
+                  >
+                    →
+                  </strong>
+                </span>
+              </a>
+            ))}
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
           MARKETPLACE REAL
           A Home usa o MESMO catálogo comercial da rota
-          /marketplace. Não existem mais cards paralelos,
-          WhatsApp ou links para páginas vazias.
+          /marketplace.
           ====================================================== */}
 
       <MarketplaceWarPlan embedded />
+
+      {/* ======================================================
+          CHAMADA B2B — ESCANCARADA
+          ====================================================== */}
+
+      <section
+        style={{
+          background: '#ffffff',
+          color: '#111411',
+          padding: 'clamp(70px, 8vw, 110px) 0',
+          borderTop: '1px solid #d8dfda',
+          borderBottom: '1px solid #d8dfda',
+        }}
+      >
+        <div className="commerce-container">
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns:
+                'repeat(auto-fit, minmax(300px, 1fr))',
+              gap: '28px',
+              alignItems: 'end',
+            }}
+          >
+            <div>
+              <span className="commerce-kicker">
+                Venda e anúncio
+              </span>
+
+              <h2
+                style={{
+                  maxWidth: '850px',
+                  margin: '10px 0 0',
+                  fontSize: 'clamp(3rem, 6vw, 5.8rem)',
+                  fontWeight: 950,
+                  lineHeight: 0.9,
+                  letterSpacing: '-0.06em',
+                }}
+              >
+                Venda. Anuncie.
+                <br />
+                Seja encontrado.
+              </h2>
+            </div>
+
+            <div
+              style={{
+                display: 'grid',
+                gap: '10px',
+              }}
+            >
+              <a
+                href="#/contato?acao=vender"
+                className="commerce-button commerce-button--primary"
+              >
+                Vender na AgroNexus
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a
+                href="#/contato?acao=anunciar"
+                className="commerce-button commerce-button--secondary"
+              >
+                Anunciar na AgroNexus
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a
+                href="#/contato?acao=cadastrar-clinica"
+                className="commerce-button commerce-button--secondary"
+              >
+                Cadastrar clínica veterinária
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a
+                href="#/contato?acao=cadastrar-petshop"
+                className="commerce-button commerce-button--secondary"
+              >
+                Cadastrar pet shop
+                <span aria-hidden="true">→</span>
+              </a>
+
+              <a
+                href="#/contato?acao=cadastrar-ong"
+                className="commerce-button commerce-button--secondary"
+              >
+                Cadastrar ONG
+                <span aria-hidden="true">→</span>
+              </a>
+            </div>
+          </div>
+        </div>
+      </section>
 
       {/* ======================================================
           GUIAS
@@ -206,7 +471,7 @@ export default function Home() {
               href="#produtos-disponiveis"
               className="commerce-button commerce-button--light"
             >
-              Ver produtos disponíveis
+              Comprar guias
 
               <span aria-hidden="true">
                 →
@@ -217,7 +482,81 @@ export default function Home() {
       </section>
 
       {/* ======================================================
+          ADOÇÃO E DOAÇÃO
+          SEM MOSTRAR ANIMAIS. SEM INTERPRETAÇÃO.
+          ====================================================== */}
+
+      <section
+        style={{
+          background: '#eef4ef',
+          color: '#111411',
+          padding: 'clamp(72px, 8vw, 112px) 0',
+        }}
+      >
+        <div className="commerce-container">
+          <div
+            style={{
+              maxWidth: '1000px',
+              marginBottom: '34px',
+            }}
+          >
+            <span className="commerce-kicker">
+              Adoção e doação
+            </span>
+
+            <h2
+              style={{
+                margin: '10px 0 0',
+                fontSize: 'clamp(3rem, 6vw, 5.8rem)',
+                fontWeight: 950,
+                lineHeight: 0.9,
+                letterSpacing: '-0.06em',
+              }}
+            >
+              Adotar. Doar.
+              <br />
+              Cadastrar ONG.
+            </h2>
+          </div>
+
+          <div
+            style={{
+              display: 'grid',
+              gridTemplateColumns:
+                'repeat(auto-fit, minmax(260px, 1fr))',
+              gap: '12px',
+            }}
+          >
+            <a
+              href="#/contato?acao=adotar"
+              className="commerce-button commerce-button--primary"
+            >
+              Adotar
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href="#/contato?acao=doar"
+              className="commerce-button commerce-button--primary"
+            >
+              Doar
+              <span aria-hidden="true">→</span>
+            </a>
+
+            <a
+              href="#/contato?acao=cadastrar-ong"
+              className="commerce-button commerce-button--primary"
+            >
+              Cadastrar ONG
+              <span aria-hidden="true">→</span>
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ======================================================
           APOIO
+          Mantido, mas abaixo das ações comerciais principais.
           ====================================================== */}
 
       <section
@@ -291,7 +630,7 @@ export default function Home() {
                 target="_blank"
                 rel="noopener noreferrer"
               >
-                Escolher valor e contribuir
+                Contribuir
 
                 <span aria-hidden="true">
                   →
@@ -328,19 +667,21 @@ export default function Home() {
               </span>
 
               <h2>
-                Continue comprando.
+                Comprar. Vender.
+                <br />
+                Anunciar.
               </h2>
 
               <p>
-                Volte ao Marketplace para
-                pesquisar espécies, produtos,
-                alimentação, plantas, habitats
-                e equipamentos.
+                A AgroNexus conecta quem
+                procura, quem vende, quem
+                anuncia e quem precisa ser
+                encontrado.
               </p>
             </div>
 
-            <a href="#catalogo-marketplace">
-              Voltar ao Marketplace
+            <a href="#acoes-agronexus">
+              Ver opções
 
               <span aria-hidden="true">
                 →
