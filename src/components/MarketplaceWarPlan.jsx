@@ -4,24 +4,55 @@ import '../styles/MarketplaceWarPlan.css'
 const PEXELS = (id) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1000&fit=crop`
 
+/* ============================================================
+   PRODUTOS REAIS
+   ------------------------------------------------------------
+   Um produto pode pertencer a várias categorias.
+   Exemplo:
+   - Guia Periquito = Aves + Guias Oficiais
+   - Guia Calopsitas = Aves + Guias Oficiais
+
+   Não cadastrar produto aqui sem:
+   1. produto real
+   2. preço definido
+   3. checkout real
+   ============================================================ */
+
 const PRODUCTS = [
   {
     id: 'guia-periquito-australiano',
-    category: 'publicacoes',
-    categoryLabel: 'Guias Oficiais',
-    name: 'Guia Oficial AgroNexus — Periquito Australiano',
+
+    categories: [
+      'aves',
+      'publicacoes',
+    ],
+
+    categoryLabel: 'Guias Oficiais · Aves',
+
+    name:
+      'Guia Oficial AgroNexus — Periquito Australiano',
+
     description:
       'Publicação digital completa com 369 páginas sobre comportamento, alimentação, manejo, genética, saúde, reprodução, mutações, bem-estar e criação responsável.',
-    price: 19.59,
+
+    price: 19.90,
+
     oldPrice: null,
+
     installments: null,
+
     checkout:
       'https://www.asaas.com/c/bzsxz4qaps5glfm4',
+
     badge: 'Preço de lançamento',
+
     delivery: 'Produto digital',
+
     image: PEXELS(34039458),
+
     imageAlt:
       'Periquitos australianos coloridos pousados em um galho',
+
     variants: [
       'Verde',
       'Azul',
@@ -34,21 +65,38 @@ const PRODUCTS = [
 
   {
     id: 'guia-calopsitas',
-    category: 'publicacoes',
-    categoryLabel: 'Guias Oficiais',
-    name: 'Guia Oficial AgroNexus — Calopsitas',
+
+    categories: [
+      'aves',
+      'publicacoes',
+    ],
+
+    categoryLabel: 'Guias Oficiais · Aves',
+
+    name:
+      'Guia Oficial AgroNexus — Calopsitas',
+
     description:
       'Publicação digital aprofundada sobre comportamento, alimentação, manejo, saúde, mutações, reprodução, ambiente, linguagem corporal e bem-estar.',
-    price: 19.59,
+
+    price: 19.90,
+
     oldPrice: null,
+
     installments: null,
+
     checkout:
       'https://www.asaas.com/c/x17xj6s0gmqrhgnm',
+
     badge: 'Preço de lançamento',
+
     delivery: 'Produto digital',
+
     image: PEXELS(12181403),
+
     imageAlt:
       'Aves coloridas em ambiente de criação doméstica',
+
     variants: [
       'Cinza',
       'Lutino',
@@ -60,19 +108,30 @@ const PRODUCTS = [
   },
 ]
 
+/* ============================================================
+   CATEGORIAS DO MARKETPLACE
+   ============================================================ */
+
 const CATEGORIES = [
   {
     id: 'aves',
     name: 'Aves',
     shortName: 'Aves',
+
     description:
       'Periquitos, calopsitas, canários, Ring Necks, Agapornis, Forpus, Roselas, Kakarikis, Lóris e muito mais.',
+
     keywords:
       'periquito calopsita ring neck agapornis loris canario forpus rosela kakariki bourke ave',
+
     image: PEXELS(36133129),
+
     imageAlt:
       'Periquitos australianos de plumagem colorida',
-    highlight: 'Cores, mutações e espécies',
+
+    highlight:
+      'Cores, mutações e espécies',
+
     chips: [
       'Periquitos',
       'Calopsitas',
@@ -87,14 +146,21 @@ const CATEGORIES = [
     id: 'aquarismo',
     name: 'Aquarismo',
     shortName: 'Aquarismo',
+
     description:
       'Bettas, kinguios, camarões, plantados, nano aquários, Ocellaris, marinho, nano reef, mini reef, reef e corais.',
+
     keywords:
       'aquario betta kinguio oranda ranchu reef marinho ocellaris coral camarao plantado nano mini',
+
     image: PEXELS(29216700),
+
     imageAlt:
       'Peixes-palhaço em aquário marinho com corais coloridos',
-    highlight: 'Nano Reef · Kinguios · Bettas',
+
+    highlight:
+      'Nano Reef · Kinguios · Bettas',
+
     chips: [
       'Betta',
       'Kinguios',
@@ -109,14 +175,21 @@ const CATEGORIES = [
     id: 'mamiferos',
     name: 'Pequenos Mamíferos',
     shortName: 'Mamíferos',
+
     description:
       'Hamsters, chinchilas, mini coelhos, porquinhos-da-índia, gerbilos, habitats, alimentação e acessórios.',
+
     keywords:
       'hamster chinchila coelho mini lop netherland gerbilo porquinho india mamifero',
+
     image: PEXELS(4520480),
+
     imageAlt:
       'Hamster pequeno e fofo fotografado de perto',
-    highlight: 'Pequenos espaços',
+
+    highlight:
+      'Pequenos espaços',
+
     chips: [
       'Hamster',
       'Chinchila',
@@ -130,14 +203,21 @@ const CATEGORIES = [
     id: 'caes',
     name: 'Cães',
     shortName: 'Cães',
+
     description:
       'Raças pequenas e procuradas para a vida urbana, além de alimentação, higiene, camas, transporte e brinquedos.',
+
     keywords:
       'cachorro cao spitz pomeranian shih tzu yorkshire dachshund bulldog frances chihuahua schnauzer pug',
+
     image: PEXELS(17880515),
+
     imageAlt:
       'Spitz Alemão branco fotografado em estúdio',
-    highlight: 'Pequenos para apartamento',
+
+    highlight:
+      'Pequenos para apartamento',
+
     chips: [
       'Spitz Alemão',
       'Shih Tzu',
@@ -152,14 +232,21 @@ const CATEGORIES = [
     id: 'gatos',
     name: 'Gatos',
     shortName: 'Gatos',
+
     description:
       'Siamês, Persa, Ragdoll e outras raças, além de alimentação, areia, fontes, caixas, arranhadores e brinquedos.',
+
     keywords:
       'gato siames persa ragdoll british shorthair maine coon areia arranhador fonte caixa',
+
     image: PEXELS(9916903),
+
     imageAlt:
       'Gato siamês de olhos azuis fotografado de perto',
-    highlight: 'Siamês · Persa · Ragdoll',
+
+    highlight:
+      'Siamês · Persa · Ragdoll',
+
     chips: [
       'Siamês',
       'Persa',
@@ -173,14 +260,21 @@ const CATEGORIES = [
     id: 'repteis',
     name: 'Répteis e Terrários',
     shortName: 'Répteis',
+
     description:
       'Iguanas, geckos e outras espécies comercializáveis, terrários, iluminação UVB, aquecimento, substratos e alimentação.',
+
     keywords:
       'reptil terrario jabuti gecko iguana serpente cobra uvb substrato aquecimento',
+
     image: PEXELS(18118236),
+
     imageAlt:
       'Gecko em terrário com ambiente naturalizado',
-    highlight: 'Terrários e espécies',
+
+    highlight:
+      'Terrários e espécies',
+
     chips: [
       'Iguana',
       'Gecko',
@@ -195,14 +289,21 @@ const CATEGORIES = [
     id: 'botanica',
     name: 'Plantas, Flores e Bonsais',
     shortName: 'Plantas',
+
     description:
       'Carnívoras, orquídeas, violetas, mini rosas, bonsais, mini frutíferas, vasos, substratos, adubos e ferramentas.',
+
     keywords:
       'dionaea nepenthes drosera carnivora bonsai jabuticaba pitanga acerola roma planta orquidea violeta mini rosa vaso adubo',
+
     image: PEXELS(3691258),
+
     imageAlt:
       'Planta carnívora Dionaea muscipula em macro',
-    highlight: 'Carnívoras · Flores · Mini frutíferas',
+
+    highlight:
+      'Carnívoras · Flores · Mini frutíferas',
+
     chips: [
       'Dionaea',
       'Nepenthes',
@@ -217,14 +318,21 @@ const CATEGORIES = [
     id: 'alimentacao',
     name: 'Alimentação',
     shortName: 'Alimentação',
+
     description:
       'Rações, extrusadas, farinhadas, sementes, néctares, fenos, pellets, alimentos vivos e alimentação especializada.',
+
     keywords:
       'racao alimento extrusada farinhada semente nectar feno pellet artemia tenebrio comida pet',
+
     image: PEXELS(12928244),
+
     imageAlt:
       'Ração seca em pote para alimentação de animais',
-    highlight: 'Compra recorrente',
+
+    highlight:
+      'Compra recorrente',
+
     chips: [
       'Cães',
       'Gatos',
@@ -239,14 +347,21 @@ const CATEGORIES = [
     id: 'habitats',
     name: 'Habitats',
     shortName: 'Habitats',
+
     description:
       'Aquários, gaiolas, viveiros, terrários, cercados, ninhos, tocas, poleiros e estruturas para cada espécie.',
+
     keywords:
       'gaiola viveiro aquario terrario cercado habitat poleiro toca ninho vidro',
+
     image: PEXELS(6364370),
+
     imageAlt:
       'Aves em viveiro com poleiros e ambiente preparado',
-    highlight: 'Do aquário ao viveiro',
+
+    highlight:
+      'Do aquário ao viveiro',
+
     chips: [
       'Aquários',
       'Viveiros',
@@ -261,14 +376,21 @@ const CATEGORIES = [
     id: 'equipamentos',
     name: 'Equipamentos',
     shortName: 'Equipamentos',
+
     description:
       'Filtros, bombas, skimmers, termostatos, iluminação, climatização, incubação, automação e equipamentos especializados.',
+
     keywords:
       'filtro bomba skimmer iluminacao termostato aquecimento chocadeira incubadora equipamento automacao reef',
+
     image: PEXELS(8915250),
+
     imageAlt:
       'Aquário marinho iluminado com peixes e corais',
-    highlight: 'Aquarismo, aves e cultivo',
+
+    highlight:
+      'Aquarismo, aves e cultivo',
+
     chips: [
       'Bombas',
       'Filtros',
@@ -283,14 +405,21 @@ const CATEGORIES = [
     id: 'publicacoes',
     name: 'Guias Oficiais',
     shortName: 'Guias',
+
     description:
       'Publicações digitais AgroNexus com conteúdo aprofundado, preço visível e checkout direto.',
+
     keywords:
       'guia livro ebook publicacao periquito calopsita manual',
+
     image: PEXELS(34039458),
+
     imageAlt:
       'Periquitos australianos coloridos',
-    highlight: 'A partir de R$ 19,59',
+
+    highlight:
+      'A partir de R$ 19,90',
+
     chips: [
       'Periquitos',
       'Calopsitas',
@@ -301,64 +430,87 @@ const CATEGORIES = [
   },
 ]
 
+/* ============================================================
+   DESTAQUES
+   ============================================================ */
+
 const TRENDING = [
   {
     category: 'caes',
     label: 'Em alta',
     title: 'Spitz Alemão',
-    subtitle: 'Branco · Creme · Laranja · Preto · Sable',
+    subtitle:
+      'Branco · Creme · Laranja · Preto · Sable',
     image: PEXELS(17880515),
   },
+
   {
     category: 'gatos',
     label: 'Para apartamento',
     title: 'Siamês',
-    subtitle: 'Seal Point · Blue Point · Chocolate Point',
+    subtitle:
+      'Seal Point · Blue Point · Chocolate Point',
     image: PEXELS(9916903),
   },
+
   {
     category: 'mamiferos',
     label: 'Pequenos espaços',
     title: 'Hamsters',
-    subtitle: 'Sírio · Anão · Pelo longo · Várias cores',
+    subtitle:
+      'Sírio · Anão · Pelo longo · Várias cores',
     image: PEXELS(3586056),
   },
+
   {
     category: 'aves',
     label: 'Muitas cores',
     title: 'Periquitos Australianos',
-    subtitle: 'Azul · Verde · Amarelo · Branco · Violeta',
+    subtitle:
+      'Azul · Verde · Amarelo · Branco · Violeta',
     image: PEXELS(36133129),
   },
+
   {
     category: 'aquarismo',
     label: 'Em alta',
     title: 'Nano Reef',
-    subtitle: 'Ocellaris · Corais · Iluminação · Skimmer',
+    subtitle:
+      'Ocellaris · Corais · Iluminação · Skimmer',
     image: PEXELS(29216700),
   },
+
   {
     category: 'aquarismo',
     label: 'Clássico',
     title: 'Kinguios',
-    subtitle: 'Oranda · Ranchu · Ryukin · Telescópio',
+    subtitle:
+      'Oranda · Ranchu · Ryukin · Telescópio',
     image: PEXELS(26756414),
   },
+
   {
     category: 'botanica',
     label: 'Modinha',
     title: 'Plantas Carnívoras',
-    subtitle: 'Dionaea · Nepenthes · Drosera',
+    subtitle:
+      'Dionaea · Nepenthes · Drosera',
     image: PEXELS(3691258),
   },
+
   {
     category: 'botanica',
     label: 'Apartamento',
     title: 'Flores e Mini Frutíferas',
-    subtitle: 'Orquídeas · Violetas · Bonsais · Jabuticaba',
+    subtitle:
+      'Orquídeas · Violetas · Bonsais · Jabuticaba',
     image: PEXELS(4090814),
   },
 ]
+
+/* ============================================================
+   FUNÇÕES
+   ============================================================ */
 
 function formatBRL(value) {
   return new Intl.NumberFormat('pt-BR', {
@@ -373,9 +525,14 @@ function getInstallmentText(product) {
   }
 
   return `${product.installments.count}x de ${formatBRL(
-    product.price / product.installments.count
+    product.price /
+      product.installments.count
   )}`
 }
+
+/* ============================================================
+   MARKETPLACE
+   ============================================================ */
 
 export default function MarketplaceWarPlan({
   initialCategory = 'todos',
@@ -384,18 +541,25 @@ export default function MarketplaceWarPlan({
   const safeInitialCategory =
     initialCategory === 'todos' ||
     CATEGORIES.some(
-      (category) => category.id === initialCategory
+      (category) =>
+        category.id === initialCategory
     )
       ? initialCategory
       : 'todos'
 
-  const [searchTerm, setSearchTerm] = useState('')
+  const [searchTerm, setSearchTerm] =
+    useState('')
+
   const [activeCategory, setActiveCategory] =
     useState(safeInitialCategory)
 
   const normalizedSearch = searchTerm
     .trim()
     .toLocaleLowerCase('pt-BR')
+
+  /* ==========================================================
+     CATEGORIAS
+     ========================================================== */
 
   const filteredCategories = useMemo(() => {
     return CATEGORIES.filter((category) => {
@@ -416,23 +580,50 @@ export default function MarketplaceWarPlan({
 
       const matchesSearch =
         !normalizedSearch ||
-        searchable.includes(normalizedSearch)
+        searchable.includes(
+          normalizedSearch
+        )
 
-      return matchesCategory && matchesSearch
+      return (
+        matchesCategory &&
+        matchesSearch
+      )
     })
-  }, [activeCategory, normalizedSearch])
+  }, [
+    activeCategory,
+    normalizedSearch,
+  ])
+
+  /* ==========================================================
+     PRODUTOS
+     ----------------------------------------------------------
+     AQUI ESTÁ A CORREÇÃO PRINCIPAL.
+
+     Antes:
+       product.category === activeCategory
+
+     Agora:
+       product.categories.includes(activeCategory)
+
+     Isso permite que o mesmo produto apareça
+     em mais de uma categoria.
+     ========================================================== */
 
   const filteredProducts = useMemo(() => {
     return PRODUCTS.filter((product) => {
       const matchesCategory =
         activeCategory === 'todos' ||
-        product.category === activeCategory
+        product.categories.includes(
+          activeCategory
+        )
 
       const searchable = [
         product.name,
         product.categoryLabel,
         product.description,
         product.badge,
+        product.delivery,
+        ...product.categories,
         ...product.variants,
       ]
         .join(' ')
@@ -440,11 +631,23 @@ export default function MarketplaceWarPlan({
 
       const matchesSearch =
         !normalizedSearch ||
-        searchable.includes(normalizedSearch)
+        searchable.includes(
+          normalizedSearch
+        )
 
-      return matchesCategory && matchesSearch
+      return (
+        matchesCategory &&
+        matchesSearch
+      )
     })
-  }, [activeCategory, normalizedSearch])
+  }, [
+    activeCategory,
+    normalizedSearch,
+  ])
+
+  /* ==========================================================
+     CATEGORIA
+     ========================================================== */
 
   function selectCategory(categoryId) {
     setActiveCategory(categoryId)
@@ -452,7 +655,9 @@ export default function MarketplaceWarPlan({
 
     window.requestAnimationFrame(() => {
       document
-        .querySelector('#catalogo-marketplace')
+        .querySelector(
+          '#catalogo-marketplace'
+        )
         ?.scrollIntoView({
           behavior: 'smooth',
           block: 'start',
@@ -460,10 +665,18 @@ export default function MarketplaceWarPlan({
     })
   }
 
+  /* ==========================================================
+     RESET
+     ========================================================== */
+
   function resetMarketplace() {
     setActiveCategory('todos')
     setSearchTerm('')
   }
+
+  /* ==========================================================
+     RESULTADOS
+     ========================================================== */
 
   const hasCategoryResults =
     filteredCategories.length > 0
@@ -471,71 +684,101 @@ export default function MarketplaceWarPlan({
   const hasProductResults =
     filteredProducts.length > 0
 
+  const activeCategoryData =
+    CATEGORIES.find(
+      (category) =>
+        category.id === activeCategory
+    )
+
+  /* ==========================================================
+     RENDER
+     ========================================================== */
+
   return (
     <main
       id="marketplace"
       className="marketplace-war"
     >
       <div className="marketplace-war__container">
+
         {!embedded ? (
-        <header className="marketplace-war__hero">
-          <div className="marketplace-war__hero-copy">
-            <span className="marketplace-war__eyebrow">
-              Marketplace AgroNexus™
-            </span>
+          <header className="marketplace-war__hero">
 
-            <h1>
-              Escolha.
-              <br />
-              Veja o preço.
-              <br />
-              <strong>Compre.</strong>
-            </h1>
+            <div className="marketplace-war__hero-copy">
 
-            <p>
-              Animais, aves, peixes, plantas,
-              flores, alimentação, habitats,
-              equipamentos, acessórios e
-              publicações. Produto publicado
-              entra para ser comprado.
-            </p>
-          </div>
+              <span className="marketplace-war__eyebrow">
+                Marketplace AgroNexus™
+              </span>
 
-          <div className="marketplace-war__search">
-            <label htmlFor="marketplace-search">
-              O que você procura?
-            </label>
+              <h1>
+                Escolha.
+                <br />
+                Veja o preço.
+                <br />
+                <strong>Compre.</strong>
+              </h1>
 
-            <div className="marketplace-war__search-row">
-              <input
-                id="marketplace-search"
-                type="search"
-                value={searchTerm}
-                onChange={(event) =>
-                  setSearchTerm(event.target.value)
-                }
-                placeholder="Spitz, Siamês, Calopsita, Kinguio, Nano Reef, Dionaea, ração, skimmer..."
-                autoComplete="off"
-              />
+              <p>
+                Animais, aves, peixes,
+                plantas, flores, alimentação,
+                habitats, equipamentos,
+                acessórios e publicações.
+                Produto publicado entra para
+                ser comprado.
+              </p>
 
-              {(searchTerm ||
-                activeCategory !== 'todos') && (
-                <button
-                  type="button"
-                  onClick={resetMarketplace}
-                >
-                  Limpar
-                </button>
-              )}
             </div>
-          </div>
-        </header>
+
+            <div className="marketplace-war__search">
+
+              <label htmlFor="marketplace-search">
+                O que você procura?
+              </label>
+
+              <div className="marketplace-war__search-row">
+
+                <input
+                  id="marketplace-search"
+                  type="search"
+                  value={searchTerm}
+                  onChange={(event) =>
+                    setSearchTerm(
+                      event.target.value
+                    )
+                  }
+                  placeholder="Spitz, Siamês, Calopsita, Kinguio, Nano Reef, Dionaea, ração, skimmer..."
+                  autoComplete="off"
+                />
+
+                {(searchTerm ||
+                  activeCategory !==
+                    'todos') && (
+                  <button
+                    type="button"
+                    onClick={
+                      resetMarketplace
+                    }
+                  >
+                    Limpar
+                  </button>
+                )}
+
+              </div>
+
+            </div>
+
+          </header>
         ) : null}
+
+        {/* ====================================================
+            CATEGORIAS
+            ==================================================== */}
 
         <nav
           className="marketplace-war__category-strip"
           aria-label="Categorias do Marketplace"
         >
+
           <button
             type="button"
             className={
@@ -555,27 +798,39 @@ export default function MarketplaceWarPlan({
               type="button"
               key={category.id}
               className={
-                activeCategory === category.id
+                activeCategory ===
+                category.id
                   ? 'is-active'
                   : ''
               }
               onClick={() =>
-                selectCategory(category.id)
+                selectCategory(
+                  category.id
+                )
               }
             >
               {category.shortName}
             </button>
           ))}
+
         </nav>
 
+        {/* ====================================================
+            EM ALTA
+            ==================================================== */}
+
         <section className="marketplace-war__trend">
+
           <header className="marketplace-war__section-head">
+
             <div>
+
               <span>Em alta</span>
 
               <h2>
                 O que chama atenção agora.
               </h2>
+
             </div>
 
             <p>
@@ -583,18 +838,23 @@ export default function MarketplaceWarPlan({
               hobbies e produtos que fazem a
               pessoa parar, olhar e querer.
             </p>
+
           </header>
 
           <div className="marketplace-war__trend-grid">
+
             {TRENDING.map((item) => (
               <button
                 type="button"
                 key={`${item.category}-${item.title}`}
                 className="marketplace-war__trend-card"
                 onClick={() =>
-                  selectCategory(item.category)
+                  selectCategory(
+                    item.category
+                  )
                 }
               >
+
                 <img
                   src={item.image}
                   alt=""
@@ -604,28 +864,49 @@ export default function MarketplaceWarPlan({
                 <span className="marketplace-war__trend-shade" />
 
                 <span className="marketplace-war__trend-copy">
-                  <small>{item.label}</small>
 
-                  <strong>{item.title}</strong>
+                  <small>
+                    {item.label}
+                  </small>
 
-                  <span>{item.subtitle}</span>
+                  <strong>
+                    {item.title}
+                  </strong>
+
+                  <span>
+                    {item.subtitle}
+                  </span>
+
                 </span>
+
               </button>
             ))}
+
           </div>
+
         </section>
+
+        {/* ====================================================
+            CATEGORIAS DO MARKETPLACE
+            ==================================================== */}
 
         <section
           id="catalogo-marketplace"
           className="marketplace-war__section"
         >
+
           <header className="marketplace-war__section-head">
+
             <div>
-              <span>Comprar por categoria</span>
+
+              <span>
+                Comprar por categoria
+              </span>
 
               <h2>
                 Explore o Marketplace
               </h2>
+
             </div>
 
             <p>
@@ -633,40 +914,53 @@ export default function MarketplaceWarPlan({
               para encontrar exatamente o que
               procura.
             </p>
+
           </header>
 
           {hasCategoryResults ? (
+
             <div className="marketplace-war__category-grid">
+
               {filteredCategories.map(
                 (category) => (
+
                   <article
                     className="marketplace-war__category"
                     key={category.id}
                   >
+
                     <div className="marketplace-war__category-image">
+
                       <img
                         src={category.image}
-                        alt={category.imageAlt}
+                        alt={
+                          category.imageAlt
+                        }
                         loading="lazy"
                       />
 
                       <span>
                         {category.highlight}
                       </span>
+
                     </div>
 
                     <div className="marketplace-war__category-body">
+
                       <span className="marketplace-war__category-label">
                         {category.shortName}
                       </span>
 
-                      <h3>{category.name}</h3>
+                      <h3>
+                        {category.name}
+                      </h3>
 
                       <p>
                         {category.description}
                       </p>
 
                       <div className="marketplace-war__chips">
+
                         {category.chips.map(
                           (chip) => (
                             <span key={chip}>
@@ -674,25 +968,40 @@ export default function MarketplaceWarPlan({
                             </span>
                           )
                         )}
+
                       </div>
+
                       <button
                         type="button"
                         onClick={() =>
-                          selectCategory(category.id)
+                          selectCategory(
+                            category.id
+                          )
                         }
                       >
                         Ver produtos
-                        <span aria-hidden="true">
+
+                        <span
+                          aria-hidden="true"
+                        >
                           →
                         </span>
+
                       </button>
+
                     </div>
+
                   </article>
+
                 )
               )}
+
             </div>
+
           ) : (
+
             <div className="marketplace-war__no-results">
+
               <strong>
                 Nenhuma categoria corresponde
                 à busca.
@@ -700,25 +1009,44 @@ export default function MarketplaceWarPlan({
 
               <button
                 type="button"
-                onClick={resetMarketplace}
+                onClick={
+                  resetMarketplace
+                }
               >
                 Ver Marketplace completo
               </button>
+
             </div>
+
           )}
+
         </section>
+
+        {/* ====================================================
+            PRODUTOS DISPONÍVEIS
+            ==================================================== */}
 
         <section
           id="produtos-disponiveis"
           className="marketplace-war__section marketplace-war__section--products"
         >
+
           <header className="marketplace-war__section-head">
+
             <div>
-              <span>Compra direta</span>
+
+              <span>
+                Compra direta
+              </span>
 
               <h2>
-                Produtos disponíveis
+                {activeCategory ===
+                'todos'
+                  ? 'Produtos disponíveis'
+                  : activeCategoryData?.name ||
+                    'Produtos disponíveis'}
               </h2>
+
             </div>
 
             <p>
@@ -726,63 +1054,90 @@ export default function MarketplaceWarPlan({
               checkout. Sem consulta para
               descobrir quanto custa.
             </p>
+
           </header>
 
           {hasProductResults ? (
+
             <div className="marketplace-war__products">
+
               {filteredProducts.map(
                 (product) => {
+
                   const installmentText =
-                    getInstallmentText(product)
+                    getInstallmentText(
+                      product
+                    )
 
                   return (
+
                     <article
                       className="marketplace-war__product"
                       key={product.id}
                     >
+
                       <div className="marketplace-war__product-image">
+
                         <img
                           src={product.image}
-                          alt={product.imageAlt}
+                          alt={
+                            product.imageAlt
+                          }
                           loading="lazy"
                         />
 
                         <span className="marketplace-war__badge">
                           {product.badge}
                         </span>
+
                       </div>
 
                       <div className="marketplace-war__product-top">
+
                         <span>
-                          {product.categoryLabel}
+                          {
+                            product.categoryLabel
+                          }
                         </span>
 
                         <span>
-                          {product.delivery}
+                          {
+                            product.delivery
+                          }
                         </span>
+
                       </div>
 
                       <div className="marketplace-war__product-copy">
+
                         <h3>
                           {product.name}
                         </h3>
 
                         <p>
-                          {product.description}
+                          {
+                            product.description
+                          }
                         </p>
 
                         <div className="marketplace-war__variants">
+
                           {product.variants.map(
                             (variant) => (
-                              <span key={variant}>
+                              <span
+                                key={variant}
+                              >
                                 {variant}
                               </span>
                             )
                           )}
+
                         </div>
+
                       </div>
 
                       <div className="marketplace-war__price-block">
+
                         {product.oldPrice ? (
                           <del>
                             {formatBRL(
@@ -799,110 +1154,159 @@ export default function MarketplaceWarPlan({
 
                         {installmentText ? (
                           <span>
-                            {installmentText}
+                            {
+                              installmentText
+                            }
                           </span>
                         ) : (
                           <span>
-                            Pagamento no checkout
+                            Pagamento no
+                            checkout
                           </span>
                         )}
+
                       </div>
 
                       <a
-                        href={product.checkout}
+                        href={
+                          product.checkout
+                        }
                         className="marketplace-war__buy"
                         target="_blank"
                         rel="noopener noreferrer"
                       >
                         Comprar
 
-                        <span aria-hidden="true">
+                        <span
+                          aria-hidden="true"
+                        >
                           →
                         </span>
+
                       </a>
 
                       <small>
                         Checkout processado pela
                         Guiropa World.
                       </small>
+
                     </article>
+
                   )
                 }
               )}
+
             </div>
+
           ) : (
+
             <div className="marketplace-war__category-focus">
+
               <span>
-                {
-                  CATEGORIES.find(
-                    (category) =>
-                      category.id ===
-                      activeCategory
-                  )?.name
-                }
+                {activeCategory ===
+                'todos'
+                  ? 'Marketplace AgroNexus'
+                  : activeCategoryData?.name ||
+                    'Categoria'}
               </span>
 
               <h3>
-                Produtos entram aqui com
-                preço e checkout.
+                Nenhum produto publicado
+                nesta categoria ainda.
               </h3>
 
               <p>
-                Esta categoria já está pronta
-                para receber os produtos
-                cadastrados. Nenhum item entra
-                como produto sem preço e
-                checkout direto.
+                Esta área do Marketplace
+                AgroNexus está habilitada.
+                Os produtos publicados
+                aparecem aqui com preço
+                definido e checkout direto.
               </p>
 
               <button
                 type="button"
-                onClick={resetMarketplace}
+                onClick={
+                  resetMarketplace
+                }
               >
                 Ver produtos disponíveis
               </button>
+
             </div>
+
           )}
+
         </section>
 
+        {/* ====================================================
+            PRINCÍPIOS
+            ==================================================== */}
+
         <section className="marketplace-war__principles">
+
           <div>
-            <strong>Preço na tela</strong>
+
+            <strong>
+              Preço na tela
+            </strong>
+
             <span>
               O cliente vê quanto custa antes
               de clicar.
             </span>
+
           </div>
 
           <div>
-            <strong>Parcelamento visível</strong>
+
+            <strong>
+              Parcelamento visível
+            </strong>
+
             <span>
               Quando houver parcelamento, ele
               aparece junto do preço.
             </span>
+
           </div>
 
           <div>
-            <strong>Compra unitária</strong>
+
+            <strong>
+              Compra unitária
+            </strong>
+
             <span>
               Cada produto pode ser comprado
               separadamente.
             </span>
+
           </div>
 
           <div>
-            <strong>Guiropa World</strong>
+
+            <strong>
+              Guiropa World
+            </strong>
+
             <span>
               Operação financeira claramente
               identificada no checkout.
             </span>
+
           </div>
+
         </section>
+
+        {/* ====================================================
+            RODAPÉ
+            ==================================================== */}
 
         <footer className="marketplace-war__footer-note">
           AgroNexus™ · Uma iniciativa da
           Guiropa World
         </footer>
+
       </div>
     </main>
   )
