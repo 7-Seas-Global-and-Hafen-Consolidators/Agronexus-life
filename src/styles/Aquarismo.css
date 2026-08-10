@@ -1,0 +1,537 @@
+/* ============================================================
+   AGRONEXUS™ — AQUARISMO
+   Branco · Cor · Fotografia · Preço · Compra
+   ============================================================ */
+
+.aqua-store {
+  min-height: 100vh;
+  background: #f5f7f5;
+  color: #111411;
+}
+
+.aqua-store *,
+.aqua-store *::before,
+.aqua-store *::after {
+  box-sizing: border-box;
+}
+
+.aqua-store img {
+  display: block;
+  width: 100%;
+}
+
+.aqua-store a {
+  text-decoration: none;
+}
+
+.aqua-store button,
+.aqua-store input {
+  font: inherit;
+}
+
+.aqua-store__container {
+  width: min(1380px, calc(100% - 48px));
+  margin-inline: auto;
+}
+
+/* HERO */
+
+.aqua-store__hero {
+  position: relative;
+  min-height: 560px;
+  overflow: hidden;
+  background: #07100c;
+  color: #ffffff;
+}
+
+.aqua-store__hero-media,
+.aqua-store__hero-media img,
+.aqua-store__hero-shade {
+  position: absolute;
+  inset: 0;
+}
+
+.aqua-store__hero-media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.aqua-store__hero-shade {
+  background:
+    linear-gradient(
+      90deg,
+      rgba(4, 10, 7, 0.9) 0%,
+      rgba(4, 10, 7, 0.72) 38%,
+      rgba(4, 10, 7, 0.22) 72%,
+      rgba(4, 10, 7, 0.04) 100%
+    );
+}
+
+.aqua-store__hero-inner {
+  position: relative;
+  z-index: 2;
+  min-height: 560px;
+  padding: 90px 0;
+  display: flex;
+  justify-content: center;
+  flex-direction: column;
+  align-items: flex-start;
+}
+
+.aqua-store__hero-inner > span {
+  color: #9de2b9;
+  font-size: 0.72rem;
+  font-weight: 900;
+  letter-spacing: 0.12em;
+  text-transform: uppercase;
+}
+
+.aqua-store__hero h1 {
+  margin: 14px 0 0;
+  font-size: clamp(4rem, 10vw, 8.8rem);
+  font-weight: 900;
+  line-height: 0.86;
+  letter-spacing: -0.07em;
+  text-transform: uppercase;
+}
+
+.aqua-store__hero p {
+  max-width: 720px;
+  margin: 26px 0 0;
+  color: rgba(255,255,255,0.8);
+  font-size: 1.05rem;
+  line-height: 1.72;
+}
+
+.aqua-store__hero a {
+  min-height: 52px;
+  margin-top: 30px;
+  padding: 12px 20px;
+  display: inline-flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 34px;
+  border-radius: 4px;
+  background: #ffffff;
+  color: #111411;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.07em;
+  text-transform: uppercase;
+}
+
+.aqua-store__hero a:hover {
+  background: #8fe0b2;
+}
+
+/* BUSCA */
+
+.aqua-store__search {
+  margin-top: 28px;
+  padding: 26px;
+  border: 1px solid #d8dfda;
+  background: #ffffff;
+}
+
+.aqua-store__search label {
+  display: block;
+  margin-bottom: 10px;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+}
+
+.aqua-store__search > div {
+  display: flex;
+  gap: 8px;
+}
+
+.aqua-store__search input {
+  flex: 1;
+  min-width: 0;
+  min-height: 56px;
+  padding: 0 17px;
+  border: 1px solid #b9c3bc;
+  border-radius: 4px;
+  outline: none;
+  background: #ffffff;
+  color: #111411;
+}
+
+.aqua-store__search input:focus {
+  border-color: #087a4b;
+  box-shadow: 0 0 0 3px rgba(8,122,75,.08);
+}
+
+.aqua-store__search button {
+  min-width: 110px;
+  min-height: 56px;
+  padding: 0 18px;
+  border: 1px solid #111411;
+  border-radius: 4px;
+  background: #111411;
+  color: #ffffff;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.06em;
+  text-transform: uppercase;
+  cursor: pointer;
+}
+
+/* SECTION HEAD */
+
+.aqua-store__categories,
+.aqua-store__products {
+  padding: clamp(74px, 8vw, 116px) 0 0;
+}
+
+.aqua-store__section-head {
+  margin-bottom: 30px;
+}
+
+.aqua-store__section-head > span {
+  display: block;
+  margin-bottom: 10px;
+  color: #087a4b;
+  font-size: 0.7rem;
+  font-weight: 900;
+  letter-spacing: 0.1em;
+  text-transform: uppercase;
+}
+
+.aqua-store__section-head h2 {
+  max-width: 980px;
+  margin: 0;
+  font-size: clamp(2.7rem, 6vw, 5.4rem);
+  font-weight: 900;
+  line-height: 0.92;
+  letter-spacing: -0.06em;
+}
+
+/* CATEGORIES */
+
+.aqua-store__category-grid {
+  display: grid;
+  grid-template-columns: repeat(3, minmax(0,1fr));
+  gap: 12px;
+}
+
+.aqua-category {
+  position: relative;
+  min-height: 290px;
+  padding: 0;
+  overflow: hidden;
+  border: 0;
+  border-radius: 7px;
+  background: #111411;
+  color: #ffffff;
+  text-align: left;
+  cursor: pointer;
+}
+
+.aqua-category img {
+  position: absolute;
+  inset: 0;
+  height: 100%;
+  object-fit: cover;
+  transition: transform 220ms ease;
+}
+
+.aqua-category__shade {
+  position: absolute;
+  inset: 0;
+  background:
+    linear-gradient(
+      180deg,
+      rgba(5,9,6,.06) 15%,
+      rgba(5,9,6,.86) 100%
+    );
+}
+
+.aqua-category__copy {
+  position: absolute;
+  z-index: 2;
+  right: 20px;
+  bottom: 20px;
+  left: 20px;
+}
+
+.aqua-category__copy strong {
+  display: block;
+  color: #ffffff;
+  font-size: 1.55rem;
+  font-weight: 900;
+  line-height: 1;
+}
+
+.aqua-category__copy small {
+  display: block;
+  margin-top: 8px;
+  color: rgba(255,255,255,.72);
+  font-size: 0.72rem;
+  line-height: 1.45;
+}
+
+.aqua-category:hover img {
+  transform: scale(1.035);
+}
+
+.aqua-category.is-active {
+  box-shadow: 0 0 0 3px #087a4b;
+}
+
+/* PRODUCTS */
+
+.aqua-store__product-grid {
+  display: grid;
+  grid-template-columns: repeat(4, minmax(0,1fr));
+  gap: 12px;
+}
+
+.aqua-product {
+  min-width: 0;
+  overflow: hidden;
+  border: 1px solid #d8dfda;
+  border-radius: 7px;
+  background: #ffffff;
+  transition:
+    transform 150ms ease,
+    box-shadow 150ms ease,
+    border-color 150ms ease;
+}
+
+.aqua-product:hover {
+  transform: translateY(-2px);
+  border-color: #aeb9b1;
+  box-shadow: 0 10px 28px rgba(19,31,23,.06);
+}
+
+.aqua-product__media {
+  position: relative;
+  height: 230px;
+  overflow: hidden;
+  background: #e7ebe8;
+}
+
+.aqua-product__media img {
+  height: 100%;
+  object-fit: cover;
+}
+
+.aqua-product__media > span {
+  position: absolute;
+  top: 13px;
+  left: 13px;
+  padding: 6px 9px;
+  border-radius: 3px;
+  background: #087a4b;
+  color: #ffffff;
+  font-size: 0.6rem;
+  font-weight: 900;
+  letter-spacing: 0.065em;
+  text-transform: uppercase;
+}
+
+.aqua-product__body {
+  min-height: 405px;
+  padding: 22px;
+  display: flex;
+  flex-direction: column;
+}
+
+.aqua-product h3 {
+  margin: 0;
+  font-size: 1.4rem;
+  font-weight: 850;
+  line-height: 1.05;
+  letter-spacing: -0.035em;
+}
+
+.aqua-product p {
+  margin: 13px 0 0;
+  color: #626b65;
+  font-size: 0.82rem;
+  line-height: 1.62;
+}
+
+.aqua-product__variants {
+  margin-top: 18px;
+  display: flex;
+  flex-wrap: wrap;
+  gap: 5px;
+}
+
+.aqua-product__variants span {
+  padding: 5px 7px;
+  border: 1px solid #dde3df;
+  border-radius: 999px;
+  background: #f7f9f7;
+  color: #4f5a53;
+  font-size: 0.58rem;
+  font-weight: 750;
+}
+
+.aqua-product__price {
+  margin-top: auto;
+  padding-top: 28px;
+}
+
+.aqua-product__price strong {
+  display: block;
+  color: #087a4b;
+  font-size: clamp(2rem, 3vw, 2.8rem);
+  font-weight: 900;
+  line-height: .95;
+  letter-spacing: -.055em;
+}
+
+.aqua-product__price > span {
+  display: block;
+  margin-top: 7px;
+  color: #687169;
+  font-size: .7rem;
+  font-weight: 700;
+}
+
+.aqua-product__body > a {
+  min-height: 49px;
+  margin-top: 20px;
+  padding: 11px 14px;
+  display: flex;
+  align-items: center;
+  justify-content: space-between;
+  gap: 14px;
+  border-radius: 4px;
+  background: #111411;
+  color: #ffffff;
+  font-size: .68rem;
+  font-weight: 900;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+.aqua-product__body > a:hover {
+  background: #087a4b;
+}
+
+.aqua-store__empty {
+  margin-top: 18px;
+  padding: 30px;
+  border: 1px solid #d8dfda;
+  background: #ffffff;
+}
+
+.aqua-store__empty button {
+  margin-top: 18px;
+  min-height: 46px;
+  padding: 10px 16px;
+  border: 0;
+  border-radius: 4px;
+  background: #111411;
+  color: #ffffff;
+  font-weight: 900;
+  cursor: pointer;
+}
+
+.aqua-store__footer {
+  margin-top: 90px;
+  padding: 24px 0 38px;
+  border-top: 1px solid #d8dfda;
+  color: #747d77;
+  font-size: .64rem;
+  font-weight: 750;
+  letter-spacing: .065em;
+  text-transform: uppercase;
+}
+
+@media (max-width: 1120px) {
+  .aqua-store__product-grid {
+    grid-template-columns: repeat(3, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 900px) {
+  .aqua-store__category-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+
+  .aqua-store__product-grid {
+    grid-template-columns: repeat(2, minmax(0,1fr));
+  }
+}
+
+@media (max-width: 680px) {
+  .aqua-store__container {
+    width: min(100% - 24px, 1380px);
+  }
+
+  .aqua-store__hero,
+  .aqua-store__hero-inner {
+    min-height: 610px;
+  }
+
+  .aqua-store__hero-inner {
+    padding: 72px 0;
+  }
+
+  .aqua-store__hero h1 {
+    font-size: clamp(3.6rem, 18vw, 5.5rem);
+  }
+
+  .aqua-store__hero-shade {
+    background:
+      linear-gradient(
+        180deg,
+        rgba(4,10,7,.45) 0%,
+        rgba(4,10,7,.82) 68%,
+        rgba(4,10,7,.9) 100%
+      );
+  }
+
+  .aqua-store__search {
+    padding: 18px;
+  }
+
+  .aqua-store__search > div {
+    flex-direction: column;
+  }
+
+  .aqua-store__search button {
+    width: 100%;
+    min-height: 48px;
+  }
+
+  .aqua-store__category-grid,
+  .aqua-store__product-grid {
+    grid-template-columns: 1fr;
+  }
+
+  .aqua-category {
+    min-height: 290px;
+  }
+
+  .aqua-product__media {
+    height: 260px;
+  }
+
+  .aqua-product__body {
+    min-height: 0;
+  }
+
+  .aqua-product__price {
+    margin-top: 30px;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .aqua-category img,
+  .aqua-product {
+    transition: none;
+  }
+
+  .aqua-category:hover img,
+  .aqua-product:hover {
+    transform: none;
+  }
+}
