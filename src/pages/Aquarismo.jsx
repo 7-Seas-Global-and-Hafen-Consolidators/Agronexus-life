@@ -31,8 +31,31 @@ const AQUARISMO_CATEGORIES = [
     name: 'Marinho e Reef',
     description:
       'Ocellaris, peixes marinhos, invertebrados, corais, anêmonas, nano reef, mini reef e reef.',
-    image: COMMONS('Ocellaris clownfish bright.jpg'),
+    image: COMMONS('Pomacanthus xanthometopon 420710351.jpg'),
     imagePosition: 'center 48%',
+  },
+  {
+    id: 'moreias',
+    name: 'Moreias',
+    description:
+      'Snowflake, Zebra, Pintada, Verde e outras moreias para sistemas marinhos adequados.',
+    image: COMMONS('Snowflake Moray Eel (8180784914).jpg'),
+  },
+  {
+    id: 'corais',
+    name: 'Corais',
+    description:
+      'Zoanthus, Acropora, Montipora, Euphyllia, Ricordea, Torch e outras formas, cores e fluorescências.',
+    image: COMMONS('Blue Acropora coral.jpg'),
+  },
+  {
+    id: 'reef-base',
+    name: 'Rochas e Substratos',
+    description:
+      'Rochas para reef, aragonita, areia, cascalhos e materiais para estrutura e base do sistema.',
+    image: COMMONS(
+      'Limestone rubble on aragonite sand beach (San Salvador Island, Bahamas) (16001526892).jpg'
+    ),
   },
   {
     id: 'aquarios',
@@ -155,6 +178,340 @@ const PRODUCTS = [
     imageCredit: 'Shek Graham / Wikimedia Commons · CC BY 2.0',
     imagePosition: 'center 48%',
     variants: ['Orange', 'Black', 'Designer'],
+  },
+  {
+    id: 'peixe-mandarim',
+    category: 'marinho',
+    badge: 'Surreal',
+    name: 'Peixe-Mandarim',
+    description:
+      'Azul, verde, laranja e padrões psicodélicos em uma das espécies marinhas mais marcantes do aquarismo.',
+    price: 179.9,
+    installments: 4,
+    image: COMMONS(
+      'Mandarinfish (Synchiropus splendidus) (16057996190).jpg'
+    ),
+    imageAlt: 'Peixe-mandarim azul, verde e laranja em close',
+    imageCredit:
+      'Bernard DUPONT / Wikimedia Commons · CC',
+    imagePosition: 'center 52%',
+    variants: ['Blue Green', 'Orange', 'Psychodelic'],
+  },
+  {
+    id: 'peixe-anjo-face-azul',
+    category: 'marinho',
+    badge: 'Impacto',
+    name: 'Peixe-Anjo-de-Face-Azul',
+    description:
+      'Pomacanthus xanthometopon: máscara azul intensa, amarelo e desenho corporal impossível de ignorar.',
+    price: 499.9,
+    installments: 10,
+    image: COMMONS(
+      'Pomacanthus xanthometopon 420710351.jpg'
+    ),
+    imageAlt: 'Peixe-anjo-de-face-azul amarelo e azul em recife',
+    imageCredit:
+      'Jean-Paul Boerekamps / Wikimedia Commons · CC',
+    imagePosition: 'center 48%',
+    variants: ['Juvenil', 'Adulto'],
+  },
+  {
+    id: 'peixe-anjo-fogo',
+    category: 'marinho',
+    badge: 'Cor',
+    name: 'Peixe-Anjo-Fogo',
+    description:
+      'Centropyge loricula em vermelho-laranja intenso com faixas pretas e detalhes azul-elétrico.',
+    price: 249.9,
+    installments: 6,
+    image: COMMONS(
+      'Flame Angelfish Centropyge loricula.jpg'
+    ),
+    imageAlt: 'Peixe-anjo-fogo vermelho e laranja em recife',
+    imageCredit:
+      'Brian Gratwicke / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 50%',
+    variants: ['Red', 'Orange', 'Blue Edge'],
+  },
+  {
+    id: 'royal-gramma',
+    category: 'marinho',
+    badge: 'Neon',
+    name: 'Royal Gramma',
+    description:
+      'Roxo elétrico encontrando amarelo vivo em um dos contrastes mais fortes entre peixes marinhos compactos.',
+    price: 159.9,
+    installments: 4,
+    image: COMMONS('Gramma loreto 01.jpg'),
+    imageAlt: 'Royal Gramma roxo e amarelo em close',
+    imageCredit:
+      'Wikimedia Commons · licença na página do arquivo',
+    imagePosition: 'center 48%',
+    variants: ['Purple', 'Yellow'],
+  },
+  {
+    id: 'peixe-anjo-regal',
+    category: 'marinho',
+    badge: 'Exótico',
+    name: 'Peixe-Anjo Regal',
+    description:
+      'Pygoplites diacanthus com faixas amarelas, brancas, azuis e pretas em desenho natural extremamente gráfico.',
+    price: 449.9,
+    installments: 10,
+    image: COMMONS(
+      'Pygoplites diacanthus Regal Angelfish by Nick Hobgood.jpg'
+    ),
+    imageAlt: 'Peixe-anjo Regal amarelo azul branco e preto',
+    imageCredit:
+      'Nick Hobgood / Wikimedia Commons · CC',
+    imagePosition: 'center 48%',
+    variants: ['Yellow', 'Blue', 'White'],
+  },
+  {
+    id: 'zoanthus-neon',
+    category: 'marinho',
+    badge: 'Fluorescente',
+    name: 'Zoanthus Neon',
+    description:
+      'Colônia de pólipos com cores intensas para criar pontos de fluorescência e contraste em reef.',
+    price: 79.9,
+    installments: 2,
+    image: COMMONS('Zoanthid.jpg'),
+    imageAlt: 'Zoanthids coloridos em colônia',
+    imageCredit:
+      'Neil Skene / Wikimedia Commons · domínio público',
+    imagePosition: 'center 50%',
+    variants: ['Green', 'Orange', 'Purple', 'Mix'],
+  },
+  {
+    id: 'ricordea-orange',
+    category: 'marinho',
+    badge: 'Fluorescente',
+    name: 'Ricordea Orange',
+    description:
+      'Ricordea florida em laranja vivo com textura que parece de outro planeta sob iluminação reef.',
+    price: 119.9,
+    installments: 3,
+    image: COMMONS('Ricordea florida.jpg'),
+    imageAlt: 'Ricordea florida laranja em aquário',
+    imageCredit:
+      'Wikimedia Commons · licença na página do arquivo',
+    imagePosition: 'center 50%',
+    variants: ['Orange', 'Green', 'Blue', 'Pink'],
+  },
+  {
+    id: 'torch-coral',
+    category: 'marinho',
+    badge: 'Movimento',
+    name: 'Torch Coral',
+    description:
+      'Euphyllia glabrescens com tentáculos longos, cor intensa e movimento constante dentro do reef.',
+    price: 249.9,
+    installments: 6,
+    image: COMMONS('Euphyllia glabrescens.jpg'),
+    imageAlt: 'Torch Coral Euphyllia glabrescens em detalhe',
+    imageCredit:
+      'Ryan Boren / Wikimedia Commons · CC',
+    imagePosition: 'center 50%',
+    variants: ['Green', 'Gold', 'Purple Tip'],
+  },
+  {
+    id: 'moreia-snowflake',
+    category: 'moreias',
+    badge: 'Moreia',
+    name: 'Moreia Snowflake',
+    description:
+      'Echidna nebulosa: padrão branco, preto e amarelo com aparência impossível de confundir.',
+    price: 250,
+    installments: 5,
+    image: COMMONS('Snowflake Moray Eel (8180784914).jpg'),
+    imageAlt: 'Moreia Snowflake branca preta e amarela em close',
+    imageCredit:
+      'Michael Bentley / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 46%',
+    variants: ['20 cm', 'Snowflake'],
+  },
+  {
+    id: 'moreia-zebra',
+    category: 'moreias',
+    badge: 'Moreia',
+    name: 'Moreia Zebra',
+    description:
+      'Gymnomuraena zebra com faixas claras e escuras extremamente gráficas sobre o corpo.',
+    price: 399.9,
+    installments: 8,
+    image: COMMONS(
+      'Zebra Moray (Gymnomuraena zebra) (52684673425).jpg'
+    ),
+    imageAlt: 'Moreia Zebra vista de frente em aquário',
+    imageCredit:
+      'Bernard DUPONT / Wikimedia Commons · CC BY-SA 2.0',
+    imagePosition: 'center 42%',
+    variants: ['Zebra', 'Juvenil', 'Adulto'],
+  },
+  {
+    id: 'moreia-pintada',
+    category: 'moreias',
+    badge: 'Moreia',
+    name: 'Moreia Pintada',
+    description:
+      'Gymnothorax moringa com padrão de manchas fortes saindo de rochas e tocas do reef.',
+    price: 349.9,
+    installments: 7,
+    image: COMMONS('Spotted Moray Eel.jpg'),
+    imageAlt: 'Moreia Pintada emergindo de uma toca no recife',
+    imageCredit:
+      'Betty Wills / Wikimedia Commons',
+    imagePosition: 'center 48%',
+    variants: ['Spotted', 'Juvenil', 'Adulto'],
+  },
+  {
+    id: 'moreia-verde',
+    category: 'moreias',
+    badge: 'Impacto',
+    name: 'Moreia Verde',
+    description:
+      'Gymnothorax funebris com corpo robusto e presença visual dramática em sistemas de grande porte.',
+    price: 599.9,
+    installments: 10,
+    image: COMMONS('GreenMorayEel.JPG'),
+    imageAlt: 'Moreia Verde fotografada em aquário',
+    imageCredit:
+      'Blueag9 / Wikimedia Commons',
+    imagePosition: 'center 48%',
+    variants: ['Green', 'Grande porte'],
+  },
+  {
+    id: 'wrasse-six-line',
+    category: 'marinho',
+    badge: 'Reef Safe',
+    name: 'Wrasse Six Line',
+    description:
+      'Pseudocheilinus hexataenia com seis linhas azuladas sobre corpo laranja e comportamento ativo.',
+    price: 280,
+    installments: 5,
+    image: COMMONS('Six-line wrasse.jpg'),
+    imageAlt: 'Wrasse Six Line azul e laranja em aquário',
+    imageCredit:
+      'Lonnie Huffman / Wikimedia Commons · CC BY 3.0',
+    imagePosition: 'center 50%',
+    variants: ['Blue', 'Orange', 'Reef Safe'],
+  },
+  {
+    id: 'acropora-blue',
+    category: 'corais',
+    badge: 'SPS',
+    name: 'Acropora Blue',
+    description:
+      'Acropora de estrutura ramificada e coloração azul intensa para sistemas reef estabelecidos.',
+    price: 149.9,
+    installments: 3,
+    image: COMMONS('Blue Acropora coral.jpg'),
+    imageAlt: 'Acropora azul intensa em recife',
+    imageCredit:
+      'Wikimedia Commons · licença na página do arquivo',
+    imagePosition: 'center 50%',
+    variants: ['Blue', 'Frag', 'Colônia'],
+  },
+  {
+    id: 'acropora-reef',
+    category: 'corais',
+    badge: 'SPS',
+    name: 'Acropora Reef',
+    description:
+      'Acropora para quem procura arquitetura ramificada, cor e crescimento visual marcante no reef.',
+    price: 129.9,
+    installments: 3,
+    image: COMMONS('Acropora in Aquarium.jpg'),
+    imageAlt: 'Acropora ramificada em aquário reef',
+    imageCredit:
+      'Dieter Karner / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 50%',
+    variants: ['Green', 'Blue', 'Purple', 'Frag'],
+  },
+  {
+    id: 'montipora',
+    category: 'corais',
+    badge: 'SPS',
+    name: 'Montipora',
+    description:
+      'Coral SPS com crescimento em placas ou estruturas incrustantes e alto impacto visual.',
+    price: 99.9,
+    installments: 3,
+    image: COMMONS('ORAcoral1.jpg'),
+    imageAlt: 'Montipora de aquacultura em close',
+    imageCredit:
+      'Jlus580 / Wikimedia Commons',
+    imagePosition: 'center 46%',
+    variants: ['Orange', 'Green', 'Red', 'Plate'],
+  },
+  {
+    id: 'torch-coral-green',
+    category: 'corais',
+    badge: 'LPS',
+    name: 'Torch Coral Green',
+    description:
+      'Euphyllia glabrescens com tentáculos longos, movimento constante e fluorescência verde.',
+    price: 249.9,
+    installments: 6,
+    image: COMMONS('Euphyllia glabrescens en acuario.JPG'),
+    imageAlt: 'Torch Coral verde em aquário reef',
+    imageCredit:
+      'Josuevg / Wikimedia Commons · CC BY-SA 3.0',
+    imagePosition: 'center 50%',
+    variants: ['Green', 'Gold', 'Purple Tip'],
+  },
+  {
+    id: 'zoanthus-mix',
+    category: 'corais',
+    badge: 'Fluorescente',
+    name: 'Zoanthus Mix',
+    description:
+      'Colônias de Zoanthus com contraste de cores, múltiplos pólipos e forte fluorescência.',
+    price: 69.9,
+    installments: 2,
+    image: COMMONS('Zoanthid.jpg'),
+    imageAlt: 'Colônia de Zoanthus em aquário marinho',
+    imageCredit:
+      'Neil Skene / Wikimedia Commons · domínio público',
+    imagePosition: 'center 50%',
+    variants: ['Green', 'Orange', 'Purple', 'Mix'],
+  },
+  {
+    id: 'rocha-reef-1kg',
+    category: 'reef-base',
+    badge: 'Rocha',
+    name: 'Rocha para Reef 1 kg',
+    description:
+      'Rocha para estruturação de aquários marinhos, formação de tocas e composição de hardscape.',
+    price: 49.9,
+    installments: null,
+    image: COMMONS(
+      'Limestone rubble on aragonite sand beach (San Salvador Island, Bahamas) (16001526892).jpg'
+    ),
+    imageAlt: 'Rochas calcárias e aragoníticas em detalhe',
+    imageCredit:
+      'James St. John / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 50%',
+    variants: ['1 kg', '5 kg', '10 kg'],
+  },
+  {
+    id: 'aragonita-5kg',
+    category: 'reef-base',
+    badge: 'Substrato',
+    name: 'Aragonita 5 kg',
+    description:
+      'Substrato claro para montagem de sistemas marinhos e reef em diferentes granulometrias.',
+    price: 119.9,
+    installments: 4,
+    image: COMMONS(
+      'Marine biogenous aragonite sand (modern; marine beach at Sandy Point, San Salvador Island, Bahamas) (48744508548).jpg'
+    ),
+    imageAlt: 'Areia aragonita clara em detalhe',
+    imageCredit:
+      'James St. John / Wikimedia Commons · CC BY 2.0',
+    imagePosition: 'center 50%',
+    variants: ['1–2 mm', '3–5 mm', '5 kg'],
   },
   {
     id: 'coral-soft',
@@ -347,10 +704,16 @@ export default function Aquarismo() {
       <section className="aqua-store__hero">
         <div className="aqua-store__hero-media">
           <img
-            src={PEXELS(29216700)}
-            alt="Aquário reef com peixes-palhaço e corais coloridos"
+            src={COMMONS(
+              'Mandarinfishes (Synchiropus splendidus) (8467335517).jpg'
+            )}
+            alt="Peixes-mandarim intensamente coloridos em ambiente reef"
           />
           <div className="aqua-store__hero-shade" />
+
+          <small className="aqua-store__hero-credit">
+            Bernard DUPONT / Wikimedia Commons
+          </small>
         </div>
 
         <div className="aqua-store__container aqua-store__hero-inner">
