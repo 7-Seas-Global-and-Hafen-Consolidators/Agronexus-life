@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 import Home from './pages/Home'
+import Aquarismo from './pages/Aquarismo'
 
 import MarketplaceWarPlan from './components/MarketplaceWarPlan'
 import GlobalPresence from './components/GlobalPresence'
@@ -267,9 +268,7 @@ function getRouteConfiguration(route) {
     },
 
     '/aquarismo': {
-      component: (
-        <MarketplacePage initialCategory="aquarismo" />
-      ),
+      component: <Aquarismo />,
       scrollTarget: null,
     },
 
