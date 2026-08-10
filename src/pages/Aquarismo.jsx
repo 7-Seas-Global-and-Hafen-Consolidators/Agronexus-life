@@ -4,6 +4,12 @@ import '../styles/Aquarismo.css'
 const PEXELS = (id) =>
   `https://images.pexels.com/photos/${id}/pexels-photo-${id}.jpeg?auto=compress&cs=tinysrgb&w=1400&h=1000&fit=crop`
 
+const UNSPLASH = (photo) =>
+  `https://images.unsplash.com/${photo}?auto=format&fit=crop&w=1400&q=82`
+
+const COMMONS = (filename) =>
+  `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=1400`
+
 const AQUARISMO_CATEGORIES = [
   {
     id: 'agua-doce',
@@ -59,7 +65,7 @@ const PRODUCTS = [
       'Betta ornamental de coloração azul intensa e padrão Dragon.',
     price: 59.9,
     installments: 2,
-    image: PEXELS(36571081),
+    image: UNSPLASH('photo-1742672924749-8a2267ca07df'),
     imageAlt: 'Betta colorido em aquário',
     variants: ['Blue', 'Red', 'White', 'Pink', 'Yellow'],
   },
@@ -72,7 +78,7 @@ const PRODUCTS = [
       'Betta ornamental de nadadeiras amplas, disponível em diferentes padrões e cores.',
     price: 49.9,
     installments: 2,
-    image: PEXELS(942296),
+    image: UNSPLASH('photo-1534043464124-3be32fe000c9'),
     imageAlt: 'Betta roxo e azul fotografado de perto',
     variants: ['Blue', 'Red', 'Multicolor', 'Black', 'White'],
   },
@@ -85,8 +91,8 @@ const PRODUCTS = [
       'Peixe ornamental pequeno, ativo e disponível em grande variedade de cores e caudas.',
     price: 12.9,
     installments: null,
-    image: PEXELS(4742439),
-    imageAlt: 'Peixe ornamental colorido em aquário',
+    image: UNSPLASH('photo-1706479980962-23942d2f4d56'),
+    imageAlt: 'Guppy colorido em aquário plantado',
     variants: ['Blue', 'Red', 'Yellow', 'Mosaic', 'Multicolor'],
   },
   {
@@ -98,8 +104,9 @@ const PRODUCTS = [
       'Uma das variedades mais reconhecidas de Kinguio ornamental.',
     price: 19.9,
     installments: null,
-    image: PEXELS(26756414),
-    imageAlt: 'Kinguio ornamental em aquário',
+    image: COMMONS('Fish Food pellets.jpg'),
+    imageAlt: 'Pellets de alimentação para peixes',
+    imageCredit: 'USFWS / Wikimedia Commons · CC BY 2.0',
     variants: ['Pequeno', 'Médio', 'Grande'],
   },
   {
@@ -111,8 +118,8 @@ const PRODUCTS = [
       'Variedade ornamental clássica, inclusive em versões Black Moor, Calico e Albino.',
     price: 14.9,
     installments: null,
-    image: PEXELS(26756414),
-    imageAlt: 'Kinguio em aquário',
+    image: UNSPLASH('photo-1763770448943-11a878b4e1a2'),
+    imageAlt: 'Kinguio em aquário escuro',
     variants: ['Preto', 'Calico', 'Albino'],
   },
   {
@@ -124,8 +131,8 @@ const PRODUCTS = [
       'Variedade ornamental de corpo arredondado e perfil característico.',
     price: 69.9,
     installments: 2,
-    image: PEXELS(26756414),
-    imageAlt: 'Kinguio ornamental',
+    image: UNSPLASH('photo-1674966545351-e4a468beeb0c'),
+    imageAlt: 'Dois kinguios ornamentais em aquário',
     variants: ['Red', 'Red White', 'Calico', 'Black'],
   },
   {
@@ -137,8 +144,8 @@ const PRODUCTS = [
       'Peixe-palhaço ornamental para sistemas marinhos compatíveis.',
     price: 119.9,
     installments: 3,
-    image: PEXELS(3626111),
-    imageAlt: 'Peixe-palhaço Ocellaris em aquário com coral',
+    image: UNSPLASH('photo-1755628140716-eafd1f60def1'),
+    imageAlt: 'Ocellaris em aquário reef',
     variants: ['Orange', 'Black', 'Designer'],
   },
   {
@@ -150,8 +157,8 @@ const PRODUCTS = [
       'Corais ornamentais para sistemas reef, vendidos individualmente.',
     price: 89.9,
     installments: 3,
-    image: PEXELS(29216700),
-    imageAlt: 'Corais coloridos em aquário reef',
+    image: UNSPLASH('photo-1613117799054-66cacc1914c3'),
+    imageAlt: 'Coral verde bioluminescente em aquário reef',
     variants: ['Green', 'Orange', 'Pink', 'Multicolor'],
   },
   {
@@ -163,8 +170,8 @@ const PRODUCTS = [
       'Aquário de vidro compacto para pequenos espaços e projetos de aquarismo.',
     price: 169.9,
     installments: 5,
-    image: PEXELS(3234841),
-    imageAlt: 'Aquário compacto com água e vida aquática',
+    image: UNSPLASH('photo-1781695125669-b21426a2bdf3'),
+    imageAlt: 'Nano aquário plantado com iluminação superior',
     variants: ['20 L', '30 L', '40 L'],
   },
   {
@@ -176,8 +183,8 @@ const PRODUCTS = [
       'Aquário vazio em vidro para montagem personalizada.',
     price: 129.9,
     installments: 4,
-    image: PEXELS(3234841),
-    imageAlt: 'Aquário de vidro',
+    image: UNSPLASH('photo-1687482383862-aaa7360e8a57'),
+    imageAlt: 'Aquário de vidro compacto com plantas',
     variants: ['20 cm', '25 cm', '30 cm', '40 cm'],
   },
   {
@@ -189,8 +196,9 @@ const PRODUCTS = [
       'Skimmer compacto para sistemas marinhos e nano reef.',
     price: 269.9,
     installments: 6,
-    image: PEXELS(8915250),
-    imageAlt: 'Aquário marinho com equipamentos e corais',
+    image: COMMONS('Skimz-SC205-Protein-Skimmer.jpg'),
+    imageAlt: 'Protein skimmer para aquário marinho',
+    imageCredit: 'Skimz / Wikimedia Commons · CC BY-SA 4.0',
     variants: ['Até 60 L', 'Até 100 L', 'Até 150 L'],
   },
   {
@@ -202,8 +210,9 @@ const PRODUCTS = [
       'Circulação de água para aquários de água doce e sistemas marinhos.',
     price: 79.9,
     installments: 2,
-    image: PEXELS(8915250),
-    imageAlt: 'Aquário com circulação de água',
+    image: COMMONS('Tauchpumpe EDEN 104s 2007-10-14 aa EDIT CUT 1944x1944.jpg'),
+    imageAlt: 'Bomba submersível compacta para aquário',
+    imageCredit: 'Andreas Neudecker / Wikimedia Commons · CC',
     variants: ['2.000 L/h', '3.000 L/h', '5.000 L/h'],
   },
   {
@@ -215,8 +224,9 @@ const PRODUCTS = [
       'Controle de temperatura para aquários em diferentes volumes.',
     price: 69.9,
     installments: 2,
-    image: PEXELS(3234841),
-    imageAlt: 'Aquário doméstico',
+    image: COMMONS('Aquarium heater1.jpg'),
+    imageAlt: 'Aquecedor termostato de imersão para aquário',
+    imageCredit: 'Dr. David Midgley / Wikimedia Commons · CC BY-SA 2.5',
     variants: ['25 W', '50 W', '100 W', '200 W'],
   },
   {
@@ -228,8 +238,9 @@ const PRODUCTS = [
       'Iluminação LED para aquários marinhos e manutenção de corais compatíveis.',
     price: 289.9,
     installments: 6,
-    image: PEXELS(29216700),
-    imageAlt: 'Aquário reef iluminado',
+    image: COMMONS('Led Aquarium Light.jpg'),
+    imageAlt: 'Luminária LED instalada sobre aquário',
+    imageCredit: 'Lime Huang / Wikimedia Commons · CC BY-SA 3.0',
     variants: ['Nano', '40 cm', '60 cm'],
   },
   {
@@ -241,8 +252,9 @@ const PRODUCTS = [
       'Substrato para sistemas marinhos e reef em diferentes granulometrias.',
     price: 49.9,
     installments: null,
-    image: PEXELS(29216700),
-    imageAlt: 'Aquário reef com substrato de areia',
+    image: COMMONS('Marine biogenous aragonite sand (modern; marine beach at Sandy Point, San Salvador Island, Bahamas) (48744508548).jpg'),
+    imageAlt: 'Areia aragonita marinha em detalhe',
+    imageCredit: 'James St. John / Wikimedia Commons · CC BY 2.0',
     variants: ['2 kg', '5 kg', '10 kg'],
   },
   {
@@ -451,6 +463,12 @@ export default function Aquarismo() {
                     <span>
                       {product.badge}
                     </span>
+
+                    {product.imageCredit ? (
+                      <small className="aqua-product__credit">
+                        {product.imageCredit}
+                      </small>
+                    ) : null}
                   </div>
 
                   <div className="aqua-product__body">
