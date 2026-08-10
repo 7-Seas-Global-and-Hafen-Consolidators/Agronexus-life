@@ -4,6 +4,7 @@ import Navbar from './components/Navbar'
 import Footer from './components/Footer'
 
 import Home from './pages/Home'
+import Aves from './pages/Aves'
 import Aquarismo from './pages/Aquarismo'
 
 import MarketplaceWarPlan from './components/MarketplaceWarPlan'
@@ -261,9 +262,7 @@ function getRouteConfiguration(route) {
     },
 
     '/aves': {
-      component: (
-        <MarketplacePage initialCategory="aves" />
-      ),
+      component: <Aves />,
       scrollTarget: null,
     },
 
