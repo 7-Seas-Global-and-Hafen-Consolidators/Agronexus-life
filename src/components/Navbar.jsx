@@ -4,31 +4,29 @@ import logo from '../assets/images/logo.png'
 import '../styles/Navbar.css'
 
 const LINKS = [
-  {
-    label: 'Sobre Nós',
-    href: '#/sobre',
-    route: '/sobre',
-  },
-  {
-    label: 'Nossa Missão',
-    href: '#/missao',
-    route: '/missao',
-  },
-  {
-    label: 'Ecossistema',
-    href: '#/ecossistema',
-    route: '/ecossistema',
-  },
-  {
-    label: 'Portfólio',
-    href: '#/portfolio',
-    route: '/portfolio',
-  },
+  { label: 'Início', href: '#/', route: '/' },
+  { label: 'Marketplace', href: '#/marketplace', route: '/marketplace' },
+  { label: 'Aves', href: '#/aves', route: '/aves' },
+  { label: 'Aquarismo', href: '#/aquarismo', route: '/aquarismo' },
+  { label: 'Plantas', href: '#/plantas', route: '/plantas' },
 ]
 
-export default function Navbar({ currentRoute = '/' }) {
+function getCurrentRoute() {
+  const hash = window.location.hash || '#/'
+  const route = hash.replace(/^#/, '').split('?')[0]
+
+  if (!route) return '/'
+
+  return route.length > 1
+    ? route.replace(/\/+$/, '')
+    : route
+}
+
+export default function Navbar() {
   const [scrolled, setScrolled] = useState(false)
   const [open, setOpen] = useState(false)
+  const [currentRoute, setCurrentRoute] =
+    useState(getCurrentRoute)
 
   useEffect(() => {
     const onScroll = () => {
@@ -36,10 +34,7 @@ export default function Navbar({ currentRoute = '/' }) {
     }
 
     onScroll()
-
-    window.addEventListener('scroll', onScroll, {
-      passive: true,
-    })
+    window.addEventListener('scroll', onScroll, { passive: true })
 
     return () => {
       window.removeEventListener('scroll', onScroll)
@@ -47,7 +42,21 @@ export default function Navbar({ currentRoute = '/' }) {
   }, [])
 
   useEffect(() => {
-    document.body.style.overflow = open ? 'hidden' : ''
+    const onRouteChange = () => {
+      setCurrentRoute(getCurrentRoute())
+      setOpen(false)
+    }
+
+    window.addEventListener('hashchange', onRouteChange)
+
+    return () => {
+      window.removeEventListener('hashchange', onRouteChange)
+    }
+  }, [])
+
+  useEffect(() => {
+    document.body.style.overflow =
+      open ? 'hidden' : ''
 
     return () => {
       document.body.style.overflow = ''
@@ -55,8 +64,18 @@ export default function Navbar({ currentRoute = '/' }) {
   }, [open])
 
   useEffect(() => {
-    setOpen(false)
-  }, [currentRoute])
+    const onKeyDown = (event) => {
+      if (event.key === 'Escape' && open) {
+        setOpen(false)
+      }
+    }
+
+    window.addEventListener('keydown', onKeyDown)
+
+    return () => {
+      window.removeEventListener('keydown', onKeyDown)
+    }
+  }, [open])
 
   const handleNavigation = () => {
     setOpen(false)
@@ -68,12 +87,12 @@ export default function Navbar({ currentRoute = '/' }) {
         scrolled ? 'navbar--scrolled' : ''
       }`}
     >
-      <div className="container navbar__inner">
+      <div className="navbar__inner">
         <a
           href="#/"
           className="navbar__brand"
+          aria-label="AgroNexus.Life — Início"
           onClick={handleNavigation}
-          aria-label="Voltar à página inicial da AgroNexus"
         >
           <img
             src={logo}
@@ -83,6 +102,7 @@ export default function Navbar({ currentRoute = '/' }) {
         </a>
 
         <nav
+          id="principal-navigation"
           className={`navbar__nav ${
             open ? 'is-open' : ''
           }`}
@@ -91,15 +111,22 @@ export default function Navbar({ currentRoute = '/' }) {
           <ul className="navbar__links">
             {LINKS.map((link) => {
               const isActive =
-                currentRoute === link.route ||
-                (link.route === '/sobre' &&
-                  currentRoute === '/')
+                currentRoute === link.route
 
               return (
                 <li key={link.href}>
                   <a
                     href={link.href}
-                    className={isActive ? 'is-active' : ''}
+                    className={
+                      isActive
+                        ? 'is-active'
+                        : ''
+                    }
+                    aria-current={
+                      isActive
+                        ? 'page'
+                        : undefined
+                    }
                     onClick={handleNavigation}
                   >
                     {link.label}
@@ -110,11 +137,11 @@ export default function Navbar({ currentRoute = '/' }) {
           </ul>
 
           <a
-            href="#/contato"
-            className="btn navbar__cta"
+            href="#/marketplace"
+            className="navbar__cta"
             onClick={handleNavigation}
           >
-            Conectar-se
+            Comprar
             <span aria-hidden="true">→</span>
           </a>
         </nav>
@@ -125,7 +152,9 @@ export default function Navbar({ currentRoute = '/' }) {
             open ? 'is-open' : ''
           }`}
           aria-label={
-            open ? 'Fechar menu' : 'Abrir menu'
+            open
+              ? 'Fechar menu'
+              : 'Abrir menu'
           }
           aria-expanded={open}
           aria-controls="principal-navigation"
