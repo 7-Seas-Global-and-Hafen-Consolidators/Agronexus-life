@@ -22,6 +22,34 @@ import '../styles/Aves.css'
 const COMMONS = (filename) =>
   `https://commons.wikimedia.org/wiki/Special:FilePath/${encodeURIComponent(filename)}?width=1400`
 
+const SAFE_FALLBACKS = {
+  periquitos: budgerigarPhoto3,
+  calopsitas: COMMONS('Parrot Cockatiel lutino.jpg'),
+  ringnecks: ringNeckPhoto2,
+  agapornis: agapornisPhoto2,
+  rosellas: rosellaPhoto1,
+  loris: COMMONS('RainbowLorikeet.jpg'),
+  grandes: COMMONS('Sulphur-crested Cockatoo 2010.JPG'),
+  canto: COMMONS('Gouldian Finch. (8065423804).jpg'),
+  aquaticos: COMMONS('Mandarin duck (male).jpg'),
+  nutropica: COMMONS('BirdSeeds.jpg'),
+  habitats: COMMONS('A cage for birds.jpg'),
+  equipamentos: COMMONS('Small Chicken Egg Incubator.jpg'),
+}
+
+function applyFallback(event, category) {
+  const image = event.currentTarget
+
+  if (image.dataset.fallbackApplied === 'true') {
+    return
+  }
+
+  image.dataset.fallbackApplied = 'true'
+  image.src =
+    SAFE_FALLBACKS[category] ||
+    budgerigarPhoto3
+}
+
 const CATEGORIES = [
   {
     id: 'periquitos',
@@ -33,7 +61,7 @@ const CATEGORIES = [
     id: 'calopsitas',
     name: 'Calopsitas',
     line: 'Lutino · Pérola · Cara Branca · Arlequim',
-    image: COMMONS('Cockatiel Lutino.jpg'),
+    image: COMMONS('Parrot Cockatiel lutino.jpg'),
   },
   {
     id: 'ringnecks',
@@ -57,13 +85,13 @@ const CATEGORIES = [
     id: 'loris',
     name: 'Lóris e Jandaias',
     line: 'Molucano · Arco-Íris · Borneo · Jandaia Sol',
-    image: COMMONS('Rainbow Lorikeet Trichoglossus moluccanus.jpg'),
+    image: COMMONS('RainbowLorikeet.jpg'),
   },
   {
     id: 'grandes',
     name: 'Cacatuas, Papagaios e Araras',
     line: 'Alba · Galerita · Moluca · Verdadeiro · Canindé',
-    image: COMMONS('Cacatua alba -Bali Bird Park-8a.jpg'),
+    image: COMMONS('Sulphur-crested Cockatoo 2010.JPG'),
   },
   {
     id: 'canto',
@@ -75,7 +103,7 @@ const CATEGORIES = [
     id: 'aquaticos',
     name: 'Aquáticos Ornamentais',
     line: 'Mandarim · Carolina · Cayuga · Rouen · Mini',
-    image: COMMONS('Aix galericulata - male.jpg'),
+    image: COMMONS('Mandarin duck (male).jpg'),
   },
   {
     id: 'nutropica',
@@ -87,13 +115,13 @@ const CATEGORIES = [
     id: 'habitats',
     name: 'Gaiolas e Viveiros',
     line: 'Voadeiras · Rodízios · Malha fina · Grande porte',
-    image: COMMONS('Large bird cage.jpg'),
+    image: COMMONS('A cage for birds.jpg'),
   },
   {
     id: 'equipamentos',
     name: 'Criação e Equipamentos',
     line: 'Chocadeiras · Criadeiras · Nascedeiras · Ninhos',
-    image: COMMONS('Incubator.jpg'),
+    image: COMMONS('Small Chicken Egg Incubator.jpg'),
   },
 ]
 
@@ -146,7 +174,7 @@ const PRODUCTS = [
     price: 239.9,
     benchmark: 240,
     installments: 6,
-    image: COMMONS('Cockatiel Lutino.jpg'),
+    image: COMMONS('Parrot Cockatiel lutino.jpg'),
     variants: ['Lutino', 'Cara Laranja'],
   },
   {
@@ -358,7 +386,7 @@ const PRODUCTS = [
     price: 3799.9,
     benchmark: 3800,
     installments: 12,
-    image: COMMONS('Rainbow Lorikeet Trichoglossus moluccanus.jpg'),
+    image: COMMONS('RainbowLorikeet.jpg'),
     variants: ['Molucano', 'Multicolor'],
   },
   {
@@ -420,7 +448,7 @@ const PRODUCTS = [
     price: 37999.9,
     benchmark: 38000,
     installments: 12,
-    image: COMMONS('Cacatua alba -Bali Bird Park-8a.jpg'),
+    image: COMMONS('Sulphur-crested Cockatoo 2010.JPG'),
     variants: ['Alba', 'Branca'],
   },
   {
@@ -544,7 +572,7 @@ const PRODUCTS = [
     price: 749.9,
     benchmark: 750,
     installments: 12,
-    image: COMMONS('Aix galericulata - male.jpg'),
+    image: COMMONS('Mandarin duck (male).jpg'),
     variants: ['Macho', 'Fêmea'],
   },
   {
@@ -556,7 +584,7 @@ const PRODUCTS = [
     price: 599.9,
     benchmark: 600,
     installments: 12,
-    image: COMMONS('Wood Duck male.jpg'),
+    image: COMMONS('Wood Duck male. Aix sponsa (38816918742).jpg'),
     variants: ['Macho', 'Fêmea'],
   },
   {
@@ -568,7 +596,7 @@ const PRODUCTS = [
     price: 1499.9,
     benchmark: 1500,
     installments: 12,
-    image: COMMONS('White mandarin duck.jpg'),
+    image: COMMONS('The white duck of the Mandarins.jpg'),
     variants: ['Branco', 'Macho', 'Fêmea'],
   },
   {
@@ -616,7 +644,7 @@ const PRODUCTS = [
     price: 399.9,
     benchmark: 400,
     installments: 9,
-    image: COMMONS('Rouen duck.jpg'),
+    image: COMMONS('Rouen Duck.jpg'),
     variants: ['Macho', 'Fêmea'],
   },
 
@@ -752,7 +780,7 @@ const PRODUCTS = [
     price: 913.89,
     benchmark: 913.99,
     installments: 12,
-    image: COMMONS('Large bird cage.jpg'),
+    image: COMMONS('A cage for birds.jpg'),
     variants: ['1,50 m', 'Cinza'],
   },
   {
@@ -802,7 +830,7 @@ const PRODUCTS = [
     price: 1605.89,
     benchmark: 1605.99,
     installments: 12,
-    image: COMMONS('Egg incubator.jpg'),
+    image: COMMONS('Small Chicken Egg Incubator.jpg'),
     variants: ['110 V', '220 V'],
   },
   {
@@ -814,7 +842,7 @@ const PRODUCTS = [
     price: 1462.89,
     benchmark: 1462.99,
     installments: 12,
-    image: COMMONS('Incubator.jpg'),
+    image: COMMONS('Small Chicken Egg Incubator.jpg'),
     variants: ['70 ovos', 'Digital'],
   },
   {
@@ -984,9 +1012,12 @@ export default function Aves() {
                   src={category.image}
                   alt=""
                   loading="lazy"
-                  onError={(event) => {
-                    event.currentTarget.style.opacity = '0'
-                  }}
+                  onError={(event) =>
+                    applyFallback(
+                      event,
+                      category.id
+                    )
+                  }
                 />
                 <span className="bird-category__shade" />
                 <span className="bird-category__copy">
@@ -1015,9 +1046,12 @@ export default function Aves() {
                     src={product.image}
                     alt={product.name}
                     loading="lazy"
-                    onError={(event) => {
-                      event.currentTarget.src = budgerigarPhoto3
-                    }}
+                    onError={(event) =>
+                      applyFallback(
+                        event,
+                        product.category
+                      )
+                    }
                   />
                   <span>{product.badge}</span>
                 </div>
