@@ -1,6 +1,6 @@
 /* ============================================================
    AGRONEXUS™ — NAVBAR COMERCIAL
-   Branco · Preto · Verde · Compra
+   Nova identidade · compacto · responsivo
    ============================================================ */
 
 .navbar {
@@ -8,7 +8,7 @@
   top: 0;
   z-index: 1000;
   width: 100%;
-  height: 82px;
+  height: 70px;
   display: flex;
   align-items: center;
   border-bottom: 1px solid #dce2dd;
@@ -23,7 +23,7 @@
 }
 
 .navbar--scrolled {
-  height: 72px;
+  height: 64px;
   border-color: #d3dad5;
   box-shadow: 0 8px 28px rgba(17, 20, 17, 0.07);
 }
@@ -35,7 +35,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  gap: 28px;
+  gap: 26px;
 }
 
 .navbar__brand {
@@ -45,24 +45,34 @@
   display: inline-flex;
   align-items: center;
   flex-shrink: 0;
+  text-decoration: none;
 }
 
 .navbar__logo {
-  width: auto;
-  height: 44px;
+  width: 136px;
+  height: auto;
+  max-height: 62px;
   display: block;
   object-fit: contain;
-  transition: height 180ms ease;
+  object-position: left center;
+  opacity: 1;
+  filter: none;
+  transition:
+    width 180ms ease,
+    max-height 180ms ease;
 }
 
 .navbar--scrolled .navbar__logo {
-  height: 39px;
+  width: 124px;
+  max-height: 56px;
 }
 
 .navbar__nav {
   display: flex;
   align-items: center;
+  justify-content: flex-end;
   gap: clamp(22px, 3vw, 42px);
+  margin-left: auto;
 }
 
 .navbar__links {
@@ -115,18 +125,18 @@
 }
 
 .navbar__cta {
-  min-height: 48px;
-  padding: 12px 20px;
+  min-height: 46px;
+  padding: 11px 18px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-  gap: 15px;
+  gap: 14px;
   border: 1px solid #111411;
   border-radius: 4px;
   background: #111411;
   color: #ffffff;
   text-decoration: none;
-  font-size: 0.68rem;
+  font-size: 0.66rem;
   font-weight: 900;
   letter-spacing: 0.065em;
   line-height: 1;
@@ -152,8 +162,8 @@
 .navbar__burger {
   position: relative;
   z-index: 1010;
-  width: 46px;
-  height: 46px;
+  width: 44px;
+  height: 44px;
   padding: 0;
   display: none;
   align-items: center;
@@ -190,9 +200,18 @@
   transform: translateY(-8px) rotate(-45deg);
 }
 
-@media (max-width: 1040px) {
+@media (max-width: 1100px) {
   .navbar__inner {
     width: min(100% - 34px, 1380px);
+    gap: 20px;
+  }
+
+  .navbar__logo {
+    width: 124px;
+  }
+
+  .navbar--scrolled .navbar__logo {
+    width: 116px;
   }
 
   .navbar__links {
@@ -204,14 +223,14 @@
   }
 
   .navbar__cta {
-    padding-inline: 17px;
+    padding-inline: 16px;
   }
 }
 
 @media (max-width: 880px) {
   .navbar,
   .navbar--scrolled {
-    height: 70px;
+    height: 68px;
   }
 
   .navbar__inner {
@@ -220,7 +239,8 @@
 
   .navbar__logo,
   .navbar--scrolled .navbar__logo {
-    height: 36px;
+    width: 122px;
+    max-height: 58px;
   }
 
   .navbar__burger {
@@ -229,7 +249,7 @@
 
   .navbar__nav {
     position: fixed;
-    inset: 70px 0 0 0;
+    inset: 68px 0 0 0;
     z-index: 1005;
     padding: 28px 20px 40px;
     display: flex;
@@ -311,7 +331,8 @@
 
   .navbar__logo,
   .navbar--scrolled .navbar__logo {
-    height: 32px;
+    width: 112px;
+    max-height: 54px;
   }
 
   .navbar__burger {
