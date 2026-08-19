@@ -1,21 +1,51 @@
 import { useEffect, useState } from 'react'
 
-import logo from '../assets/images/logo.png'
 import '../styles/Navbar.css'
 
+const LOGO_SRC = `${
+  import.meta.env.BASE_URL
+}images/agronexus-logo-biodiversity.png`
+
 const LINKS = [
-  { label: 'Início', href: '#/', route: '/' },
-  { label: 'Marketplace', href: '#/marketplace', route: '/marketplace' },
-  { label: 'Aves', href: '#/aves', route: '/aves' },
-  { label: 'Aquarismo', href: '#/aquarismo', route: '/aquarismo' },
-  { label: 'Plantas', href: '#/plantas', route: '/plantas' },
+  {
+    label: 'Início',
+    href: '#/',
+    route: '/',
+  },
+  {
+    label: 'Marketplace',
+    href: '#/marketplace',
+    route: '/marketplace',
+  },
+  {
+    label: 'Aves',
+    href: '#/aves',
+    route: '/aves',
+  },
+  {
+    label: 'Aquarismo',
+    href: '#/aquarismo',
+    route: '/aquarismo',
+  },
+  {
+    label: 'Plantas',
+    href: '#/plantas',
+    route: '/plantas',
+  },
 ]
 
 function getCurrentRoute() {
-  const hash = window.location.hash || '#/'
-  const route = hash.replace(/^#/, '').split('?')[0]
+  const hash =
+    window.location.hash || '#/'
 
-  if (!route) return '/'
+  const route =
+    hash
+      .replace(/^#/, '')
+      .split('?')[0]
+
+  if (!route) {
+    return '/'
+  }
 
   return route.length > 1
     ? route.replace(/\/+$/, '')
@@ -23,57 +53,96 @@ function getCurrentRoute() {
 }
 
 export default function Navbar() {
-  const [scrolled, setScrolled] = useState(false)
-  const [open, setOpen] = useState(false)
-  const [currentRoute, setCurrentRoute] =
-    useState(getCurrentRoute)
+  const [scrolled, setScrolled] =
+    useState(false)
+
+  const [open, setOpen] =
+    useState(false)
+
+  const [
+    currentRoute,
+    setCurrentRoute,
+  ] = useState(getCurrentRoute)
 
   useEffect(() => {
     const onScroll = () => {
-      setScrolled(window.scrollY > 24)
+      setScrolled(
+        window.scrollY > 24
+      )
     }
 
     onScroll()
-    window.addEventListener('scroll', onScroll, { passive: true })
+
+    window.addEventListener(
+      'scroll',
+      onScroll,
+      {
+        passive: true,
+      }
+    )
 
     return () => {
-      window.removeEventListener('scroll', onScroll)
+      window.removeEventListener(
+        'scroll',
+        onScroll
+      )
     }
   }, [])
 
   useEffect(() => {
     const onRouteChange = () => {
-      setCurrentRoute(getCurrentRoute())
+      setCurrentRoute(
+        getCurrentRoute()
+      )
+
       setOpen(false)
     }
 
-    window.addEventListener('hashchange', onRouteChange)
+    window.addEventListener(
+      'hashchange',
+      onRouteChange
+    )
 
     return () => {
-      window.removeEventListener('hashchange', onRouteChange)
+      window.removeEventListener(
+        'hashchange',
+        onRouteChange
+      )
     }
   }, [])
 
   useEffect(() => {
     document.body.style.overflow =
-      open ? 'hidden' : ''
+      open
+        ? 'hidden'
+        : ''
 
     return () => {
-      document.body.style.overflow = ''
+      document.body.style.overflow =
+        ''
     }
   }, [open])
 
   useEffect(() => {
     const onKeyDown = (event) => {
-      if (event.key === 'Escape' && open) {
+      if (
+        event.key === 'Escape' &&
+        open
+      ) {
         setOpen(false)
       }
     }
 
-    window.addEventListener('keydown', onKeyDown)
+    window.addEventListener(
+      'keydown',
+      onKeyDown
+    )
 
     return () => {
-      window.removeEventListener('keydown', onKeyDown)
+      window.removeEventListener(
+        'keydown',
+        onKeyDown
+      )
     }
   }, [open])
 
@@ -84,9 +153,117 @@ export default function Navbar() {
   return (
     <header
       className={`navbar ${
-        scrolled ? 'navbar--scrolled' : ''
+        scrolled
+          ? 'navbar--scrolled'
+          : ''
       }`}
     >
+      <style>{`
+        /*
+         * AGRONEXUS — NEW BIODIVERSITY IDENTITY
+         * Overrides legacy logo constraints without
+         * changing the existing navigation behavior.
+         */
+
+        .navbar__brand {
+          display: flex !important;
+          align-items: center !important;
+          flex: 0 0 auto !important;
+
+          min-width: 0;
+
+          text-decoration: none;
+        }
+
+        .navbar__logo {
+          display: block !important;
+
+          width:
+            clamp(
+              210px,
+              18vw,
+              285px
+            ) !important;
+
+          max-width: none !important;
+
+          height: auto !important;
+
+          max-height:
+            92px !important;
+
+          object-fit:
+            contain !important;
+
+          object-position:
+            left center !important;
+
+          opacity:
+            1 !important;
+
+          filter:
+            none !important;
+
+          transform:
+            none !important;
+
+          mix-blend-mode:
+            normal !important;
+        }
+
+        @media (
+          max-width: 1100px
+        ) {
+          .navbar__logo {
+            width:
+              clamp(
+                190px,
+                20vw,
+                235px
+              ) !important;
+
+            max-height:
+              82px !important;
+          }
+        }
+
+        @media (
+          max-width: 820px
+        ) {
+          .navbar__logo {
+            width:
+              195px !important;
+
+            max-height:
+              74px !important;
+          }
+        }
+
+        @media (
+          max-width: 520px
+        ) {
+          .navbar__logo {
+            width:
+              168px !important;
+
+            max-height:
+              66px !important;
+          }
+        }
+
+        @media (
+          max-width: 380px
+        ) {
+          .navbar__logo {
+            width:
+              150px !important;
+
+            max-height:
+              60px !important;
+          }
+        }
+      `}</style>
+
       <div className="navbar__inner">
         <a
           href="#/"
@@ -95,23 +272,29 @@ export default function Navbar() {
           onClick={handleNavigation}
         >
           <img
-            src={logo}
+            src={LOGO_SRC}
             alt="AgroNexus.Life"
             className="navbar__logo"
+            loading="eager"
+            decoding="async"
+            fetchPriority="high"
           />
         </a>
 
         <nav
           id="principal-navigation"
           className={`navbar__nav ${
-            open ? 'is-open' : ''
+            open
+              ? 'is-open'
+              : ''
           }`}
           aria-label="Navegação principal"
         >
           <ul className="navbar__links">
             {LINKS.map((link) => {
               const isActive =
-                currentRoute === link.route
+                currentRoute ===
+                link.route
 
               return (
                 <li key={link.href}>
@@ -127,7 +310,9 @@ export default function Navbar() {
                         ? 'page'
                         : undefined
                     }
-                    onClick={handleNavigation}
+                    onClick={
+                      handleNavigation
+                    }
                   >
                     {link.label}
                   </a>
@@ -139,17 +324,24 @@ export default function Navbar() {
           <a
             href="#/marketplace"
             className="navbar__cta"
-            onClick={handleNavigation}
+            onClick={
+              handleNavigation
+            }
           >
             Comprar
-            <span aria-hidden="true">→</span>
+
+            <span aria-hidden="true">
+              →
+            </span>
           </a>
         </nav>
 
         <button
           type="button"
           className={`navbar__burger ${
-            open ? 'is-open' : ''
+            open
+              ? 'is-open'
+              : ''
           }`}
           aria-label={
             open
@@ -159,7 +351,10 @@ export default function Navbar() {
           aria-expanded={open}
           aria-controls="principal-navigation"
           onClick={() => {
-            setOpen((current) => !current)
+            setOpen(
+              (current) =>
+                !current
+            )
           }}
         >
           <span />
