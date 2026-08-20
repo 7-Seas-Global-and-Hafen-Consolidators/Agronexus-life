@@ -1,89 +1,511 @@
 /**
- * AgroNexus — World Media Registry
- * Babylon Rebuild
+ * AgroNexus — Babylon World Media Registry
  *
- * Registro central das imagens editoriais dos grandes mundos AgroNexus.
+ * Biblioteca visual central dos grandes mundos AgroNexus.
  *
- * Os arquivos físicos ficam em:
+ * Nenhuma página deve espalhar caminhos de imagens manualmente.
+ * Todo o sistema Babylon consulta este registro.
+ *
+ * Estrutura preparada para:
+ *
+ * - fotografia de gateway
+ * - hero editorial
+ * - fotografia mobile
+ * - departamentos
+ * - campanhas
+ * - destaques
+ * - espécies
+ * - marketplace contextual
+ *
+ * Assets públicos:
  * public/assets/worlds/
  */
 
+const WORLD_ASSET_ROOT =
+  'assets/worlds'
+
+/* ============================================================
+   ASSET HELPER
+   ============================================================ */
+
+function worldAsset(
+  world,
+  filename
+) {
+  return `${WORLD_ASSET_ROOT}/${world}/${filename}`
+}
+
+/* ============================================================
+   MEDIA REGISTRY
+   ============================================================ */
+
 export const worldMedia = {
+  /* ==========================================================
+     AVES
+     ========================================================== */
+
   aves: {
-    hero: "/assets/worlds/aves-hero.jpg",
-    card: "/assets/worlds/aves-card.jpg",
+    card: worldAsset(
+      'aves',
+      'aves-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'aves',
+      'aves-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'aves',
+      'aves-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      psitacideos: worldAsset(
+        'aves',
+        'departamento-psitacideos.jpg'
+      ),
+
+      canarios: worldAsset(
+        'aves',
+        'departamento-canarios.jpg'
+      ),
+
+      exoticos: worldAsset(
+        'aves',
+        'departamento-exoticos.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'aves',
+        'departamento-alimentacao.jpg'
+      ),
+
+      habitats: worldAsset(
+        'aves',
+        'departamento-habitats.jpg'
+      ),
+
+      saude: worldAsset(
+        'aves',
+        'departamento-saude.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     CÃES
+     ========================================================== */
 
   caes: {
-    hero: "/assets/worlds/caes-hero.jpg",
-    card: "/assets/worlds/caes-card.jpg",
+    card: worldAsset(
+      'caes',
+      'caes-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'caes',
+      'caes-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'caes',
+      'caes-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      racas: worldAsset(
+        'caes',
+        'departamento-racas.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'caes',
+        'departamento-alimentacao.jpg'
+      ),
+
+      saude: worldAsset(
+        'caes',
+        'departamento-saude.jpg'
+      ),
+
+      higiene: worldAsset(
+        'caes',
+        'departamento-higiene.jpg'
+      ),
+
+      acessorios: worldAsset(
+        'caes',
+        'departamento-acessorios.jpg'
+      ),
+
+      servicos: worldAsset(
+        'caes',
+        'departamento-servicos.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     GATOS
+     ========================================================== */
 
   gatos: {
-    hero: "/assets/worlds/gatos-hero.jpg",
-    card: "/assets/worlds/gatos-card.jpg",
+    card: worldAsset(
+      'gatos',
+      'gatos-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'gatos',
+      'gatos-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'gatos',
+      'gatos-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      racas: worldAsset(
+        'gatos',
+        'departamento-racas.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'gatos',
+        'departamento-alimentacao.jpg'
+      ),
+
+      saude: worldAsset(
+        'gatos',
+        'departamento-saude.jpg'
+      ),
+
+      higiene: worldAsset(
+        'gatos',
+        'departamento-higiene.jpg'
+      ),
+
+      enriquecimento: worldAsset(
+        'gatos',
+        'departamento-enriquecimento.jpg'
+      ),
+
+      acessorios: worldAsset(
+        'gatos',
+        'departamento-acessorios.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     AQUARISMO
+     ========================================================== */
 
   aquarismo: {
-    hero: "/assets/worlds/aquarismo-hero.jpg",
-    card: "/assets/worlds/aquarismo-card.jpg",
+    card: worldAsset(
+      'aquarismo',
+      'aquarismo-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'aquarismo',
+      'aquarismo-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'aquarismo',
+      'aquarismo-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      peixes: worldAsset(
+        'aquarismo',
+        'departamento-peixes.jpg'
+      ),
+
+      plantados: worldAsset(
+        'aquarismo',
+        'departamento-plantados.jpg'
+      ),
+
+      aquarios: worldAsset(
+        'aquarismo',
+        'departamento-aquarios.jpg'
+      ),
+
+      filtragem: worldAsset(
+        'aquarismo',
+        'departamento-filtragem.jpg'
+      ),
+
+      iluminacao: worldAsset(
+        'aquarismo',
+        'departamento-iluminacao.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'aquarismo',
+        'departamento-alimentacao.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     CORAIS & REEF
+     ========================================================== */
 
   corais: {
-    hero: "/assets/worlds/corais-hero.jpg",
-    card: "/assets/worlds/corais-card.jpg",
+    card: worldAsset(
+      'corais',
+      'corais-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'corais',
+      'corais-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'corais',
+      'corais-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      corais: worldAsset(
+        'corais',
+        'departamento-corais.jpg'
+      ),
+
+      peixes: worldAsset(
+        'corais',
+        'departamento-peixes.jpg'
+      ),
+
+      invertebrados: worldAsset(
+        'corais',
+        'departamento-invertebrados.jpg'
+      ),
+
+      aquarios: worldAsset(
+        'corais',
+        'departamento-aquarios.jpg'
+      ),
+
+      iluminacao: worldAsset(
+        'corais',
+        'departamento-iluminacao.jpg'
+      ),
+
+      tratamento: worldAsset(
+        'corais',
+        'departamento-tratamento.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     RÉPTEIS
+     ========================================================== */
 
   repteis: {
-    hero: "/assets/worlds/repteis-hero.jpg",
-    card: "/assets/worlds/repteis-card.jpg",
+    card: worldAsset(
+      'repteis',
+      'repteis-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'repteis',
+      'repteis-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'repteis',
+      'repteis-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      especies: worldAsset(
+        'repteis',
+        'departamento-especies.jpg'
+      ),
+
+      terrarios: worldAsset(
+        'repteis',
+        'departamento-terrarios.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'repteis',
+        'departamento-alimentacao.jpg'
+      ),
+
+      aquecimento: worldAsset(
+        'repteis',
+        'departamento-aquecimento.jpg'
+      ),
+
+      iluminacao: worldAsset(
+        'repteis',
+        'departamento-iluminacao.jpg'
+      ),
+
+      saude: worldAsset(
+        'repteis',
+        'departamento-saude.jpg'
+      ),
+    },
   },
 
-  "pequenos-mamiferos": {
-    hero: "/assets/worlds/pequenos-mamiferos-hero.jpg",
-    card: "/assets/worlds/pequenos-mamiferos-card.jpg",
+  /* ==========================================================
+     PEQUENOS MAMÍFEROS
+     ========================================================== */
+
+  'pequenos-mamiferos': {
+    card: worldAsset(
+      'pequenos-mamiferos',
+      'pequenos-mamiferos-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'pequenos-mamiferos',
+      'pequenos-mamiferos-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'pequenos-mamiferos',
+      'pequenos-mamiferos-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      hamsters: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-hamsters.jpg'
+      ),
+
+      coelhos: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-coelhos.jpg'
+      ),
+
+      roedores: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-roedores.jpg'
+      ),
+
+      alimentacao: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-alimentacao.jpg'
+      ),
+
+      habitats: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-habitats.jpg'
+      ),
+
+      enriquecimento: worldAsset(
+        'pequenos-mamiferos',
+        'departamento-enriquecimento.jpg'
+      ),
+    },
   },
+
+  /* ==========================================================
+     PLANTAS
+     ========================================================== */
 
   plantas: {
-    hero: "/assets/worlds/plantas-hero.jpg",
-    card: "/assets/worlds/plantas-card.jpg",
+    card: worldAsset(
+      'plantas',
+      'plantas-card.jpg'
+    ),
+
+    hero: worldAsset(
+      'plantas',
+      'plantas-hero.jpg'
+    ),
+
+    mobile: worldAsset(
+      'plantas',
+      'plantas-mobile.jpg'
+    ),
+
+    focalPoint: 'center center',
+
+    departments: {
+      ornamentais: worldAsset(
+        'plantas',
+        'departamento-ornamentais.jpg'
+      ),
+
+      aquaticas: worldAsset(
+        'plantas',
+        'departamento-aquaticas.jpg'
+      ),
+
+      bonsais: worldAsset(
+        'plantas',
+        'departamento-bonsais.jpg'
+      ),
+
+      orquideas: worldAsset(
+        'plantas',
+        'departamento-orquideas.jpg'
+      ),
+
+      flores: worldAsset(
+        'plantas',
+        'departamento-flores.jpg'
+      ),
+
+      cultivo: worldAsset(
+        'plantas',
+        'departamento-cultivo.jpg'
+      ),
+    },
   },
+}
 
-  "plantas-aquaticas": {
-    hero: "/assets/worlds/plantas-aquaticas-hero.jpg",
-    card: "/assets/worlds/plantas-aquaticas-card.jpg",
-  },
+/* ============================================================
+   WORLD MEDIA LOOKUP
+   ============================================================ */
 
-  bonsais: {
-    hero: "/assets/worlds/bonsais-hero.jpg",
-    card: "/assets/worlds/bonsais-card.jpg",
-  },
+export function getWorldMedia(
+  slug
+) {
+  return (
+    worldMedia[slug] ||
+    {}
+  )
+}
 
-  orquideas: {
-    hero: "/assets/worlds/orquideas-hero.jpg",
-    card: "/assets/worlds/orquideas-card.jpg",
-  },
+/* ============================================================
+   DEPARTMENT MEDIA LOOKUP
+   ============================================================ */
 
-  alimentacao: {
-    hero: "/assets/worlds/alimentacao-hero.jpg",
-    card: "/assets/worlds/alimentacao-card.jpg",
-  },
-
-  saude: {
-    hero: "/assets/worlds/saude-hero.jpg",
-    card: "/assets/worlds/saude-card.jpg",
-  },
-
-  equipamentos: {
-    hero: "/assets/worlds/equipamentos-hero.jpg",
-    card: "/assets/worlds/equipamentos-card.jpg",
-  },
-};
-
-export const getWorldMedia = (worldId) =>
-  worldMedia[worldId] || {
-    hero: "/assets/worlds/agronexus-fallback.jpg",
-    card: "/assets/worlds/agronexus-fallback.jpg",
-  };
-
-export default worldMedia;
+export function getDepartmentMedia(
+  worldSlug,
+  departmentSlug
+) {
+  return (
+    worldMedia?.[worldSlug]
+      ?.departments
+      ?.[departmentSlug] ||
+    ''
+  )
+}
