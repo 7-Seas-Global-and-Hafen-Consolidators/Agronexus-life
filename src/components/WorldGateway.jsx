@@ -2,36 +2,105 @@
  * AgroNexus — World Gateway
  * Babylon Rebuild
  *
- * Porta visual principal para os grandes mundos AgroNexus.
+ * Portal visual principal para os grandes mundos AgroNexus.
  *
- * Cada universo possui uma rota Babylon própria:
+ * Cada universo possui:
+ * - rota Babylon própria
+ * - identidade visual própria
+ * - fotografia editorial própria
+ * - experiência independente
+ *
+ * Rotas:
  * /mundo/:slug
  *
- * O componente não depende de React Router.
- * A navegação utiliza o hash routing nativo já existente
- * na aplicação AgroNexus.
+ * O componente utiliza exclusivamente
+ * o hash routing nativo da AgroNexus.
  */
 
 import {
   agronexusWorlds,
 } from '../data/agronexusCatalog'
 
+import {
+  getWorldMedia,
+} from '../data/worldMedia'
+
+/* ============================================================
+   NAVIGATION
+   ============================================================ */
+
 function navigateTo(path) {
-  window.location.hash = `#${path}`
+  window.location.hash =
+    `#${path}`
 }
 
-function getWorldDestination(world) {
+/* ============================================================
+   DESTINATION
+   ============================================================ */
+
+function getWorldDestination(
+  world
+) {
   return `/mundo/${world.id}`
 }
 
+/* ============================================================
+   PUBLIC ASSET
+   ============================================================ */
+
+function resolvePublicAsset(
+  assetPath
+) {
+  if (!assetPath) {
+    return ''
+  }
+
+  if (
+    assetPath.startsWith(
+      'http://'
+    ) ||
+    assetPath.startsWith(
+      'https://'
+    ) ||
+    assetPath.startsWith(
+      'data:'
+    )
+  ) {
+    return assetPath
+  }
+
+  const cleanPath =
+    assetPath.replace(
+      /^\/+/,
+      ''
+    )
+
+  return `${import.meta.env.BASE_URL}${cleanPath}`
+}
+
+/* ============================================================
+   WORLD LABELS
+   ============================================================ */
+
 function getWorldLabel(type) {
   const labels = {
-    biodiversity: 'Biodiversidade',
-    animals: 'Animais',
-    aquatic: 'Aquático',
-    botanical: 'Botânico',
-    market: 'Marketplace',
-    care: 'Saúde & Bem-estar',
+    biodiversity:
+      'Biodiversidade',
+
+    animals:
+      'Animais',
+
+    aquatic:
+      'Aquático',
+
+    botanical:
+      'Botânico',
+
+    market:
+      'Marketplace',
+
+    care:
+      'Saúde & Bem-estar',
   }
 
   return (
@@ -40,6 +109,10 @@ function getWorldLabel(type) {
   )
 }
 
+/* ============================================================
+   COMPONENT
+   ============================================================ */
+
 export default function WorldGateway({
   onNavigate,
 }) {
@@ -47,7 +120,9 @@ export default function WorldGateway({
     world
   ) => {
     const destination =
-      getWorldDestination(world)
+      getWorldDestination(
+        world
+      )
 
     if (
       typeof onNavigate ===
@@ -61,7 +136,9 @@ export default function WorldGateway({
       return
     }
 
-    navigateTo(destination)
+    navigateTo(
+      destination
+    )
   }
 
   return (
@@ -98,12 +175,15 @@ export default function WorldGateway({
       </div>
 
       {/* ======================================================
-          GRID DE MUNDOS
+          GRANDES MUNDOS
           ====================================================== */}
 
       <div className="agx-world-gateway__grid">
         {agronexusWorlds.map(
-          (world, index) => {
+          (
+            world,
+            index
+          ) => {
             const destination =
               getWorldDestination(
                 world
@@ -113,6 +193,39 @@ export default function WorldGateway({
               getWorldLabel(
                 world.type
               )
+
+            const media =
+              getWorldMedia(
+                world.id
+              )
+
+            const cardImage =
+              resolvePublicAsset(
+                media?.card ||
+                media?.hero ||
+                ''
+              )
+
+            const mediaStyle =
+              cardImage
+                ? {
+                    backgroundImage: `
+                      linear-gradient(
+                        180deg,
+                        rgba(7, 18, 13, 0.08) 0%,
+                        rgba(7, 18, 13, 0.18) 48%,
+                        rgba(7, 18, 13, 0.86) 100%
+                      ),
+                      url("${cardImage}")
+                    `,
+
+                    backgroundSize:
+                      'cover',
+
+                    backgroundPosition:
+                      'center',
+                  }
+                : undefined
 
             return (
               <button
@@ -137,15 +250,16 @@ export default function WorldGateway({
                 }
               >
                 {/* ============================================
-                    ÁREA VISUAL
-
-                    O placeholder permanece somente enquanto
-                    os novos assets Babylon ainda não foram
-                    associados ao worldMedia.
+                    FOTOGRAFIA
                     ============================================ */}
 
                 <div className="agx-world-card__media">
-                  <div className="agx-world-card__image-placeholder">
+                  <div
+                    className="agx-world-card__image-placeholder"
+                    style={
+                      mediaStyle
+                    }
+                  >
                     <span className="agx-world-card__index">
                       {String(
                         index + 1
@@ -181,11 +295,14 @@ export default function WorldGateway({
                   </p>
 
                   <span className="agx-world-card__cta">
-                    Explorar mundo
+                    <span>
+                      Explorar mundo
+                    </span>
+
                     <span
                       aria-hidden="true"
                     >
-                      {' '}→
+                      →
                     </span>
                   </span>
                 </div>
@@ -196,7 +313,7 @@ export default function WorldGateway({
       </div>
 
       {/* ======================================================
-          CONEXÃO DO ECOSSISTEMA
+          ECOSSISTEMA
           ====================================================== */}
 
       <div className="agx-world-gateway__footer">
@@ -222,6 +339,14 @@ export default function WorldGateway({
 
         <span>
           CONEXÃO
+        </span>
+
+        <span>
+          RECORRÊNCIA
+        </span>
+
+        <span>
+          BENEFÍCIOS
         </span>
       </div>
     </section>
