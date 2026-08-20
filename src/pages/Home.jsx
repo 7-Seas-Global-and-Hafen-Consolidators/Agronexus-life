@@ -7,8 +7,83 @@ import '../styles/agro-hub.css'
 
 import MarketplaceWarPlan from '../components/MarketplaceWarPlan'
 
-const SUPPORT_URL =
+const ASAAS_SUPPORT_URL =
   'https://www.asaas.com/c/u6toboa8xhqsmosv'
+
+const MERCADO_PAGO_SUPPORT_URL =
+  'https://link.mercadopago.com.br/agronexus'
+
+const PUBLIC_IMAGE = (name) =>
+  `${import.meta.env.BASE_URL}images/${name}`
+
+const ASAAS_LOGO =
+  PUBLIC_IMAGE(
+    'asaas-blue-only-icon-9fe98aa6050e814a9ecb83a819109bed(1).svg'
+  )
+
+const MERCADO_PAGO_LOGO =
+  PUBLIC_IMAGE(
+    'MP_RGB_HANDSHAKE_color_horizontal(1).svg'
+  )
+
+const NGO_PARTNERS = [
+  {
+    name: 'Amigos dos Bichos — Proteção Animal',
+    file: 'Amigos_dos_Bichos_Protecao_Animal_c2568caecf.png',
+  },
+  {
+    name: 'Adote com Consciência',
+    file: 'adote_com_consciencia_650b67cd4e.png',
+  },
+  {
+    name: 'Adote uma Vida',
+    file: 'adote_uma_vida_77effe5640.png',
+  },
+  {
+    name: 'Associação Anjos da Rua',
+    file: 'associacao_anjos_da_rua_a96f1fc28d.png',
+  },
+  {
+    name: 'Deixe Viver',
+    file: 'deixe_viver_99d9f36f1e.png',
+  },
+  {
+    name: 'Focinhos Curitiba',
+    file: 'focinhos_curitiba_6cfaeaea7d.png',
+  },
+  {
+    name: 'GPA — Grupo de Proteção Animal',
+    file: 'gpa_abbaafffde.png',
+  },
+  {
+    name: 'Miau Aumigos',
+    file: 'miau_aumigos_7d552da112.png',
+  },
+  {
+    name: 'ONG 100% Proteção',
+    file: 'ong_100_protecao_2605b103f9.png',
+  },
+  {
+    name: 'OPAM',
+    file: 'opam_8c4fd75b3e.png',
+  },
+  {
+    name: 'Patinhas que Brilham',
+    file: 'patinhas_que_brilham_98df337b69.png',
+  },
+  {
+    name: 'Protetores Independentes',
+    file: 'protetores_independentes_24fe822f36.png',
+  },
+  {
+    name: 'SOS Bichos',
+    file: 'sos_bichos_362edf66a4.png',
+  },
+  {
+    name: 'Toca dos Peludos',
+    file: 'toca_dos_peludos_77caf2fc2c.png',
+  },
+]
 
 const HERO_VIDEOS = [
   {
@@ -152,6 +227,172 @@ export default function Home() {
 
   return (
     <main>
+
+      <style>{`
+        .agro-ngo-section {
+          background: #eef4ef;
+          color: #111411;
+          padding: clamp(72px, 8vw, 112px) 0;
+        }
+
+        .agro-ngo-head {
+          max-width: 1050px;
+          margin-bottom: 38px;
+        }
+
+        .agro-ngo-head h2 {
+          margin: 10px 0 0;
+          font-size: clamp(3rem, 6vw, 5.8rem);
+          font-weight: 950;
+          line-height: 0.9;
+          letter-spacing: -0.06em;
+        }
+
+        .agro-ngo-head p {
+          max-width: 760px;
+          margin: 22px 0 0;
+          color: #657069;
+          font-size: 1rem;
+          line-height: 1.7;
+        }
+
+        .agro-ngo-grid {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(145px, 1fr));
+          gap: 12px;
+          margin-top: 34px;
+        }
+
+        .agro-ngo-card {
+          min-height: 164px;
+          padding: 18px;
+          display: flex;
+          align-items: center;
+          justify-content: center;
+          border: 1px solid #d7dfd9;
+          border-radius: 8px;
+          background: #ffffff;
+        }
+
+        .agro-ngo-card img {
+          display: block;
+          width: 100%;
+          height: 118px;
+          object-fit: contain;
+        }
+
+        .agro-ngo-actions {
+          display: grid;
+          grid-template-columns: repeat(auto-fit, minmax(230px, 1fr));
+          gap: 12px;
+          margin-top: 34px;
+        }
+
+        .agro-payment-grid {
+          display: grid;
+          grid-template-columns: repeat(2, minmax(0, 1fr));
+          gap: 12px;
+          margin-top: 24px;
+        }
+
+        .agro-payment-card {
+          min-height: 250px;
+          padding: 26px;
+          display: flex;
+          flex-direction: column;
+          justify-content: space-between;
+          gap: 22px;
+          border: 1px solid rgba(255, 255, 255, 0.12);
+          background: rgba(255, 255, 255, 0.035);
+        }
+
+        .agro-payment-card__logo {
+          min-height: 58px;
+          display: flex;
+          align-items: center;
+        }
+
+        .agro-payment-card__logo img {
+          display: block;
+          max-width: 170px;
+          max-height: 52px;
+          width: auto;
+          height: auto;
+          object-fit: contain;
+        }
+
+        .agro-payment-card--asaas .agro-payment-card__logo img {
+          width: 48px;
+          height: 48px;
+        }
+
+        .agro-payment-card h3 {
+          margin: 0;
+          color: #ffffff;
+          font-size: clamp(1.4rem, 2.4vw, 2rem);
+          line-height: 1;
+          letter-spacing: -0.04em;
+        }
+
+        .agro-payment-card p {
+          margin: 10px 0 0;
+          color: rgba(255, 255, 255, 0.66);
+          font-size: 0.88rem;
+          line-height: 1.55;
+        }
+
+        .agro-payment-card a {
+          min-height: 50px;
+          padding: 0 18px;
+          display: inline-flex;
+          align-items: center;
+          justify-content: space-between;
+          gap: 18px;
+          border: 1px solid #79d9a4;
+          background: #79d9a4;
+          color: #0c120f;
+          text-decoration: none;
+          font-size: 0.72rem;
+          font-weight: 950;
+          letter-spacing: 0.055em;
+          text-transform: uppercase;
+        }
+
+        .agro-payment-card a:hover,
+        .agro-payment-card a:focus-visible {
+          background: #ffffff;
+          border-color: #ffffff;
+        }
+
+        .agro-payment-note {
+          margin-top: 18px;
+          color: rgba(255, 255, 255, 0.5);
+          font-size: 0.72rem;
+          line-height: 1.55;
+        }
+
+        @media (max-width: 760px) {
+          .agro-payment-grid {
+            grid-template-columns: 1fr;
+          }
+
+          .agro-ngo-grid {
+            grid-template-columns: repeat(2, minmax(0, 1fr));
+          }
+        }
+
+        @media (max-width: 420px) {
+          .agro-ngo-card {
+            min-height: 132px;
+            padding: 12px;
+          }
+
+          .agro-ngo-card img {
+            height: 94px;
+          }
+        }
+      `}</style>
+
 
       {/* ======================================================
           HERO VIVO
@@ -494,56 +735,52 @@ export default function Home() {
       </section>
 
       {/* ======================================================
-          ADOÇÃO E DOAÇÃO
-          SEM MOSTRAR ANIMAIS. SEM INTERPRETAÇÃO.
+          ADOÇÃO · PROTEÇÃO · ONGs
           ====================================================== */}
 
-      <section
-        style={{
-          background: '#eef4ef',
-          color: '#111411',
-          padding: 'clamp(72px, 8vw, 112px) 0',
-        }}
-      >
+      <section className="agro-ngo-section">
         <div className="commerce-container">
-          <div
-            style={{
-              maxWidth: '1000px',
-              marginBottom: '34px',
-            }}
-          >
+          <div className="agro-ngo-head">
             <span className="commerce-kicker">
-              Adoção e doação
+              Adoção · proteção animal · parceiros
             </span>
 
-            <h2
-              style={{
-                margin: '10px 0 0',
-                fontSize: 'clamp(3rem, 6vw, 5.8rem)',
-                fontWeight: 950,
-                lineHeight: 0.9,
-                letterSpacing: '-0.06em',
-              }}
-            >
-              Adotar. Doar.
+            <h2>
+              Quem também faz
               <br />
-              Cadastrar ONG.
+              a diferença.
             </h2>
+
+            <p>
+              Organizações e grupos de proteção animal
+              que ajudam a transformar cuidado,
+              acolhimento e adoção em ação.
+            </p>
           </div>
 
-          <div
-            style={{
-              display: 'grid',
-              gridTemplateColumns:
-                'repeat(auto-fit, minmax(260px, 1fr))',
-              gap: '12px',
-            }}
-          >
+          <div className="agro-ngo-grid">
+            {NGO_PARTNERS.map((partner) => (
+              <div
+                className="agro-ngo-card"
+                key={partner.file}
+                title={partner.name}
+              >
+                <img
+                  src={PUBLIC_IMAGE(partner.file)}
+                  alt={partner.name}
+                  loading="lazy"
+                  decoding="async"
+                />
+              </div>
+            ))}
+          </div>
+
+          <div className="agro-ngo-actions">
             <a
               href="#/contato?acao=adotar"
               className="commerce-button commerce-button--primary"
             >
-              Adotar
+              Quero adotar
               <span aria-hidden="true">→</span>
             </a>
 
@@ -551,7 +788,7 @@ export default function Home() {
               href="#/contato?acao=doar"
               className="commerce-button commerce-button--primary"
             >
-              Doar
+              Quero ajudar uma ONG
               <span aria-hidden="true">→</span>
             </a>
 
@@ -567,8 +804,7 @@ export default function Home() {
       </section>
 
       {/* ======================================================
-          APOIO
-          Mantido, mas abaixo das ações comerciais principais.
+          APOIO — ASAAS + MERCADO PAGO
           ====================================================== */}
 
       <section
@@ -588,16 +824,15 @@ export default function Home() {
               </h2>
 
               <p>
-                Sua contribuição ajuda a
-                manter guias, conteúdos,
-                pesquisa, educação e a
-                infraestrutura que sustenta
-                a AgroNexus.
+                Sua contribuição ajuda a manter
+                guias, conteúdos, pesquisa,
+                educação e a infraestrutura
+                que sustenta a AgroNexus.
               </p>
 
               <div className="commerce-support__suggestions">
                 <span>
-                  Sugestões de apoio
+                  Você decide quanto apoiar
                 </span>
 
                 <div>
@@ -612,55 +847,106 @@ export default function Home() {
               </div>
 
               <span className="commerce-support__guiropa">
-                AgroNexus™ · Operação e
-                pagamentos: Guiropa World
+                AgroNexus™ · Operação financeira:
+                Guiropa World · 7 Seas Global
               </span>
             </div>
 
             <div className="commerce-support__checkout">
               <span className="commerce-support__checkout-label">
-                Você escolhe o valor
+                Escolha como apoiar
               </span>
 
               <strong>
-                R$ 2
-
+                Valor livre
                 <small>
                   {' '}
-                  ou qualquer outro valor
+                  · você informa no checkout
                 </small>
               </strong>
 
               <p>
-                No checkout você informa
-                quanto deseja contribuir e
-                escolhe a forma de pagamento.
+                Escolha o meio de pagamento.
+                Você será direcionado ao ambiente
+                seguro do processador selecionado.
               </p>
 
-              <a
-                href={SUPPORT_URL}
-                target="_blank"
-                rel="noopener noreferrer"
-              >
-                Contribuir
+              <div className="agro-payment-grid">
+                <article className="agro-payment-card agro-payment-card--asaas">
+                  <div>
+                    <div className="agro-payment-card__logo">
+                      <img
+                        src={ASAAS_LOGO}
+                        alt="Asaas"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
 
-                <span aria-hidden="true">
-                  →
-                </span>
-              </a>
+                    <h3>Asaas</h3>
+
+                    <p>
+                      Pix, cartão de crédito e boleto.
+                      Escolha o valor no checkout.
+                    </p>
+                  </div>
+
+                  <a
+                    href={ASAAS_SUPPORT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apoiar com Asaas
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </article>
+
+                <article className="agro-payment-card">
+                  <div>
+                    <div className="agro-payment-card__logo">
+                      <img
+                        src={MERCADO_PAGO_LOGO}
+                        alt="Mercado Pago"
+                        loading="lazy"
+                        decoding="async"
+                      />
+                    </div>
+
+                    <h3>Mercado Pago</h3>
+
+                    <p>
+                      Defina o valor e escolha entre
+                      Pix, cartão e demais opções
+                      disponíveis no checkout.
+                    </p>
+                  </div>
+
+                  <a
+                    href={MERCADO_PAGO_SUPPORT_URL}
+                    target="_blank"
+                    rel="noopener noreferrer"
+                  >
+                    Apoiar com Mercado Pago
+                    <span aria-hidden="true">→</span>
+                  </a>
+                </article>
+              </div>
 
               <div className="commerce-support__payment-methods">
                 <span>Pix</span>
-                <span>Cartão de crédito</span>
+                <span>Cartão</span>
                 <span>Boleto</span>
+                <span>Mercado Pago</span>
+                <span>Asaas</span>
               </div>
 
-              <small>
-                O checkout será exibido em
-                nome da Guiropa World,
-                responsável pela operação de
-                pagamento da AgroNexus.
-              </small>
+              <p className="agro-payment-note">
+                Dependendo do meio escolhido, o
+                processamento poderá ser exibido em
+                nome de Guiropa World ou 7 Seas Global,
+                responsáveis pela infraestrutura de
+                pagamento utilizada pela AgroNexus.
+              </p>
             </div>
           </div>
         </div>
