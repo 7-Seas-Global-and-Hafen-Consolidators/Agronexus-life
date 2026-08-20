@@ -6,6 +6,7 @@ import {
 import '../styles/agro-hub.css'
 
 import MarketplaceWarPlan from '../components/MarketplaceWarPlan'
+import WorldGateway from '../components/WorldGateway'
 
 const ASAAS_SUPPORT_URL =
   'https://www.asaas.com/c/u6toboa8xhqsmosv'
@@ -599,6 +600,13 @@ export default function Home() {
           A Home usa o MESMO catálogo comercial da rota
           /marketplace.
           ====================================================== */}
+
+      {/* ======================================================
+          BABYLON — WORLD GATEWAY
+          Cada universo abre um mundo próprio.
+          ====================================================== */}
+
+      <WorldGateway />
 
       <MarketplaceWarPlan embedded />
 
