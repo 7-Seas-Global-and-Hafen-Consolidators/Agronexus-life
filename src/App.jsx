@@ -1,457 +1,461 @@
-import { useEffect, useMemo, useState } from 'react'
+/**
+ * AgroNexus — Universal World Page
+ * Babylon Rebuild
+ *
+ * Página universal para todos os grandes mundos AgroNexus.
+ * Compatível com o sistema de hash routing nativo do projeto.
+ *
+ * NÃO depende de react-router-dom.
+ */
 
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import React from 'react'
 
-import Home from './pages/Home'
-import Aves from './pages/Aves'
-import Aquarismo from './pages/Aquarismo'
+import {
+  getWorldById,
+} from '../data/worldCatalog'
 
-import MarketplaceWarPlan from './components/MarketplaceWarPlan'
-import GlobalPresence from './components/GlobalPresence'
-import CommunityHub from './components/CommunityHub'
-import LivingEcosystem from './components/LivingEcosystem'
-import AgroNexusLibrary from './components/AgroNexusLibrary'
-import Contact from './components/Contact'
+import {
+  getWorldMedia,
+} from '../data/worldMedia'
 
-/* ============================================================
-   ROUTING
-   ============================================================ */
+function navigateTo(path) {
+  window.location.hash = `#${path}`
+}
 
-function normalizeRoute(value) {
-  if (!value) {
-    return '/'
+function normalizeDepartment(department, index) {
+  if (typeof department === 'string') {
+    return {
+      id: department
+        .toLowerCase()
+        .normalize('NFD')
+        .replace(/[\u0300-\u036f]/g, '')
+        .replace(/&/g, 'e')
+        .replace(/[^a-z0-9]+/g, '-')
+        .replace(/^-+|-+$/g, ''),
+      name: department,
+      description: '',
+      image: '',
+      index,
+    }
   }
 
-  const routeWithoutQuery =
-    value.split('?')[0]
+  return {
+    id:
+      department?.id ||
+      department?.slug ||
+      `department-${index + 1}`,
 
-  const routeWithoutTrailingSlash =
-    routeWithoutQuery.length > 1
-      ? routeWithoutQuery.replace(/\/+$/, '')
-      : routeWithoutQuery
+    name:
+      department?.name ||
+      department?.title ||
+      department?.label ||
+      `Categoria ${index + 1}`,
 
-  return routeWithoutTrailingSlash || '/'
-}
+    description:
+      department?.description ||
+      department?.subtitle ||
+      '',
 
-function getCurrentRoute() {
-  const hash =
-    window.location.hash || '#/'
+    image:
+      department?.image ||
+      department?.hero ||
+      '',
 
-  return normalizeRoute(
-    hash.replace(/^#/, '')
-  )
-}
+    path:
+      department?.path ||
+      department?.href ||
+      null,
 
-/* ============================================================
-   PAGE WRAPPER
-   ============================================================ */
-
-function PageContainer({
-  children,
-  className = '',
-}) {
-  return (
-    <main
-      className={`page-container ${className}`.trim()}
-    >
-      {children}
-    </main>
-  )
-}
-
-/* ============================================================
-   MARKETPLACE
-   ============================================================ */
-
-function MarketplacePage({
-  initialCategory = 'todos',
-}) {
-  return (
-    <PageContainer className="page-container--marketplace">
-      <MarketplaceWarPlan
-        initialCategory={initialCategory}
-      />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   PRESENÇA GLOBAL
-   ============================================================ */
-
-function GlobalPresencePage() {
-  return (
-    <PageContainer>
-      <GlobalPresence />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   COMUNIDADE
-   ============================================================ */
-
-function CommunityPage() {
-  return (
-    <PageContainer>
-      <CommunityHub />
-      <LivingEcosystem />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   BIBLIOTECA
-   ============================================================ */
-
-function LibraryPage() {
-  return (
-    <PageContainer>
-      <AgroNexusLibrary />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   CONTATO
-   ============================================================ */
-
-function ContactPage() {
-  return (
-    <PageContainer>
-      <Contact />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   404
-   ============================================================ */
-
-function NotFound() {
-  return (
-    <main
-      style={{
-        minHeight: '76vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding: '150px 24px 80px',
-        background: '#f5f7f5',
-        color: '#111411',
-        textAlign: 'center',
-      }}
-    >
-      <div>
-        <p
-          style={{
-            margin: '0 0 16px',
-            color: '#087a4b',
-            fontSize: '0.76rem',
-            fontWeight: 800,
-            letterSpacing: '0.16em',
-            textTransform: 'uppercase',
-          }}
-        >
-          AgroNexus™ · Guiropa World
-        </p>
-
-        <h1
-          style={{
-            margin: '0 0 22px',
-            color: '#111411',
-            fontSize:
-              'clamp(2.4rem, 7vw, 5.4rem)',
-            fontWeight: 900,
-            lineHeight: 0.95,
-            letterSpacing: '-0.05em',
-          }}
-        >
-          Página não encontrada
-        </h1>
-
-        <p
-          style={{
-            maxWidth: '620px',
-            margin: '0 auto 34px',
-            color: '#4b554e',
-            fontSize: '1.05rem',
-            lineHeight: 1.8,
-          }}
-        >
-          O conteúdo solicitado não está
-          disponível ou foi transferido para
-          outra área da AgroNexus.
-        </p>
-
-        <a
-          href="#/"
-          style={{
-            minHeight: '52px',
-            display: 'inline-flex',
-            alignItems: 'center',
-            justifyContent: 'center',
-            padding: '0 28px',
-            border: '1px solid #111411',
-            borderRadius: '4px',
-            background: '#111411',
-            color: '#ffffff',
-            textDecoration: 'none',
-            textTransform: 'uppercase',
-            letterSpacing: '0.1em',
-            fontSize: '0.78rem',
-            fontWeight: 800,
-          }}
-        >
-          Voltar ao início
-        </a>
-      </div>
-    </main>
-  )
-}
-
-/* ============================================================
-   CONFIGURAÇÃO DAS ROTAS
-
-   As antigas páginas vazias de Aves, Aquarismo e Mamíferos
-   deixam de ser destinos comerciais. Todas as categorias
-   passam a usar o mesmo Marketplace.
-   ============================================================ */
-
-function getRouteConfiguration(route) {
-  const routes = {
-    '/': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/home': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/inicio': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/sobre': {
-      component: <Home />,
-      scrollTarget: '#sobre',
-    },
-
-    '/missao': {
-      component: <Home />,
-      scrollTarget: '#missao',
-    },
-
-    '/ecossistema': {
-      component: <Home />,
-      scrollTarget: '#ecossistema',
-    },
-
-    '/portfolio': {
-      component: <Home />,
-      scrollTarget: '#portfolio',
-    },
-
-    '/marketplace': {
-      component: <MarketplacePage />,
-      scrollTarget: null,
-    },
-
-    '/aves': {
-      component: <Aves />,
-      scrollTarget: null,
-    },
-
-    '/aquarismo': {
-      component: <Aquarismo />,
-      scrollTarget: null,
-    },
-
-    '/mamiferos': {
-      component: (
-        <MarketplacePage initialCategory="mamiferos" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/caes': {
-      component: (
-        <MarketplacePage initialCategory="caes" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/gatos': {
-      component: (
-        <MarketplacePage initialCategory="gatos" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/repteis': {
-      component: (
-        <MarketplacePage initialCategory="repteis" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/plantas': {
-      component: (
-        <MarketplacePage initialCategory="botanica" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/alimentacao': {
-      component: (
-        <MarketplacePage initialCategory="alimentacao" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/habitats': {
-      component: (
-        <MarketplacePage initialCategory="habitats" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/equipamentos': {
-      component: (
-        <MarketplacePage initialCategory="equipamentos" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/guias': {
-      component: (
-        <MarketplacePage initialCategory="publicacoes" />
-      ),
-      scrollTarget: null,
-    },
-
-    '/presenca-global': {
-      component: <GlobalPresencePage />,
-      scrollTarget: null,
-    },
-
-    '/comunidade': {
-      component: <CommunityPage />,
-      scrollTarget: null,
-    },
-
-    '/biblioteca': {
-      component: <LibraryPage />,
-      scrollTarget: null,
-    },
-
-    '/contato': {
-      component: <ContactPage />,
-      scrollTarget: null,
-    },
+    index,
   }
-
-  return (
-    routes[route] || {
-      component: <NotFound />,
-      scrollTarget: null,
-    }
-  )
 }
 
-/* ============================================================
-   APP
-   ============================================================ */
+export default function WorldPage({
+  slug,
+}) {
+  const world =
+    getWorldById(slug)
 
-export default function App() {
-  const [route, setRoute] =
-    useState(getCurrentRoute)
+  if (!world) {
+    return (
+      <main className="world-page world-page--missing">
+        <section className="world-missing">
+          <p className="world-eyebrow">
+            AGRONEXUS · LIVING ECOSYSTEM
+          </p>
 
-  const routeConfiguration = useMemo(
-    () => getRouteConfiguration(route),
-    [route]
-  )
+          <h1>
+            Mundo não encontrado.
+          </h1>
 
-  useEffect(() => {
-    function handleRouteChange() {
-      setRoute(getCurrentRoute())
-    }
+          <p>
+            Esta área ainda não faz parte da nova
+            arquitetura navegável da AgroNexus.
+          </p>
 
-    window.addEventListener(
-      'hashchange',
-      handleRouteChange
+          <button
+            type="button"
+            className="world-button"
+            onClick={() => navigateTo('/')}
+          >
+            Voltar para AgroNexus
+          </button>
+        </section>
+      </main>
     )
+  }
 
-    return () => {
-      window.removeEventListener(
-        'hashchange',
-        handleRouteChange
-      )
-    }
-  }, [])
+  const media =
+    getWorldMedia(slug)
 
-  useEffect(() => {
-    const { scrollTarget } =
-      routeConfiguration
+  const hero =
+    world.hero || {}
 
-    const scrollPage = () => {
-      if (scrollTarget) {
-        const target =
-          document.querySelector(
-            scrollTarget
-          )
+  const title =
+    world.title ||
+    world.name ||
+    slug
 
-        if (target) {
-          const navbarHeight = 92
+  const eyebrow =
+    world.eyebrow ||
+    'AGRONEXUS · LIVING ECOSYSTEM'
 
-          const targetPosition =
-            target.getBoundingClientRect().top +
-            window.scrollY -
-            navbarHeight
+  const heroTitle =
+    hero.title ||
+    title
 
-          window.scrollTo({
-            top: Math.max(
-              targetPosition,
-              0
-            ),
-            left: 0,
-            behavior: 'smooth',
-          })
+  const heroSubtitle =
+    hero.subtitle ||
+    world.description ||
+    'Biodiversidade, conhecimento, mercado e conexão.'
 
-          return
-        }
-      }
+  const departments = (
+    world.departments ||
+    world.categories ||
+    world.sections ||
+    world.children ||
+    []
+  ).map(normalizeDepartment)
 
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'auto',
-      })
-    }
+  const highlights =
+    world.highlights ||
+    world.features ||
+    []
 
-    const firstFrame =
-      window.requestAnimationFrame(
-        scrollPage
-      )
-
-    return () => {
-      window.cancelAnimationFrame(
-        firstFrame
-      )
-    }
-  }, [routeConfiguration])
+  const heroImage =
+    media?.hero || ''
 
   return (
-    <>
-      <Navbar />
+    <main
+      className={`world-page world-page--${slug}`}
+    >
+      {/* ========================================================
+          HERO
+          ======================================================== */}
 
-      {routeConfiguration.component}
+      <section
+        className="world-hero"
+        style={
+          heroImage
+            ? {
+                backgroundImage: `
+                  linear-gradient(
+                    90deg,
+                    rgba(5, 18, 13, 0.94) 0%,
+                    rgba(5, 18, 13, 0.72) 46%,
+                    rgba(5, 18, 13, 0.20) 100%
+                  ),
+                  url("${heroImage}")
+                `,
+              }
+            : undefined
+        }
+      >
+        <div className="world-hero__content">
+          <button
+            type="button"
+            className="world-back"
+            onClick={() => navigateTo('/')}
+          >
+            ← Explorar AgroNexus
+          </button>
 
-      <Footer />
-    </>
+          <p className="world-eyebrow">
+            {eyebrow}
+          </p>
+
+          <h1>
+            {heroTitle}
+          </h1>
+
+          <p className="world-hero__description">
+            {heroSubtitle}
+          </p>
+
+          <div className="world-hero__actions">
+            <a
+              href="#explorar"
+              className="world-button"
+            >
+              Explorar este mundo
+            </a>
+
+            <a
+              href="#procedencia"
+              className="world-button world-button--secondary"
+            >
+              Origem & procedência
+            </a>
+          </div>
+        </div>
+      </section>
+
+      {/* ========================================================
+          DEPARTAMENTOS
+          ======================================================== */}
+
+      <section
+        id="explorar"
+        className="world-section"
+      >
+        <div className="world-section__heading">
+          <p className="world-eyebrow">
+            EXPLORE ESTE MUNDO
+          </p>
+
+          <h2>
+            Entre mais fundo.
+          </h2>
+
+          <p>
+            Cada área conecta descoberta,
+            conhecimento, produtos, serviços
+            e especialistas.
+          </p>
+        </div>
+
+        <div className="world-category-grid">
+          {departments.map(
+            (department, index) => {
+              const destination =
+                department.path ||
+                `/mundo/${slug}/${department.id}`
+
+              return (
+                <button
+                  type="button"
+                  className="world-category-card"
+                  key={department.id}
+                  onClick={() =>
+                    navigateTo(destination)
+                  }
+                >
+                  {department.image && (
+                    <img
+                      src={department.image}
+                      alt={department.name}
+                      loading="lazy"
+                    />
+                  )}
+
+                  <div className="world-category-card__content">
+                    <span>
+                      {String(index + 1).padStart(
+                        2,
+                        '0'
+                      )}
+                    </span>
+
+                    <h3>
+                      {department.name}
+                    </h3>
+
+                    {department.description && (
+                      <p>
+                        {department.description}
+                      </p>
+                    )}
+
+                    <strong>
+                      Explorar →
+                    </strong>
+                  </div>
+                </button>
+              )
+            }
+          )}
+        </div>
+      </section>
+
+      {/* ========================================================
+          DESTAQUES
+          ======================================================== */}
+
+      {highlights.length > 0 && (
+        <section className="world-section world-section--highlights">
+          <div className="world-section__heading">
+            <p className="world-eyebrow">
+              DESCOBRIR
+            </p>
+
+            <h2>
+              Muito além de comprar.
+            </h2>
+          </div>
+
+          <div className="world-highlight-grid">
+            {highlights.map(
+              (item, index) => (
+                <article
+                  className="world-highlight"
+                  key={
+                    item.id ||
+                    item.title ||
+                    item.name ||
+                    index
+                  }
+                >
+                  <span>
+                    {String(index + 1).padStart(
+                      2,
+                      '0'
+                    )}
+                  </span>
+
+                  <h3>
+                    {item.title ||
+                      item.name}
+                  </h3>
+
+                  {item.description && (
+                    <p>
+                      {item.description}
+                    </p>
+                  )}
+                </article>
+              )
+            )}
+          </div>
+        </section>
+      )}
+
+      {/* ========================================================
+          PROCEDÊNCIA
+          ======================================================== */}
+
+      <section
+        id="procedencia"
+        className="world-trust"
+      >
+        <div className="world-trust__intro">
+          <p className="world-eyebrow">
+            ORIGEM · PROCEDÊNCIA · CONHECIMENTO
+          </p>
+
+          <h2>
+            Saber de onde vem faz parte
+            da escolha.
+          </h2>
+
+          <p>
+            Na AgroNexus, origem e procedência
+            fazem parte da própria arquitetura
+            dos registros, ofertas, parceiros
+            e conexões do ecossistema.
+          </p>
+        </div>
+
+        <div className="world-trust__grid">
+          <article>
+            <span>01</span>
+
+            <h3>
+              Origem
+            </h3>
+
+            <p>
+              Informações associadas à origem
+              e ao contexto do registro.
+            </p>
+          </article>
+
+          <article>
+            <span>02</span>
+
+            <h3>
+              Responsável
+            </h3>
+
+            <p>
+              Criadores, produtores,
+              especialistas, lojas e parceiros
+              ligados ao que oferecem.
+            </p>
+          </article>
+
+          <article>
+            <span>03</span>
+
+            <h3>
+              Documentação
+            </h3>
+
+            <p>
+              Documentos e identificações
+              aplicáveis podem acompanhar
+              cada registro.
+            </p>
+          </article>
+
+          <article>
+            <span>04</span>
+
+            <h3>
+              Histórico
+            </h3>
+
+            <p>
+              Conhecimento e contexto
+              acompanham a jornada dentro
+              do ecossistema.
+            </p>
+          </article>
+        </div>
+      </section>
+
+      {/* ========================================================
+          ECOSSISTEMA
+          ======================================================== */}
+
+      <section className="world-commerce">
+        <div>
+          <p className="world-eyebrow">
+            AGRONEXUS LIVING ECOSYSTEM
+          </p>
+
+          <h2>
+            Descobrir. Conhecer.
+            Adquirir. Cuidar. Permanecer.
+          </h2>
+
+          <p>
+            Biodiversidade, marketplace,
+            saúde, alimentação, habitats,
+            equipamentos, serviços,
+            conhecimento, comunidade,
+            recorrência e benefícios
+            conectados em um único sistema.
+          </p>
+        </div>
+
+        <button
+          type="button"
+          className="world-button"
+          onClick={() => navigateTo('/')}
+        >
+          Continuar explorando
+        </button>
+      </section>
+    </main>
   )
 }
