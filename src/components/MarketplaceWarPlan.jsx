@@ -27,7 +27,7 @@ const PEXELS = (id) =>
    mas o botão de compra fica desabilitado até o link ser inserido.
    ============================================================ */
 
-const PRODUCTS = [
+const CORE_PRODUCTS = [
   {
     id: 'guia-periquito-australiano',
 
@@ -162,7 +162,7 @@ const PRODUCTS = [
       'Ocellaris',
       'Equipamentos',
     ],
-  },,
+  },
 
   /* ==========================================================
      NUTRÓPICA — LINHA COMERCIAL
@@ -521,6 +521,119 @@ const PRODUCTS = [
 /* ============================================================
    CATEGORIAS DO MARKETPLACE
    ============================================================ */
+
+
+/* ============================================================
+   CATÁLOGO MASSIVO AGRONEXUS
+   Ofertas sem preço fechado entram como consulta comercial.
+   Origem/fornecedor/criador NÃO aparece na vitrine pública.
+   ============================================================ */
+
+const CATALOG_SEEDS = {
+  aves: [
+    'Ring Neck Azul', 'Ring Neck Violeta', 'Ring Neck Albino', 'Ring Neck Lutino', 'Ring Neck Cobalto',
+    'Calopsita Ancestral', 'Calopsita Lutina', 'Calopsita Cara Branca', 'Agapornis Roseicollis', 'Agapornis Personata',
+    'Agapornis Fischeri', 'Lóris Molucano', 'Lóris Arco-Íris', 'Papagaio Ecletus', 'Papagaio-do-Congo',
+    'Kakariki Lutino', 'Rosela Rubina', 'Rosela Penant', 'Bourke Rosa', 'Periquito Cabeça-de-Ameixa',
+    'Periquito Mustache', 'Grande Alexandre', 'Arara Canindé', 'Arara Vermelha', 'Cacatua Galah',
+    'Viveiro Modular para Aves', 'Ninho de Madeira para Psitacídeos', 'Poleiro Natural', 'Brinquedo de Forrageamento', 'Banheira para Aves'
+  ],
+  aquarismo: [
+    'Betta Halfmoon', 'Betta Plakat', 'Kinguio Oranda', 'Kinguio Ranchu', 'Kinguio Ryukin',
+    'Peixe-Palhaço Ocellaris', 'Camarão Neocaridina', 'Camarão Caridina', 'Cardume Neon', 'Corydora',
+    'Disco', 'Acará Bandeira', 'Guppy', 'Molinésia', 'Platy',
+    'Aquário Nano 20 L', 'Aquário 60 L', 'Aquário 100 L', 'Aquário 200 L', 'Aquário Reef',
+    'Filtro Canister', 'Filtro Hang-On', 'Bomba de Circulação', 'Bomba de Recalque', 'Skimmer',
+    'Luminária LED Plantado', 'Luminária LED Reef', 'Termostato Digital', 'Substrato Fértil', 'Rocha para Aquapaisagismo'
+  ],
+  mamiferos: [
+    'Hamster Sírio', 'Hamster Sírio Pelo Longo', 'Hamster Anão', 'Gerbilo', 'Chinchila',
+    'Porquinho-da-Índia', 'Mini Coelho', 'Mini Lop', 'Netherland Dwarf', 'Coelho Lionhead',
+    'Gaiola Modular para Hamster', 'Habitat Acrílico', 'Roda Silenciosa', 'Bebedouro de Esfera', 'Comedouro Cerâmico',
+    'Túnel Modular', 'Casinha de Madeira', 'Banheira de Areia', 'Feno Premium', 'Pellets para Coelhos'
+  ],
+  caes: [
+    'Spitz Alemão', 'Bulldog Francês', 'Schnauzer Miniatura', 'Chihuahua', 'Pug',
+    'Boston Terrier', 'Cavalier King Charles Spaniel', 'Dachshund', 'Yorkshire Terrier', 'Shih Tzu',
+    'Cama Ortopédica', 'Caixa de Transporte', 'Bebedouro Automático', 'Comedouro Lento', 'Tapete Higiênico',
+    'Peitoral Ajustável', 'Guia de Passeio', 'Brinquedo Mordedor', 'Brinquedo Interativo', 'Escova de Pelagem'
+  ],
+  gatos: [
+    'Siamês', 'Ragdoll', 'Maine Coon', 'British Shorthair', 'Persa',
+    'Bengal', 'Sphynx', 'Scottish Straight', 'Norueguês da Floresta', 'Exótico de Pelo Curto',
+    'Arranhador Torre', 'Fonte de Água', 'Caixa de Areia Fechada', 'Areia Higiênica', 'Cama Suspensa',
+    'Bolsa de Transporte', 'Túnel Interativo', 'Brinquedo com Catnip', 'Comedouro Elevado', 'Escova Removedora de Pelos'
+  ],
+  repteis: [
+    'Gecko Leopardo', 'Iguana Verde', 'Jabuti', 'Terrário 45 cm', 'Terrário 60 cm',
+    'Terrário 90 cm', 'Lâmpada UVB', 'Lâmpada de Aquecimento', 'Termômetro Digital', 'Higrômetro Digital',
+    'Manta Aquecedora', 'Substrato de Coco', 'Casca Natural', 'Toca para Répteis', 'Bebedouro de Terrário',
+    'Pinça de Manejo', 'Decoração Naturalizada', 'Tronco para Terrário', 'Planta Artificial para Terrário', 'Controle de Temperatura'
+  ],
+  botanica: [
+    'Dionaea Muscipula', 'Nepenthes', 'Drosera', 'Sarracenia', 'Orquídea Phalaenopsis',
+    'Orquídea Cattleya', 'Violeta Africana', 'Mini Rosa', 'Bonsai Jabuticaba', 'Bonsai Pitanga',
+    'Mini Romã', 'Mini Acerola', 'Suculentas Selecionadas', 'Cactos Ornamentais', 'Samambaia',
+    'Substrato para Orquídeas', 'Substrato para Carnívoras', 'Vaso Autoirrigável', 'Vaso Cerâmico', 'Adubo Orgânico'
+  ],
+  alimentacao: [
+    'Mix de Sementes para Periquitos', 'Mix de Sementes para Calopsitas', 'Farinhada para Psitacídeos', 'Papa para Filhotes', 'Néctar para Lóris',
+    'Ração Extrusada para Papagaios', 'Ração Extrusada para Ring Necks', 'Ração para Canários', 'Ração para Hamsters', 'Ração para Chinchilas',
+    'Ração para Porquinho-da-Índia', 'Ração para Coelhos', 'Feno Selecionado', 'Petisco Natural para Aves', 'Petisco Natural para Cães',
+    'Petisco Natural para Gatos', 'Alimento para Bettas', 'Alimento para Kinguios', 'Alimento para Ciclídeos', 'Alimento para Camarões'
+  ],
+  habitats: [
+    'Gaiola para Calopsitas', 'Gaiola para Canários', 'Viveiro Interno', 'Viveiro Externo', 'Ninho para Agapornis',
+    'Ninho para Ring Neck', 'Aquário Curvo', 'Aquário Plantado', 'Aquário Marinho', 'Móvel para Aquário',
+    'Terrário Vertical', 'Terrário Horizontal', 'Habitat para Hamster', 'Cercado para Coelhos', 'Casinha para Chinchila',
+    'Cama para Cães', 'Cama para Gatos', 'Toca para Gatos', 'Poleiro de Janela', 'Estante Modular para Habitats'
+  ],
+  equipamentos: [
+    'Incubadora Digital', 'Ovoscópio LED', 'Balança de Precisão', 'Termômetro Infravermelho', 'Umidificador Digital',
+    'Purificador de Água', 'Filtro UV para Aquário', 'Dosadora Automática', 'Alimentador Automático', 'Controlador de Temperatura',
+    'Medidor de pH', 'Medidor TDS', 'Refratômetro', 'Sifão para Aquário', 'Aspirador de Substrato',
+    'Tesoura de Aquapaisagismo', 'Pinça de Aquapaisagismo', 'Nebulizador para Terrário', 'Temporizador Digital', 'Luminária de Cultivo'
+  ],
+}
+
+const CATEGORY_META = {
+  aves: ['Aves', PEXELS(36133129)],
+  aquarismo: ['Aquarismo', PEXELS(29216700)],
+  mamiferos: ['Pequenos Mamíferos', PEXELS(4520480)],
+  caes: ['Cães', PEXELS(17880515)],
+  gatos: ['Gatos', PEXELS(9916903)],
+  repteis: ['Répteis e Terrários', PEXELS(18118236)],
+  botanica: ['Plantas e Cultivo', PEXELS(3691258)],
+  alimentacao: ['Alimentação', PEXELS(12928244)],
+  habitats: ['Habitats', PEXELS(26756414)],
+  equipamentos: ['Equipamentos', PEXELS(4090814)],
+}
+
+const GENERATED_PRODUCTS = Object.entries(CATALOG_SEEDS).flatMap(
+  ([category, names]) =>
+    names.map((name, index) => ({
+      id: `catalogo-${category}-${index + 1}`,
+      categories: [category],
+      categoryLabel: CATEGORY_META[category][0],
+      name,
+      description: `${name} no catálogo AgroNexus. Consulte condições, disponibilidade e opções atuais.`,
+      price: null,
+      oldPrice: null,
+      installments: null,
+      checkout: null,
+      badge: 'Catálogo AgroNexus',
+      delivery: 'Disponibilidade sob consulta',
+      image: CATEGORY_META[category][1],
+      imageAlt: name,
+      variants: ['Consultar', 'AgroNexus'],
+      consultation: true,
+    }))
+)
+
+const PRODUCTS = [
+  ...CORE_PRODUCTS,
+  ...GENERATED_PRODUCTS,
+]
 
 const CATEGORIES = [
   {
@@ -1014,28 +1127,25 @@ function ProductCard({ product, guideCard = false }) {
 
       <div className="marketplace-war__price-block">
 
-        {product.oldPrice ? (
-          <del>
-            {formatBRL(
-              product.oldPrice
-            )}
-          </del>
-        ) : null}
-
-        <strong>
-          {formatBRL(
-            product.price
-          )}
-        </strong>
-
-        {installmentText ? (
-          <span>
-            {installmentText}
-          </span>
+        {product.consultation ? (
+          <>
+            <strong>Consultar</strong>
+            <span>Disponibilidade e condições atuais</span>
+          </>
         ) : (
-          <span>
-            Pagamento no checkout
-          </span>
+          <>
+            {product.oldPrice ? (
+              <del>{formatBRL(product.oldPrice)}</del>
+            ) : null}
+
+            <strong>{formatBRL(product.price)}</strong>
+
+            {installmentText ? (
+              <span>{installmentText}</span>
+            ) : (
+              <span>Pagamento no checkout</span>
+            )}
+          </>
         )}
 
       </div>
@@ -1058,7 +1168,7 @@ function ProductCard({ product, guideCard = false }) {
           href={`#/contato?produto=${encodeURIComponent(product.id)}`}
           className="marketplace-war__buy"
         >
-          Comprar
+          {product.consultation ? 'Consultar' : 'Comprar'}
 
           <span aria-hidden="true">
             →
