@@ -1,15 +1,26 @@
 /**
- * AgroNexus — Universal World Page
- * Babylon Rebuild
+ * AgroNexus™ — Universal World Page
+ *
+ * Arquitetura interna:
+ * Project Babylon Rebuild
+ *
+ * Interface pública:
+ * AgroNexus™
  *
  * Página universal dos grandes mundos AgroNexus.
  *
- * Compatível exclusivamente com o sistema nativo
- * de hash routing já utilizado pela aplicação.
+ * Compatível com o sistema nativo de hash routing.
  *
  * Suporta:
- * /mundo/:slug
- * /mundo/:slug/:department
+ * #/mundo/:slug
+ * #/mundo/:slug/:department
+ *
+ * Regras fundamentais:
+ * - o codinome interno nunca aparece publicamente;
+ * - navegação interna de página não pode alterar o hash;
+ * - departamentos sempre possuem coleções normalizadas;
+ * - registros indisponíveis continuam válidos;
+ * - nenhuma camada de dados é descartada.
  */
 
 import React from 'react'
@@ -32,6 +43,29 @@ function navigateTo(path) {
 }
 
 /* ============================================================
+   INTERNAL PAGE SCROLL
+
+   Não usa href="#alguma-coisa" porque o hash pertence
+   ao roteador principal da aplicação.
+   ============================================================ */
+
+function scrollToSection(sectionId) {
+  const element =
+    document.getElementById(
+      sectionId
+    )
+
+  if (!element) {
+    return
+  }
+
+  element.scrollIntoView({
+    behavior: 'smooth',
+    block: 'start',
+  })
+}
+
+/* ============================================================
    SLUG
    ============================================================ */
 
@@ -43,7 +77,10 @@ function slugify(value) {
       /[\u0300-\u036f]/g,
       ''
     )
-    .replace(/&/g, 'e')
+    .replace(
+      /&/g,
+      'e'
+    )
     .replace(
       /[^a-z0-9]+/g,
       '-'
@@ -55,7 +92,24 @@ function slugify(value) {
 }
 
 /* ============================================================
+   COLLECTION NORMALIZATION
+   ============================================================ */
+
+function normalizeCollection(value) {
+  return Array.isArray(value)
+    ? value
+    : []
+}
+
+/* ============================================================
    DEPARTMENT NORMALIZATION
+
+   REGRA CRÍTICA:
+   Todo departamento SEMPRE recebe arrays válidos.
+
+   Isso impede:
+   undefined.length
+   e elimina o crash das páginas internas.
    ============================================================ */
 
 function normalizeDepartment(
@@ -83,6 +137,18 @@ function normalizeDepartment(
 
       path:
         null,
+
+      products:
+        [],
+
+      services:
+        [],
+
+      species:
+        [],
+
+      content:
+        [],
 
       index,
     }
@@ -118,20 +184,24 @@ function normalizeDepartment(
       null,
 
     products:
-      department?.products ||
-      [],
+      normalizeCollection(
+        department?.products
+      ),
 
     services:
-      department?.services ||
-      [],
+      normalizeCollection(
+        department?.services
+      ),
 
     species:
-      department?.species ||
-      [],
+      normalizeCollection(
+        department?.species
+      ),
 
     content:
-      department?.content ||
-      [],
+      normalizeCollection(
+        department?.content
+      ),
 
     index,
   }
@@ -164,10 +234,12 @@ function findDepartment(
 
 function MissingWorld() {
   return (
-    <main className="world-page world-page--missing">
+    <main
+      className="world-page world-page--missing"
+    >
       <section className="world-missing">
         <p className="world-eyebrow">
-          AGRONEXUS · LIVING ECOSYSTEM
+          AGRONEXUS™ · LIVING ECOSYSTEM
         </p>
 
         <h1>
@@ -176,9 +248,8 @@ function MissingWorld() {
 
         <p>
           Esta área ainda não
-          faz parte da nova
-          arquitetura navegável
-          da AgroNexus.
+          faz parte da arquitetura
+          navegável da AgroNexus™.
         </p>
 
         <button
@@ -188,7 +259,7 @@ function MissingWorld() {
             navigateTo('/')
           }
         >
-          Voltar para AgroNexus
+          Voltar para AgroNexus™
         </button>
       </section>
     </main>
@@ -204,11 +275,15 @@ function MissingDepartment({
   slug,
 }) {
   return (
-    <main className="world-page world-page--missing">
+    <main
+      className="world-page world-page--missing"
+    >
       <section className="world-missing">
         <p className="world-eyebrow">
-          {world.eyebrow ||
-            'AGRONEXUS WORLD'}
+          {
+            world.eyebrow ||
+            'AGRONEXUS™ WORLD'
+          }
         </p>
 
         <h1>
@@ -253,21 +328,37 @@ function DepartmentView({
     media?.hero ||
     ''
 
+  const products =
+    normalizeCollection(
+      department.products
+    )
+
+  const species =
+    normalizeCollection(
+      department.species
+    )
+
+  const services =
+    normalizeCollection(
+      department.services
+    )
+
+  const content =
+    normalizeCollection(
+      department.content
+    )
+
   const hasProducts =
-    department.products
-      .length > 0
+    products.length > 0
 
   const hasSpecies =
-    department.species
-      .length > 0
+    species.length > 0
 
   const hasServices =
-    department.services
-      .length > 0
+    services.length > 0
 
   const hasContent =
-    department.content
-      .length > 0
+    content.length > 0
 
   return (
     <main
@@ -319,17 +410,24 @@ function DepartmentView({
           </h1>
 
           <p className="world-hero__description">
-            {department.description ||
-              `Explore ${department.name} dentro do universo ${world.title} da AgroNexus.`}
+            {
+              department.description ||
+              `Explore ${department.name} dentro do universo ${world.title} da AgroNexus™.`
+            }
           </p>
 
           <div className="world-hero__actions">
-            <a
-              href="#departamento-conteudo"
+            <button
+              type="button"
               className="world-button"
+              onClick={() =>
+                scrollToSection(
+                  'departamento-conteudo'
+                )
+              }
             >
               Explorar
-            </a>
+            </button>
 
             <button
               type="button"
@@ -372,6 +470,7 @@ function DepartmentView({
         </div>
 
         <div className="world-highlight-grid">
+
           <article className="world-highlight">
             <span>
               01
@@ -391,9 +490,7 @@ function DepartmentView({
             {hasSpecies && (
               <strong>
                 {
-                  department
-                    .species
-                    .length
+                  species.length
                 }{' '}
                 registros
               </strong>
@@ -418,9 +515,7 @@ function DepartmentView({
             {hasProducts && (
               <strong>
                 {
-                  department
-                    .products
-                    .length
+                  products.length
                 }{' '}
                 ofertas
               </strong>
@@ -446,9 +541,7 @@ function DepartmentView({
             {hasServices && (
               <strong>
                 {
-                  department
-                    .services
-                    .length
+                  services.length
                 }{' '}
                 serviços
               </strong>
@@ -474,44 +567,42 @@ function DepartmentView({
             {hasContent && (
               <strong>
                 {
-                  department
-                    .content
-                    .length
+                  content.length
                 }{' '}
                 conteúdos
               </strong>
             )}
           </article>
+
         </div>
       </section>
 
       {/* ======================================================
-          DISCOVERY PLACEHOLDER
+          DISCOVERY
           ====================================================== */}
 
       <section className="world-trust">
         <div className="world-trust__intro">
           <p className="world-eyebrow">
-            BABYLON · DEPARTMENT
+            AGRONEXUS™ · DEPARTAMENTO
           </p>
 
           <h2>
-            Este departamento
-            agora tem endereço próprio.
+            Um universo
+            dentro de outro.
           </h2>
 
           <p>
-            A partir daqui,
-            espécies, exemplares,
+            Espécies, exemplares,
             produtos, serviços,
             especialistas e conteúdo
-            poderão ser conectados
-            sem transformar a Home
-            em uma página infinita.
+            permanecem conectados
+            dentro do contexto correto.
           </p>
         </div>
 
         <div className="world-trust__grid">
+
           <article>
             <span>
               01
@@ -538,8 +629,8 @@ function DepartmentView({
             </h3>
 
             <p>
-              Produtos e ofertas
-              podem ser ligados
+              Produtos, organismos
+              e ofertas conectados
               diretamente ao
               departamento.
             </p>
@@ -555,10 +646,10 @@ function DepartmentView({
             </h3>
 
             <p>
-              Conhecimento e
-              informações deixam
-              de ficar separados
-              do comércio.
+              Conhecimento,
+              procedência e contexto
+              permanecem associados
+              aos registros.
             </p>
           </article>
 
@@ -572,12 +663,13 @@ function DepartmentView({
             </h3>
 
             <p>
-              Profissionais e
-              serviços especializados
-              podem aparecer no
-              contexto correto.
+              Profissionais,
+              especialistas e
+              serviços aparecem
+              dentro do contexto correto.
             </p>
           </article>
+
         </div>
       </section>
 
@@ -588,7 +680,7 @@ function DepartmentView({
       <section className="world-commerce">
         <div>
           <p className="world-eyebrow">
-            AGRONEXUS
+            AGRONEXUS™
           </p>
 
           <h2>
@@ -598,12 +690,11 @@ function DepartmentView({
           </h2>
 
           <p>
-            A arquitetura Babylon
-            conecta biodiversidade,
-            marketplace, serviços
-            e conhecimento sem
-            duplicar páginas e
-            registros.
+            A AgroNexus™ conecta
+            biodiversidade,
+            marketplace, serviços,
+            conhecimento e procedência
+            sem duplicar registros.
           </p>
         </div>
 
@@ -651,7 +742,7 @@ export default function WorldPage({
 
   const eyebrow =
     world.eyebrow ||
-    'AGRONEXUS · LIVING ECOSYSTEM'
+    'AGRONEXUS™ · LIVING ECOSYSTEM'
 
   const heroTitle =
     hero.title ||
@@ -707,9 +798,10 @@ export default function WorldPage({
   }
 
   const highlights =
-    world.highlights ||
-    world.features ||
-    []
+    normalizeCollection(
+      world.highlights ||
+      world.features
+    )
 
   const heroImage =
     media?.hero ||
@@ -751,7 +843,7 @@ export default function WorldPage({
               navigateTo('/')
             }
           >
-            ← Explorar AgroNexus
+            ← Explorar AgroNexus™
           </button>
 
           <p className="world-eyebrow">
@@ -767,19 +859,31 @@ export default function WorldPage({
           </p>
 
           <div className="world-hero__actions">
-            <a
-              href="#explorar"
+
+            <button
+              type="button"
               className="world-button"
+              onClick={() =>
+                scrollToSection(
+                  'explorar'
+                )
+              }
             >
               Explorar este mundo
-            </a>
+            </button>
 
-            <a
-              href="#procedencia"
+            <button
+              type="button"
               className="world-button world-button--secondary"
+              onClick={() =>
+                scrollToSection(
+                  'procedencia'
+                )
+              }
             >
               Origem & procedência
-            </a>
+            </button>
+
           </div>
         </div>
       </section>
@@ -812,76 +916,80 @@ export default function WorldPage({
         </div>
 
         <div className="world-category-grid">
-          {departments.map(
-            (
-              departmentItem,
-              index
-            ) => {
-              const destination =
-                departmentItem.path ||
-                `/mundo/${slug}/${departmentItem.id}`
+          {
+            departments.map(
+              (
+                departmentItem,
+                index
+              ) => {
+                const destination =
+                  departmentItem.path ||
+                  `/mundo/${slug}/${departmentItem.id}`
 
-              return (
-                <button
-                  type="button"
-                  className="world-category-card"
-                  key={
-                    departmentItem.id
-                  }
-                  onClick={() =>
-                    navigateTo(
-                      destination
-                    )
-                  }
-                >
-                  {departmentItem.image && (
-                    <img
-                      src={
-                        departmentItem
-                          .image
-                      }
-                      alt={
-                        departmentItem
-                          .name
-                      }
-                      loading="lazy"
-                    />
-                  )}
+                return (
+                  <button
+                    type="button"
+                    className="world-category-card"
+                    key={
+                      departmentItem.id
+                    }
+                    onClick={() =>
+                      navigateTo(
+                        destination
+                      )
+                    }
+                  >
+                    {
+                      departmentItem.image && (
+                        <img
+                          src={
+                            departmentItem.image
+                          }
+                          alt={
+                            departmentItem.name
+                          }
+                          loading="lazy"
+                        />
+                      )
+                    }
 
-                  <div className="world-category-card__content">
-                    <span>
-                      {String(
-                        index + 1
-                      ).padStart(
-                        2,
-                        '0'
-                      )}
-                    </span>
-
-                    <h3>
-                      {
-                        departmentItem
-                          .name
-                      }
-                    </h3>
-
-                    {departmentItem.description && (
-                      <p>
+                    <div className="world-category-card__content">
+                      <span>
                         {
-                          departmentItem
-                            .description
+                          String(
+                            index + 1
+                          ).padStart(
+                            2,
+                            '0'
+                          )
                         }
-                      </p>
-                    )}
+                      </span>
 
-                    <strong>
-                      Explorar →
-                    </strong>
-                  </div>
-                </button>
-              )
-            }
-          )}
+                      <h3>
+                        {
+                          departmentItem.name
+                        }
+                      </h3>
+
+                      {
+                        departmentItem.description && (
+                          <p>
+                            {
+                              departmentItem.description
+                            }
+                          </p>
+                        )
+                      }
+
+                      <strong>
+                        Explorar →
+                      </strong>
+                    </div>
+                  </button>
+                )
+              }
+            )
+          }
         </div>
       </section>
 
@@ -889,61 +997,73 @@ export default function WorldPage({
           DESTAQUES
           ====================================================== */}
 
-      {highlights.length > 0 && (
-        <section className="world-section world-section--highlights">
-          <div className="world-section__heading">
-            <p className="world-eyebrow">
-              DESCOBRIR
-            </p>
+      {
+        highlights.length > 0 && (
+          <section
+            className="world-section world-section--highlights"
+          >
+            <div className="world-section__heading">
+              <p className="world-eyebrow">
+                DESCOBRIR
+              </p>
 
-            <h2>
-              Muito além
-              de comprar.
-            </h2>
-          </div>
+              <h2>
+                Muito além
+                de comprar.
+              </h2>
+            </div>
 
-          <div className="world-highlight-grid">
-            {highlights.map(
-              (
-                item,
-                index
-              ) => (
-                <article
-                  className="world-highlight"
-                  key={
-                    item.id ||
-                    item.title ||
-                    item.name ||
+            <div className="world-highlight-grid">
+              {
+                highlights.map(
+                  (
+                    item,
                     index
-                  }
-                >
-                  <span>
-                    {String(
-                      index + 1
-                    ).padStart(
-                      2,
-                      '0'
-                    )}
-                  </span>
-
-                  <h3>
-                    {item.title ||
-                      item.name}
-                  </h3>
-
-                  {item.description && (
-                    <p>
-                      {
-                        item.description
+                  ) => (
+                    <article
+                      className="world-highlight"
+                      key={
+                        item.id ||
+                        item.title ||
+                        item.name ||
+                        index
                       }
-                    </p>
-                  )}
-                </article>
-              )
-            )}
-          </div>
-        </section>
-      )}
+                    >
+                      <span>
+                        {
+                          String(
+                            index + 1
+                          ).padStart(
+                            2,
+                            '0'
+                          )
+                        }
+                      </span>
+
+                      <h3>
+                        {
+                          item.title ||
+                          item.name
+                        }
+                      </h3>
+
+                      {
+                        item.description && (
+                          <p>
+                            {
+                              item.description
+                            }
+                          </p>
+                        )
+                      }
+                    </article>
+                  )
+                )
+              }
+            </div>
+          </section>
+        )
+      }
 
       {/* ======================================================
           ORIGEM / PROCEDÊNCIA
@@ -965,16 +1085,17 @@ export default function WorldPage({
           </h2>
 
           <p>
-            Na AgroNexus,
+            Na AgroNexus™,
             origem e procedência
-            fazem parte da própria
-            arquitetura dos registros,
-            ofertas, parceiros e
-            conexões do ecossistema.
+            fazem parte dos próprios
+            registros, ofertas,
+            parceiros e conexões
+            do ecossistema.
           </p>
         </div>
 
         <div className="world-trust__grid">
+
           <article>
             <span>
               01
@@ -1036,12 +1157,14 @@ export default function WorldPage({
             </h3>
 
             <p>
-              Conhecimento e
-              contexto acompanham
-              a jornada dentro
-              do ecossistema.
+              Conhecimento,
+              disponibilidade,
+              procedência e contexto
+              acompanham a jornada
+              do registro.
             </p>
           </article>
+
         </div>
       </section>
 
@@ -1052,7 +1175,7 @@ export default function WorldPage({
       <section className="world-commerce">
         <div>
           <p className="world-eyebrow">
-            AGRONEXUS LIVING ECOSYSTEM
+            AGRONEXUS™ · LIVING ECOSYSTEM
           </p>
 
           <h2>
