@@ -5,6 +5,7 @@
  * - meios de pagamento
  * - entidades de processamento
  * - canais comerciais
+ * - bandeiras aceitas
  * - identificação de anúncios
  *
  * Babylon continua exclusivamente interno.
@@ -14,20 +15,63 @@ export const AGRONEXUS_COMMERCE = {
   brand:
     'AgroNexus™',
 
-  whatsapp:
-    '+48 732 099 369',
+  contactLinks: {
+    whatsapp: {
+      label:
+        'WhatsApp',
 
-  telegram:
-    '+44 75 9471 6370',
+      url:
+        'https://wa.me/48732099369',
+    },
+
+    telegram: {
+      label:
+        'Telegram',
+
+      url:
+        'https://t.me/+447594716370',
+    },
+  },
 
   paymentMethods: [
-    'Pix',
-    'Boleto bancário',
-    'Cartão de crédito',
+    {
+      id:
+        'pix',
+
+      label:
+        'Pix',
+    },
+
+    {
+      id:
+        'boleto',
+
+      label:
+        'Boleto bancário',
+    },
+
+    {
+      id:
+        'credit-card',
+
+      label:
+        'Cartão de crédito',
+    },
+  ],
+
+  cardBrands: [
+    'Visa',
+    'Mastercard',
+    'Elo',
+    'American Express',
+    'Hipercard',
+    'Diners Club',
+    'Discover',
+    'JCB',
   ],
 
   installmentLabel:
-    'Opções de parcelamento disponíveis no checkout.',
+    'Parcelamento disponível conforme as condições apresentadas no checkout.',
 
   paymentLinks: {
     asaas: {
@@ -68,10 +112,6 @@ export const AGRONEXUS_COMMERCE = {
 
 /**
  * Controle interno de anúncios.
- *
- * Exemplo:
- * formatAdNumber(1985533504)
- * → Anúncio #1985533504
  */
 
 export function formatAdNumber(
