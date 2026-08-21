@@ -1,10 +1,20 @@
 /**
- * AgroNexus — Application Router
- * Babylon Rebuild
+ * AgroNexus — Babylon Application Router
+ * Project Babylon Rebuild
  *
- * Mantém o sistema nativo de hash routing da aplicação
- * e adiciona suporte à nova arquitetura dinâmica de mundos
- * e departamentos Babylon.
+ * NEW INTERFACE CORE
+ *
+ * The legacy interface is no longer rendered.
+ *
+ * Babylon now owns:
+ * - global navigation
+ * - homepage
+ * - world routing
+ * - department routing
+ * - legacy route compatibility
+ * - not-found experience
+ *
+ * Data architecture remains untouched.
  */
 
 import {
@@ -13,23 +23,14 @@ import {
   useState,
 } from 'react'
 
-import Navbar from './components/Navbar'
-import Footer from './components/Footer'
+import BabylonHeader from './components/babylon/BabylonHeader'
+import BabylonFooter from './components/BabylonFooter'
 
-import Home from './pages/Home'
-import Aves from './pages/Aves'
-import Aquarismo from './pages/Aquarismo'
+import BabylonHome from './pages/BabylonHome'
 import WorldPage from './pages/WorldPage'
 
-import MarketplaceWarPlan from './components/MarketplaceWarPlan'
-import GlobalPresence from './components/GlobalPresence'
-import CommunityHub from './components/CommunityHub'
-import LivingEcosystem from './components/LivingEcosystem'
-import AgroNexusLibrary from './components/AgroNexusLibrary'
-import Contact from './components/Contact'
-
 /* ============================================================
-   ROUTING
+   ROUTING CORE
    ============================================================ */
 
 function normalizeRoute(value) {
@@ -37,262 +38,130 @@ function normalizeRoute(value) {
     return '/'
   }
 
-  const routeWithoutQuery =
-    value.split('?')[0]
+  const withoutHash =
+    value.replace(
+      /^#/,
+      ''
+    )
 
-  const routeWithoutTrailingSlash =
-    routeWithoutQuery.length > 1
-      ? routeWithoutQuery.replace(
+  const withoutQuery =
+    withoutHash.split(
+      '?'
+    )[0]
+
+  const normalized =
+    withoutQuery.length > 1
+      ? withoutQuery.replace(
           /\/+$/,
           ''
         )
-      : routeWithoutQuery
+      : withoutQuery
 
   return (
-    routeWithoutTrailingSlash ||
+    normalized ||
     '/'
   )
 }
 
 function getCurrentRoute() {
-  const hash =
+  return normalizeRoute(
     window.location.hash ||
     '#/'
-
-  return normalizeRoute(
-    hash.replace(/^#/, '')
   )
 }
 
 /* ============================================================
-   PAGE WRAPPER
+   LEGACY ROUTE BRIDGE
+
+   Old URLs remain usable, but the old interface does not.
+
+   They now resolve directly into Babylon worlds.
    ============================================================ */
 
-function PageContainer({
-  children,
-  className = '',
-}) {
-  return (
-    <main
-      className={
-        `page-container ${className}`.trim()
-      }
-    >
-      {children}
-    </main>
-  )
+const LEGACY_WORLD_ROUTES = {
+  '/aves':
+    'aves',
+
+  '/aquarismo':
+    'aquarismo',
+
+  '/corais':
+    'corais',
+
+  '/mamiferos':
+    'pequenos-mamiferos',
+
+  '/pequenos-mamiferos':
+    'pequenos-mamiferos',
+
+  '/caes':
+    'caes',
+
+  '/gatos':
+    'gatos',
+
+  '/repteis':
+    'repteis',
+
+  '/plantas':
+    'plantas',
+
+  '/plantas-aquaticas':
+    'plantas-aquaticas',
+
+  '/bonsais':
+    'bonsais',
+
+  '/orquideas':
+    'orquideas',
+
+  '/alimentacao':
+    'alimentacao',
+
+  '/saude':
+    'saude',
+
+  '/equipamentos':
+    'equipamentos',
+
+  '/habitats':
+    'equipamentos',
 }
 
 /* ============================================================
-   MARKETPLACE LEGADO
-   ============================================================ */
+   BABYLON WORLD ROUTING
 
-function MarketplacePage({
-  initialCategory = 'todos',
-}) {
-  return (
-    <PageContainer className="page-container--marketplace">
-      <MarketplaceWarPlan
-        initialCategory={
-          initialCategory
-        }
-      />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   PRESENÇA GLOBAL
-   ============================================================ */
-
-function GlobalPresencePage() {
-  return (
-    <PageContainer>
-      <GlobalPresence />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   COMUNIDADE
-   ============================================================ */
-
-function CommunityPage() {
-  return (
-    <PageContainer>
-      <CommunityHub />
-
-      <LivingEcosystem />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   BIBLIOTECA
-   ============================================================ */
-
-function LibraryPage() {
-  return (
-    <PageContainer>
-      <AgroNexusLibrary />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   CONTATO
-   ============================================================ */
-
-function ContactPage() {
-  return (
-    <PageContainer>
-      <Contact />
-    </PageContainer>
-  )
-}
-
-/* ============================================================
-   404
-   ============================================================ */
-
-function NotFound() {
-  return (
-    <main
-      style={{
-        minHeight: '76vh',
-        display: 'flex',
-        alignItems: 'center',
-        justifyContent: 'center',
-        padding:
-          '150px 24px 80px',
-        background: '#f5f7f5',
-        color: '#111411',
-        textAlign: 'center',
-      }}
-    >
-      <div>
-        <p
-          style={{
-            margin:
-              '0 0 16px',
-            color: '#087a4b',
-            fontSize: '0.76rem',
-            fontWeight: 800,
-            letterSpacing:
-              '0.16em',
-            textTransform:
-              'uppercase',
-          }}
-        >
-          AgroNexus™ · Guiropa World
-        </p>
-
-        <h1
-          style={{
-            margin:
-              '0 0 22px',
-            color: '#111411',
-            fontSize:
-              'clamp(2.4rem, 7vw, 5.4rem)',
-            fontWeight: 900,
-            lineHeight: 0.95,
-            letterSpacing:
-              '-0.05em',
-          }}
-        >
-          Página não encontrada
-        </h1>
-
-        <p
-          style={{
-            maxWidth: '620px',
-            margin:
-              '0 auto 34px',
-            color: '#4b554e',
-            fontSize: '1.05rem',
-            lineHeight: 1.8,
-          }}
-        >
-          O conteúdo solicitado
-          não está disponível
-          ou foi transferido
-          para outra área
-          da AgroNexus.
-        </p>
-
-        <a
-          href="#/"
-          style={{
-            minHeight: '52px',
-            display:
-              'inline-flex',
-            alignItems:
-              'center',
-            justifyContent:
-              'center',
-            padding:
-              '0 28px',
-            border:
-              '1px solid #111411',
-            borderRadius:
-              '4px',
-            background:
-              '#111411',
-            color: '#ffffff',
-            textDecoration:
-              'none',
-            textTransform:
-              'uppercase',
-            letterSpacing:
-              '0.1em',
-            fontSize:
-              '0.78rem',
-            fontWeight: 800,
-          }}
-        >
-          Voltar ao início
-        </a>
-      </div>
-    </main>
-  )
-}
-
-/* ============================================================
-   BABYLON — WORLD ROUTING
-
-   Suporta:
    /mundo/:slug
    /mundo/:slug/:department
    ============================================================ */
 
-function resolveWorldRoute(route) {
+function resolveBabylonWorldRoute(
+  route
+) {
   const departmentMatch =
     route.match(
       /^\/mundo\/([^/]+)\/([^/]+)$/
     )
 
   if (departmentMatch) {
-    const slug =
+    const worldSlug =
       decodeURIComponent(
         departmentMatch[1]
       )
 
-    const department =
+    const departmentSlug =
       decodeURIComponent(
         departmentMatch[2]
       )
 
-    return {
-      component: (
-        <WorldPage
-          slug={slug}
-          departmentSlug={
-            department
-          }
-        />
-      ),
-      scrollTarget: null,
-    }
+    return (
+      <WorldPage
+        slug={worldSlug}
+        departmentSlug={
+          departmentSlug
+        }
+      />
+    )
   }
 
   const worldMatch =
@@ -300,224 +169,450 @@ function resolveWorldRoute(route) {
       /^\/mundo\/([^/]+)$/
     )
 
-  if (!worldMatch) {
-    return null
-  }
+  if (worldMatch) {
+    const worldSlug =
+      decodeURIComponent(
+        worldMatch[1]
+      )
 
-  const slug =
-    decodeURIComponent(
-      worldMatch[1]
-    )
-
-  return {
-    component: (
+    return (
       <WorldPage
-        slug={slug}
+        slug={worldSlug}
       />
-    ),
-    scrollTarget: null,
+    )
   }
+
+  return null
 }
 
 /* ============================================================
-   CONFIGURAÇÃO DAS ROTAS
-
-   As rotas antigas permanecem funcionando durante
-   a reconstrução Babylon.
-
-   Os novos mundos utilizam:
-   /mundo/:slug
-   /mundo/:slug/:department
+   LEGACY WORLD RESOLUTION
    ============================================================ */
 
-function getRouteConfiguration(
+function resolveLegacyWorldRoute(
   route
 ) {
-  const worldRoute =
-    resolveWorldRoute(route)
+  const worldSlug =
+    LEGACY_WORLD_ROUTES[
+      route
+    ]
 
-  if (worldRoute) {
-    return worldRoute
-  }
-
-  const routes = {
-    '/': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/home': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/inicio': {
-      component: <Home />,
-      scrollTarget: null,
-    },
-
-    '/sobre': {
-      component: <Home />,
-      scrollTarget: '#sobre',
-    },
-
-    '/missao': {
-      component: <Home />,
-      scrollTarget: '#missao',
-    },
-
-    '/ecossistema': {
-      component: <Home />,
-      scrollTarget: '#ecossistema',
-    },
-
-    '/portfolio': {
-      component: <Home />,
-      scrollTarget: '#portfolio',
-    },
-
-    '/marketplace': {
-      component: (
-        <MarketplacePage />
-      ),
-      scrollTarget: null,
-    },
-
-    /* --------------------------------------------------------
-       ROTAS LEGADAS PRESERVADAS
-       -------------------------------------------------------- */
-
-    '/aves': {
-      component: <Aves />,
-      scrollTarget: null,
-    },
-
-    '/aquarismo': {
-      component: (
-        <Aquarismo />
-      ),
-      scrollTarget: null,
-    },
-
-    '/mamiferos': {
-      component: (
-        <MarketplacePage
-          initialCategory="mamiferos"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/caes': {
-      component: (
-        <MarketplacePage
-          initialCategory="caes"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/gatos': {
-      component: (
-        <MarketplacePage
-          initialCategory="gatos"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/repteis': {
-      component: (
-        <MarketplacePage
-          initialCategory="repteis"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/plantas': {
-      component: (
-        <MarketplacePage
-          initialCategory="botanica"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/alimentacao': {
-      component: (
-        <MarketplacePage
-          initialCategory="alimentacao"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/habitats': {
-      component: (
-        <MarketplacePage
-          initialCategory="habitats"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/equipamentos': {
-      component: (
-        <MarketplacePage
-          initialCategory="equipamentos"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    '/guias': {
-      component: (
-        <MarketplacePage
-          initialCategory="publicacoes"
-        />
-      ),
-      scrollTarget: null,
-    },
-
-    /* --------------------------------------------------------
-       INSTITUCIONAL
-       -------------------------------------------------------- */
-
-    '/presenca-global': {
-      component: (
-        <GlobalPresencePage />
-      ),
-      scrollTarget: null,
-    },
-
-    '/comunidade': {
-      component: (
-        <CommunityPage />
-      ),
-      scrollTarget: null,
-    },
-
-    '/biblioteca': {
-      component: (
-        <LibraryPage />
-      ),
-      scrollTarget: null,
-    },
-
-    '/contato': {
-      component: (
-        <ContactPage />
-      ),
-      scrollTarget: null,
-    },
+  if (!worldSlug) {
+    return null
   }
 
   return (
-    routes[route] || {
-      component: <NotFound />,
-      scrollTarget: null,
-    }
+    <WorldPage
+      slug={worldSlug}
+    />
+  )
+}
+
+/* ============================================================
+   NOT FOUND
+   ============================================================ */
+
+function BabylonNotFound() {
+  return (
+    <>
+      <style>
+        {`
+          .babylon-not-found {
+            min-height:
+              100svh;
+
+            display:
+              flex;
+
+            align-items:
+              flex-end;
+
+            padding:
+              clamp(
+                150px,
+                18vw,
+                240px
+              )
+              clamp(
+                24px,
+                5.6vw,
+                96px
+              )
+              clamp(
+                60px,
+                8vw,
+                110px
+              );
+
+            background:
+              #090b0a;
+
+            color:
+              white;
+          }
+
+          .babylon-not-found__inner {
+            width:
+              100%;
+          }
+
+          .babylon-not-found__meta {
+            display:
+              flex;
+
+            justify-content:
+              space-between;
+
+            gap:
+              24px;
+
+            margin-bottom:
+              clamp(
+                50px,
+                8vw,
+                100px
+              );
+
+            padding-bottom:
+              18px;
+
+            border-bottom:
+              1px solid
+              rgba(
+                255,
+                255,
+                255,
+                0.14
+              );
+
+            color:
+              rgba(
+                255,
+                255,
+                255,
+                0.46
+              );
+
+            font-size:
+              0.66rem;
+
+            font-weight:
+              900;
+
+            letter-spacing:
+              0.16em;
+
+            text-transform:
+              uppercase;
+          }
+
+          .babylon-not-found__code {
+            margin:
+              0;
+
+            color:
+              #d8b76a;
+
+            font-size:
+              0.7rem;
+
+            font-weight:
+              900;
+
+            letter-spacing:
+              0.18em;
+
+            text-transform:
+              uppercase;
+          }
+
+          .babylon-not-found h1 {
+            max-width:
+              1200px;
+
+            margin:
+              22px
+              0
+              34px;
+
+            font-size:
+              clamp(
+                4rem,
+                11vw,
+                11rem
+              );
+
+            font-weight:
+              500;
+
+            line-height:
+              0.82;
+
+            letter-spacing:
+              -0.075em;
+          }
+
+          .babylon-not-found__footer {
+            display:
+              grid;
+
+            grid-template-columns:
+              minmax(
+                0,
+                1fr
+              )
+              auto;
+
+            gap:
+              40px;
+
+            align-items:
+              end;
+          }
+
+          .babylon-not-found__text {
+            max-width:
+              620px;
+
+            margin:
+              0;
+
+            color:
+              rgba(
+                255,
+                255,
+                255,
+                0.6
+              );
+
+            font-size:
+              clamp(
+                1rem,
+                1.6vw,
+                1.3rem
+              );
+
+            line-height:
+              1.7;
+          }
+
+          .babylon-not-found__action {
+            min-height:
+              48px;
+
+            display:
+              inline-flex;
+
+            align-items:
+              center;
+
+            justify-content:
+              center;
+
+            padding:
+              0
+              22px;
+
+            border:
+              1px solid
+              rgba(
+                255,
+                255,
+                255,
+                0.24
+              );
+
+            color:
+              white;
+
+            text-decoration:
+              none;
+
+            font-size:
+              0.66rem;
+
+            font-weight:
+              900;
+
+            letter-spacing:
+              0.14em;
+
+            text-transform:
+              uppercase;
+
+            transition:
+              background
+                180ms ease,
+              color
+                180ms ease;
+          }
+
+          .babylon-not-found__action:hover,
+          .babylon-not-found__action:focus-visible {
+            background:
+              #d8b76a;
+
+            color:
+              #111411;
+          }
+
+          @media (
+            max-width:
+              700px
+          ) {
+            .babylon-not-found__meta,
+            .babylon-not-found__footer {
+              grid-template-columns:
+                1fr;
+
+              flex-direction:
+                column;
+            }
+
+            .babylon-not-found__footer {
+              display:
+                grid;
+            }
+
+            .babylon-not-found__action {
+              justify-self:
+                start;
+            }
+          }
+        `}
+      </style>
+
+      <main className="babylon-not-found">
+
+        <div className="babylon-not-found__inner">
+
+          <div className="babylon-not-found__meta">
+            <span>
+              AgroNexus Babylon
+            </span>
+
+            <span>
+              Unknown territory
+            </span>
+          </div>
+
+          <p className="babylon-not-found__code">
+            Error / 404
+          </p>
+
+          <h1>
+            World
+            <br />
+            not found.
+          </h1>
+
+          <div className="babylon-not-found__footer">
+
+            <p className="babylon-not-found__text">
+              Este território não existe
+              na arquitetura atual de
+              Babylon ou ainda não foi
+              conectado ao ecossistema.
+            </p>
+
+            <a
+              href="#/"
+              className="babylon-not-found__action"
+            >
+              Voltar ao início
+            </a>
+
+          </div>
+
+        </div>
+
+      </main>
+    </>
+  )
+}
+
+/* ============================================================
+   ROUTE RESOLUTION
+   ============================================================ */
+
+function resolveRoute(
+  route
+) {
+  /* ----------------------------------------------------------
+     BABYLON HOME
+     ---------------------------------------------------------- */
+
+  if (
+    route === '/' ||
+    route === '/home' ||
+    route === '/inicio'
+  ) {
+    return (
+      <BabylonHome />
+    )
+  }
+
+  /* ----------------------------------------------------------
+     NATIVE BABYLON WORLD
+     ---------------------------------------------------------- */
+
+  const babylonWorld =
+    resolveBabylonWorldRoute(
+      route
+    )
+
+  if (babylonWorld) {
+    return babylonWorld
+  }
+
+  /* ----------------------------------------------------------
+     OLD URL → NEW BABYLON WORLD
+
+     Compatibility survives.
+     Legacy UI does not.
+     ---------------------------------------------------------- */
+
+  const legacyWorld =
+    resolveLegacyWorldRoute(
+      route
+    )
+
+  if (legacyWorld) {
+    return legacyWorld
+  }
+
+  /* ----------------------------------------------------------
+     DEAD LEGACY ROUTES
+
+     These no longer resurrect old components.
+     They return Babylon Home instead.
+     ---------------------------------------------------------- */
+
+  const retiredRoutes = [
+    '/sobre',
+    '/missao',
+    '/ecossistema',
+    '/portfolio',
+    '/marketplace',
+    '/presenca-global',
+    '/comunidade',
+    '/biblioteca',
+    '/contato',
+    '/guias',
+  ]
+
+  if (
+    retiredRoutes.includes(
+      route
+    )
+  ) {
+    return (
+      <BabylonHome />
+    )
+  }
+
+  return (
+    <BabylonNotFound />
   )
 }
 
@@ -533,14 +628,18 @@ export default function App() {
     getCurrentRoute
   )
 
-  const routeConfiguration =
+  const page =
     useMemo(
       () =>
-        getRouteConfiguration(
+        resolveRoute(
           route
         ),
       [route]
     )
+
+  /* ----------------------------------------------------------
+     HASH ROUTING
+     ---------------------------------------------------------- */
 
   useEffect(() => {
     function handleRouteChange() {
@@ -562,73 +661,40 @@ export default function App() {
     }
   }, [])
 
+  /* ----------------------------------------------------------
+     RESET SCROLL ON NAVIGATION
+     ---------------------------------------------------------- */
+
   useEffect(() => {
-    const {
-      scrollTarget,
-    } = routeConfiguration
-
-    const scrollPage = () => {
-      if (scrollTarget) {
-        const target =
-          document.querySelector(
-            scrollTarget
-          )
-
-        if (target) {
-          const navbarHeight =
-            92
-
-          const targetPosition =
-            target
-              .getBoundingClientRect()
-              .top +
-            window.scrollY -
-            navbarHeight
-
+    const frame =
+      window.requestAnimationFrame(
+        () => {
           window.scrollTo({
-            top: Math.max(
-              targetPosition,
-              0
-            ),
+            top: 0,
             left: 0,
-            behavior: 'smooth',
+            behavior: 'auto',
           })
-
-          return
         }
-      }
-
-      window.scrollTo({
-        top: 0,
-        left: 0,
-        behavior: 'auto',
-      })
-    }
-
-    const firstFrame =
-      window
-        .requestAnimationFrame(
-          scrollPage
-        )
+      )
 
     return () => {
-      window
-        .cancelAnimationFrame(
-          firstFrame
-        )
+      window.cancelAnimationFrame(
+        frame
+      )
     }
-  }, [routeConfiguration])
+  }, [route])
+
+  /* ----------------------------------------------------------
+     BABYLON APPLICATION
+     ---------------------------------------------------------- */
 
   return (
     <>
-      <Navbar />
+      <BabylonHeader />
 
-      {
-        routeConfiguration
-          .component
-      }
+      {page}
 
-      <Footer />
+      <BabylonFooter />
     </>
   )
 }
