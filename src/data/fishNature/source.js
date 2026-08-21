@@ -104,6 +104,13 @@ export const FISH_NATURE_ARCHIVE_POLICY = {
  *
  * As 137 rotas internas descobertas servirão como mapa para
  * expansão da mineração nas páginas individuais.
+ *
+ * MÍDIA:
+ *
+ * rawCdnUrlOccurrences = número bruto de ocorrências no HTML.
+ * uniqueRecoveredCdnUrls = URLs CDN únicas após normalização.
+ * recoveredMediaIdentities = identidades fotográficas/visuais
+ * distintas após agrupar variantes responsivas da mesma mídia.
  */
 
 export const FISH_NATURE_SNAPSHOT_STATS = {
@@ -125,11 +132,14 @@ export const FISH_NATURE_SNAPSHOT_STATS = {
   unavailableProductCards:
     7,
 
-  recoveredCdnUrls:
+  rawCdnUrlOccurrences:
     228,
 
+  uniqueRecoveredCdnUrls:
+    201,
+
   recoveredMediaIdentities:
-    60,
+    33,
 
   detectedBrands:
     4,
