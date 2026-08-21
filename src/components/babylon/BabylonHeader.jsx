@@ -1,8 +1,14 @@
 /**
- * AgroNexus — Babylon Header
+ * AgroNexus™ — Header
+ *
+ * Interface pública:
+ * AgroNexus™
+ *
+ * Arquitetura interna:
  * Project Babylon Rebuild
  *
- * Header editorial do novo ecossistema Babylon.
+ * O codinome interno não deve aparecer
+ * em nenhum texto renderizado para o visitante.
  *
  * Regras:
  * - sem mega menu de zoológico;
@@ -271,11 +277,8 @@ export default function BabylonHeader() {
             display:
               inline-flex;
 
-            flex-direction:
-              column;
-
-            gap:
-              2px;
+            align-items:
+              flex-start;
 
             color:
               inherit;
@@ -285,6 +288,15 @@ export default function BabylonHeader() {
           }
 
           .babylon-header__brand-name {
+            display:
+              inline-flex;
+
+            align-items:
+              flex-start;
+
+            gap:
+              3px;
+
             font-size:
               1.08rem;
 
@@ -295,21 +307,21 @@ export default function BabylonHeader() {
               -0.035em;
           }
 
-          .babylon-header__brand-system {
-            color:
-              #d8b76a;
+          .babylon-header__brand-tm {
+            position:
+              relative;
+
+            top:
+              0.08em;
 
             font-size:
-              0.56rem;
+              0.48em;
 
             font-weight:
               900;
 
             letter-spacing:
-              0.19em;
-
-            text-transform:
-              uppercase;
+              0;
           }
 
           .babylon-header__nav {
@@ -752,14 +764,16 @@ export default function BabylonHeader() {
         <a
           href="#/"
           className="babylon-header__brand"
-          aria-label="AgroNexus Babylon"
+          aria-label="AgroNexus"
         >
           <span className="babylon-header__brand-name">
             AgroNexus
-          </span>
-
-          <span className="babylon-header__brand-system">
-            Babylon
+            <span
+              className="babylon-header__brand-tm"
+              aria-hidden="true"
+            >
+              ™
+            </span>
           </span>
         </a>
 
@@ -841,7 +855,7 @@ export default function BabylonHeader() {
 
           <a href="#/mundo/aves">
             <span>
-              Explorar Babylon
+              Explorar AgroNexus™
             </span>
 
             <span
@@ -855,9 +869,9 @@ export default function BabylonHeader() {
         </div>
 
         <p className="babylon-header__mobile-meta">
-          AgroNexus Babylon
+          AgroNexus™
           <br />
-          Biodiversity Intelligence System
+          Biodiversidade · Ciência · Conexão
         </p>
       </div>
     </>
