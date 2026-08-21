@@ -35,6 +35,10 @@ import {
   normalizeBabylonSlug,
 } from './babylonTaxonomy'
 
+import {
+  AQUARISMO_SEEDS,
+} from './babylonSeeds/aquarismo'
+
 /* ============================================================
    UTILITÁRIOS
    ============================================================ */
@@ -751,7 +755,9 @@ export function createBabylonRelation({
  * sempre que esses dados estiverem disponíveis.
  */
 
-export const BABYLON_RAW_RECORDS = []
+export const BABYLON_RAW_RECORDS = [
+  ...AQUARISMO_SEEDS,
+]
 
 /* ============================================================
    REGISTRO NORMALIZADO
