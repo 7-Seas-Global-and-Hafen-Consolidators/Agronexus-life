@@ -18,6 +18,7 @@ import {
 
 import BabylonHeader from './components/babylon/BabylonHeader'
 import BabylonFooter from './components/BabylonFooter'
+import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
 
 import BabylonHome from './pages/BabylonHome'
 import WorldPage from './pages/WorldPage'
@@ -292,6 +293,16 @@ function resolveRoute(
   ) {
     return (
       <BabylonHome />
+    )
+  }
+
+  if (
+    route === '/apoie' ||
+    route === '/apoiar' ||
+    route === '/support'
+  ) {
+    return (
+      <AgroNexusCommerceHub />
     )
   }
 
