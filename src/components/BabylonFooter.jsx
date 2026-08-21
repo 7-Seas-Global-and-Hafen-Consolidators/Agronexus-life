@@ -1,8 +1,14 @@
 /**
- * AgroNexus — Babylon Footer
+ * AgroNexus™ — Footer
+ *
+ * Interface pública:
+ * AgroNexus™
+ *
+ * Arquitetura interna:
  * Project Babylon Rebuild
  *
- * Footer editorial da nova arquitetura Babylon.
+ * O codinome interno não deve aparecer
+ * em nenhum texto renderizado ao visitante.
  *
  * Regras:
  * - sem rodapé corporativo antigo;
@@ -504,16 +510,22 @@ export default function BabylonFooter() {
 
           .babylon-footer__brand {
             display:
-              flex;
+              inline-flex;
 
-            flex-direction:
-              column;
-
-            gap:
-              4px;
+            align-items:
+              flex-start;
           }
 
           .babylon-footer__brand-name {
+            display:
+              inline-flex;
+
+            align-items:
+              flex-start;
+
+            gap:
+              3px;
+
             font-size:
               1.2rem;
 
@@ -524,21 +536,21 @@ export default function BabylonFooter() {
               -0.04em;
           }
 
-          .babylon-footer__brand-system {
-            color:
-              #d8b76a;
+          .babylon-footer__brand-tm {
+            position:
+              relative;
+
+            top:
+              0.08em;
 
             font-size:
-              0.58rem;
+              0.48em;
 
             font-weight:
               900;
 
             letter-spacing:
-              0.18em;
-
-            text-transform:
-              uppercase;
+              0;
           }
 
           .babylon-footer__meta {
@@ -664,14 +676,14 @@ export default function BabylonFooter() {
 
           <div>
             <p className="babylon-footer__eyebrow">
-              AgroNexus Babylon
+              AgroNexus™
             </p>
 
             <h2 className="babylon-footer__statement">
               Continue
               {' '}
               <span>
-                exploring.
+                explorando.
               </span>
             </h2>
           </div>
@@ -689,7 +701,7 @@ export default function BabylonFooter() {
               href="#/mundo/aves"
               className="babylon-footer__explore"
             >
-              Entrar em Babylon
+              Explorar AgroNexus™
             </a>
           </div>
 
@@ -746,10 +758,12 @@ export default function BabylonFooter() {
           <div className="babylon-footer__brand">
             <span className="babylon-footer__brand-name">
               AgroNexus
-            </span>
-
-            <span className="babylon-footer__brand-system">
-              Babylon
+              <span
+                className="babylon-footer__brand-tm"
+                aria-hidden="true"
+              >
+                ™
+              </span>
             </span>
           </div>
 
