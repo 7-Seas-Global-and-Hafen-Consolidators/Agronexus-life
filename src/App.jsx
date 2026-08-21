@@ -21,10 +21,10 @@ import BabylonFooter from './components/BabylonFooter'
 import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
 
 import BabylonHome from './pages/BabylonHome'
-import WorldPage from './pages/WorldPage'
+import AgroNexusWorldExperience from './pages/AgroNexusWorldExperience'
 
 /* ============================================================
-   ROUTING
+   ROUTING CORE
    ============================================================ */
 
 function normalizeRoute(value) {
@@ -119,7 +119,7 @@ const LEGACY_WORLD_ROUTES = {
 }
 
 /* ============================================================
-   WORLD ROUTE
+   WORLD ROUTING
    ============================================================ */
 
 function resolveWorldRoute(
@@ -132,7 +132,7 @@ function resolveWorldRoute(
 
   if (departmentMatch) {
     return (
-      <WorldPage
+      <AgroNexusWorldExperience
         slug={
           decodeURIComponent(
             departmentMatch[1]
@@ -154,7 +154,7 @@ function resolveWorldRoute(
 
   if (worldMatch) {
     return (
-      <WorldPage
+      <AgroNexusWorldExperience
         slug={
           decodeURIComponent(
             worldMatch[1]
@@ -168,7 +168,7 @@ function resolveWorldRoute(
 }
 
 /* ============================================================
-   LEGACY WORLD ROUTE
+   LEGACY WORLD ROUTING
    ============================================================ */
 
 function resolveLegacyWorldRoute(
@@ -184,7 +184,7 @@ function resolveLegacyWorldRoute(
   }
 
   return (
-    <WorldPage
+    <AgroNexusWorldExperience
       slug={slug}
     />
   )
@@ -209,17 +209,29 @@ function AgroNexusNotFound() {
     >
       <div
         style={{
-          width: 'min(1100px, 100%)',
+          width:
+            'min(1100px, 100%)',
         }}
       >
         <p
           style={{
-            margin: '0 0 18px',
-            color: '#d8b76a',
-            fontSize: '0.72rem',
-            fontWeight: 900,
-            letterSpacing: '0.18em',
-            textTransform: 'uppercase',
+            margin:
+              '0 0 18px',
+
+            color:
+              '#d8b76a',
+
+            fontSize:
+              '0.72rem',
+
+            fontWeight:
+              900,
+
+            letterSpacing:
+              '0.18em',
+
+            textTransform:
+              'uppercase',
           }}
         >
           AgroNexus™ · Error 404
@@ -227,12 +239,20 @@ function AgroNexusNotFound() {
 
         <h1
           style={{
-            margin: '0 0 30px',
+            margin:
+              '0 0 30px',
+
             fontSize:
               'clamp(3.8rem, 10vw, 9rem)',
-            lineHeight: 0.88,
-            letterSpacing: '-0.065em',
-            fontWeight: 500,
+
+            lineHeight:
+              0.88,
+
+            letterSpacing:
+              '-0.065em',
+
+            fontWeight:
+              500,
           }}
         >
           Território
@@ -242,12 +262,20 @@ function AgroNexusNotFound() {
 
         <p
           style={{
-            maxWidth: '620px',
-            margin: '0 0 32px',
+            maxWidth:
+              '620px',
+
+            margin:
+              '0 0 32px',
+
             color:
               'rgba(255,255,255,0.62)',
-            fontSize: '1.05rem',
-            lineHeight: 1.7,
+
+            fontSize:
+              '1.05rem',
+
+            lineHeight:
+              1.7,
           }}
         >
           Este endereço não corresponde
@@ -258,18 +286,38 @@ function AgroNexusNotFound() {
         <a
           href="#/"
           style={{
-            display: 'inline-flex',
-            minHeight: '48px',
-            alignItems: 'center',
-            padding: '0 22px',
+            display:
+              'inline-flex',
+
+            minHeight:
+              '48px',
+
+            alignItems:
+              'center',
+
+            padding:
+              '0 22px',
+
             border:
               '1px solid rgba(255,255,255,0.25)',
-            color: '#ffffff',
-            textDecoration: 'none',
-            fontSize: '0.7rem',
-            fontWeight: 900,
-            letterSpacing: '0.14em',
-            textTransform: 'uppercase',
+
+            color:
+              '#ffffff',
+
+            textDecoration:
+              'none',
+
+            fontSize:
+              '0.7rem',
+
+            fontWeight:
+              900,
+
+            letterSpacing:
+              '0.14em',
+
+            textTransform:
+              'uppercase',
           }}
         >
           Voltar ao início
@@ -286,6 +334,10 @@ function AgroNexusNotFound() {
 function resolveRoute(
   route
 ) {
+  /* ----------------------------------------------------------
+     HOME
+     ---------------------------------------------------------- */
+
   if (
     route === '/' ||
     route === '/home' ||
@@ -295,6 +347,10 @@ function resolveRoute(
       <BabylonHome />
     )
   }
+
+  /* ----------------------------------------------------------
+     SUPPORT / PAYMENTS
+     ---------------------------------------------------------- */
 
   if (
     route === '/apoie' ||
@@ -306,6 +362,10 @@ function resolveRoute(
     )
   }
 
+  /* ----------------------------------------------------------
+     WORLDS
+     ---------------------------------------------------------- */
+
   const worldPage =
     resolveWorldRoute(
       route
@@ -315,6 +375,10 @@ function resolveRoute(
     return worldPage
   }
 
+  /* ----------------------------------------------------------
+     LEGACY WORLD URLS
+     ---------------------------------------------------------- */
+
   const legacyWorld =
     resolveLegacyWorldRoute(
       route
@@ -323,6 +387,10 @@ function resolveRoute(
   if (legacyWorld) {
     return legacyWorld
   }
+
+  /* ----------------------------------------------------------
+     RETIRED LEGACY ROUTES
+     ---------------------------------------------------------- */
 
   const retiredRoutes = [
     '/sobre',
@@ -353,7 +421,7 @@ function resolveRoute(
 }
 
 /* ============================================================
-   APP
+   APPLICATION
    ============================================================ */
 
 export default function App() {
