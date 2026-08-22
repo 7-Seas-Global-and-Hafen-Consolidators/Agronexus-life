@@ -1,0 +1,7 @@
+{
+  "engine": "AgroNexus Market",
+  "version": "0.1.0",
+  "route": "#/anuncio/:id",
+  "publicSupplierFields": false,
+  "supportsDynamicAttributes": true
+}
