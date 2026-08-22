@@ -2,6 +2,7 @@ import { formatAdNumber } from './commerceConfig'
 import { FISH_NATURE_PRODUCTS } from './fishNature/products'
 import { WAVE2_REFERENCE_OFFERS } from './marketCatalogWave2'
 import { REEF_WAVE } from './specialistCatalog/reefWave'
+import { PLANT_WAVE } from './specialistCatalog/plantWave'
 
 const money = (value) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 const LOCAL = (path) => encodeURI(path)
@@ -52,6 +53,7 @@ const BASE_OFFERS = [
 
 const WAVE2_OFFERS = WAVE2_REFERENCE_OFFERS.map(offer)
 const SPECIALIST_REEF_OFFERS = REEF_WAVE.map(offer)
+const SPECIALIST_PLANT_OFFERS = PLANT_WAVE.map(offer)
 
 const AQUATIC_OFFERS = FISH_NATURE_PRODUCTS
   .filter((item) => item?.name && (item.primaryImage || item.images?.length))
@@ -67,7 +69,7 @@ const AQUATIC_OFFERS = FISH_NATURE_PRODUCTS
     })
   })
 
-export const MARKET_OFFERS = [...SPECIALIST_REEF_OFFERS, ...AQUATIC_OFFERS, ...WAVE2_OFFERS, ...BASE_OFFERS]
+export const MARKET_OFFERS = [...SPECIALIST_REEF_OFFERS, ...SPECIALIST_PLANT_OFFERS, ...AQUATIC_OFFERS, ...WAVE2_OFFERS, ...BASE_OFFERS]
 
 export function getMarketOffer(value) { const key = String(value || '').trim(); return MARKET_OFFERS.find((item) => item.id === key || item.slug === key) || null }
 export function getRelatedOffers(offerItem, limit = 6) { if (!offerItem) return []; return MARKET_OFFERS.filter((item) => item.id !== offerItem.id).filter((item) => item.world === offerItem.world || item.categories?.some((category) => offerItem.categories?.includes(category))).slice(0, limit) }
