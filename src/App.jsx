@@ -19,6 +19,7 @@ import {
 import BabylonHeader from './components/babylon/BabylonHeader'
 import BabylonFooter from './components/BabylonFooter'
 import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
+import AgroNexusMarketSpotlight from './components/AgroNexusMarketSpotlight'
 
 import BabylonHome from './pages/BabylonHome'
 import AgroNexusWorldExperience from './pages/AgroNexusWorldExperience'
@@ -62,6 +63,14 @@ function getCurrentRoute() {
   return normalizeRoute(
     window.location.hash ||
     '#/'
+  )
+}
+
+function isHomeRoute(route) {
+  return (
+    route === '/' ||
+    route === '/home' ||
+    route === '/inicio'
   )
 }
 
@@ -360,23 +369,15 @@ function AgroNexusNotFound() {
 function resolveRoute(
   route
 ) {
-  /* ----------------------------------------------------------
-     HOME
-     ---------------------------------------------------------- */
-
   if (
-    route === '/' ||
-    route === '/home' ||
-    route === '/inicio'
+    isHomeRoute(
+      route
+    )
   ) {
     return (
       <BabylonHome />
     )
   }
-
-  /* ----------------------------------------------------------
-     OFFERS
-     ---------------------------------------------------------- */
 
   const offerPage =
     resolveOfferRoute(
@@ -386,10 +387,6 @@ function resolveRoute(
   if (offerPage) {
     return offerPage
   }
-
-  /* ----------------------------------------------------------
-     SUPPORT / PAYMENTS
-     ---------------------------------------------------------- */
 
   if (
     route === '/apoie' ||
@@ -401,10 +398,6 @@ function resolveRoute(
     )
   }
 
-  /* ----------------------------------------------------------
-     WORLDS
-     ---------------------------------------------------------- */
-
   const worldPage =
     resolveWorldRoute(
       route
@@ -414,10 +407,6 @@ function resolveRoute(
     return worldPage
   }
 
-  /* ----------------------------------------------------------
-     LEGACY WORLD URLS
-     ---------------------------------------------------------- */
-
   const legacyWorld =
     resolveLegacyWorldRoute(
       route
@@ -426,10 +415,6 @@ function resolveRoute(
   if (legacyWorld) {
     return legacyWorld
   }
-
-  /* ----------------------------------------------------------
-     RETIRED LEGACY ROUTES
-     ---------------------------------------------------------- */
 
   const retiredRoutes = [
     '/sobre',
@@ -524,6 +509,15 @@ export default function App() {
       <BabylonHeader />
 
       {page}
+
+      {
+        isHomeRoute(route) && (
+          <AgroNexusMarketSpotlight
+            title="Em destaque agora"
+            limit={12}
+          />
+        )
+      }
 
       <BabylonFooter />
     </>
