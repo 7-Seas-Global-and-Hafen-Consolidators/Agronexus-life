@@ -45,9 +45,14 @@ export default function AgroNexusMarketSpotlight({
           return haystack.includes(normalized)
         })
 
+    // Na Home, ofertas com foto real vêm primeiro. A busca continua vendo o catálogo inteiro.
+    const ordered = normalized
+      ? filtered
+      : [...filtered].sort((a, b) => Number(Boolean(b.image)) - Number(Boolean(a.image)))
+
     return {
       total: filtered.length,
-      offers: filtered.slice(0, visibleLimit),
+      offers: ordered.slice(0, visibleLimit),
     }
   }, [query, visibleLimit])
 
@@ -117,6 +122,7 @@ export default function AgroNexusMarketSpotlight({
                   <small>{offer.adNumber}</small>
                   <strong>{offer.name}</strong>
                   <div>{offer.formattedPrice || 'Preço sob consulta'}</div>
+                  {offer.installmentText ? <em>{offer.installmentText}</em> : null}
                   <span>{offer.stockLabel || 'Consulte disponibilidade'}</span>
                 </div>
               </a>
