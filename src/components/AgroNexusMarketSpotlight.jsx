@@ -16,7 +16,17 @@ const QUICK_WORLDS = [
   ['Equipamentos', '#/mundo/equipamentos'],
 ]
 
-const HOME_SHELF_LIMIT = 8
+// Home = vitrine curta e controlada. Catálogo completo continua acessível por busca/mundos.
+// IDs abaixo usam ofertas que já possuem imagem funcional no acervo atual.
+const HOME_FEATURED_IDS = [
+  '1985533504', // Bonsai de romã
+  '1985533505', // Nutrópica Agapornis
+  '1985533506', // Nutrópica Periquitos
+  '1985533701', // Viveiro Calopsita Mini-Play
+  '1985533702', // Gaiola Twister
+  '1985533703', // Gaiola Hamster com tubos
+]
+const HOME_SHELF_LIMIT = HOME_FEATURED_IDS.length
 
 export default function AgroNexusMarketSpotlight({
   title = 'Encontre. Descubra. Adquira.',
@@ -29,30 +39,33 @@ export default function AgroNexusMarketSpotlight({
     const normalized = query.trim().toLocaleLowerCase('pt-BR')
     const pool = MARKET_OFFERS.map(publicOffer)
 
-    const filtered = !normalized
-      ? pool
-      : pool.filter((offer) => {
-          const haystack = [
-            offer.name,
-            offer.world,
-            ...(offer.categories || []),
-            ...(offer.highlights || []),
-          ]
-            .filter(Boolean)
-            .join(' ')
-            .toLocaleLowerCase('pt-BR')
+    if (!normalized) {
+      const byId = new Map(pool.map((offer) => [offer.id, offer]))
+      const featured = HOME_FEATURED_IDS
+        .map((id) => byId.get(id))
+        .filter(Boolean)
+        .slice(0, visibleLimit)
 
-          return haystack.includes(normalized)
-        })
+      return { total: pool.length, offers: featured }
+    }
 
-    // Na Home, ofertas com foto real vêm primeiro. A busca continua vendo o catálogo inteiro.
-    const ordered = normalized
-      ? filtered
-      : [...filtered].sort((a, b) => Number(Boolean(b.image)) - Number(Boolean(a.image)))
+    const filtered = pool.filter((offer) => {
+      const haystack = [
+        offer.name,
+        offer.world,
+        ...(offer.categories || []),
+        ...(offer.highlights || []),
+      ]
+        .filter(Boolean)
+        .join(' ')
+        .toLocaleLowerCase('pt-BR')
+
+      return haystack.includes(normalized)
+    })
 
     return {
       total: filtered.length,
-      offers: ordered.slice(0, visibleLimit),
+      offers: filtered.slice(0, visibleLimit),
     }
   }, [query, visibleLimit])
 
@@ -97,7 +110,7 @@ export default function AgroNexusMarketSpotlight({
             <small>
               {query
                 ? `${result.total} encontrados · exibindo até ${visibleLimit}`
-                : `${MARKET_OFFERS.length} anúncios no catálogo · Home exibe apenas ${visibleLimit}`}
+                : `${MARKET_OFFERS.length} anúncios no catálogo · Home exibe uma seleção curta`}
             </small>
           </div>
           <span>Entre nos mundos para explorar o restante</span>
