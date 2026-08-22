@@ -22,6 +22,7 @@ import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
 
 import BabylonHome from './pages/BabylonHome'
 import AgroNexusWorldExperience from './pages/AgroNexusWorldExperience'
+import AgroNexusOfferPage from './pages/AgroNexusOfferPage'
 
 /* ============================================================
    ROUTING CORE
@@ -116,6 +117,31 @@ const LEGACY_WORLD_ROUTES = {
 
   '/habitats':
     'equipamentos',
+}
+
+/* ============================================================
+   OFFER ROUTING
+   ============================================================ */
+
+function resolveOfferRoute(route) {
+  const offerMatch =
+    route.match(
+      /^\/anuncio\/([^/]+)$/
+    )
+
+  if (!offerMatch) {
+    return null
+  }
+
+  return (
+    <AgroNexusOfferPage
+      offerId={
+        decodeURIComponent(
+          offerMatch[1]
+        )
+      }
+    />
+  )
 }
 
 /* ============================================================
@@ -346,6 +372,19 @@ function resolveRoute(
     return (
       <BabylonHome />
     )
+  }
+
+  /* ----------------------------------------------------------
+     OFFERS
+     ---------------------------------------------------------- */
+
+  const offerPage =
+    resolveOfferRoute(
+      route
+    )
+
+  if (offerPage) {
+    return offerPage
   }
 
   /* ----------------------------------------------------------
