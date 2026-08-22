@@ -1,5 +1,8 @@
 import { formatAdNumber } from './commerceConfig'
 import { FISH_NATURE_PRODUCTS } from './fishNature/products'
+import { WAVE2_REFERENCE_OFFERS } from './marketCatalogWave2'
+import { REEF_WAVE } from './specialistCatalog/reefWave'
+import { PLANT_WAVE } from './specialistCatalog/plantWave'
 
 const money = (value) => new Intl.NumberFormat('pt-BR', { style: 'currency', currency: 'BRL' }).format(value)
 const LOCAL = (path) => encodeURI(path)
@@ -48,9 +51,13 @@ const BASE_OFFERS = [
   offer({ id:'1985533526', slug:'bandeja-pet-games-caixona-areia', world:'equipamentos', categories:['gatos','higiene','caixas-de-areia'], type:'habitat-accessory', name:'Bandeja Higiênica Pet Games Caixona de Areia', referencePrice:164.90, description:'Bandeja higiênica ampla para gatos.', highlights:['Gatos','Bandeja higiênica','Tamanho único'], attributes:[['Marca','Pet Games'],['Categoria','Caixa de areia'],['Tamanho','Único']], delivery:'Entrega calculada conforme CEP.' }),
 ]
 
+const WAVE2_OFFERS = WAVE2_REFERENCE_OFFERS.map(offer)
+const SPECIALIST_REEF_OFFERS = REEF_WAVE.map(offer)
+const SPECIALIST_PLANT_OFFERS = PLANT_WAVE.map(offer)
+
 const AQUATIC_OFFERS = FISH_NATURE_PRODUCTS
   .filter((item) => item?.name && (item.primaryImage || item.images?.length))
-  .slice(0, 60)
+  .slice(0, 120)
   .map((item, index) => {
     const referencePrice = Number.isFinite(Number(item.price)) ? Number(item.price) : null
     return offer({
@@ -62,7 +69,7 @@ const AQUATIC_OFFERS = FISH_NATURE_PRODUCTS
     })
   })
 
-export const MARKET_OFFERS = [...BASE_OFFERS, ...AQUATIC_OFFERS]
+export const MARKET_OFFERS = [...SPECIALIST_REEF_OFFERS, ...SPECIALIST_PLANT_OFFERS, ...AQUATIC_OFFERS, ...WAVE2_OFFERS, ...BASE_OFFERS]
 
 export function getMarketOffer(value) { const key = String(value || '').trim(); return MARKET_OFFERS.find((item) => item.id === key || item.slug === key) || null }
 export function getRelatedOffers(offerItem, limit = 6) { if (!offerItem) return []; return MARKET_OFFERS.filter((item) => item.id !== offerItem.id).filter((item) => item.world === offerItem.world || item.categories?.some((category) => offerItem.categories?.includes(category))).slice(0, limit) }

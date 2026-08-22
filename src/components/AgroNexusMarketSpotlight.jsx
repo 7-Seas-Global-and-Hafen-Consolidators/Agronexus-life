@@ -16,34 +16,40 @@ const QUICK_WORLDS = [
   ['Equipamentos', '#/mundo/equipamentos'],
 ]
 
+const HOME_SHELF_LIMIT = 8
+
 export default function AgroNexusMarketSpotlight({
   title = 'Encontre. Descubra. Adquira.',
-  limit = 12,
+  limit = HOME_SHELF_LIMIT,
 }) {
   const [query, setQuery] = useState('')
+  const visibleLimit = Math.min(limit, HOME_SHELF_LIMIT)
 
-  const offers = useMemo(() => {
+  const result = useMemo(() => {
     const normalized = query.trim().toLocaleLowerCase('pt-BR')
     const pool = MARKET_OFFERS.map(publicOffer)
 
-    if (!normalized) return pool.slice(0, limit)
+    const filtered = !normalized
+      ? pool
+      : pool.filter((offer) => {
+          const haystack = [
+            offer.name,
+            offer.world,
+            ...(offer.categories || []),
+            ...(offer.highlights || []),
+          ]
+            .filter(Boolean)
+            .join(' ')
+            .toLocaleLowerCase('pt-BR')
 
-    return pool
-      .filter((offer) => {
-        const haystack = [
-          offer.name,
-          offer.world,
-          ...(offer.categories || []),
-          ...(offer.highlights || []),
-        ]
-          .filter(Boolean)
-          .join(' ')
-          .toLocaleLowerCase('pt-BR')
+          return haystack.includes(normalized)
+        })
 
-        return haystack.includes(normalized)
-      })
-      .slice(0, limit)
-  }, [query, limit])
+    return {
+      total: filtered.length,
+      offers: filtered.slice(0, visibleLimit),
+    }
+  }, [query, visibleLimit])
 
   return (
     <section className="agx-market-spotlight" id="mercado">
@@ -52,7 +58,7 @@ export default function AgroNexusMarketSpotlight({
           <p>AgroNexus™ · Catálogo vivo</p>
           <h2>{title}</h2>
           <span>
-            Animais, aquarismo, plantas, alimentação, saúde, habitats e equipamentos em uma única experiência.
+            Um catálogo enorme sem transformar a Home em corredor infinito. Pesquise, entre em um mundo e aprofunde só onde quiser.
           </span>
         </div>
 
@@ -64,7 +70,7 @@ export default function AgroNexusMarketSpotlight({
               type="search"
               value={query}
               onChange={(event) => setQuery(event.target.value)}
-              placeholder="Busque por espécie, raça, produto, alimentação, equipamento..."
+              placeholder="Espécie, raça, coral, planta, ração, equipamento..."
               autoComplete="off"
             />
             <span aria-hidden="true">↗</span>
@@ -73,18 +79,28 @@ export default function AgroNexusMarketSpotlight({
 
         <nav className="agx-market-worlds" aria-label="Atalhos do catálogo AgroNexus">
           {QUICK_WORLDS.map(([label, href]) => (
-            <a href={href} key={href}>{label}<span aria-hidden="true">↗</span></a>
+            <a href={href} key={href}>
+              {label}
+              <span aria-hidden="true">↗</span>
+            </a>
           ))}
         </nav>
 
         <div className="agx-market-spotlight__bar">
-          <strong>{query ? 'Resultados encontrados' : 'Em destaque agora'}</strong>
-          <span>{MARKET_OFFERS.length} anúncios integrados ao catálogo</span>
+          <div>
+            <strong>{query ? 'Resultados' : 'Seleção AgroNexus'}</strong>
+            <small>
+              {query
+                ? `${result.total} encontrados · exibindo até ${visibleLimit}`
+                : `${MARKET_OFFERS.length} anúncios no catálogo · Home exibe apenas ${visibleLimit}`}
+            </small>
+          </div>
+          <span>Entre nos mundos para explorar o restante</span>
         </div>
 
-        {offers.length > 0 ? (
+        {result.offers.length > 0 ? (
           <div className="agx-market-spotlight__grid">
-            {offers.map((offer) => (
+            {result.offers.map((offer) => (
               <a
                 className="agx-market-spotlight__card"
                 href={`#/anuncio/${offer.id}`}
@@ -112,6 +128,11 @@ export default function AgroNexusMarketSpotlight({
             <span>Este termo ainda não está entre os anúncios integrados ao catálogo.</span>
           </div>
         )}
+
+        <div className="agx-market-spotlight__exit">
+          <span>O catálogo continua dentro dos mundos, não para baixo da Home.</span>
+          <a href="#/mundo/aves">Começar pelos mundos ↗</a>
+        </div>
       </div>
     </section>
   )
