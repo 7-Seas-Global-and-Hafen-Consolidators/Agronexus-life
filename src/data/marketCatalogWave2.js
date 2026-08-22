@@ -1,0 +1,91 @@
+export const WAVE2_REFERENCE_OFFERS = [
+  {
+    id: '1985533701',
+    slug: 'viveiro-calopsita-mini-play-braganca',
+    world: 'equipamentos',
+    categories: ['aves', 'equipamentos', 'viveiros', 'habitats'],
+    type: 'habitat',
+    name: 'Viveiro Calopsita Mini-Play Bragança',
+    referencePrice: 554.90,
+    image: 'https://cobasi.vteximg.com.br/arquivos/ids/1052733-368-368/Viveiro-Calopsita-Mini-Play-Braganca.png?v=638411129741470000',
+    images: ['https://cobasi.vteximg.com.br/arquivos/ids/1052733-368-368/Viveiro-Calopsita-Mini-Play-Braganca.png?v=638411129741470000'],
+    description: 'Viveiro para calopsitas e aves de porte semelhante, com área superior, varanda e bandeja removível.',
+    highlights: ['Calopsitas e semelhantes', 'Bandeja removível', 'Área superior com varanda'],
+    attributes: [['Marca', 'Bragança'], ['Material', 'Arame, epóxi e plástico'], ['Altura', '80 cm'], ['Comprimento', '45 cm'], ['Largura', '44 cm']],
+    delivery: 'Entrega calculada conforme CEP e volume do item.',
+  },
+  {
+    id: '1985533702',
+    slug: 'gaiola-twister-monaco-azul',
+    world: 'equipamentos',
+    categories: ['pequenos-mamiferos', 'roedores', 'equipamentos', 'habitats'],
+    type: 'habitat',
+    name: 'Gaiola Twister para Roedores Mônaco Azul',
+    referencePrice: 394.00,
+    image: 'https://cobasi.vteximg.com.br/arquivos/ids/1015839-368-368/gaiola-twister-monaco-azul-principal.jpg?v=638833437231370000',
+    images: ['https://cobasi.vteximg.com.br/arquivos/ids/1015839-368-368/gaiola-twister-monaco-azul-principal.jpg?v=638833437231370000'],
+    description: 'Gaiola ampla para rato Twister e pequenos roedores, com duas escadas internas.',
+    highlights: ['Rato Twister', 'Duas escadas', 'Amplo espaço'],
+    attributes: [['Marca', 'Mônaco'], ['Cor', 'Azul'], ['Material', 'Arame, epóxi e plástico'], ['Medidas', '48 x 34 x 52 cm']],
+    delivery: 'Entrega calculada conforme CEP e volume do item.',
+  },
+  {
+    id: '1985533703',
+    slug: 'gaiola-hamster-tubos-divertidos-braganca-amarela',
+    world: 'equipamentos',
+    categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'],
+    type: 'habitat',
+    name: 'Gaiola para Hamster com Tubos Divertidos Bragança Amarela',
+    referencePrice: 179.90,
+    image: 'https://cobasi.vteximg.com.br/arquivos/ids/1014705-368-368/gaiola-para-hamster-com-tubos-divertidos-braganca-amarela-principal.jpg?v=638833427935930000',
+    images: ['https://cobasi.vteximg.com.br/arquivos/ids/1014705-368-368/gaiola-para-hamster-com-tubos-divertidos-braganca-amarela-principal.jpg?v=638833427935930000'],
+    description: 'Habitat para hamsters e pequenos roedores com comedouro, rodinha e tubos.',
+    highlights: ['Hamsters', 'Tubos', 'Rodinha e comedouro'],
+    attributes: [['Marca', 'Bragança'], ['Cor', 'Amarela'], ['Categoria', 'Gaiola para hamster']],
+    delivery: 'Entrega calculada conforme CEP e volume do item.',
+  },
+  {
+    id: '1985533704', slug: 'gaiola-hamster-tubos-3-andares-braganca', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola para Hamster com Tubos Divertidos 3 Andares Bragança', referencePrice: 399.50, description: 'Gaiola vertical de três andares para hamsters com tubos e áreas de circulação.', highlights: ['3 andares', 'Hamsters', 'Tubos'], attributes: [['Marca', 'Bragança'], ['Categoria', 'Gaiola para hamster']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533705', slug: 'gaiola-com-escada-hamster-monaco-vermelha', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola com Escada Hamster Mônaco Vermelha', referencePrice: 329.90, description: 'Gaiola para hamster com escada e área interna para circulação e descanso.', highlights: ['Hamsters', 'Escada', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Cor', 'Vermelha']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533706', slug: 'gaiola-criadeira-hamster-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola Criadeira Hamster Mônaco', referencePrice: 168.90, description: 'Gaiola compacta para hamsters e pequenos roedores.', highlights: ['Hamsters', 'Compacta', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Categoria', 'Gaiola']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533707', slug: 'gaiola-hamster-cabana-braganca', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola para Hamster Cabana Bragança', referencePrice: 212.90, description: 'Gaiola modelo cabana para hamster, com espaço interno para acessórios.', highlights: ['Hamsters', 'Modelo cabana', 'Bragança'], attributes: [['Marca', 'Bragança'], ['Categoria', 'Gaiola']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533708', slug: 'gaiola-hamster-criceti-9-ferplast', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola para Hamster Criceti 9 Ferplast', referencePrice: 426.90, description: 'Habitat Ferplast para hamsters e pequenos roedores.', highlights: ['Hamsters', 'Ferplast', 'Habitat'], attributes: [['Marca', 'Ferplast'], ['Modelo', 'Criceti 9']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533709', slug: 'gaiola-jaulinha-porquinho-da-india-braganca', world: 'equipamentos', categories: ['pequenos-mamiferos', 'porquinho-da-india', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola Jaulinha para Porquinho-da-Índia Bragança', referencePrice: 272.90, description: 'Gaiola para porquinho-da-Índia com estrutura metálica e base plástica.', highlights: ['Porquinho-da-Índia', 'Bragança', 'Habitat'], attributes: [['Marca', 'Bragança'], ['Categoria', 'Gaiola']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533710', slug: 'gaiola-porquinho-da-india-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'porquinho-da-india', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola para Porquinho-da-Índia Mônaco', referencePrice: 489.90, description: 'Gaiola ampla para porquinho-da-Índia.', highlights: ['Porquinho-da-Índia', 'Mônaco', 'Habitat'], attributes: [['Marca', 'Mônaco'], ['Categoria', 'Gaiola']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533711', slug: 'playground-porquinho-da-india-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'porquinho-da-india', 'equipamentos', 'enriquecimento'], type: 'enrichment', name: 'Playground para Porquinho-da-Índia Mônaco', referencePrice: 602.50, description: 'Playground amplo para enriquecimento ambiental de porquinhos-da-Índia.', highlights: ['Porquinho-da-Índia', 'Enriquecimento', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Categoria', 'Playground']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533712', slug: 'cercado-porquinho-da-india-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'porquinho-da-india', 'equipamentos', 'habitats'], type: 'habitat', name: 'Cercado para Porquinho-da-Índia Mônaco', referencePrice: 334.90, description: 'Cercado para manejo e ampliação do espaço de porquinhos-da-Índia.', highlights: ['Porquinho-da-Índia', 'Cercado', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Categoria', 'Cercado']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533713', slug: 'plataforma-multiuso-passaros-roedores-kakatoo', world: 'equipamentos', categories: ['aves', 'pequenos-mamiferos', 'equipamentos', 'enriquecimento'], type: 'enrichment', name: 'Plataforma Multiuso para Pássaros e Roedores Kakatoo', referencePrice: 59.90, description: 'Plataforma multiuso para enriquecimento e apoio em habitats de aves e roedores.', highlights: ['Aves', 'Roedores', 'Multiuso'], attributes: [['Marca', 'Kakatoo'], ['Categoria', 'Plataforma']], delivery: 'Entrega calculada conforme CEP.'
+  },
+  {
+    id: '1985533714', slug: 'kit-para-roedores-kotori', world: 'equipamentos', categories: ['pequenos-mamiferos', 'roedores', 'equipamentos', 'acessorios'], type: 'accessory', name: 'Kit para Roedores Kotori', referencePrice: 26.90, description: 'Kit de acessórios para pequenos roedores.', highlights: ['Roedores', 'Acessórios', 'Kotori'], attributes: [['Marca', 'Kotori'], ['Categoria', 'Kit para roedores']], delivery: 'Entrega calculada conforme CEP.'
+  },
+  {
+    id: '1985533715', slug: 'gaiola-multiuso-roedores-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'roedores', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola Multiuso para Roedores Mônaco', referencePrice: 389.90, description: 'Gaiola multiuso para pequenos roedores.', highlights: ['Roedores', 'Multiuso', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Categoria', 'Gaiola']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533716', slug: 'gaiola-pequenos-roedores-monaco-vermelha', world: 'equipamentos', categories: ['pequenos-mamiferos', 'roedores', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola para Pequenos Roedores Mônaco Vermelha', referencePrice: 379.90, description: 'Gaiola para pequenos roedores com estrutura metálica e base plástica.', highlights: ['Pequenos roedores', 'Mônaco', 'Habitat'], attributes: [['Marca', 'Mônaco'], ['Cor', 'Vermelha']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  },
+  {
+    id: '1985533717', slug: 'gaiola-hamster-arqueada-epoxi-monaco', world: 'equipamentos', categories: ['pequenos-mamiferos', 'hamsters', 'equipamentos', 'habitats'], type: 'habitat', name: 'Gaiola Hamster Arqueada Epóxi Mônaco', referencePrice: 241.90, description: 'Gaiola arqueada com acabamento epóxi para hamster.', highlights: ['Hamsters', 'Epóxi', 'Mônaco'], attributes: [['Marca', 'Mônaco'], ['Acabamento', 'Epóxi']], delivery: 'Entrega calculada conforme CEP e volume do item.'
+  }
+]
+
+export default WAVE2_REFERENCE_OFFERS
