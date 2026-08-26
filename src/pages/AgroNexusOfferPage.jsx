@@ -15,6 +15,7 @@ function imageWithFallback(images, index, setActiveImage, alt) {
     <img
       src={src}
       alt={alt}
+      referrerPolicy="no-referrer"
       onError={() => {
         const next = images.findIndex((item, itemIndex) => itemIndex > index && item)
         if (next >= 0) setActiveImage(next)
@@ -65,6 +66,11 @@ export default function AgroNexusOfferPage({ offerId }) {
         .agx-offer__brands span{padding:7px 9px;border:1px solid rgba(17,20,17,.15);font-size:.56rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;background:#fff}
         .agx-offer__brand-stamp{position:absolute;left:16px;bottom:16px;background:rgba(9,11,10,.86);color:#fff;padding:8px 11px;font-size:.58rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
         .agx-offer__main-media{position:relative}
+        .agx-offer__source-box{margin-top:18px;padding:18px;border:1px solid rgba(17,20,17,.16);background:#f7f6f1}
+        .agx-offer__source-box span{display:block;color:#6a716c;font-size:.61rem;font-weight:900;letter-spacing:.11em;text-transform:uppercase;margin-bottom:7px}
+        .agx-offer__source-box strong{display:block;font-size:1rem;margin-bottom:8px}
+        .agx-offer__source-box p{margin:0 0 12px;color:#66706a;font-size:.74rem;line-height:1.55}
+        .agx-offer__source-box a{display:inline-flex;min-height:40px;align-items:center;text-decoration:none;color:#111411;border-bottom:1px solid currentColor;font-size:.66rem;font-weight:900;letter-spacing:.08em;text-transform:uppercase}
         @media(max-width:700px){.agx-offer__checkout-grid,.agx-offer__contact-grid{grid-template-columns:1fr}}
       `}</style>
 
@@ -88,7 +94,7 @@ export default function AgroNexusOfferPage({ offerId }) {
               <div className="agx-offer__thumbs">
                 {images.map((image, index) => (
                   <button key={`${image}-${index}`} type="button" onClick={() => setActiveImage(index)} className={index === activeImage ? 'is-active' : ''} aria-label={`Ver imagem ${index + 1}`}>
-                    <img src={image} alt="" onError={(event) => { event.currentTarget.style.display = 'none' }} />
+                    <img src={image} alt="" referrerPolicy="no-referrer" onError={(event) => { event.currentTarget.style.display = 'none' }} />
                   </button>
                 ))}
               </div>
@@ -109,7 +115,7 @@ export default function AgroNexusOfferPage({ offerId }) {
             <div className="agx-offer__pricing">
               {offer.formattedOldPrice && <div className="agx-offer__old-price">{offer.formattedOldPrice}</div>}
               <div className="agx-offer__price-row">
-                <strong>{offer.formattedPrice || 'Preço sob consulta'}</strong>
+                <strong>{offer.formattedPrice || (offer.sourceRecord ? 'Referência de mercado' : 'Preço sob consulta')}</strong>
                 {discount > 0 && <span>{discount}% OFF</span>}
               </div>
               {offer.installmentText && <p>{offer.installmentText}</p>}
@@ -125,29 +131,38 @@ export default function AgroNexusOfferPage({ offerId }) {
               <p>{offer.delivery}</p>
             </div>
 
-            <div className="agx-offer__payments">
-              <h2>Comprar / pagar</h2>
-              <p>Pix · boleto bancário · cartão de crédito · parcelamento conforme checkout.</p>
+            {offer.sourceRecord ? (
+              <div className="agx-offer__source-box">
+                <span>Procedência do registro</span>
+                <strong>{offer.sourceName}</strong>
+                <p>Este item foi incorporado como registro de referência do acervo AgroNexus™. O nome do fornecedor, a origem da mídia e a condição observada permanecem preservados no cadastro.</p>
+                {offer.sourceUrl && <a href={offer.sourceUrl} target="_blank" rel="noreferrer">Ver fonte original ↗</a>}
+              </div>
+            ) : (
+              <div className="agx-offer__payments">
+                <h2>Comprar / pagar</h2>
+                <p>Pix · boleto bancário · cartão de crédito · parcelamento conforme checkout.</p>
 
-              <div className="agx-offer__checkout-grid">
-                <div className="agx-offer__checkout-option">
-                  <a href={asaas.url} target="_blank" rel="noreferrer">Asaas ↗</a>
-                  <small>{asaas.disclosure}</small>
+                <div className="agx-offer__checkout-grid">
+                  <div className="agx-offer__checkout-option">
+                    <a href={asaas.url} target="_blank" rel="noreferrer">Asaas ↗</a>
+                    <small>{asaas.disclosure}</small>
+                  </div>
+                  <div className="agx-offer__checkout-option">
+                    <a href={mercadoPago.url} target="_blank" rel="noreferrer">Mercado Pago ↗</a>
+                    <small>{mercadoPago.disclosure}</small>
+                  </div>
                 </div>
-                <div className="agx-offer__checkout-option">
-                  <a href={mercadoPago.url} target="_blank" rel="noreferrer">Mercado Pago ↗</a>
-                  <small>{mercadoPago.disclosure}</small>
+
+                <div className="agx-offer__payment-pills">
+                  {AGRONEXUS_COMMERCE.paymentMethods.map((method) => <span key={method.id}>{method.label}</span>)}
+                </div>
+
+                <div className="agx-offer__brands">
+                  {AGRONEXUS_COMMERCE.cardBrands.map((brand) => <span key={brand}>{brand}</span>)}
                 </div>
               </div>
-
-              <div className="agx-offer__payment-pills">
-                {AGRONEXUS_COMMERCE.paymentMethods.map((method) => <span key={method.id}>{method.label}</span>)}
-              </div>
-
-              <div className="agx-offer__brands">
-                {AGRONEXUS_COMMERCE.cardBrands.map((brand) => <span key={brand}>{brand}</span>)}
-              </div>
-            </div>
+            )}
 
             <div className="agx-offer__contact-grid">
               <a href={`${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${whatsappText}`} target="_blank" rel="noreferrer">WhatsApp ↗</a>
@@ -192,8 +207,8 @@ export default function AgroNexusOfferPage({ offerId }) {
             <div className="agx-offer__related-grid">
               {related.map((item) => (
                 <a key={item.id} href={`#/anuncio/${item.id}`} className="agx-offer__card">
-                  <div className="agx-offer__card-media">{item.image && <img src={item.image} alt={item.name} loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none' }} />}</div>
-                  <div className="agx-offer__card-copy"><span>{item.adNumber}</span><strong>{item.name}</strong><b>{item.formattedPrice || 'Preço sob consulta'}</b></div>
+                  <div className="agx-offer__card-media">{item.image && <img src={item.image} alt={item.name} loading="lazy" referrerPolicy="no-referrer" onError={(event) => { event.currentTarget.style.display = 'none' }} />}</div>
+                  <div className="agx-offer__card-copy"><span>{item.adNumber}</span><strong>{item.name}</strong><b>{item.formattedPrice || (item.sourceRecord ? 'Referência de mercado' : 'Preço sob consulta')}</b></div>
                 </a>
               ))}
             </div>
