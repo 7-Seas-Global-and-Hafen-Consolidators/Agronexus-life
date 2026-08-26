@@ -1,6 +1,6 @@
 import WorldPage from './WorldPage'
 import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
-import { getOffersByWorld } from '../data/marketCatalog'
+import { getOffersByWorld, getOffersByCategory } from '../data/marketCatalog'
 import { FISH_NATURE_PRODUCTS } from '../data/fishNature/products'
 
 function firstMedia(items = []) {
@@ -11,45 +11,46 @@ function firstMedia(items = []) {
   return ''
 }
 
+function inventoryFor(slug, departmentSlug) {
+  const worldItems = getOffersByWorld(slug)
+  if (!departmentSlug) return worldItems.length ? worldItems : getOffersByCategory(slug)
+  const exact = worldItems.filter((item) => item.categories?.includes(departmentSlug) || item.type === departmentSlug)
+  if (exact.length) return exact
+  const departmentItems = getOffersByCategory(departmentSlug)
+  if (departmentItems.length) return departmentItems
+  return getOffersByCategory(slug)
+}
+
 function getSourceHero(world, departmentSlug) {
   const fish = FISH_NATURE_PRODUCTS.filter((item) => {
-    const matchesWorld = item.world === world
-    const matchesDepartment = !departmentSlug || item.category === departmentSlug || item.categories?.includes?.(departmentSlug)
-    return matchesWorld && matchesDepartment
+    const tags = [item.world, item.category, ...(item.categories || [])].filter(Boolean)
+    return tags.includes(world) && (!departmentSlug || tags.includes(departmentSlug))
   })
-  if (fish.length) return firstMedia(fish)
-
-  const offers = getOffersByWorld(world).filter((item) => !departmentSlug || item.categories?.includes(departmentSlug) || item.type === departmentSlug)
-  return firstMedia(offers)
+  const fishMedia = firstMedia(fish)
+  if (fishMedia) return fishMedia
+  return firstMedia(inventoryFor(world, departmentSlug))
 }
 
 export default function AgroNexusWorldExperience({ slug, departmentSlug = null }) {
-  const worldOffers = getOffersByWorld(slug)
-  const departmentOffers = departmentSlug
-    ? worldOffers.filter((item) => item.categories?.includes(departmentSlug) || item.type === departmentSlug)
-    : worldOffers
-  const hasCatalog = departmentOffers.length > 0
+  const inventory = inventoryFor(slug, departmentSlug)
   const sourceHero = getSourceHero(slug, departmentSlug)
+  const catalogScope = departmentSlug || slug
 
   return (
     <>
       {sourceHero ? (
         <style>{`
           .world-page--${slug} .world-hero {
-            background-image:
-              linear-gradient(90deg,rgba(5,18,13,.94) 0%,rgba(5,18,13,.72) 46%,rgba(5,18,13,.18) 100%),
-              url("${sourceHero}") !important;
-            background-size:cover !important;
-            background-position:center !important;
-            background-repeat:no-repeat !important;
+            background-image:linear-gradient(90deg,rgba(5,18,13,.94) 0%,rgba(5,18,13,.70) 44%,rgba(5,18,13,.12) 100%),url("${sourceHero}") !important;
+            background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important;
           }
         `}</style>
       ) : null}
 
       <WorldPage slug={slug} departmentSlug={departmentSlug} />
 
-      {hasCatalog ? (
-        <AgroNexusProductCatalog world={slug} category={departmentSlug || null} />
+      {inventory.length ? (
+        <AgroNexusProductCatalog category={catalogScope} />
       ) : null}
     </>
   )
