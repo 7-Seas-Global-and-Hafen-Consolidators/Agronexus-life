@@ -1,25 +1,35 @@
-/**
- * AgroNexus™ — World Experience Bridge
- * Liga cada mundo ao catálogo universal AgroNexus.
- */
-
 import WorldPage from './WorldPage'
 import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
 import { getOffersByWorld } from '../data/marketCatalog'
 import { FISH_NATURE_PRODUCTS } from '../data/fishNature/products'
 
-function getSourceHero(world) {
-  const product = FISH_NATURE_PRODUCTS.find(
-    (item) => item.world === world && (item.primaryImage || item.images?.length)
-  )
+function firstMedia(items = []) {
+  for (const item of items) {
+    const src = item?.image || item?.primaryImage || item?.images?.find(Boolean)
+    if (src) return src
+  }
+  return ''
+}
 
-  return product?.primaryImage || product?.images?.[product.images.length - 1] || ''
+function getSourceHero(world, departmentSlug) {
+  const fish = FISH_NATURE_PRODUCTS.filter((item) => {
+    const matchesWorld = item.world === world
+    const matchesDepartment = !departmentSlug || item.category === departmentSlug || item.categories?.includes?.(departmentSlug)
+    return matchesWorld && matchesDepartment
+  })
+  if (fish.length) return firstMedia(fish)
+
+  const offers = getOffersByWorld(world).filter((item) => !departmentSlug || item.categories?.includes(departmentSlug) || item.type === departmentSlug)
+  return firstMedia(offers)
 }
 
 export default function AgroNexusWorldExperience({ slug, departmentSlug = null }) {
-  const catalogOffers = getOffersByWorld(slug)
-  const hasCatalog = catalogOffers.length > 0
-  const sourceHero = slug === 'aquarismo' || slug === 'corais' ? getSourceHero(slug) : ''
+  const worldOffers = getOffersByWorld(slug)
+  const departmentOffers = departmentSlug
+    ? worldOffers.filter((item) => item.categories?.includes(departmentSlug) || item.type === departmentSlug)
+    : worldOffers
+  const hasCatalog = departmentOffers.length > 0
+  const sourceHero = getSourceHero(slug, departmentSlug)
 
   return (
     <>
@@ -38,8 +48,8 @@ export default function AgroNexusWorldExperience({ slug, departmentSlug = null }
 
       <WorldPage slug={slug} departmentSlug={departmentSlug} />
 
-      {hasCatalog && !departmentSlug ? (
-        <AgroNexusProductCatalog world={slug} />
+      {hasCatalog ? (
+        <AgroNexusProductCatalog world={slug} category={departmentSlug || null} />
       ) : null}
     </>
   )
