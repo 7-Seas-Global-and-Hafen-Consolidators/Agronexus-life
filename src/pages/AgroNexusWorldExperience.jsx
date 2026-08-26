@@ -1,5 +1,6 @@
 import WorldPage from './WorldPage'
 import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
+import AgroNexusSpeciesGallery from '../components/AgroNexusSpeciesGallery'
 import { getOffersByWorld, getOffersByCategory } from '../data/marketCatalog'
 import { FISH_NATURE_PRODUCTS } from '../data/fishNature/products'
 
@@ -35,6 +36,7 @@ export default function AgroNexusWorldExperience({ slug, departmentSlug = null }
   const inventory = inventoryFor(slug, departmentSlug)
   const sourceHero = getSourceHero(slug, departmentSlug)
   const catalogScope = departmentSlug || slug
+  const showBirdArchive = slug === 'aves' && (!departmentSlug || ['psitacideos','agapornis','araras','cacatuas','calopsitas','kakarikis','loris','papagaios','periquitos','ringneck','roselas'].includes(departmentSlug))
 
   return (
     <>
@@ -49,9 +51,9 @@ export default function AgroNexusWorldExperience({ slug, departmentSlug = null }
 
       <WorldPage slug={slug} departmentSlug={departmentSlug} />
 
-      {inventory.length ? (
-        <AgroNexusProductCatalog category={catalogScope} />
-      ) : null}
+      {showBirdArchive ? <AgroNexusSpeciesGallery category={departmentSlug || null} /> : null}
+
+      {inventory.length ? <AgroNexusProductCatalog category={catalogScope} /> : null}
     </>
   )
 }
