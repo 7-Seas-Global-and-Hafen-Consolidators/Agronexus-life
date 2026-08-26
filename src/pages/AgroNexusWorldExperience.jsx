@@ -2,96 +2,11 @@ import WorldPage from './WorldPage'
 import AgroNexusMarineTunnel from './AgroNexusMarineTunnel'
 import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
 import AgroNexusSpeciesGallery from '../components/AgroNexusSpeciesGallery'
-import { getOffersByWorld, getOffersByCategory } from '../data/marketCatalog'
+import { getOffersByWorld,getOffersByCategory } from '../data/marketCatalog'
 import { FISH_NATURE_PRODUCTS } from '../data/fishNature/products'
 import { getBiodiversityMediaWave2 } from '../data/marketCatalogBiodiversityWave2'
-
-function firstMedia(items = []) {
-  for (const item of items) {
-    const src = item?.image || item?.primaryImage || item?.images?.find(Boolean)
-    if (src) return src
-  }
-  return ''
-}
-
-function inventoryFor(slug, departmentSlug) {
-  const worldItems = getOffersByWorld(slug)
-  if (!departmentSlug) return worldItems.length ? worldItems : getOffersByCategory(slug)
-  const exact = worldItems.filter((item) => item.categories?.includes(departmentSlug) || item.type === departmentSlug)
-  if (exact.length) return exact
-  const departmentItems = getOffersByCategory(departmentSlug)
-  if (departmentItems.length) return departmentItems
-  return getOffersByCategory(slug)
-}
-
-function getSourceHero(world, departmentSlug) {
-  const fish = FISH_NATURE_PRODUCTS.filter((item) => {
-    const tags = [item.world, item.category, ...(item.categories || [])].filter(Boolean)
-    return tags.includes(world) && (!departmentSlug || tags.includes(departmentSlug))
-  })
-  const fishMedia = firstMedia(fish)
-  if (fishMedia) return fishMedia
-
-  const biodiversity = getBiodiversityMediaWave2(world, departmentSlug)
-  const biodiversityMedia = firstMedia(biodiversity)
-  if (biodiversityMedia) return biodiversityMedia
-
-  return firstMedia(inventoryFor(world, departmentSlug))
-}
-
-function archiveCopy(slug) {
-  if (slug === 'aquarismo') return {
-    title: 'Peixes e ciclídeos em imagem.',
-    intro: 'O acervo visual AgroNexus™ para aquarismo agora integra a experiência pública com imagens locais já preservadas para Acarás-bandeira, Discus, Oscar e ciclídeos africanos.',
-  }
-  if (slug === 'pequenos-mamiferos') return {
-    title: 'Hamsters e pequenos mamíferos em imagem.',
-    intro: 'Campbell, Chinês, Roborovski, Sírio, Winter White e coelhos entram na camada pública a partir das mídias AgroNexus™ já existentes no repositório.',
-  }
-  if (slug === 'repteis') return {
-    title: 'Répteis em imagem.',
-    intro: 'O arquivo editorial AgroNexus™ de répteis deixa de ficar isolado nos assets e passa a compor o mundo público de biodiversidade.',
-  }
-  return null
-}
-
-export default function AgroNexusWorldExperience({ slug, departmentSlug = null }) {
-  if (slug === 'corais' || (slug === 'aquarismo' && departmentSlug === 'marinho')) {
-    return <AgroNexusMarineTunnel />
-  }
-
-  const inventory = inventoryFor(slug, departmentSlug)
-  const sourceHero = getSourceHero(slug, departmentSlug)
-  const catalogScope = departmentSlug || slug
-  const showBirdArchive = slug === 'aves' && (!departmentSlug || ['psitacideos','agapornis','araras','cacatuas','calopsitas','kakarikis','loris','papagaios','periquitos','ringneck','roselas'].includes(departmentSlug))
-  const biodiversityArchive = getBiodiversityMediaWave2(slug, departmentSlug)
-  const copy = archiveCopy(slug)
-
-  return (
-    <>
-      {sourceHero ? (
-        <style>{`
-          .world-page--${slug} .world-hero {
-            background-image:linear-gradient(90deg,rgba(5,18,13,.94) 0%,rgba(5,18,13,.70) 44%,rgba(5,18,13,.12) 100%),url("${sourceHero}") !important;
-            background-size:cover !important;background-position:center !important;background-repeat:no-repeat !important;
-          }
-        `}</style>
-      ) : null}
-
-      <WorldPage slug={slug} departmentSlug={departmentSlug} />
-
-      {showBirdArchive ? <AgroNexusSpeciesGallery category={departmentSlug || null} /> : null}
-
-      {biodiversityArchive.length && copy ? (
-        <AgroNexusSpeciesGallery
-          items={biodiversityArchive}
-          title={copy.title}
-          intro={copy.intro}
-          kicker="AgroNexus™ · Acervo de biodiversidade"
-        />
-      ) : null}
-
-      {inventory.length ? <AgroNexusProductCatalog category={catalogScope} /> : null}
-    </>
-  )
-}
+function firstMedia(items=[]){for(const item of items){const src=item?.image||item?.primaryImage||item?.images?.find(Boolean);if(src)return src}return''}
+function inventoryFor(slug,departmentSlug){const worldItems=getOffersByWorld(slug);if(!departmentSlug)return worldItems.length?worldItems:getOffersByCategory(slug);const exact=worldItems.filter(item=>item.categories?.includes(departmentSlug)||item.type===departmentSlug);if(exact.length)return exact;const dep=getOffersByCategory(departmentSlug);return dep.length?dep:getOffersByCategory(slug)}
+function getSourceHero(world,departmentSlug){const fish=FISH_NATURE_PRODUCTS.filter(item=>{const tags=[item.world,item.category,...(item.categories||[])].filter(Boolean);return tags.includes(world)&&(!departmentSlug||tags.includes(departmentSlug))});return firstMedia(fish)||firstMedia(getBiodiversityMediaWave2(world,departmentSlug))||firstMedia(inventoryFor(world,departmentSlug))}
+function archiveCopy(slug){if(slug==='aquarismo')return{title:'Peixes e ciclídeos.',intro:'Conheça espécies, variedades e referências do universo do aquarismo AgroNexus™.'};if(slug==='pequenos-mamiferos')return{title:'Pequenos mamíferos.',intro:'Conheça espécies e variedades de pequenos mamíferos na AgroNexus™.'};if(slug==='repteis')return{title:'Répteis.',intro:'Conheça espécies e referências do universo de répteis AgroNexus™.'};return null}
+export default function AgroNexusWorldExperience({slug,departmentSlug=null}){if(slug==='corais'||(slug==='aquarismo'&&departmentSlug==='marinho'))return <AgroNexusMarineTunnel/>;const inventory=inventoryFor(slug,departmentSlug);const sourceHero=getSourceHero(slug,departmentSlug);const scope=departmentSlug||slug;const birds=slug==='aves'&&(!departmentSlug||['psitacideos','agapornis','araras','cacatuas','calopsitas','kakarikis','loris','papagaios','periquitos','ringneck','roselas'].includes(departmentSlug));const bio=getBiodiversityMediaWave2(slug,departmentSlug);const copy=archiveCopy(slug);return <>{sourceHero?<style>{`.world-page--${slug} .world-hero{background-image:linear-gradient(90deg,rgba(5,18,13,.94) 0%,rgba(5,18,13,.70) 44%,rgba(5,18,13,.12) 100%),url("${sourceHero}")!important;background-size:cover!important;background-position:center!important}`}</style>:null}<WorldPage slug={slug} departmentSlug={departmentSlug}/>{birds?<AgroNexusSpeciesGallery category={departmentSlug||null}/>:null}{bio.length&&copy?<AgroNexusSpeciesGallery items={bio} title={copy.title} intro={copy.intro} kicker="AgroNexus™ · Biodiversidade"/>:null}{inventory.length?<AgroNexusProductCatalog category={scope}/>:null}</>}
