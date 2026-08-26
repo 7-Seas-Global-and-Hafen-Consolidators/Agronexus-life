@@ -1,4 +1,5 @@
 import WorldPage from './WorldPage'
+import AgroNexusMarineTunnel from './AgroNexusMarineTunnel'
 import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
 import AgroNexusSpeciesGallery from '../components/AgroNexusSpeciesGallery'
 import { getOffersByWorld, getOffersByCategory } from '../data/marketCatalog'
@@ -55,6 +56,10 @@ function archiveCopy(slug) {
 }
 
 export default function AgroNexusWorldExperience({ slug, departmentSlug = null }) {
+  if (slug === 'corais' || (slug === 'aquarismo' && departmentSlug === 'marinho')) {
+    return <AgroNexusMarineTunnel />
+  }
+
   const inventory = inventoryFor(slug, departmentSlug)
   const sourceHero = getSourceHero(slug, departmentSlug)
   const catalogScope = departmentSlug || slug
