@@ -1,11 +1,10 @@
 import { SPECIES_MEDIA_WAVE } from '../data/marketCatalogSpeciesMediaWave'
 
-export default function AgroNexusSpeciesGallery({ category = null }) {
-  const items = category
-    ? SPECIES_MEDIA_WAVE.filter((item) => item.categories?.includes(category))
-    : SPECIES_MEDIA_WAVE
+export default function AgroNexusSpeciesGallery({ category = null, items = null, title = 'Psitacídeos em imagem.', intro = 'Fotografias já preservadas no próprio acervo AgroNexus™ agora deixam de ficar enterradas no repositório e passam a integrar a experiência pública de biodiversidade.', kicker = 'AgroNexus™ · Acervo real' }) {
+  const source = items || SPECIES_MEDIA_WAVE
+  const visible = category ? source.filter((item) => item.categories?.includes(category)) : source
 
-  if (!items.length) return null
+  if (!visible.length) return null
 
   return (
     <section className="agx-species" aria-label="Acervo visual de biodiversidade AgroNexus">
@@ -25,8 +24,8 @@ export default function AgroNexusSpeciesGallery({ category = null }) {
         @media(max-width:1050px){.agx-species__grid{grid-template-columns:repeat(3,minmax(0,1fr))}}
         @media(max-width:720px){.agx-species__head{grid-template-columns:1fr}.agx-species__grid{display:flex;overflow-x:auto;scroll-snap-type:x mandatory}.agx-species__card{flex:0 0 min(78vw,330px);scroll-snap-align:start}}
       `}</style>
-      <div className="agx-species__head"><p className="agx-species__kicker">AgroNexus™ · Acervo real</p><div><h2>Psitacídeos em imagem.</h2><p className="agx-species__intro">Fotografias já preservadas no próprio acervo AgroNexus™ agora deixam de ficar enterradas no repositório e passam a integrar a experiência pública de biodiversidade.</p></div></div>
-      <div className="agx-species__grid">{items.map((item) => <article className="agx-species__card" key={item.id}><img src={item.image} alt={item.name} loading="lazy"/><div className="agx-species__shade"/><div className="agx-species__brand">AgroNexus™</div><div className="agx-species__copy"><small>Referência visual</small><h3>{item.name}</h3></div></article>)}</div>
+      <div className="agx-species__head"><p className="agx-species__kicker">{kicker}</p><div><h2>{title}</h2><p className="agx-species__intro">{intro}</p></div></div>
+      <div className="agx-species__grid">{visible.map((item) => <article className="agx-species__card" key={item.id}><img src={item.image} alt={item.name} loading="lazy"/><div className="agx-species__shade"/><div className="agx-species__brand">AgroNexus™</div><div className="agx-species__copy"><small>{item.label || 'Referência visual'}</small><h3>{item.name}</h3></div></article>)}</div>
     </section>
   )
 }

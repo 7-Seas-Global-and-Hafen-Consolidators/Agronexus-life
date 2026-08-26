@@ -3,6 +3,7 @@ import AgroNexusProductCatalog from '../components/AgroNexusProductCatalog'
 import AgroNexusSpeciesGallery from '../components/AgroNexusSpeciesGallery'
 import { getOffersByWorld, getOffersByCategory } from '../data/marketCatalog'
 import { FISH_NATURE_PRODUCTS } from '../data/fishNature/products'
+import { getBiodiversityMediaWave2 } from '../data/marketCatalogBiodiversityWave2'
 
 function firstMedia(items = []) {
   for (const item of items) {
@@ -29,7 +30,28 @@ function getSourceHero(world, departmentSlug) {
   })
   const fishMedia = firstMedia(fish)
   if (fishMedia) return fishMedia
+
+  const biodiversity = getBiodiversityMediaWave2(world, departmentSlug)
+  const biodiversityMedia = firstMedia(biodiversity)
+  if (biodiversityMedia) return biodiversityMedia
+
   return firstMedia(inventoryFor(world, departmentSlug))
+}
+
+function archiveCopy(slug) {
+  if (slug === 'aquarismo') return {
+    title: 'Peixes e ciclídeos em imagem.',
+    intro: 'O acervo visual AgroNexus™ para aquarismo agora integra a experiência pública com imagens locais já preservadas para Acarás-bandeira, Discus, Oscar e ciclídeos africanos.',
+  }
+  if (slug === 'pequenos-mamiferos') return {
+    title: 'Hamsters e pequenos mamíferos em imagem.',
+    intro: 'Campbell, Chinês, Roborovski, Sírio, Winter White e coelhos entram na camada pública a partir das mídias AgroNexus™ já existentes no repositório.',
+  }
+  if (slug === 'repteis') return {
+    title: 'Répteis em imagem.',
+    intro: 'O arquivo editorial AgroNexus™ de répteis deixa de ficar isolado nos assets e passa a compor o mundo público de biodiversidade.',
+  }
+  return null
 }
 
 export default function AgroNexusWorldExperience({ slug, departmentSlug = null }) {
@@ -37,6 +59,8 @@ export default function AgroNexusWorldExperience({ slug, departmentSlug = null }
   const sourceHero = getSourceHero(slug, departmentSlug)
   const catalogScope = departmentSlug || slug
   const showBirdArchive = slug === 'aves' && (!departmentSlug || ['psitacideos','agapornis','araras','cacatuas','calopsitas','kakarikis','loris','papagaios','periquitos','ringneck','roselas'].includes(departmentSlug))
+  const biodiversityArchive = getBiodiversityMediaWave2(slug, departmentSlug)
+  const copy = archiveCopy(slug)
 
   return (
     <>
@@ -52,6 +76,15 @@ export default function AgroNexusWorldExperience({ slug, departmentSlug = null }
       <WorldPage slug={slug} departmentSlug={departmentSlug} />
 
       {showBirdArchive ? <AgroNexusSpeciesGallery category={departmentSlug || null} /> : null}
+
+      {biodiversityArchive.length && copy ? (
+        <AgroNexusSpeciesGallery
+          items={biodiversityArchive}
+          title={copy.title}
+          intro={copy.intro}
+          kicker="AgroNexus™ · Acervo de biodiversidade"
+        />
+      ) : null}
 
       {inventory.length ? <AgroNexusProductCatalog category={catalogScope} /> : null}
     </>
