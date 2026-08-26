@@ -3,18 +3,31 @@ import { AGRONEXUS_COMMERCE } from '../data/commerceConfig'
 import { getMarketOffer, getRelatedOffers, publicOffer } from '../data/marketCatalog'
 import '../styles/AgroNexusOfferPage.css'
 
+function uniqueImages(offer) {
+  return [...new Set([offer?.image, ...(offer?.images || [])].filter(Boolean))]
+}
+
+function imageWithFallback(images, index, setActiveImage, alt) {
+  const src = images[index]
+  if (!src) return <div className="agx-offer__image-fallback">AgroNexus™</div>
+
+  return (
+    <img
+      src={src}
+      alt={alt}
+      onError={() => {
+        const next = images.findIndex((item, itemIndex) => itemIndex > index && item)
+        if (next >= 0) setActiveImage(next)
+      }}
+    />
+  )
+}
+
 export default function AgroNexusOfferPage({ offerId }) {
   const [activeImage, setActiveImage] = useState(0)
 
-  const offer = useMemo(
-    () => publicOffer(getMarketOffer(offerId)),
-    [offerId]
-  )
-
-  const related = useMemo(
-    () => getRelatedOffers(offer).map(publicOffer),
-    [offer]
-  )
+  const offer = useMemo(() => publicOffer(getMarketOffer(offerId)), [offerId])
+  const related = useMemo(() => getRelatedOffers(offer).map(publicOffer), [offer])
 
   if (!offer) {
     return (
@@ -28,17 +41,36 @@ export default function AgroNexusOfferPage({ offerId }) {
     )
   }
 
-  const images = offer.images?.length ? offer.images : [offer.image].filter(Boolean)
-  const checkout = AGRONEXUS_COMMERCE.paymentLinks?.asaas?.url
+  const images = uniqueImages(offer)
   const discount = offer.oldPrice && offer.price
     ? Math.max(0, Math.round((1 - offer.price / offer.oldPrice) * 100))
     : 0
 
+  const whatsappText = encodeURIComponent(`Olá! Quero saber mais sobre ${offer.name} — ${offer.adNumber}.`)
+  const questionText = encodeURIComponent(`Olá! Tenho uma pergunta sobre ${offer.adNumber} — ${offer.name}.`)
+
+  const asaas = AGRONEXUS_COMMERCE.paymentLinks.asaas
+  const mercadoPago = AGRONEXUS_COMMERCE.paymentLinks.mercadoPago
+
   return (
     <main className="agx-offer">
+      <style>{`
+        .agx-offer__checkout-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:12px}
+        .agx-offer__checkout-option{display:flex;flex-direction:column;gap:8px;padding:14px;border:1px solid rgba(17,20,17,.14);background:#fff}
+        .agx-offer__checkout-option a{min-height:46px;display:flex;align-items:center;justify-content:center;text-decoration:none;background:#0b120f;color:#fff;font-weight:900;font-size:.68rem;letter-spacing:.08em;text-transform:uppercase}
+        .agx-offer__checkout-option small{color:#727872;font-size:.58rem;line-height:1.45}
+        .agx-offer__contact-grid{display:grid;grid-template-columns:1fr 1fr;gap:10px;margin-top:10px}
+        .agx-offer__contact-grid a{min-height:44px;display:flex;align-items:center;justify-content:center;text-decoration:none;border:1px solid rgba(17,20,17,.18);color:#111411;font-weight:900;font-size:.64rem;letter-spacing:.08em;text-transform:uppercase}
+        .agx-offer__brands{display:flex;flex-wrap:wrap;gap:7px;margin-top:10px}
+        .agx-offer__brands span{padding:7px 9px;border:1px solid rgba(17,20,17,.15);font-size:.56rem;font-weight:900;letter-spacing:.06em;text-transform:uppercase;background:#fff}
+        .agx-offer__brand-stamp{position:absolute;left:16px;bottom:16px;background:rgba(9,11,10,.86);color:#fff;padding:8px 11px;font-size:.58rem;font-weight:900;letter-spacing:.09em;text-transform:uppercase}
+        .agx-offer__main-media{position:relative}
+        @media(max-width:700px){.agx-offer__checkout-grid,.agx-offer__contact-grid{grid-template-columns:1fr}}
+      `}</style>
+
       <section className="agx-offer__shell">
         <nav className="agx-offer__crumbs" aria-label="Navegação">
-          <a href="#/">AgroNexus</a>
+          <a href="#/">AgroNexus™</a>
           <span>›</span>
           <a href={`#/mundo/${offer.world}`}>{offer.world}</a>
           <span>›</span>
@@ -48,24 +80,15 @@ export default function AgroNexusOfferPage({ offerId }) {
         <div className="agx-offer__hero-grid">
           <section className="agx-offer__gallery" aria-label="Galeria do produto">
             <div className="agx-offer__main-media">
-              {images[activeImage] ? (
-                <img src={images[activeImage]} alt={offer.name} />
-              ) : (
-                <div className="agx-offer__image-fallback">AGRONEXUS</div>
-              )}
+              {imageWithFallback(images, activeImage, setActiveImage, offer.name)}
+              <span className="agx-offer__brand-stamp">AgroNexus™ · {offer.adNumber}</span>
             </div>
 
             {images.length > 1 && (
               <div className="agx-offer__thumbs">
                 {images.map((image, index) => (
-                  <button
-                    key={`${image}-${index}`}
-                    type="button"
-                    onClick={() => setActiveImage(index)}
-                    className={index === activeImage ? 'is-active' : ''}
-                    aria-label={`Ver imagem ${index + 1}`}
-                  >
-                    <img src={image} alt="" />
+                  <button key={`${image}-${index}`} type="button" onClick={() => setActiveImage(index)} className={index === activeImage ? 'is-active' : ''} aria-label={`Ver imagem ${index + 1}`}>
+                    <img src={image} alt="" onError={(event) => { event.currentTarget.style.display = 'none' }} />
                   </button>
                 ))}
               </div>
@@ -79,16 +102,12 @@ export default function AgroNexusOfferPage({ offerId }) {
 
             {offer.highlights?.length > 0 && (
               <ul className="agx-offer__highlights">
-                {offer.highlights.slice(0, 4).map((item) => (
-                  <li key={item}>{item}</li>
-                ))}
+                {offer.highlights.slice(0, 4).map((item) => <li key={item}>{item}</li>)}
               </ul>
             )}
 
             <div className="agx-offer__pricing">
-              {offer.formattedOldPrice && (
-                <div className="agx-offer__old-price">{offer.formattedOldPrice}</div>
-              )}
+              {offer.formattedOldPrice && <div className="agx-offer__old-price">{offer.formattedOldPrice}</div>}
               <div className="agx-offer__price-row">
                 <strong>{offer.formattedPrice || 'Preço sob consulta'}</strong>
                 {discount > 0 && <span>{discount}% OFF</span>}
@@ -106,28 +125,33 @@ export default function AgroNexusOfferPage({ offerId }) {
               <p>{offer.delivery}</p>
             </div>
 
-            <div className="agx-offer__actions">
-              <a className="agx-offer__primary" href={checkout} target="_blank" rel="noreferrer">
-                Comprar agora
-              </a>
-              <a
-                className="agx-offer__secondary"
-                href={`${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${encodeURIComponent(`Olá! Quero saber mais sobre ${offer.name} — ${offer.adNumber}.`)}`}
-                target="_blank"
-                rel="noreferrer"
-              >
-                Falar com a AgroNexus
-              </a>
+            <div className="agx-offer__payments">
+              <h2>Comprar / pagar</h2>
+              <p>Pix · boleto bancário · cartão de crédito · parcelamento conforme checkout.</p>
+
+              <div className="agx-offer__checkout-grid">
+                <div className="agx-offer__checkout-option">
+                  <a href={asaas.url} target="_blank" rel="noreferrer">Asaas ↗</a>
+                  <small>{asaas.disclosure}</small>
+                </div>
+                <div className="agx-offer__checkout-option">
+                  <a href={mercadoPago.url} target="_blank" rel="noreferrer">Mercado Pago ↗</a>
+                  <small>{mercadoPago.disclosure}</small>
+                </div>
+              </div>
+
+              <div className="agx-offer__payment-pills">
+                {AGRONEXUS_COMMERCE.paymentMethods.map((method) => <span key={method.id}>{method.label}</span>)}
+              </div>
+
+              <div className="agx-offer__brands">
+                {AGRONEXUS_COMMERCE.cardBrands.map((brand) => <span key={brand}>{brand}</span>)}
+              </div>
             </div>
 
-            <div className="agx-offer__payments">
-              <h2>Meios de pagamento</h2>
-              <p>{AGRONEXUS_COMMERCE.installmentLabel}</p>
-              <div className="agx-offer__payment-pills">
-                {AGRONEXUS_COMMERCE.paymentMethods.map((method) => (
-                  <span key={method.id}>{method.label}</span>
-                ))}
-              </div>
+            <div className="agx-offer__contact-grid">
+              <a href={`${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${whatsappText}`} target="_blank" rel="noreferrer">WhatsApp ↗</a>
+              <a href={AGRONEXUS_COMMERCE.contactLinks.telegram.url} target="_blank" rel="noreferrer">Telegram ↗</a>
             </div>
           </aside>
         </div>
@@ -145,10 +169,7 @@ export default function AgroNexusOfferPage({ offerId }) {
               <h2>Características</h2>
               <dl className="agx-offer__specs">
                 {offer.attributes.map(([label, value]) => (
-                  <div key={`${label}-${value}`}>
-                    <dt>{label}</dt>
-                    <dd>{String(value)}</dd>
-                  </div>
+                  <div key={`${label}-${value}`}><dt>{label}</dt><dd>{String(value)}</dd></div>
                 ))}
               </dl>
             </article>
@@ -157,17 +178,11 @@ export default function AgroNexusOfferPage({ offerId }) {
 
         <section className="agx-offer__qa">
           <div>
-            <p className="agx-offer__section-kicker">Atendimento</p>
+            <p className="agx-offer__section-kicker">Atendimento direto</p>
             <h2>Perguntas e respostas</h2>
-            <p>Tem dúvida sobre este item? Fale diretamente com a AgroNexus usando o número do anúncio para agilizar o atendimento.</p>
+            <p>Use o número do anúncio no atendimento para localizar rapidamente este item.</p>
           </div>
-          <a
-            href={`${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${encodeURIComponent(`Olá! Tenho uma pergunta sobre ${offer.adNumber} — ${offer.name}.`)}`}
-            target="_blank"
-            rel="noreferrer"
-          >
-            Fazer uma pergunta
-          </a>
+          <a href={`${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${questionText}`} target="_blank" rel="noreferrer">Fazer uma pergunta</a>
         </section>
 
         {related.length > 0 && (
@@ -177,14 +192,8 @@ export default function AgroNexusOfferPage({ offerId }) {
             <div className="agx-offer__related-grid">
               {related.map((item) => (
                 <a key={item.id} href={`#/anuncio/${item.id}`} className="agx-offer__card">
-                  <div className="agx-offer__card-media">
-                    {item.image && <img src={item.image} alt={item.name} loading="lazy" />}
-                  </div>
-                  <div className="agx-offer__card-copy">
-                    <span>{item.adNumber}</span>
-                    <strong>{item.name}</strong>
-                    <b>{item.formattedPrice || 'Preço sob consulta'}</b>
-                  </div>
+                  <div className="agx-offer__card-media">{item.image && <img src={item.image} alt={item.name} loading="lazy" onError={(event) => { event.currentTarget.style.display = 'none' }} />}</div>
+                  <div className="agx-offer__card-copy"><span>{item.adNumber}</span><strong>{item.name}</strong><b>{item.formattedPrice || 'Preço sob consulta'}</b></div>
                 </a>
               ))}
             </div>
