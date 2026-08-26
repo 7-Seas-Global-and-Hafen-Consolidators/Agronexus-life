@@ -7,7 +7,7 @@
   "description": "Site institucional AgroNexus.Life - Soluções inteligentes para cadeias de suprimentos animal e vegetal.",
   "scripts": {
     "dev": "vite",
-    "build": "node scripts/syncMarineCatalog.mjs && vite build",
+    "build": "node scripts/syncMarineCatalog.mjs && node scripts/syncExoticCatalog.mjs && vite build",
     "preview": "vite preview",
     "predeploy": "npm run build",
     "deploy": "gh-pages -d dist"
