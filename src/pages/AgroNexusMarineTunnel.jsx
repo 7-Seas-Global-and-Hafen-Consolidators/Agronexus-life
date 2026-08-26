@@ -11,13 +11,15 @@ function buyLink(product) {
   return `${AGRONEXUS_COMMERCE.contactLinks.whatsapp.url}?text=${text}`
 }
 
+/* Public media policy: never render remote supplier/source artwork. Only local AgroNexus-controlled media is eligible. */
 function cleanLocalMedia(product){
   const target=norm(product.name)
   const match=FISH_NATURE_PRODUCTS.find((item)=>{
     const candidate=norm(item?.name||item?.commonName||'')
     return candidate.length>5&&(candidate===target||target.includes(candidate)||candidate.includes(target))
   })
-  return match?.primaryImage || match?.images?.find(Boolean) || null
+  const candidates=[match?.primaryImage,...(match?.images||[])].filter(Boolean)
+  return candidates.find((src)=>String(src).startsWith('/images/')||String(src).startsWith('/assets/'))||null
 }
 
 function MarineMedia({product}){
