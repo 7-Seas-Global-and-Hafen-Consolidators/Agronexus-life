@@ -6,6 +6,7 @@ const NAV_ITEMS = [
   { label: 'Aquarismo', href: '#/mundo/aquarismo' },
   { label: 'Botânica', href: '#/mundo/plantas' },
   { label: 'Saúde', href: '#/mundo/saude' },
+  { label: 'Contato', href: '#/contato' },
   { label: 'Apoie', href: '#/apoie' },
 ]
 
