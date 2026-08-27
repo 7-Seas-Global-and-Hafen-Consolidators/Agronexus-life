@@ -1,0 +1,241 @@
+/* ============================================================
+   AGRONEXUS™ — BABYLON HOME BRIGHT
+   White base + vivid biodiversity color.
+   HOME-ONLY override. Deliberately does not target marine/aquarismo
+   catalog media, crop, blur, supplier imagery or product image mapping.
+   ============================================================ */
+
+body:has(.babylon-home) {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+}
+
+/* ---------- HOME TOKENS ---------- */
+.babylon-home {
+  --babylon-black: #FFFFFF !important;
+  --babylon-ink: #173A78 !important;
+  --babylon-paper: #FFFFFF !important;
+  --babylon-paper-soft: #F6F2FF !important;
+  --babylon-line: rgba(20,125,235,.18) !important;
+  --babylon-line-dark: rgba(255,255,255,.56) !important;
+  --babylon-muted: #315A9A !important;
+  --babylon-accent: #E93D9B !important;
+  overflow: hidden;
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+}
+
+/* ---------- HEADER — ONLY WHILE HOME IS PRESENT ---------- */
+body:has(.babylon-home) .agx-header {
+  background: rgba(255,255,255,.94) !important;
+  border-bottom-color: #DCEAFF !important;
+  color: #147DEB !important;
+  box-shadow: 0 8px 28px rgba(20,125,235,.08) !important;
+}
+body:has(.babylon-home) .agx-header__brand,
+body:has(.babylon-home) .agx-header__nav a,
+body:has(.babylon-home) .agx-header__explore,
+body:has(.babylon-home) .agx-header__toggle {
+  color: #147DEB !important;
+}
+body:has(.babylon-home) .agx-header__nav a:hover { color: #E93D9B !important; }
+body:has(.babylon-home) .agx-header__explore {
+  border-color: #7657F6 !important;
+  background: #FFFFFF !important;
+}
+body:has(.babylon-home) .agx-header__explore:hover {
+  border-color: #E93D9B !important;
+  background: #FFF1F8 !important;
+  color: #E93D9B !important;
+}
+body:has(.babylon-home) .agx-translate__label { color: #7657F6 !important; }
+body:has(.babylon-home) .agx-translate .goog-te-gadget-simple {
+  background: #FFFFFF !important;
+  border-color: #BBD8FF !important;
+}
+body:has(.babylon-home) .agx-translate .goog-te-gadget-simple span { color: #147DEB !important; }
+body:has(.babylon-home) .agx-mobile {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+}
+body:has(.babylon-home) .agx-mobile a {
+  color: #173A78 !important;
+  border-bottom-color: #DCEAFF !important;
+}
+
+/* ---------- HERO: LIGHT, ALIVE, NO DARK VEIL ---------- */
+.babylon-home .babylon-hero {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+}
+.babylon-home .babylon-hero::before {
+  background:
+    radial-gradient(circle at 86% 16%, rgba(255,212,59,.42), transparent 27%),
+    radial-gradient(circle at 72% 44%, rgba(233,61,155,.20), transparent 34%),
+    radial-gradient(circle at 18% 78%, rgba(22,185,232,.20), transparent 34%),
+    radial-gradient(circle at 40% 18%, rgba(118,87,246,.14), transparent 30%),
+    #FFFFFF !important;
+}
+.babylon-home .babylon-hero::after {
+  opacity: .58 !important;
+  background-image:
+    linear-gradient(rgba(20,125,235,.07) 1px, transparent 1px),
+    linear-gradient(90deg, rgba(233,61,155,.06) 1px, transparent 1px) !important;
+  mask-image: linear-gradient(to bottom, rgba(255,255,255,.9), transparent) !important;
+}
+.babylon-home .babylon-hero__meta { color: #7657F6 !important; }
+.babylon-home .babylon-hero__kicker { color: #FF8A1F !important; }
+.babylon-home .babylon-hero__title { color: #147DEB !important; }
+.babylon-home .babylon-hero__title em { color: #E93D9B !important; }
+.babylon-home .babylon-hero__lead { color: #173A78 !important; }
+.babylon-home .babylon-hero__manifest {
+  color: #315A9A !important;
+  border-top-color: #16B9E8 !important;
+}
+
+/* ---------- MANIFESTO / INTRO ---------- */
+.babylon-home .babylon-manifesto,
+.babylon-home .babylon-worlds-header {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+  border-color: #DCEAFF !important;
+}
+.babylon-home .babylon-section-label { color: #7657F6 !important; }
+.babylon-home .babylon-manifesto__text,
+.babylon-home .babylon-worlds-header h2 { color: #173A78 !important; }
+.babylon-home .babylon-manifesto__text strong { color: #E93D9B !important; }
+
+/* ---------- FEATURED WORLDS ---------- */
+.babylon-home .babylon-worlds {
+  background: #FFFFFF !important;
+  border-color: #DCEAFF !important;
+}
+.babylon-home .babylon-world {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+  border-color: #DCEAFF !important;
+}
+.babylon-home .babylon-world:hover { background: #F7FBFF !important; }
+.babylon-home .babylon-world__title,
+.babylon-home .babylon-world__statement { color: #173A78 !important; }
+.babylon-home .babylon-world__description,
+.babylon-home .babylon-world__departments { color: #315A9A !important; }
+.babylon-home .babylon-world__sequence { color: rgba(20,125,235,.055) !important; }
+.babylon-home .babylon-world__action {
+  border-color: var(--world-accent) !important;
+  color: var(--world-accent) !important;
+  background: #FFFFFF !important;
+}
+
+/* Replace muted/earth/green legacy world accents with vivid biodiversity colors. */
+.babylon-home .babylon-world:nth-child(8n+1) { --world-accent: #147DEB !important; }
+.babylon-home .babylon-world:nth-child(8n+2) { --world-accent: #16B9E8 !important; }
+.babylon-home .babylon-world:nth-child(8n+3) { --world-accent: #7657F6 !important; }
+.babylon-home .babylon-world:nth-child(8n+4) { --world-accent: #E93D9B !important; }
+.babylon-home .babylon-world:nth-child(8n+5) { --world-accent: #FF5D67 !important; }
+.babylon-home .babylon-world:nth-child(8n+6) { --world-accent: #FF8A1F !important; }
+.babylon-home .babylon-world:nth-child(8n+7) { --world-accent: #FFD43B !important; }
+.babylon-home .babylon-world:nth-child(8n+8) { --world-accent: #5C6CFF !important; }
+.babylon-home .babylon-world__eyebrow,
+.babylon-home .babylon-world__index,
+.babylon-home .babylon-world__arrow { color: var(--world-accent) !important; }
+
+/* ---------- DISCOVERY: LIGHT VIOLET, NOT DARK ---------- */
+.babylon-home .babylon-discovery {
+  background:
+    radial-gradient(circle at 88% 18%, rgba(255,212,59,.22), transparent 26%),
+    linear-gradient(135deg, #F6F2FF 0%, #EEFBFF 100%) !important;
+  color: #173A78 !important;
+}
+.babylon-home .babylon-discovery__header h2,
+.babylon-home .babylon-discovery__name { color: #173A78 !important; }
+.babylon-home .babylon-discovery__item {
+  color: #173A78 !important;
+  border-color: rgba(118,87,246,.22) !important;
+}
+.babylon-home .babylon-discovery__item:nth-child(6n+1) { --world-accent: #147DEB !important; }
+.babylon-home .babylon-discovery__item:nth-child(6n+2) { --world-accent: #16B9E8 !important; }
+.babylon-home .babylon-discovery__item:nth-child(6n+3) { --world-accent: #7657F6 !important; }
+.babylon-home .babylon-discovery__item:nth-child(6n+4) { --world-accent: #E93D9B !important; }
+.babylon-home .babylon-discovery__item:nth-child(6n+5) { --world-accent: #FF8A1F !important; }
+.babylon-home .babylon-discovery__item:nth-child(6n+6) { --world-accent: #FFD43B !important; }
+.babylon-home .babylon-discovery__number,
+.babylon-home .babylon-discovery__arrow { color: var(--world-accent) !important; }
+
+/* ---------- FINAL: BRIGHT YELLOW SIGNAL ---------- */
+.babylon-home .babylon-final {
+  background: #FFD43B !important;
+  color: #173A78 !important;
+}
+.babylon-home .babylon-final h2,
+.babylon-home .babylon-final__kicker,
+.babylon-home .babylon-final__footer { color: #173A78 !important; }
+
+/* ---------- HOME MARKET SPOTLIGHT ONLY ---------- */
+body:has(.babylon-home) .agx-market-spotlight {
+  background: #FFFFFF !important;
+  color: #173A78 !important;
+  border-color: #DCEAFF !important;
+}
+body:has(.babylon-home) .agx-market-spotlight__heading h2,
+body:has(.babylon-home) .agx-market-spotlight__bar strong,
+body:has(.babylon-home) .agx-market-spotlight__copy strong { color: #173A78 !important; }
+body:has(.babylon-home) .agx-market-spotlight__heading p { color: #E93D9B !important; }
+body:has(.babylon-home) .agx-market-spotlight__heading span,
+body:has(.babylon-home) .agx-market-spotlight__bar small,
+body:has(.babylon-home) .agx-market-spotlight__bar > span,
+body:has(.babylon-home) .agx-market-spotlight__exit > span { color: #315A9A !important; }
+body:has(.babylon-home) .agx-market-search__box,
+body:has(.babylon-home) .agx-market-search input,
+body:has(.babylon-home) .agx-market-worlds a,
+body:has(.babylon-home) .agx-market-spotlight__card {
+  background: #FFFFFF !important;
+  border-color: #BBD8FF !important;
+  color: #173A78 !important;
+}
+body:has(.babylon-home) .agx-market-search label { color: #7657F6 !important; }
+body:has(.babylon-home) .agx-market-worlds a:hover {
+  border-color: #E93D9B !important;
+  background: #FFF1F8 !important;
+  color: #E93D9B !important;
+}
+body:has(.babylon-home) .agx-market-spotlight__no-image {
+  background: linear-gradient(135deg, #EEFBFF, #F6F2FF, #FFF1F8) !important;
+  color: #7657F6 !important;
+}
+body:has(.babylon-home) .agx-market-spotlight__exit a {
+  background: #147DEB !important;
+  border-color: #147DEB !important;
+  color: #FFFFFF !important;
+}
+body:has(.babylon-home) .agx-market-spotlight__exit a:hover {
+  background: #E93D9B !important;
+  border-color: #E93D9B !important;
+}
+
+/* ---------- FOOTER ON HOME ONLY ---------- */
+body:has(.babylon-home) footer {
+  background: #147DEB !important;
+  color: #FFFFFF !important;
+}
+body:has(.babylon-home) footer h1,
+body:has(.babylon-home) footer h2,
+body:has(.babylon-home) footer h3,
+body:has(.babylon-home) footer p,
+body:has(.babylon-home) footer span,
+body:has(.babylon-home) footer strong,
+body:has(.babylon-home) footer a { color: #FFFFFF !important; }
+body:has(.babylon-home) footer a:hover { color: #FFD43B !important; }
+body:has(.babylon-home) footer * { border-color: rgba(255,255,255,.28) !important; }
+
+@media (max-width: 1050px) {
+  body:has(.babylon-home) .agx-header__toggle {
+    border-color: #BBD8FF !important;
+    background: #FFFFFF !important;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .babylon-home *,
+  body:has(.babylon-home) .agx-header * { transition: none !important; }
+}
