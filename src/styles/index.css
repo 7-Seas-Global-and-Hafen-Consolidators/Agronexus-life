@@ -10,7 +10,6 @@
   --surface-hover: #eef2ef;
   --border: #d9dfda;
   --border-strong: #aeb9b1;
-  --border-purple: #c8d0ca;
   --cyan: #087a4b;
   --cyan-bright: #06643e;
   --cyan-dim: #075c3a;
@@ -161,22 +160,21 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 
 
 /* ============================================================
-   FIX EQUILIBRADO — REMOVE MARCA D'ÁGUA SEM ESCONDER IMAGENS
-   Zoom moderado + foco no centro + gradiente suave
+   ARMA NUCLEAR — BLUR FORTE NA MARCA D'ÁGUA
+   A marca fica ILEGÍVEL (borrada) mas o produto continua visível
    ============================================================ */
 
-/* Zoom moderado (15%) + foca no centro da imagem */
-.ecosystem-card__image img,
+.ecosystem-card__image,
 [class*="product"] img,
 [class*="catalog"] img,
-[class*="marketplace"] img {
+[class*="marketplace"] img,
+img[src*="avesornamentaisjej"],
+img[src*="reefaquarios"] {
   object-fit: cover !important;
-  object-position: center 30% !important;
-  transform: scale(1.15) !important;
-  filter: brightness(1.03) contrast(1.05) !important;
+  object-position: center 20% !important;
+  transform: scale(1.18) !important;
 }
 
-/* Container corta bordas */
 .ecosystem-card__image,
 [class*="product-image"],
 [class*="catalog-image"],
@@ -186,7 +184,7 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
   background: #f4f6f4 !important;
 }
 
-/* Gradiente SUAVE só nos 20% inferiores */
+/* BLUR FORTE na parte inferior = marca d'água some */
 .ecosystem-card__image::after,
 [class*="product-image"]::after,
 [class*="catalog-image"]::after,
@@ -196,34 +194,35 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  height: 20% !important;
+  height: 35% !important;
+  backdrop-filter: blur(8px) !important;
+  -webkit-backdrop-filter: blur(8px) !important;
   background: linear-gradient(
     to bottom,
-    rgba(10, 15, 12, 0) 0%,
-    rgba(10, 15, 12, 0.5) 100%
+    rgba(244, 246, 244, 0) 0%,
+    rgba(244, 246, 244, 0.85) 100%
   ) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
 
-/* Etiqueta AgroNexus */
+/* Etiqueta AgroNexus por cima do blur */
 .ecosystem-card__image > .agronexus-badge,
 [class*="product-image"] > .agronexus-badge {
   position: absolute !important;
   bottom: 8px !important;
   right: 8px !important;
-  background: rgba(8, 122, 75, 0.9) !important;
+  background: rgba(8, 122, 75, 0.95) !important;
   color: #ffffff !important;
-  padding: 4px 10px !important;
+  padding: 5px 12px !important;
   border-radius: 4px !important;
-  font-size: 10px !important;
+  font-size: 11px !important;
   font-weight: 800 !important;
   z-index: 3 !important;
   pointer-events: none !important;
 }
 
-/* Hover suave */
 .ecosystem-card:hover .ecosystem-card__image img {
-  transform: scale(1.18) !important;
+  transform: scale(1.2) !important;
   transition: transform 0.3s ease !important;
 }
