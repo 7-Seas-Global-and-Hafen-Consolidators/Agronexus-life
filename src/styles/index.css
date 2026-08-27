@@ -1,5 +1,7 @@
 /* ============================================================
    AGRONEXUS™ — WAR ETERNAL COMMERCE SYSTEM
+   Sistema global orientado a venda, busca, preço e conversão.
+   AgroNexus™ · Guiropa World
    ============================================================ */
 
 :root {
@@ -163,35 +165,32 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 
 
 /* ============================================================
-   FIX MELHORADO — IMAGENS CLAREADAS + PLACEHOLDER BONITO
-   Mantém proteção contra marca d'água mas melhora visibilidade
+   FIX EMERGENCIAL — IMAGENS APARECENDO NORMAL
+   Remove crop agressivo, mostra as imagens NORMAIS
    ============================================================ */
 
-/* Container de imagens */
-.ecosystem-card__image,
+/* Imagens normais, sem loucura */
+.ecosystem-card__image img,
 [class*="product"] img,
 [class*="catalog"] img,
-[class*="marketplace"] img,
-img[src*="avesornamentaisjej"],
-img[src*="reefaquarios"],
-img[src*=".com.br/"] {
+[class*="marketplace"] img {
   object-fit: cover !important;
-  object-position: center 15% !important;
-  transform: scale(1.25) !important;
-  filter: brightness(1.08) contrast(1.05) saturate(1.1) !important;
+  object-position: center !important;
+  transform: scale(1.0) !important;
+  filter: none !important;
 }
 
-/* Container corta tudo */
+/* Container normal */
 .ecosystem-card__image,
 [class*="product-image"],
 [class*="catalog-image"],
 [class*="marketplace-image"] {
   overflow: hidden !important;
   position: relative !important;
-  background: linear-gradient(135deg, #1a2f23 0%, #0f1a15 100%) !important;
+  background: #f4f6f4 !important;
 }
 
-/* Gradiente MAIS SUAVE na parte inferior */
+/* Gradiente BEM suave só pra dar profundidade */
 .ecosystem-card__image::after,
 [class*="product-image"]::after,
 [class*="catalog-image"]::after,
@@ -201,85 +200,42 @@ img[src*=".com.br/"] {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  height: 35% !important;
+  height: 25% !important;
   background: linear-gradient(
     to bottom,
-    rgba(10, 15, 12, 0) 0%,
-    rgba(10, 15, 12, 0.25) 40%,
-    rgba(10, 15, 12, 0.65) 100%
+    rgba(0, 0, 0, 0) 0%,
+    rgba(0, 0, 0, 0.3) 100%
   ) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
 
-/* Imagens quebradas/placeholder - visual melhor */
-img[src*="avesornamentaisjej"]:not([src]),
-img[src*="reefaquarios"]:not([src]),
+/* Placeholder só se imagem quebrar MESMO */
+img:not([src]),
 img[src=""],
-img[src*="undefined"],
-.ecosystem-card__image img:not([src]),
 img[data-src=""] {
-  background: linear-gradient(135deg, #1a2f23 0%, #0f1a15 100%) !important;
+  background: linear-gradient(135deg, #e0e7e3 0%, #d1d9d5 100%) !important;
   min-height: 200px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-  position: relative !important;
-}
-
-/* Ícone de "foto em breve" mais bonito */
-.ecosystem-card__image::before {
-  content: "📷" !important;
-  position: absolute !important;
-  top: 50% !important;
-  left: 50% !important;
-  transform: translate(-50%, -50%) !important;
-  font-size: 48px !important;
-  opacity: 0.15 !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
-}
-
-/* Texto "Foto em breve" */
-.ecosystem-card__image > .placeholder-text,
-img:not([src])::after {
-  content: "Foto em breve" !important;
-  position: absolute !important;
-  top: 65% !important;
-  left: 50% !important;
-  transform: translateX(-50%) !important;
-  color: rgba(255, 255, 255, 0.4) !important;
-  font-size: 13px !important;
-  font-weight: 600 !important;
-  letter-spacing: 0.05em !important;
-  z-index: 1 !important;
-  pointer-events: none !important;
 }
 
 /* Etiqueta AgroNexus */
 .ecosystem-card__image > .agronexus-badge,
-[class*="product-image"] > .agronexus-badge,
-[class*="catalog-image"] > .agronexus-badge,
-[class*="marketplace-image"] > .agronexus-badge {
+[class*="product-image"] > .agronexus-badge {
   position: absolute !important;
-  bottom: 10px !important;
-  right: 10px !important;
-  background: rgba(8, 122, 75, 0.95) !important;
+  bottom: 8px !important;
+  right: 8px !important;
+  background: rgba(8, 122, 75, 0.9) !important;
   color: #ffffff !important;
-  padding: 5px 12px !important;
+  padding: 4px 10px !important;
   border-radius: 4px !important;
-  font-size: 11px !important;
+  font-size: 10px !important;
   font-weight: 800 !important;
-  letter-spacing: 0.05em !important;
   z-index: 3 !important;
   pointer-events: none !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Hover */
-.ecosystem-card:hover .ecosystem-card__image img,
-.ecosystem-card:hover img[src*="avesornamentaisjej"],
-.ecosystem-card:hover img[src*="reefaquarios"] {
-  transform: scale(1.28) !important;
+/* Hover suave */
+.ecosystem-card:hover .ecosystem-card__image img {
+  transform: scale(1.05) !important;
   transition: transform 0.3s ease !important;
 }
