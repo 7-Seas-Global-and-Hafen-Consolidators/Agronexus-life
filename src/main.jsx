@@ -8,6 +8,7 @@ import './styles/white-biodiversity.css'
 import './styles/babylon-bright-home.css'
 import './styles/aves-white-biodiversity.css'
 import './styles/marine-white-biodiversity.css'
+import './styles/support-conversion.css'
 
 ReactDOM.createRoot(document.getElementById('root')).render(
   <React.StrictMode>
