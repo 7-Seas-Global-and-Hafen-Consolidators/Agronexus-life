@@ -995,17 +995,18 @@ textarea::placeholder {
 
 
 /* ============================================================
-   FIX AGROnexus - TRATAMENTO DE IMAGENS RASPADAS
+   FIX AGROnexus - TRATAMENTO AGRESSIVO DE IMAGENS
+   Zoom maior + blur nas bordas + overlay da marca
    ============================================================ */
 
-/* Zoom sutil para cortar bordas com marca d'água */
+/* Zoom AGRESSIVO (25%) para cortar TODAS as bordas com marca d'água */
 img[src*="avesornamentaisjej"],
 img[src*="reefaquarios"],
 img[src*=".com.br/"] {
   object-fit: cover !important;
   object-position: center !important;
-  transform: scale(1.12) !important;
-  filter: brightness(1.03) contrast(1.08) saturate(1.05) !important;
+  transform: scale(1.25) !important;
+  filter: brightness(1.05) contrast(1.1) saturate(1.08) !important;
   border-radius: 6px !important;
 }
 
@@ -1018,6 +1019,22 @@ img[src*=".com.br/"] {
   position: relative !important;
 }
 
+/* Overlay escuro nas bordas para esconder marcas residuais */
+.ecosystem-card__image::before,
+.product-image::before,
+.catalog-image::before,
+.marketplace-image::before {
+  content: "" !important;
+  position: absolute !important;
+  top: 0 !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4) !important;
+  pointer-events: none !important;
+  z-index: 5 !important;
+}
+
 /* Overlay da marca AgroNexus no canto inferior direito */
 .ecosystem-card__image::after,
 .product-image::after,
@@ -1027,15 +1044,16 @@ img[src*=".com.br/"] {
   position: absolute !important;
   bottom: 8px !important;
   right: 8px !important;
-  background: rgba(8, 122, 75, 0.85) !important;
+  background: rgba(8, 122, 75, 0.9) !important;
   color: #ffffff !important;
-  padding: 4px 10px !important;
+  padding: 5px 12px !important;
   border-radius: 4px !important;
   font-size: 11px !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
   z-index: 10 !important;
   pointer-events: none !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
 }
 
 /* Fallback visual para imagens quebradas */
@@ -1061,6 +1079,6 @@ img[src*="reefaquarios"]:not([src])::before {
 /* Melhorar cards de produtos com imagens externas */
 .ecosystem-card:hover img[src*="avesornamentaisjej"],
 .ecosystem-card:hover img[src*="reefaquarios"] {
-  transform: scale(1.15) !important;
+  transform: scale(1.28) !important;
   transition: transform 0.3s ease !important;
 }
