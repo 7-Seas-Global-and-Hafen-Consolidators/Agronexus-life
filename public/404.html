@@ -1,0 +1,18 @@
+<!DOCTYPE html>
+<html lang="pt-BR">
+<head>
+<meta charset="utf-8">
+<title>AgroNexus™</title>
+<script>
+  (function () {
+    var path = window.location.pathname;
+    if (path && path !== '/') {
+      window.location.replace('/?r=' + encodeURIComponent(path));
+    } else {
+      window.location.replace('/');
+    }
+  })();
+</script>
+</head>
+<body></body>
+</html>
