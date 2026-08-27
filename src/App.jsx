@@ -12,7 +12,7 @@ import AgroNexusOfferPage from './pages/AgroNexusOfferPage'
 import AgroNexusLifePlans from './pages/AgroNexusLifePlans'
 import AgroNexusExotics from './pages/AgroNexusExotics'
 import AgroNexusSpeciesPage from './pages/AgroNexusSpeciesPage'
-import AgroNexusExoticDetail from './pages/AgroNexusExoticDetail'
+import AgroNexusPlantsMarket from './components/AgroNexusPlantsMarket'
 function normalizeRoute(v){if(!v)return'/';const a=String(v).replace(/^#/,'').split('?')[0];return a&&a.length>1?a.replace(/\/+$/,''):a||'/'}
 function getCurrentRoute(){return normalizeRoute(window.location.hash||'#/')}
 function isHomeRoute(r){return['/','/home','/inicio'].includes(r)}
