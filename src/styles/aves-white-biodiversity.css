@@ -1,0 +1,289 @@
+/* ============================================================
+   AGRONEXUS™ — AVES / WHITE + BIODIVERSITY COLOR
+   Strictly scoped to the Aves world wrapper.
+   No marine, Aquarismo, reef, supplier-media, crop, blur or image mapping selectors.
+   ============================================================ */
+
+.agx-world-experience--aves {
+  --aves-blue:#147DEB;
+  --aves-cyan:#16B9E8;
+  --aves-violet:#7657F6;
+  --aves-magenta:#E93D9B;
+  --aves-coral:#FF5D67;
+  --aves-orange:#FF8A1F;
+  --aves-yellow:#FFD43B;
+  --aves-ink:#173A78;
+  --aves-copy:#315A9A;
+  --aves-line:#DCEAFF;
+  --aves-soft-blue:#F2F8FF;
+  --aves-soft-cyan:#EEFBFF;
+  --aves-soft-violet:#F6F2FF;
+  --aves-soft-pink:#FFF1F8;
+  --aves-soft-yellow:#FFF9DC;
+  background:#fff;
+  color:var(--aves-ink);
+}
+
+/* WORLD CORE */
+.agx-world-experience--aves .world-page--aves {
+  background:#fff !important;
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-section,
+.agx-world-experience--aves .world-page--aves .world-commerce {
+  background:#fff !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-section__heading h2,
+.agx-world-experience--aves .world-page--aves .world-category-card__content h3,
+.agx-world-experience--aves .world-page--aves .world-highlight h3,
+.agx-world-experience--aves .world-page--aves .world-commerce h2 {
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-section__heading>p:last-child,
+.agx-world-experience--aves .world-page--aves .world-category-card__content p,
+.agx-world-experience--aves .world-page--aves .world-highlight p,
+.agx-world-experience--aves .world-page--aves .world-commerce p {
+  color:var(--aves-copy) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-eyebrow,
+.agx-world-experience--aves .world-page--aves .world-category-card__content>span,
+.agx-world-experience--aves .world-page--aves .world-highlight>span {
+  color:var(--aves-magenta) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-category-grid {
+  background:var(--aves-line) !important;
+  border-color:var(--aves-line) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-category-card {
+  background:#fff !important;
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+1){border-top:5px solid var(--aves-blue)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+2){border-top:5px solid var(--aves-cyan)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+3){border-top:5px solid var(--aves-violet)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+4){border-top:5px solid var(--aves-magenta)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+5){border-top:5px solid var(--aves-coral)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+6){border-top:5px solid var(--aves-orange)!important}
+.agx-world-experience--aves .world-page--aves .world-category-card:nth-child(7n+7){border-top:5px solid var(--aves-yellow)!important}
+
+.agx-world-experience--aves .world-page--aves .world-category-card:hover {
+  background:var(--aves-soft-blue) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-highlight-grid {
+  gap:12px !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-highlight {
+  background:#fff !important;
+  border-color:var(--aves-line) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-highlight:nth-child(1){border-top:5px solid var(--aves-blue)!important}
+.agx-world-experience--aves .world-page--aves .world-highlight:nth-child(2){border-top:5px solid var(--aves-magenta)!important}
+.agx-world-experience--aves .world-page--aves .world-highlight:nth-child(3){border-top:5px solid var(--aves-orange)!important}
+.agx-world-experience--aves .world-page--aves .world-highlight:nth-child(4){border-top:5px solid var(--aves-violet)!important}
+
+/* Keep the photographic hero and its readability, but remove the green cast. */
+.agx-world-experience--aves .world-page--aves .world-hero {
+  background-color:var(--aves-blue) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-hero::after {
+  content:"";
+  position:absolute;
+  inset:0;
+  pointer-events:none;
+  background:linear-gradient(90deg,rgba(20,125,235,.34),rgba(118,87,246,.18) 46%,rgba(233,61,155,.08));
+  z-index:0;
+}
+
+.agx-world-experience--aves .world-page--aves .world-hero__content {
+  z-index:2 !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-hero .world-eyebrow,
+.agx-world-experience--aves .world-page--aves .world-hero .world-button {
+  color:var(--aves-yellow) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-button:not(.world-button--secondary) {
+  background:var(--aves-yellow) !important;
+  border-color:var(--aves-yellow) !important;
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-button:not(.world-button--secondary):hover {
+  background:#fff !important;
+  border-color:#fff !important;
+  color:var(--aves-blue) !important;
+}
+
+/* TRUST — replace dark green mass with vivid science/biodiversity color. */
+.agx-world-experience--aves .world-page--aves .world-trust {
+  background:linear-gradient(135deg,var(--aves-blue) 0%,var(--aves-violet) 54%,var(--aves-magenta) 100%) !important;
+  color:#fff !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-trust .world-eyebrow,
+.agx-world-experience--aves .world-page--aves .world-trust__grid span {
+  color:var(--aves-yellow) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-trust__intro h2,
+.agx-world-experience--aves .world-page--aves .world-trust__grid h3,
+.agx-world-experience--aves .world-page--aves .world-trust__intro>p:last-child,
+.agx-world-experience--aves .world-page--aves .world-trust__grid p {
+  color:#fff !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-trust__grid,
+.agx-world-experience--aves .world-page--aves .world-trust__grid article {
+  border-color:rgba(255,255,255,.3) !important;
+}
+
+.agx-world-experience--aves .world-page--aves .world-commerce .world-button {
+  background:var(--aves-violet) !important;
+  border-color:var(--aves-violet) !important;
+  color:#fff !important;
+}
+
+/* SPECIES GALLERY — white shell, vivid accents; images untouched. */
+.agx-world-experience--aves .agx-species {
+  background:#fff !important;
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .agx-species__kicker {
+  color:var(--aves-magenta) !important;
+}
+
+.agx-world-experience--aves .agx-species h2 {
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .agx-species__intro {
+  color:var(--aves-copy) !important;
+}
+
+.agx-world-experience--aves .agx-species__grid {
+  background:var(--aves-line) !important;
+  border-color:var(--aves-line) !important;
+}
+
+.agx-world-experience--aves .agx-species__card {
+  background:var(--aves-soft-blue) !important;
+}
+
+.agx-world-experience--aves .agx-species__shade {
+  background:linear-gradient(180deg,transparent 42%,rgba(20,125,235,.10) 58%,rgba(23,58,120,.78) 100%) !important;
+}
+
+.agx-world-experience--aves .agx-species__brand {
+  background:rgba(20,125,235,.92) !important;
+  color:#fff !important;
+}
+
+.agx-world-experience--aves .agx-species__copy small {
+  color:var(--aves-yellow) !important;
+}
+
+.agx-world-experience--aves .agx-species__copy h3 {
+  color:#fff !important;
+}
+
+/* PRODUCT CATALOG — presentation only; product data/media rules untouched. */
+.agx-world-experience--aves .agx-catalog {
+  background:#fff !important;
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__head {
+  border-color:var(--aves-line) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__eyebrow,
+.agx-world-experience--aves .agx-product__meta {
+  color:var(--aves-magenta) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__head h2,
+.agx-world-experience--aves .agx-product h3,
+.agx-world-experience--aves .agx-product__price {
+  color:var(--aves-ink) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__count,
+.agx-world-experience--aves .agx-product__installments,
+.agx-world-experience--aves .agx-product__status {
+  color:var(--aves-copy) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__grid {
+  background:var(--aves-line) !important;
+  border-color:var(--aves-line) !important;
+}
+
+.agx-world-experience--aves .agx-product {
+  background:#fff !important;
+}
+
+.agx-world-experience--aves .agx-product__media {
+  background:var(--aves-soft-cyan) !important;
+}
+
+.agx-world-experience--aves .agx-product__brandmark {
+  background:rgba(20,125,235,.94) !important;
+  color:#fff !important;
+}
+
+.agx-world-experience--aves .agx-product__empty strong { color:var(--aves-blue)!important; }
+.agx-world-experience--aves .agx-product__empty span { color:var(--aves-copy)!important; }
+
+.agx-world-experience--aves .agx-product__open {
+  background:var(--aves-violet) !important;
+  color:#fff !important;
+}
+
+.agx-world-experience--aves .agx-product__open:hover {
+  background:var(--aves-magenta) !important;
+}
+
+.agx-world-experience--aves .agx-catalog__pager button {
+  border-color:#BBD8FF !important;
+  background:#fff !important;
+  color:var(--aves-blue) !important;
+}
+
+/* Header/footer only while Aves exists in the document. No other world is targeted. */
+body:has(.agx-world-experience--aves) .agx-header {
+  background:rgba(255,255,255,.94) !important;
+  border-bottom-color:#DCEAFF !important;
+  color:var(--aves-ink,#173A78) !important;
+}
+body:has(.agx-world-experience--aves) .agx-header__brand,
+body:has(.agx-world-experience--aves) .agx-header__nav a,
+body:has(.agx-world-experience--aves) .agx-header__explore,
+body:has(.agx-world-experience--aves) .agx-translate .goog-te-gadget-simple span {
+  color:#173A78 !important;
+}
+body:has(.agx-world-experience--aves) .agx-header__explore,
+body:has(.agx-world-experience--aves) .agx-translate .goog-te-gadget-simple {
+  border-color:#BBD8FF !important;
+}
+body:has(.agx-world-experience--aves) .babylon-footer {
+  background:#147DEB !important;
+  color:#fff !important;
+}
+
+@media(max-width:1050px){
+  body:has(.agx-world-experience--aves) .agx-mobile{background:#147DEB!important;color:#fff!important}
+  body:has(.agx-world-experience--aves) .agx-mobile a{color:#fff!important;border-color:rgba(255,255,255,.28)!important}
+}
