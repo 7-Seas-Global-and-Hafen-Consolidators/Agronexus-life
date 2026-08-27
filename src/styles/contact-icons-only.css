@@ -1,0 +1,61 @@
+/* AgroNexus™ — public contact shortcuts: icons only */
+.contact__list {
+  flex-direction: row;
+  flex-wrap: wrap;
+  gap: 12px;
+}
+
+.contact__item {
+  gap: 0;
+  padding: 0;
+  border-radius: 14px;
+}
+
+.contact__item-text {
+  display: none !important;
+}
+
+.contact__item-icon {
+  width: 56px;
+  height: 56px;
+  border-radius: 14px;
+  transition:
+    transform 0.25s ease,
+    border-color 0.25s ease,
+    background 0.25s ease,
+    box-shadow 0.25s ease;
+}
+
+.contact__item:hover {
+  background: transparent;
+  transform: none;
+}
+
+.contact__item:hover .contact__item-icon,
+.contact__item:focus-visible .contact__item-icon {
+  transform: translateY(-3px);
+  border-color: var(--cyan);
+  background: rgba(34, 211, 216, 0.14);
+  box-shadow: 0 12px 28px rgba(34, 211, 216, 0.12);
+}
+
+.contact__item:focus-visible {
+  outline: none;
+}
+
+@media (max-width: 700px) {
+  .contact__item {
+    align-items: center;
+  }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .contact__item-icon {
+    transition: none;
+  }
+
+  .contact__item:hover .contact__item-icon,
+  .contact__item:focus-visible .contact__item-icon {
+    transform: none;
+  }
+}
