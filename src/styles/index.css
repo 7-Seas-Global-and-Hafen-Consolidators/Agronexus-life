@@ -253,3 +253,16 @@ img[src*="reefaquarios"] {
   transform: scale(1.48) !important;
   transition: transform 0.3s ease !important;
 }
+/* ============================================================
+   EMERGÊNCIA — mata camada invisível que bloqueia cliques
+   ============================================================ */
+[class*="beacon"], [class*="Beacon"],
+[id*="beacon"], [id*="Beacon"],
+[class*="support"] > div:not([class]) {
+  pointer-events: none !important;
+}
+[class*="beacon"] a, [class*="Beacon"] a,
+[class*="beacon"] button, [class*="Beacon"] button,
+[id*="beacon"] a, [id*="beacon"] button {
+  pointer-events: auto !important;
+}
