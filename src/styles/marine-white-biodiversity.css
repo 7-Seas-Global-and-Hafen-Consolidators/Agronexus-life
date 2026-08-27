@@ -1,0 +1,92 @@
+/* AgroNexus Marine Tunnel — visual skin only.
+   IMPORTANT: media geometry, image crop/masks, catalog data and behavior remain owned by AgroNexusMarineTunnel.jsx. */
+
+.marine {
+  background: #fff !important;
+  color: #123b7a !important;
+}
+
+.marine > .hero {
+  background:
+    radial-gradient(circle at 12% 18%, rgba(32,189,235,.34), transparent 34%),
+    radial-gradient(circle at 86% 12%, rgba(232,62,140,.28), transparent 31%),
+    radial-gradient(circle at 72% 82%, rgba(118,87,232,.25), transparent 36%),
+    linear-gradient(135deg,#ffffff 0%,#eefaff 48%,#fff2fa 100%) !important;
+  color: #123b7a !important;
+}
+.marine > .hero .ey { color:#e83e8c !important; }
+.marine > .hero h1 { color:#1687d9 !important; }
+.marine > .hero p { color:#123b7a !important; }
+.marine > .hero .facts strong { color:#7657e8 !important; }
+.marine > .hero .facts span { color:#1687d9 !important; }
+
+.marine > .controls {
+  background:#fff !important;
+  border-bottom:2px solid #20bdeb !important;
+}
+.marine > .controls .search {
+  background:#fff !important;
+  color:#123b7a !important;
+  border:1px solid #1687d9 !important;
+}
+.marine > .controls .chip {
+  background:#fff !important;
+  color:#123b7a !important;
+  border:1px solid #20bdeb !important;
+}
+.marine > .controls .chip:nth-of-type(4n+1){border-color:#1687d9 !important}
+.marine > .controls .chip:nth-of-type(4n+2){border-color:#7657e8 !important}
+.marine > .controls .chip:nth-of-type(4n+3){border-color:#e83e8c !important}
+.marine > .controls .chip:nth-of-type(4n){border-color:#ff8a24 !important}
+.marine > .controls .chip.on {
+  background:#1687d9 !important;
+  border-color:#1687d9 !important;
+  color:#fff !important;
+}
+
+.marine > .catalog {
+  background:#fff !important;
+  color:#123b7a !important;
+}
+.marine > .catalog .ey { color:#e83e8c !important; }
+.marine > .catalog h2 { color:#123b7a !important; }
+.marine > .catalog .grid { gap:14px !important; }
+.marine > .catalog .card {
+  background:#fff !important;
+  border:1px solid #dcecff !important;
+  color:#123b7a !important;
+  box-shadow:0 10px 28px rgba(22,135,217,.07);
+}
+/* Do NOT style .media, .exactPhoto, .exactPhoto img or .brandMask here. */
+.marine > .catalog .body { background:#fff !important; }
+.marine > .catalog .meta { color:#1687d9 !important; }
+.marine > .catalog .card:nth-child(4n+2) .meta { color:#7657e8 !important; }
+.marine > .catalog .card:nth-child(4n+3) .meta { color:#e83e8c !important; }
+.marine > .catalog .card:nth-child(4n) .meta { color:#ff8a24 !important; }
+.marine > .catalog .card h3 { color:#123b7a !important; }
+.marine > .catalog .old { color:#7657e8 !important; }
+.marine > .catalog .price { color:#1687d9 !important; }
+.marine > .catalog .pay { color:#e83e8c !important; }
+.marine > .catalog .btn {
+  background:#1687d9 !important;
+  color:#fff !important;
+  border:1px solid #1687d9 !important;
+}
+.marine > .catalog .btn.ghost {
+  background:#fff !important;
+  color:#7657e8 !important;
+  border-color:#7657e8 !important;
+}
+
+.marine > .payments {
+  background:linear-gradient(110deg,#1687d9 0%,#7657e8 52%,#e83e8c 100%) !important;
+  color:#fff !important;
+}
+.marine > .payments .ey,
+.marine > .payments h2,
+.marine > .payments p { color:#fff !important; }
+.marine > .payments .paylinks a {
+  background:rgba(255,255,255,.12) !important;
+  border-color:#fff !important;
+  color:#fff !important;
+}
