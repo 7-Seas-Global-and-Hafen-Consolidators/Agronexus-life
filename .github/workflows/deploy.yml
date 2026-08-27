@@ -1,27 +1,52 @@
-name: Regenerate Package Lock
+name: Publicar AgroNexus no GitHub Pages
 
 on:
+  push:
+    branches: [main]
   workflow_dispatch:
 
+permissions:
+  contents: read
+  pages: write
+  id-token: write
+
+concurrency:
+  group: pages
+  cancel-in-progress: false
+
 jobs:
-  regenerate:
+  build:
     runs-on: ubuntu-latest
     steps:
-      - uses: actions/checkout@v4
-      
-      - name: Setup Node.js
+      - name: Baixar código
+        uses: actions/checkout@v4
+
+      - name: Configurar Node.js
         uses: actions/setup-node@v4
         with:
-          node-version: '20'
-      
-      - name: Regenerate package-lock.json
-        run: |
-          npm install --package-lock-only
-      
-      - name: Commit updated package-lock.json
-        run: |
-          git config --global user.name 'GitHub Actions'
-          git config --global user.email 'actions@github.com'
-          git add package-lock.json
-          git commit -m "CHORE: regenerate package-lock.json with new dependencies" || echo "No changes to commit"
-          git push
+          node-version: 24
+
+      - name: Instalar dependências
+        run: npm install --no-audit --no-fund
+
+      - name: Construir site
+        run: npm run build
+
+      - name: Configurar GitHub Pages
+        uses: actions/configure-pages@v5
+
+      - name: Enviar arquivos do site
+        uses: actions/upload-pages-artifact@v3
+        with:
+          path: dist
+
+  deploy:
+    needs: build
+    runs-on: ubuntu-latest
+    environment:
+      name: github-pages
+      url: ${{ steps.deployment.outputs.page_url }}
+    steps:
+      - name: Publicar no GitHub Pages
+        id: deployment
+        uses: actions/deploy-pages@v4
