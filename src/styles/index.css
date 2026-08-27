@@ -225,7 +225,30 @@ img[src*="reefaquarios"] {
   z-index: 3 !important;
   pointer-events: none !important;
 }
-
+/* ============================================================
+   PLANTS MARKET — IMAGENS LIMPAS (exorcismo desligado aqui)
+   ============================================================ */
+.marketplace-war img,
+.marketplace-war__product img,
+.marketplace-war__product-image img,
+.marketplace-war__category-image img {
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: none !important;
+  filter: none !important;
+}
+.marketplace-war__product-image::after,
+.marketplace-war__product-image::before,
+.marketplace-war__category-image::after,
+.marketplace-war__category-image::before {
+  content: none !important;
+  backdrop-filter: none !important;
+  -webkit-backdrop-filter: none !important;
+  background: none !important;
+}
+.marketplace-war__product:hover .marketplace-war__product-image img {
+  transform: none !important;
+}
 .ecosystem-card:hover .ecosystem-card__image img {
   transform: scale(1.48) !important;
   transition: transform 0.3s ease !important;
