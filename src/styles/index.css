@@ -992,3 +992,75 @@ textarea::placeholder {
    FIM
    AGRONEXUS™ · GUIROPA WORLD
    ============================================================ */
+
+
+/* ============================================================
+   FIX AGROnexus - TRATAMENTO DE IMAGENS RASPADAS
+   ============================================================ */
+
+/* Zoom sutil para cortar bordas com marca d'água */
+img[src*="avesornamentaisjej"],
+img[src*="reefaquarios"],
+img[src*=".com.br/"] {
+  object-fit: cover !important;
+  object-position: center !important;
+  transform: scale(1.12) !important;
+  filter: brightness(1.03) contrast(1.08) saturate(1.05) !important;
+  border-radius: 6px !important;
+}
+
+/* Container das imagens - esconder overflow do zoom */
+.ecosystem-card__image,
+.product-image,
+.catalog-image,
+.marketplace-image {
+  overflow: hidden !important;
+  position: relative !important;
+}
+
+/* Overlay da marca AgroNexus no canto inferior direito */
+.ecosystem-card__image::after,
+.product-image::after,
+.catalog-image::after,
+.marketplace-image::after {
+  content: "AgroNexus™" !important;
+  position: absolute !important;
+  bottom: 8px !important;
+  right: 8px !important;
+  background: rgba(8, 122, 75, 0.85) !important;
+  color: #ffffff !important;
+  padding: 4px 10px !important;
+  border-radius: 4px !important;
+  font-size: 11px !important;
+  font-weight: 800 !important;
+  letter-spacing: 0.05em !important;
+  z-index: 10 !important;
+  pointer-events: none !important;
+}
+
+/* Fallback visual para imagens quebradas */
+img[src*="avesornamentaisjej"]:not([src]),
+img[src*="reefaquarios"]:not([src]),
+img[src=""],
+img[src*="undefined"] {
+  background: linear-gradient(135deg, #f4f6f4 0%, #ecefec 100%) !important;
+  min-height: 200px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+}
+
+img[src*="avesornamentaisjej"]:not([src])::before,
+img[src*="reefaquarios"]:not([src])::before {
+  content: "Foto em breve" !important;
+  color: #717b74 !important;
+  font-size: 14px !important;
+  font-weight: 600 !important;
+}
+
+/* Melhorar cards de produtos com imagens externas */
+.ecosystem-card:hover img[src*="avesornamentaisjej"],
+.ecosystem-card:hover img[src*="reefaquarios"] {
+  transform: scale(1.15) !important;
+  transition: transform 0.3s ease !important;
+}
