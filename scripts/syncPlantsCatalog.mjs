@@ -1,13 +1,19 @@
 import fs from 'node:fs/promises'
 
 /*
-  AGRONEXUS™ — PLANTS TUNNEL (Vaso e Flor)
-  Igual ao marine/exotic tunnel: roda no build, extrai os produtos
-  embutidos no HTML da vitrine e gera plantsCatalog.generated.js.
-  Se a fonte falhar, mantém o fallback commitado.
+  AGRONEXUS™ — PLANTS TUNNEL (Vaso e Flor) — MULTI-PAGE
+  Raspa home + páginas de categoria para casar foto real
+  com o PLANT_WAVE. Se tudo falhar, mantém o fallback commitado.
 */
 
-const SOURCE = 'https://www.vasoeflor.com.br/'
+const SOURCES = [
+  'https://www.vasoeflor.com.br/',
+  'https://www.vasoeflor.com.br/mudas-de-plantas-frutiferas',
+  'https://www.vasoeflor.com.br/mudas-arvores-nativas',
+  'https://www.vasoeflor.com.br/mudas-ornamentais-vaso-flor',
+  'https://www.vasoeflor.com.br/mudas-para-reflorestamento',
+  'https://www.vasoeflor.com.br/mudas-trepadeiras-vaso-flor',
+]
 const OUT = new URL('../src/data/plantsCatalog.generated.js', import.meta.url)
 const IMAGE_SIZE = '800x800'
 
@@ -47,7 +53,7 @@ function cleanImage(url = '') {
 
 function normalize(item, index) {
   const categoria = String(item.categoria || '')
-  if (!categoria.includes('Mudas')) return null // só plantas de verdade, larga fertilizante/vaso
+  if (!categoria.includes('Mudas')) return null
   const categories = categoria.split(',').map((v) => v.trim()).filter(Boolean)
   const available = Boolean(item.qtde_estoque)
   return {
@@ -58,45 +64,55 @@ function normalize(item, index) {
     price: Number(item.valor) || null,
     availability: available ? 'available' : 'unavailable',
     stockLabel: available ? 'Disponível' : 'Indisponível no momento',
-    image: cleanImage(item.midia_url),       // foto principal, corte quadrado limpo
-    secondaryMedia: '',                       // ignora infográfico com arte da loja
-    sourceUrl: item.link ? new URL(item.link, SOURCE).href : SOURCE,
+    image: cleanImage(item.midia_url),
+    secondaryMedia: '',
+    sourceUrl: item.link ? new URL(item.link, SOURCES[0]).href : SOURCES[0],
     sourceCode: item.codigo || '',
     description: item.complemento || '',
   }
 }
 
 async function main() {
-  const response = await fetch(SOURCE, {
-    headers: { 'user-agent': 'AgroNexusCatalogSync/1.0', accept: 'text/html,application/xhtml+xml' },
-  })
-  if (!response.ok) throw new Error(`${response.status} ${SOURCE}`)
-  const html = await response.text()
-
-  const arrays = [
-    ...extractAllBalancedArrays(html, 'produtos:'),
-    ...extractAllBalancedArrays(html, 'itens:'),
-  ]
-
   const seen = new Set()
   const products = []
-  for (const raw of arrays) {
-    let items = []
-    try { items = JSON.parse(raw) } catch { continue }
-    for (const item of items) {
-      const norm = normalize(item, products.length)
-      if (!norm) continue
-      const key = norm.sourceCode || norm.name
-      if (seen.has(key)) continue
-      seen.add(key)
-      products.push(norm)
+
+  for (const url of SOURCES) {
+    try {
+      const response = await fetch(url, {
+        headers: { 'user-agent': 'AgroNexusCatalogSync/1.0', accept: 'text/html,application/xhtml+xml' },
+      })
+      if (!response.ok) throw new Error(`${response.status} ${url}`)
+      const html = await response.text()
+
+      const arrays = [
+        ...extractAllBalancedArrays(html, 'produtos:'),
+        ...extractAllBalancedArrays(html, 'itens:'),
+      ]
+
+      let added = 0
+      for (const raw of arrays) {
+        let items = []
+        try { items = JSON.parse(raw) } catch { continue }
+        for (const item of items) {
+          const norm = normalize(item, products.length)
+          if (!norm) continue
+          const key = norm.sourceCode || norm.name
+          if (seen.has(key)) continue
+          seen.add(key)
+          products.push(norm)
+          added += 1
+        }
+      }
+      console.log(`[plants-sync] ${url} -> +${added} records`)
+    } catch (error) {
+      console.warn(`[plants-sync] skipping ${url}: ${error.message}`)
     }
   }
 
   if (!products.length) throw new Error('No plant products found')
 
   const payload =
-    `/** Auto-generated plants tunnel. Public brand normalized to AgroNexus™. */\n` +
+    `/** Auto-generated plants tunnel (multi-page). Public brand normalized to AgroNexus™. */\n` +
     `export const PLANTS_CATALOG = ${JSON.stringify(products, null, 2)}\n` +
     `export const PLANTS_CATALOG_META = ${JSON.stringify({ sourceCount: products.length, syncedAt: new Date().toISOString() }, null, 2)}\n` +
     `export default PLANTS_CATALOG\n`
