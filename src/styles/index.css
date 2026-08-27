@@ -10,77 +10,39 @@
    ============================================================ */
 
 :root {
-  /* Base comercial */
   --bg: #f4f6f4;
   --bg-2: #ecefec;
-
   --surface: #ffffff;
   --surface-2: #f7f8f7;
   --surface-hover: #eef2ef;
-
-  /* Bordas */
   --border: #d9dfda;
   --border-strong: #aeb9b1;
   --border-purple: #c8d0ca;
-
-  /* Cor principal da operação */
   --cyan: #087a4b;
   --cyan-bright: #06643e;
   --cyan-dim: #075c3a;
-
-  /* Compatibilidade com componentes antigos */
   --purple: #202522;
   --purple-bright: #111411;
-
-  /* Texto */
   --text: #111411;
   --text-dim: #4b554e;
   --text-faint: #717b74;
-
-  /* Preço / destaque comercial */
   --price: #087a4b;
   --danger: #b42318;
   --warning: #9a6700;
   --success: #067647;
-
-  /* Sombras funcionais — SEM GLOW */
-  --shadow-sm:
-    0 1px 2px rgba(16, 24, 20, 0.06);
-
-  --shadow:
-    0 8px 24px rgba(16, 24, 20, 0.08);
-
-  --shadow-lg:
-    0 18px 48px rgba(16, 24, 20, 0.12);
-
-  /* Mantidos por compatibilidade.
-     Deliberadamente SEM brilho neon. */
+  --shadow-sm: 0 1px 2px rgba(16, 24, 20, 0.06);
+  --shadow: 0 8px 24px rgba(16, 24, 20, 0.08);
+  --shadow-lg: 0 18px 48px rgba(16, 24, 20, 0.12);
   --glow-cyan: none;
   --glow-cyan-soft: none;
   --glow-purple: none;
-
-  /* Tipografia */
-  --font-display:
-    'Inter',
-    'Segoe UI',
-    system-ui,
-    sans-serif;
-
-  --font-body:
-    'Inter',
-    'Segoe UI',
-    system-ui,
-    sans-serif;
-
-  /* Layout */
+  --font-display: 'Inter', 'Segoe UI', system-ui, sans-serif;
+  --font-body: 'Inter', 'Segoe UI', system-ui, sans-serif;
   --container: 1280px;
   --radius: 8px;
   --radius-sm: 6px;
   --nav-h: 82px;
-
-  /* Movimento */
-  --ease:
-    cubic-bezier(0.22, 1, 0.36, 1);
+  --ease: cubic-bezier(0.22, 1, 0.36, 1);
 }
 
 
@@ -88,13 +50,7 @@
    RESET
    ============================================================ */
 
-*,
-*::before,
-*::after {
-  box-sizing: border-box;
-  margin: 0;
-  padding: 0;
-}
+*, *::before, *::after { box-sizing: border-box; margin: 0; padding: 0; }
 
 html {
   scroll-behavior: smooth;
@@ -113,59 +69,26 @@ body {
   overflow-x: hidden;
 }
 
-body,
-button,
-input,
-select,
-textarea {
-  font-family: var(--font-body);
-}
+body, button, input, select, textarea { font-family: var(--font-body); }
 
-img {
-  max-width: 100%;
-  height: auto;
-  display: block;
-}
+img { max-width: 100%; height: auto; display: block; }
 
-a {
-  color: inherit;
-  text-decoration: none;
-}
+a { color: inherit; text-decoration: none; }
 
-button,
-input,
-select,
-textarea {
-  font-size: inherit;
-  color: inherit;
-}
+button, input, select, textarea { font-size: inherit; color: inherit; }
 
-button,
-a {
-  -webkit-tap-highlight-color: transparent;
-}
+button, a { -webkit-tap-highlight-color: transparent; }
 
-ul,
-ol {
-  list-style: none;
-}
+ul, ol { list-style: none; }
 
-table {
-  border-collapse: collapse;
-  width: 100%;
-}
+table { border-collapse: collapse; width: 100%; }
 
 
 /* ============================================================
    TIPOGRAFIA
    ============================================================ */
 
-h1,
-h2,
-h3,
-h4,
-h5,
-h6 {
+h1, h2, h3, h4, h5, h6 {
   font-family: var(--font-display);
   color: var(--text);
   font-weight: 750;
@@ -173,27 +96,16 @@ h6 {
   letter-spacing: -0.025em;
 }
 
-p {
-  color: var(--text-dim);
-}
-
-strong {
-  color: inherit;
-}
+p { color: var(--text-dim); }
+strong { color: inherit; }
 
 
 /* ============================================================
    LAYOUT GLOBAL
    ============================================================ */
 
-#root {
-  min-height: 100vh;
-}
-
-.page-container {
-  min-height: 60vh;
-  background: var(--bg);
-}
+#root { min-height: 100vh; }
+.page-container { min-height: 60vh; background: var(--bg); }
 
 .container {
   width: 100%;
@@ -205,14 +117,10 @@ strong {
 .section {
   position: relative;
   padding-block: clamp(64px, 7vw, 104px);
-  scroll-margin-top:
-    calc(var(--nav-h) + 24px);
+  scroll-margin-top: calc(var(--nav-h) + 24px);
 }
 
-section[id] {
-  scroll-margin-top:
-    calc(var(--nav-h) + 24px);
-}
+section[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
 
 
 /* ============================================================
@@ -223,9 +131,7 @@ section[id] {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-
   color: var(--cyan);
-
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 800;
@@ -236,40 +142,23 @@ section[id] {
 
 .eyebrow::before {
   content: '';
-
   width: 18px;
   height: 2px;
-
   background: var(--cyan);
 }
 
-.eyebrow.center {
-  justify-content: center;
-}
+.eyebrow.center { justify-content: center; }
 
-.eyebrow--purple {
-  color: var(--text);
-}
-
-.eyebrow--purple::before {
-  width: 18px;
-  height: 2px;
-
-  background: var(--text);
-}
+.eyebrow--purple { color: var(--text); }
+.eyebrow--purple::before { background: var(--text); }
 
 
 /* ============================================================
    DESTAQUES DE TEXTO
    ============================================================ */
 
-.hl-cyan {
-  color: var(--cyan);
-}
-
-.hl-purple {
-  color: var(--text);
-}
+.hl-cyan { color: var(--cyan); }
+.hl-purple { color: var(--text); }
 
 
 /* ============================================================
@@ -278,17 +167,13 @@ section[id] {
 
 .btn {
   min-height: 48px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   padding: 12px 22px;
-
   border: 1px solid transparent;
   border-radius: var(--radius-sm);
-
   font-family: var(--font-display);
   font-size: 0.78rem;
   font-weight: 800;
@@ -296,14 +181,8 @@ section[id] {
   line-height: 1.2;
   text-align: center;
   text-transform: uppercase;
-
   cursor: pointer;
-
-  transition:
-    background 0.18s ease,
-    color 0.18s ease,
-    border-color 0.18s ease,
-    transform 0.18s ease;
+  transition: background 0.18s ease, color 0.18s ease, border-color 0.18s ease, transform 0.18s ease;
 }
 
 .btn-primary {
@@ -334,49 +213,33 @@ section[id] {
   box-shadow: none;
 }
 
-.btn .arrow {
-  transition: transform 0.18s ease;
-}
-
-.btn:hover .arrow {
-  transform: translateX(3px);
-}
+.btn .arrow { transition: transform 0.18s ease; }
+.btn:hover .arrow { transform: translateX(3px); }
 
 
 /* ============================================================
    BOTÕES COMERCIAIS
    ============================================================ */
 
-.btn-buy,
-.btn-commerce {
+.btn-buy, .btn-commerce {
   min-height: 50px;
-
   display: inline-flex;
   align-items: center;
   justify-content: center;
   gap: 10px;
-
   padding: 13px 22px;
-
   border: 1px solid #111411;
   border-radius: 6px;
-
   background: #111411;
   color: #ffffff;
-
   font-weight: 850;
   letter-spacing: 0.045em;
   text-transform: uppercase;
-
   cursor: pointer;
-
-  transition:
-    background 0.18s ease,
-    transform 0.18s ease;
+  transition: background 0.18s ease, transform 0.18s ease;
 }
 
-.btn-buy:hover,
-.btn-commerce:hover {
+.btn-buy:hover, .btn-commerce:hover {
   background: #000000;
   transform: translateY(-1px);
 }
@@ -386,13 +249,9 @@ section[id] {
    PREÇOS
    ============================================================ */
 
-.price,
-.product-price,
-.marketplace-price {
+.price, .product-price, .marketplace-price {
   display: block;
-
   color: var(--price);
-
   font-family: var(--font-display);
   font-size: clamp(1.8rem, 3vw, 2.8rem);
   font-weight: 850;
@@ -400,14 +259,10 @@ section[id] {
   letter-spacing: -0.04em;
 }
 
-.installment,
-.product-installment {
+.installment, .product-installment {
   display: block;
-
   margin-top: 8px;
-
   color: var(--text-dim);
-
   font-size: 0.82rem;
   font-weight: 650;
 }
@@ -417,114 +272,58 @@ section[id] {
    CAMPOS / BUSCA / FILTROS
    ============================================================ */
 
-input,
-select,
-textarea {
+input, select, textarea {
   width: 100%;
-
   border: 1px solid var(--border-strong);
   border-radius: 6px;
-
   background: #ffffff;
   color: var(--text);
-
   outline: none;
-
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease;
 }
 
-input {
-  min-height: 48px;
-  padding: 0 14px;
-}
+input, select { min-height: 48px; padding: 0 14px; }
+textarea { min-height: 132px; padding: 14px; resize: vertical; }
 
-select {
-  min-height: 48px;
-  padding: 0 14px;
-}
-
-textarea {
-  min-height: 132px;
-  padding: 14px;
-  resize: vertical;
-}
-
-input:focus,
-select:focus,
-textarea:focus {
+input:focus, select:focus, textarea:focus {
   border-color: var(--cyan);
-
-  box-shadow:
-    0 0 0 3px rgba(8, 122, 75, 0.10);
+  box-shadow: 0 0 0 3px rgba(8, 122, 75, 0.10);
 }
 
-input::placeholder,
-textarea::placeholder {
-  color: #8a938d;
-}
+input::placeholder, textarea::placeholder { color: #8a938d; }
 
 
 /* ============================================================
    CARDS GLOBAIS
    ============================================================ */
 
-.card,
-.grid-card,
-.mission-card {
+.card, .grid-card, .mission-card {
   border: 1px solid var(--border);
   border-radius: var(--radius);
-
   background: var(--surface);
-
   box-shadow: var(--shadow-sm);
 }
 
-.card:hover,
-.grid-card:hover,
-.mission-card:hover {
+.card:hover, .grid-card:hover, .mission-card:hover {
   border-color: var(--border-strong);
 }
 
 
 /* ============================================================
-   REVEAL — REDUZIDO AO ESSENCIAL
+   REVEAL
    ============================================================ */
 
 .reveal {
   opacity: 0;
   transform: translateY(14px);
-
-  transition:
-    opacity 0.42s ease,
-    transform 0.42s ease;
+  transition: opacity 0.42s ease, transform 0.42s ease;
 }
 
-.reveal.is-visible {
-  opacity: 1;
-  transform: none;
-}
-
-.reveal:nth-child(2n),
-.reveal:nth-child(3n) {
-  transform: translateY(14px);
-}
-
-.reveal:nth-child(2n).is-visible,
-.reveal:nth-child(3n).is-visible {
-  transform: none;
-}
-
-.reveal img {
-  transition: none;
-}
-
-.reveal:not(.is-visible) img,
-.reveal.is-visible img {
-  transform: none;
-  filter: none;
-}
+.reveal.is-visible { opacity: 1; transform: none; }
+.reveal:nth-child(2n), .reveal:nth-child(3n) { transform: translateY(14px); }
+.reveal:nth-child(2n).is-visible, .reveal:nth-child(3n).is-visible { transform: none; }
+.reveal img { transition: none; }
+.reveal:not(.is-visible) img, .reveal.is-visible img { transform: none; filter: none; }
 
 
 /* ============================================================
@@ -540,36 +339,21 @@ textarea::placeholder {
 
 /* ============================================================
    LIVING ECOSYSTEM
-   Mantemos a função. Matamos o RPG.
    ============================================================ */
 
 .living-ecosystem {
   position: relative;
-
-  padding:
-    clamp(64px, 7vw, 104px)
-    24px;
-
+  padding: clamp(64px, 7vw, 104px) 24px;
   overflow: hidden;
-
   background: var(--bg);
 }
 
-.living-ecosystem::before,
-.living-ecosystem::after {
-  display: none;
-}
+.living-ecosystem::before, .living-ecosystem::after { display: none; }
 
 .ecosystem-header {
   position: relative;
-
   max-width: 820px;
-
-  margin:
-    0
-    auto
-    48px;
-
+  margin: 0 auto 48px;
   text-align: left;
 }
 
@@ -577,9 +361,7 @@ textarea::placeholder {
   display: inline-flex;
   align-items: center;
   gap: 10px;
-
   color: var(--cyan);
-
   font-family: var(--font-display);
   font-size: 0.72rem;
   font-weight: 800;
@@ -589,148 +371,96 @@ textarea::placeholder {
 
 .ecosystem-header span::before {
   content: '';
-
   width: 18px;
   height: 2px;
-
   background: var(--cyan);
 }
 
-.ecosystem-header span::after {
-  display: none;
-}
+.ecosystem-header span::after { display: none; }
 
 .ecosystem-header h2 {
   margin-top: 18px;
-
-  font-size:
-    clamp(2.25rem, 4vw, 4rem);
-
+  font-size: clamp(2.25rem, 4vw, 4rem);
   line-height: 1;
   letter-spacing: -0.04em;
 }
 
-.ecosystem-header h2::after {
-  display: none;
-}
+.ecosystem-header h2::after { display: none; }
 
 .ecosystem-header p {
   max-width: 700px;
-
   margin-top: 20px;
-
   color: var(--text-dim);
-
   font-size: 1rem;
   line-height: 1.7;
 }
 
 .ecosystem-grid {
   position: relative;
-
   width: 100%;
   max-width: var(--container);
-
   margin: 0 auto;
-
   display: grid;
-
-  grid-template-columns:
-    repeat(3, minmax(0, 1fr));
-
+  grid-template-columns: repeat(3, minmax(0, 1fr));
   gap: 18px;
 }
 
 .ecosystem-card {
   min-width: 0;
-
   overflow: hidden;
-
   display: flex;
   flex-direction: column;
-
   border: 1px solid var(--border);
   border-radius: var(--radius);
-
   background: var(--surface);
-
   box-shadow: var(--shadow-sm);
-
-  transition:
-    border-color 0.18s ease,
-    box-shadow 0.18s ease,
-    transform 0.18s ease;
+  transition: border-color 0.18s ease, box-shadow 0.18s ease, transform 0.18s ease;
 }
 
 .ecosystem-card:hover {
   transform: translateY(-2px);
-
   border-color: var(--border-strong);
-
   box-shadow: var(--shadow);
-
 }
 
 .ecosystem-card__image {
   position: relative;
-
   width: 100%;
-
   aspect-ratio: 4 / 3;
-
   overflow: hidden;
-
   background: var(--surface-2);
 }
 
-.ecosystem-card__image::before,
-.ecosystem-card__image::after {
-  display: none;
-}
+.ecosystem-card__image::before, .ecosystem-card__image::after { display: none; }
 
 .ecosystem-card__image img {
   width: 100%;
   height: 100%;
-
   display: block;
-
   object-fit: cover;
   object-position: center;
-
   transform: none;
   filter: none;
-
   transition: transform 0.28s ease;
 }
 
-.ecosystem-card:hover
-.ecosystem-card__image img {
+.ecosystem-card:hover .ecosystem-card__image img {
   transform: scale(1.02);
   filter: none;
 }
 
 .ecosystem-card__content {
   flex: 1;
-
   padding: 24px;
-
   background: #ffffff;
 }
 
-.ecosystem-card__content::before {
-  display: none;
-}
-
-.ecosystem-card:hover
-.ecosystem-card__content::before {
-  display: none;
-}
+.ecosystem-card__content::before { display: none; }
+.ecosystem-card:hover .ecosystem-card__content::before { display: none; }
 
 .ecosystem-card h3 {
   margin: 0 0 10px;
-
   color: var(--text);
-
   font-size: 1.14rem;
   font-weight: 800;
   line-height: 1.2;
@@ -738,9 +468,7 @@ textarea::placeholder {
 
 .ecosystem-card p {
   margin: 0;
-
   color: var(--text-dim);
-
   font-size: 0.92rem;
   line-height: 1.65;
 }
@@ -750,10 +478,8 @@ textarea::placeholder {
    IDENTIDADE INSTITUCIONAL
    ============================================================ */
 
-.institutional-note,
-.guiropa-note {
+.institutional-note, .guiropa-note {
   color: var(--text-faint);
-
   font-size: 0.72rem;
   font-weight: 650;
   letter-spacing: 0.04em;
@@ -761,7 +487,6 @@ textarea::placeholder {
 
 .guiropa-wordmark {
   color: var(--text);
-
   font-weight: 800;
   letter-spacing: 0.06em;
   text-transform: uppercase;
@@ -769,17 +494,13 @@ textarea::placeholder {
 
 
 /* ============================================================
-   APOIO AGRONEXUS — BASE GLOBAL
-   O componente entra na próxima etapa.
+   APOIO AGRONEXUS
    ============================================================ */
 
-.support-strip,
-.agronexus-support {
+.support-strip, .agronexus-support {
   width: 100%;
-
   border-top: 1px solid var(--border);
   border-bottom: 1px solid var(--border);
-
   background: #111411;
   color: #ffffff;
 }
@@ -787,54 +508,35 @@ textarea::placeholder {
 .agronexus-support__inner {
   width: 100%;
   max-width: var(--container);
-
   margin: 0 auto;
-
-  padding:
-    28px
-    24px;
+  padding: 28px 24px;
 }
 
-.agronexus-support h2,
-.agronexus-support h3,
-.agronexus-support p {
-  color: #ffffff;
-}
+.agronexus-support h2, .agronexus-support h3, .agronexus-support p { color: #ffffff; }
 
 .agronexus-support__values {
   display: flex;
   flex-wrap: wrap;
   gap: 8px;
-
   margin-top: 18px;
 }
 
-.agronexus-support__values button,
-.agronexus-support__values a {
+.agronexus-support__values button, .agronexus-support__values a {
   min-height: 42px;
-
-  padding:
-    9px
-    14px;
-
+  padding: 9px 14px;
   display: inline-flex;
   align-items: center;
   justify-content: center;
-
   border: 1px solid #4a504c;
   border-radius: 5px;
-
   background: #1d211e;
   color: #ffffff;
-
   font-size: 0.76rem;
   font-weight: 800;
-
   cursor: pointer;
 }
 
-.agronexus-support__values button:hover,
-.agronexus-support__values a:hover {
+.agronexus-support__values button:hover, .agronexus-support__values a:hover {
   border-color: #ffffff;
   background: #ffffff;
   color: #111411;
@@ -846,84 +548,28 @@ textarea::placeholder {
    ============================================================ */
 
 @media (max-width: 1080px) {
-  .ecosystem-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
+  .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 900px) {
-  .container {
-    padding-inline: 20px;
-  }
-
-  .section {
-    padding-block: 72px;
-  }
-
-  .ecosystem-grid {
-    grid-template-columns:
-      repeat(2, minmax(0, 1fr));
-  }
+  .container { padding-inline: 20px; }
+  .section { padding-block: 72px; }
+  .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); }
 }
 
 @media (max-width: 680px) {
-  :root {
-    --nav-h: 74px;
-  }
-
-  .container {
-    padding-inline: 16px;
-  }
-
-  .section {
-    padding-block: 56px;
-  }
-
-  .btn,
-  .btn-primary,
-  .btn-outline {
-    width: 100%;
-    white-space: normal;
-  }
-
-  .living-ecosystem {
-    padding:
-      56px
-      16px;
-  }
-
-  .ecosystem-header {
-    margin-bottom: 32px;
-  }
-
-  .ecosystem-header h2 {
-    font-size:
-      clamp(2rem, 9vw, 3rem);
-  }
-
-  .ecosystem-header p {
-    font-size: 0.94rem;
-  }
-
-  .ecosystem-grid {
-    grid-template-columns: 1fr;
-    gap: 14px;
-  }
-
-  .ecosystem-card__image {
-    aspect-ratio: 16 / 10;
-  }
-
-  .ecosystem-card__content {
-    padding: 20px;
-  }
-
-  .agronexus-support__inner {
-    padding:
-      24px
-      16px;
-  }
+  :root { --nav-h: 74px; }
+  .container { padding-inline: 16px; }
+  .section { padding-block: 56px; }
+  .btn, .btn-primary, .btn-outline { width: 100%; white-space: normal; }
+  .living-ecosystem { padding: 56px 16px; }
+  .ecosystem-header { margin-bottom: 32px; }
+  .ecosystem-header h2 { font-size: clamp(2rem, 9vw, 3rem); }
+  .ecosystem-header p { font-size: 0.94rem; }
+  .ecosystem-grid { grid-template-columns: 1fr; gap: 14px; }
+  .ecosystem-card__image { aspect-ratio: 16 / 10; }
+  .ecosystem-card__content { padding: 20px; }
+  .agronexus-support__inner { padding: 24px 16px; }
 }
 
 
@@ -932,35 +578,16 @@ textarea::placeholder {
    ============================================================ */
 
 @media (prefers-reduced-motion: reduce) {
-  html {
-    scroll-behavior: auto;
+  html { scroll-behavior: auto; }
+  *, *::before, *::after {
+    animation-duration: 0.001ms !important;
+    animation-iteration-count: 1 !important;
+    transition-duration: 0.001ms !important;
+    scroll-behavior: auto !important;
   }
-
-  *,
-  *::before,
-  *::after {
-    animation-duration:
-      0.001ms !important;
-
-    animation-iteration-count:
-      1 !important;
-
-    transition-duration:
-      0.001ms !important;
-
-    scroll-behavior:
-      auto !important;
-  }
-
-  .reveal,
-  .reveal:nth-child(2n),
-  .reveal:nth-child(3n),
-  .reveal img,
-  .reveal:not(.is-visible) img,
-  .reveal.is-visible img {
-    opacity: 1;
-    transform: none;
-    filter: none;
+  .reveal, .reveal:nth-child(2n), .reveal:nth-child(3n),
+  .reveal img, .reveal:not(.is-visible) img, .reveal.is-visible img {
+    opacity: 1; transform: none; filter: none;
   }
 }
 
@@ -969,23 +596,14 @@ textarea::placeholder {
    LIMPEZA DE RESQUÍCIOS VISUAIS
    ============================================================ */
 
-.ecosystem-card h3,
-.mission-card h3,
-.grid-card h3 {
+.ecosystem-card h3, .mission-card h3, .grid-card h3 {
   margin-top: 0 !important;
   padding-left: 0 !important;
 }
 
-.ecosystem-card p,
-.mission-card p,
-.grid-card p {
-  padding-left: 0 !important;
-}
+.ecosystem-card p, .mission-card p, .grid-card p { padding-left: 0 !important; }
 
-.ecosystem-card img[alt*='icon'],
-.mission-card img[alt*='icon'] {
-  display: none !important;
-}
+.ecosystem-card img[alt*='icon'], .mission-card img[alt*='icon'] { display: none !important; }
 
 
 /* ============================================================
@@ -995,90 +613,80 @@ textarea::placeholder {
 
 
 /* ============================================================
-   FIX AGROnexus - TRATAMENTO AGRESSIVO DE IMAGENS
-   Zoom maior + blur nas bordas + overlay da marca
+   FIX DEFINITIVO — ESCONDE A PARTE INFERIOR DA IMAGEM
+   (onde fica a marca d'água do concorrente)
+   Mostra só a parte SUPERIOR/CENTRAL do produto
    ============================================================ */
 
-/* Zoom AGRESSIVO (25%) para cortar TODAS as bordas com marca d'água */
+/* Força TODAS as imagens de produto a mostrar APENAS a parte de cima */
+.ecosystem-card__image img,
+.product-image img,
+.catalog-image img,
+.marketplace-image img,
 img[src*="avesornamentaisjej"],
-img[src*="reefaquarios"],
-img[src*=".com.br/"] {
+img[src*="reefaquarios"] {
   object-fit: cover !important;
-  object-position: center !important;
-  transform: scale(1.25) !important;
-  filter: brightness(1.05) contrast(1.1) saturate(1.08) !important;
-  border-radius: 6px !important;
+  object-position: center 20% !important;
+  transform: scale(1.15) !important;
+  filter: brightness(1.04) contrast(1.08) saturate(1.06) !important;
 }
 
-/* Container das imagens - esconder overflow do zoom */
+/* Container corta a parte de baixo */
 .ecosystem-card__image,
 .product-image,
 .catalog-image,
 .marketplace-image {
   overflow: hidden !important;
   position: relative !important;
+  background: #0a0f0c !important;
 }
 
-/* Overlay escuro nas bordas para esconder marcas residuais */
-.ecosystem-card__image::before,
-.product-image::before,
-.catalog-image::before,
-.marketplace-image::before {
-  content: "" !important;
-  position: absolute !important;
-  top: 0 !important;
-  left: 0 !important;
-  right: 0 !important;
-  bottom: 0 !important;
-  box-shadow: inset 0 0 30px rgba(0, 0, 0, 0.4) !important;
-  pointer-events: none !important;
-  z-index: 5 !important;
-}
-
-/* Overlay da marca AgroNexus no canto inferior direito */
+/* Gradiente escuro na parte inferior = esconde marca d'água residual */
 .ecosystem-card__image::after,
 .product-image::after,
 .catalog-image::after,
 .marketplace-image::after {
-  content: "AgroNexus™" !important;
+  content: "" !important;
   position: absolute !important;
-  bottom: 8px !important;
-  right: 8px !important;
-  background: rgba(8, 122, 75, 0.9) !important;
+  left: 0 !important;
+  right: 0 !important;
+  bottom: 0 !important;
+  height: 45% !important;
+  background: linear-gradient(
+    to bottom,
+    rgba(10, 15, 12, 0) 0%,
+    rgba(10, 15, 12, 0.3) 30%,
+    rgba(10, 15, 12, 0.75) 70%,
+    rgba(10, 15, 12, 0.95) 100%
+  ) !important;
+  pointer-events: none !important;
+  z-index: 2 !important;
+}
+
+/* Etiqueta AgroNexus por cima do gradiente */
+.ecosystem-card__image > .agronexus-badge,
+.product-image > .agronexus-badge,
+.catalog-image > .agronexus-badge,
+.marketplace-image > .agronexus-badge {
+  position: absolute !important;
+  bottom: 10px !important;
+  right: 10px !important;
+  background: rgba(8, 122, 75, 0.95) !important;
   color: #ffffff !important;
   padding: 5px 12px !important;
   border-radius: 4px !important;
   font-size: 11px !important;
   font-weight: 800 !important;
   letter-spacing: 0.05em !important;
-  z-index: 10 !important;
+  z-index: 3 !important;
   pointer-events: none !important;
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.3) !important;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Fallback visual para imagens quebradas */
-img[src*="avesornamentaisjej"]:not([src]),
-img[src*="reefaquarios"]:not([src]),
-img[src=""],
-img[src*="undefined"] {
-  background: linear-gradient(135deg, #f4f6f4 0%, #ecefec 100%) !important;
-  min-height: 200px !important;
-  display: flex !important;
-  align-items: center !important;
-  justify-content: center !important;
-}
-
-img[src*="avesornamentaisjej"]:not([src])::before,
-img[src*="reefaquarios"]:not([src])::before {
-  content: "Foto em breve" !important;
-  color: #717b74 !important;
-  font-size: 14px !important;
-  font-weight: 600 !important;
-}
-
-/* Melhorar cards de produtos com imagens externas */
+/* Hover mantém o crop */
+.ecosystem-card:hover .ecosystem-card__image img,
 .ecosystem-card:hover img[src*="avesornamentaisjej"],
 .ecosystem-card:hover img[src*="reefaquarios"] {
-  transform: scale(1.28) !important;
+  transform: scale(1.18) !important;
   transition: transform 0.3s ease !important;
 }
