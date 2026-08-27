@@ -163,11 +163,11 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 
 
 /* ============================================================
-   FIX DEFINITIVO — BLUR NA PARTE INFERIOR + CROP AGRESSIVO
-   A marca d'água fica BORRADA (ilegível), o produto fica nítido
+   FIX MELHORADO — IMAGENS CLAREADAS + PLACEHOLDER BONITO
+   Mantém proteção contra marca d'água mas melhora visibilidade
    ============================================================ */
 
-/* Container de TODAS as imagens de produto */
+/* Container de imagens */
 .ecosystem-card__image,
 [class*="product"] img,
 [class*="catalog"] img,
@@ -177,21 +177,21 @@ img[src*="reefaquarios"],
 img[src*=".com.br/"] {
   object-fit: cover !important;
   object-position: center 15% !important;
-  transform: scale(1.35) !important;
-  filter: brightness(1.05) contrast(1.1) saturate(1.08) !important;
+  transform: scale(1.25) !important;
+  filter: brightness(1.08) contrast(1.05) saturate(1.1) !important;
 }
 
-/* Container corta tudo que vazar */
+/* Container corta tudo */
 .ecosystem-card__image,
 [class*="product-image"],
 [class*="catalog-image"],
 [class*="marketplace-image"] {
   overflow: hidden !important;
   position: relative !important;
-  background: #0a0f0c !important;
+  background: linear-gradient(135deg, #1a2f23 0%, #0f1a15 100%) !important;
 }
 
-/* BLUR forte na parte inferior = marca d'água fica ilegível */
+/* Gradiente MAIS SUAVE na parte inferior */
 .ecosystem-card__image::after,
 [class*="product-image"]::after,
 [class*="catalog-image"]::after,
@@ -201,27 +201,69 @@ img[src*=".com.br/"] {
   left: 0 !important;
   right: 0 !important;
   bottom: 0 !important;
-  height: 40% !important;
-  backdrop-filter: blur(6px) brightness(0.7) !important;
-  -webkit-backdrop-filter: blur(6px) brightness(0.7) !important;
+  height: 35% !important;
   background: linear-gradient(
     to bottom,
     rgba(10, 15, 12, 0) 0%,
-    rgba(10, 15, 12, 0.5) 50%,
-    rgba(10, 15, 12, 0.85) 100%
+    rgba(10, 15, 12, 0.25) 40%,
+    rgba(10, 15, 12, 0.65) 100%
   ) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
 
-/* Etiqueta AgroNexus por cima do blur */
+/* Imagens quebradas/placeholder - visual melhor */
+img[src*="avesornamentaisjej"]:not([src]),
+img[src*="reefaquarios"]:not([src]),
+img[src=""],
+img[src*="undefined"],
+.ecosystem-card__image img:not([src]),
+img[data-src=""] {
+  background: linear-gradient(135deg, #1a2f23 0%, #0f1a15 100%) !important;
+  min-height: 200px !important;
+  display: flex !important;
+  align-items: center !important;
+  justify-content: center !important;
+  position: relative !important;
+}
+
+/* Ícone de "foto em breve" mais bonito */
+.ecosystem-card__image::before {
+  content: "📷" !important;
+  position: absolute !important;
+  top: 50% !important;
+  left: 50% !important;
+  transform: translate(-50%, -50%) !important;
+  font-size: 48px !important;
+  opacity: 0.15 !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Texto "Foto em breve" */
+.ecosystem-card__image > .placeholder-text,
+img:not([src])::after {
+  content: "Foto em breve" !important;
+  position: absolute !important;
+  top: 65% !important;
+  left: 50% !important;
+  transform: translateX(-50%) !important;
+  color: rgba(255, 255, 255, 0.4) !important;
+  font-size: 13px !important;
+  font-weight: 600 !important;
+  letter-spacing: 0.05em !important;
+  z-index: 1 !important;
+  pointer-events: none !important;
+}
+
+/* Etiqueta AgroNexus */
 .ecosystem-card__image > .agronexus-badge,
 [class*="product-image"] > .agronexus-badge,
 [class*="catalog-image"] > .agronexus-badge,
 [class*="marketplace-image"] > .agronexus-badge {
   position: absolute !important;
-  bottom: 8px !important;
-  right: 8px !important;
+  bottom: 10px !important;
+  right: 10px !important;
   background: rgba(8, 122, 75, 0.95) !important;
   color: #ffffff !important;
   padding: 5px 12px !important;
@@ -234,10 +276,10 @@ img[src*=".com.br/"] {
   box-shadow: 0 2px 8px rgba(0, 0, 0, 0.4) !important;
 }
 
-/* Hover mantém o crop */
+/* Hover */
 .ecosystem-card:hover .ecosystem-card__image img,
 .ecosystem-card:hover img[src*="avesornamentaisjej"],
 .ecosystem-card:hover img[src*="reefaquarios"] {
-  transform: scale(1.38) !important;
+  transform: scale(1.28) !important;
   transition: transform 0.3s ease !important;
 }
