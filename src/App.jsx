@@ -15,6 +15,24 @@ import AgroNexusExotics from './pages/AgroNexusExotics'
 import AgroNexusSpeciesPage from './pages/AgroNexusSpeciesPage'
 import AgroNexusExoticDetail from './pages/AgroNexusExoticDetail'
 
+/* Tradutor: qualquer link velho "#/rota" vira navegação do router novo */
+function HashLinkFix() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const onClick = (e) => {
+      const a = e.target.closest('a[href^="#/"]')
+      if (!a) return
+      e.preventDefault()
+      const to = a.getAttribute('href').slice(1)
+      navigate(to)
+    }
+    document.addEventListener('click', onClick)
+    return () => document.removeEventListener('click', onClick)
+  }, [navigate])
+  return null
+}
+
+/* Deep links via 404.html (?r=) */
 function SpaRedirect() {
   const navigate = useNavigate()
   useEffect(() => {
@@ -39,6 +57,7 @@ export default function App() {
   return (
     <BrowserRouter>
       <SpaRedirect />
+      <HashLinkFix />
       <BabylonHeader />
       <Routes>
         <Route path="/" element={<BabylonHome />} />
