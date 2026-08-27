@@ -266,3 +266,29 @@ img[src*="reefaquarios"] {
 [id*="beacon"] a, [id*="beacon"] button {
   pointer-events: auto !important;
 }
+
+/* ============================================================
+   RAIO-X — mata o "vidro invisível" em qualquer esconderijo
+   ============================================================ */
+
+/* 1) Qualquer camada injetada FORA do #root (portal/skin) */
+body > div:not(#root) { pointer-events: none !important; }
+body > div:not(#root) a,
+body > div:not(#root) button { pointer-events: auto !important; }
+
+/* 2) Qualquer div com position:fixed / inset no estilo inline */
+div[style*="fixed"],
+div[style*="inset"] { pointer-events: none !important; }
+div[style*="fixed"] a, div[style*="fixed"] button,
+div[style*="inset"] a, div[style*="inset"] button { pointer-events: auto !important; }
+
+/* 3) Skins de conversão / flutuantes genéricos */
+[class*="skin"], [class*="Skin"],
+[class*="conversion"], [class*="Conversion"],
+[class*="floating"], [class*="Floating"],
+[class*="sticky-cta"], [class*="cta-fix"] { pointer-events: none !important; }
+[class*="skin"] a, [class*="skin"] button,
+[class*="conversion"] a, [class*="conversion"] button,
+[class*="floating"] a, [class*="floating"] button,
+[class*="sticky-cta"] a, [class*="sticky-cta"] button,
+[class*="cta-fix"] a, [class*="cta-fix"] button { pointer-events: auto !important; }
