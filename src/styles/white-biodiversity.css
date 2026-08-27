@@ -1,0 +1,156 @@
+/* ============================================================
+   AGRONEXUS™ — WHITE + BIODIVERSITY COLOR
+   First controlled pass: HOME ONLY.
+   Deliberately does not target catalog, marketplace, product-image,
+   marine, reef, aquarium, aquarismo or supplier-media selectors.
+   ============================================================ */
+
+.commerce-home {
+  --agx-blue: #147DEB;
+  --agx-cyan: #16B9E8;
+  --agx-violet: #7657F6;
+  --agx-magenta: #E93D9B;
+  --agx-coral: #FF5D67;
+  --agx-orange: #FF8A1F;
+  --agx-yellow: #FFD43B;
+  --agx-ink: #173A78;
+  --agx-copy: #315A9A;
+  --agx-line: #DCEAFF;
+  --agx-soft-blue: #F2F8FF;
+  --agx-soft-cyan: #EEFBFF;
+  --agx-soft-violet: #F6F2FF;
+  --agx-soft-pink: #FFF1F8;
+  --agx-soft-yellow: #FFF9DC;
+
+  background: #FFFFFF !important;
+  color: var(--agx-ink) !important;
+}
+
+.commerce-home .commerce-categories,
+.commerce-home .commerce-products,
+.commerce-home .commerce-popular {
+  background: #FFFFFF !important;
+}
+
+.commerce-home .commerce-section-head h2,
+.commerce-home .commerce-category h3,
+.commerce-home .commerce-search label {
+  color: var(--agx-ink) !important;
+}
+
+.commerce-home .commerce-section-head p,
+.commerce-home .commerce-category p,
+.commerce-home .commerce-guiropa {
+  color: var(--agx-copy) !important;
+}
+
+.commerce-home .commerce-section-head > span,
+.commerce-home .commerce-category__number,
+.commerce-home .commerce-search__results strong {
+  color: var(--agx-magenta) !important;
+}
+
+/* Keep the hero photography visible, but replace the gloomy green/black veil
+   with transparent saturated blue/violet light. */
+.commerce-home .commerce-hero,
+.commerce-home .commerce-hero__video {
+  background: #147DEB !important;
+}
+
+.commerce-home .commerce-hero__overlay {
+  background:
+    linear-gradient(90deg, rgba(20,125,235,.82) 0%, rgba(118,87,246,.58) 36%, rgba(233,61,155,.25) 67%, rgba(255,212,59,.08) 100%),
+    linear-gradient(180deg, rgba(22,185,232,.10) 0%, transparent 58%, rgba(20,125,235,.20) 100%) !important;
+}
+
+.commerce-home .commerce-kicker { color: #FFD43B !important; }
+.commerce-home .commerce-hero h1 strong { color: #FFD43B !important; }
+
+.commerce-home .commerce-button--primary {
+  border-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  color: var(--agx-blue) !important;
+}
+.commerce-home .commerce-button--primary:hover {
+  border-color: var(--agx-yellow) !important;
+  background: var(--agx-yellow) !important;
+  color: var(--agx-ink) !important;
+}
+.commerce-home .commerce-button--secondary {
+  border-color: rgba(255,255,255,.82) !important;
+  background: rgba(118,87,246,.34) !important;
+  color: #FFFFFF !important;
+}
+.commerce-home .commerce-button--secondary:hover {
+  border-color: #FFFFFF !important;
+  background: #FFFFFF !important;
+  color: var(--agx-violet) !important;
+}
+
+.commerce-home .commerce-search__box,
+.commerce-home .commerce-search__results,
+.commerce-home .commerce-search__results a,
+.commerce-home .commerce-category {
+  background: #FFFFFF !important;
+  border-color: var(--agx-line) !important;
+}
+
+.commerce-home .commerce-search input {
+  background: #FFFFFF !important;
+  border-color: #BBD8FF !important;
+  color: var(--agx-ink) !important;
+}
+.commerce-home .commerce-search input::placeholder { color: #5E83BD !important; }
+.commerce-home .commerce-search input:focus {
+  border-color: var(--agx-cyan) !important;
+  box-shadow: 0 0 0 3px rgba(22,185,232,.16) !important;
+}
+
+.commerce-home .commerce-search__marketplace {
+  border-color: var(--agx-blue) !important;
+  background: var(--agx-blue) !important;
+  color: #FFFFFF !important;
+}
+.commerce-home .commerce-search__marketplace:hover {
+  border-color: var(--agx-magenta) !important;
+  background: var(--agx-magenta) !important;
+}
+.commerce-home .commerce-search button {
+  border-color: var(--agx-violet) !important;
+  background: #FFFFFF !important;
+  color: var(--agx-violet) !important;
+}
+
+/* Biodiversity rhythm: each home category receives a vivid identity.
+   No image/crop/media rule is touched. */
+.commerce-home .commerce-category:nth-child(7n+1) { border-top: 5px solid var(--agx-blue) !important; }
+.commerce-home .commerce-category:nth-child(7n+2) { border-top: 5px solid var(--agx-cyan) !important; }
+.commerce-home .commerce-category:nth-child(7n+3) { border-top: 5px solid var(--agx-violet) !important; }
+.commerce-home .commerce-category:nth-child(7n+4) { border-top: 5px solid var(--agx-magenta) !important; }
+.commerce-home .commerce-category:nth-child(7n+5) { border-top: 5px solid var(--agx-coral) !important; }
+.commerce-home .commerce-category:nth-child(7n+6) { border-top: 5px solid var(--agx-orange) !important; }
+.commerce-home .commerce-category:nth-child(7n+7) { border-top: 5px solid var(--agx-yellow) !important; }
+
+.commerce-home .commerce-category__searches a {
+  border-color: #CFE3FF !important;
+  background: var(--agx-soft-blue) !important;
+  color: var(--agx-blue) !important;
+}
+.commerce-home .commerce-category__searches a:hover {
+  border-color: var(--agx-magenta) !important;
+  background: var(--agx-soft-pink) !important;
+  color: var(--agx-magenta) !important;
+}
+
+.commerce-home .commerce-category__action {
+  background: var(--agx-violet) !important;
+  color: #FFFFFF !important;
+}
+.commerce-home .commerce-category__action:hover { background: var(--agx-magenta) !important; }
+
+.commerce-home .commerce-search__results a:hover { background: var(--agx-soft-cyan) !important; }
+
+/* Bright accessible focus without introducing dark/green UI chrome. */
+.commerce-home :focus-visible {
+  outline-color: rgba(118,87,246,.55) !important;
+}
