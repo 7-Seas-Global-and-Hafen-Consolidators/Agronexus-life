@@ -292,3 +292,21 @@ div[style*="inset"] a, div[style*="inset"] button { pointer-events: auto !import
 [class*="floating"] a, [class*="floating"] button,
 [class*="sticky-cta"] a, [class*="sticky-cta"] button,
 [class*="cta-fix"] a, [class*="cta-fix"] button { pointer-events: auto !important; }
+/* ============================================================
+   FIX RESPONSIVIDADE DOS BOTÕES (vale em todas as páginas)
+   ============================================================ */
+@media (max-width: 680px) {
+  .btn, .btn-primary, .btn-outline, .btn-buy, .btn-commerce,
+  .commerce-button, .world-button, .agx-life__btn,
+  .marketplace-war__buy, .agx-rural__cta,
+  .marketplace-war__search-row button {
+    width: 100% !important;
+    white-space: normal !important;
+    min-height: 48px !important;
+  }
+  .hero__actions, .world-hero__actions, .commerce-hero__actions,
+  .commerce-search__control {
+    flex-direction: column !important;
+    width: 100% !important;
+  }
+}
