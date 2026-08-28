@@ -36,10 +36,56 @@
         ]
       }
     </script>
+    <script>
+      /* ============================================================
+         GLASS BREAKER — mata o "vidro invisível" que rouba cliques.
+         Qualquer elemento FIXO/ABSOLUTO que cubra a tela inteira
+         vira fantasma (pointer-events none), mas os links/botões
+         DENTRO dele continuam clicáveis. Não toca no header,
+         no beacon nem em nada pequeno.
+         ============================================================ */
+      (function () {
+        function breakGlass() {
+          var all = document.querySelectorAll('body *');
+          var vw = window.innerWidth;
+          var vh = window.innerHeight;
+          for (var i = 0; i < all.length; i++) {
+            var el = all[i];
+            if (el.id === 'root') continue;
+            var cs = window.getComputedStyle(el);
+            if (cs.position !== 'fixed' && cs.position !== 'absolute') continue;
+            if (cs.display === 'none' || cs.visibility === 'hidden') continue;
+            var r = el.getBoundingClientRect();
+            var covers = r.width >= vw * 0.9 && r.height >= vh * 0.7;
+            if (!covers) continue;
+            var tag = el.tagName;
+            if (tag !== 'A' && tag !== 'BUTTON') {
+              el.style.pointerEvents = 'none';
+            }
+            var kids = el.querySelectorAll('a, button, input, select, textarea, [role="button"]');
+            for (var j = 0; j < kids.length; j++) {
+              kids[j].style.pointerEvents = 'auto';
+            }
+          }
+        }
+        function schedule() {
+          breakGlass();
+          setTimeout(breakGlass, 800);
+          setTimeout(breakGlass, 2500);
+          setTimeout(breakGlass, 5000);
+          setTimeout(breakGlass, 9000);
+        }
+        if (document.readyState === 'loading') {
+          document.addEventListener('DOMContentLoaded', schedule);
+        } else {
+          schedule();
+        }
+        window.addEventListener('load', breakGlass);
+      })();
+    </script>
   </head>
   <body>
     <div id="root"></div>
-    <noscript>A AgroNexus™ conecta biodiversidade, aves, aquarismo, corais, pequenos mamíferos, répteis, plantas, saúde, alimentação, equipamentos e conhecimento.</noscript>
     <script type="module" src="/src/main.jsx"></script>
   </body>
 </html>
