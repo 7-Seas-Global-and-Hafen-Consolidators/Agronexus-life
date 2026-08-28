@@ -5,8 +5,9 @@ import BabylonHeader from './components/babylon/BabylonHeader'
 import BabylonFooter from './components/BabylonFooter'
 import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
 import AgroNexusMarketSpotlight from './components/AgroNexusMarketSpotlight'
+import AgroNexusMegaHub from './components/AgroNexusMegaHub'
+import AgroNexusRuralMarket from './components/AgroNexusRuralMarket'
 import Contact from './components/Contact'
-import AgroNexusPlantsMarket from './components/AgroNexusPlantsMarket'
 import BabylonHome from './pages/BabylonHome'
 import AgroNexusWorldExperience from './pages/AgroNexusWorldExperience'
 import AgroNexusOfferPage from './pages/AgroNexusOfferPage'
@@ -15,32 +16,12 @@ import AgroNexusExotics from './pages/AgroNexusExotics'
 import AgroNexusSpeciesPage from './pages/AgroNexusSpeciesPage'
 import AgroNexusExoticDetail from './pages/AgroNexusExoticDetail'
 
-/* Tradutor: qualquer link velho "#/rota" vira navegação do router novo */
-function HashLinkFix() {
-  const navigate = useNavigate()
-  useEffect(() => {
-    const onClick = (e) => {
-      const a = e.target.closest('a[href^="#/"]')
-      if (!a) return
-      e.preventDefault()
-      const to = a.getAttribute('href').slice(1)
-      navigate(to)
-    }
-    document.addEventListener('click', onClick)
-    return () => document.removeEventListener('click', onClick)
-  }, [navigate])
-  return null
-}
-
-/* Deep links via 404.html (?r=) */
 function SpaRedirect() {
   const navigate = useNavigate()
   useEffect(() => {
     const params = new URLSearchParams(window.location.search)
     const r = params.get('r')
-    if (r) {
-      navigate(r, { replace: true })
-    }
+    if (r) navigate(r, { replace: true })
   }, [navigate])
   return null
 }
@@ -57,12 +38,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <SpaRedirect />
-      <HashLinkFix />
       <BabylonHeader />
       <Routes>
         <Route path="/" element={<BabylonHome />} />
         <Route path="/home" element={<BabylonHome />} />
         <Route path="/inicio" element={<BabylonHome />} />
+
+        <Route path="/tudo" element={<AgroNexusMegaHub />} />
+        <Route path="/hub" element={<AgroNexusMegaHub />} />
+        <Route path="/rural" element={<AgroNexusRuralMarket />} />
 
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/catalogo" element={<Marketplace />} />
@@ -74,8 +58,6 @@ export default function App() {
         <Route path="/contato" element={<Contact />} />
         <Route path="/contact" element={<Contact />} />
         <Route path="/fale-conosco" element={<Contact />} />
-
-        <Route path="/mercado-de-plantas" element={<AgroNexusPlantsMarket />} />
 
         <Route path="/agronexus-life" element={<AgroNexusLifePlans />} />
         <Route path="/agronexus-life/planos" element={<AgroNexusLifePlans />} />
