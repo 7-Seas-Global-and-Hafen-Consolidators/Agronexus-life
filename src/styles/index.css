@@ -1,24 +1,26 @@
 /* ============================================================
    AGRONEXUS™ — WAR ETERNAL COMMERCE SYSTEM
+   TEMA CLARO ESTILO PETZ/COBASI: GELO + ESMERALDA + ABISMO + LIMA
    ============================================================ */
 
 :root {
-  --bg: #f4f6f4;
-  --bg-2: #ecefec;
+  --bg: #F7F9F7;
+  --bg-2: #EDF2EE;
   --surface: #ffffff;
-  --surface-2: #f7f8f7;
-  --surface-hover: #eef2ef;
-  --border: #d9dfda;
-  --border-strong: #aeb9b1;
-  --cyan: #087a4b;
-  --cyan-bright: #06643e;
-  --cyan-dim: #075c3a;
-  --purple: #202522;
-  --purple-bright: #111411;
-  --text: #111411;
-  --text-dim: #4b554e;
-  --text-faint: #717b74;
-  --price: #087a4b;
+  --surface-2: #F2F6F3;
+  --surface-hover: #EAF2EC;
+  --border: #DCE5DF;
+  --border-strong: #A9BBAF;
+  --cyan: #0E9F6E;
+  --cyan-bright: #0B8A5E;
+  --cyan-dim: #0A7A52;
+  --lime: #A3E635;
+  --purple: #101828;
+  --purple-bright: #0A1F16;
+  --text: #101828;
+  --text-dim: #4C5B53;
+  --text-faint: #74827A;
+  --price: #0E9F6E;
   --danger: #b42318;
   --warning: #9a6700;
   --success: #067647;
@@ -48,7 +50,7 @@ button, a { -webkit-tap-highlight-color: transparent; }
 ul, ol { list-style: none; }
 table { border-collapse: collapse; width: 100%; }
 
-h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); color: var(--text); font-weight: 750; line-height: 1.08; letter-spacing: -0.025em; }
+h1, h2, h3, h4, h5, h6 { font-family: var(--font-display); color: var(--text); font-weight:750; line-height: 1.08; letter-spacing: -0.025em; }
 p { color: var(--text-dim); }
 strong { color: inherit; }
 
@@ -75,8 +77,8 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
 .btn .arrow { transition: transform 0.18s ease; }
 .btn:hover .arrow { transform: translateX(3px); }
 
-.btn-buy, .btn-commerce { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 22px; border: 1px solid #111411; border-radius: 6px; background: #111411; color: #ffffff; font-weight: 850; letter-spacing: 0.045em; text-transform: uppercase; cursor: pointer; transition: background 0.18s ease, transform 0.18s ease; }
-.btn-buy:hover, .btn-commerce:hover { background: #000000; transform: translateY(-1px); }
+.btn-buy, .btn-commerce { min-height: 50px; display: inline-flex; align-items: center; justify-content: center; gap: 10px; padding: 13px 22px; border: 1px solid #0A1F16; border-radius: 6px; background: #0A1F16; color: #ffffff; font-weight: 850; letter-spacing: 0.045em; text-transform: uppercase; cursor: pointer; transition: background 0.18s ease, transform 0.18s ease; }
+.btn-buy:hover, .btn-commerce:hover { background: #06130C; transform: translateY(-1px); }
 
 .price, .product-price, .marketplace-price { display: block; color: var(--price); font-family: var(--font-display); font-size: clamp(1.8rem, 3vw, 2.8rem); font-weight: 850; line-height: 1; letter-spacing: -0.04em; }
 .installment, .product-installment { display: block; margin-top: 8px; color: var(--text-dim); font-size: 0.82rem; font-weight: 650; }
@@ -84,7 +86,7 @@ section[id] { scroll-margin-top: calc(var(--nav-h) + 24px); }
 input, select, textarea { width: 100%; border: 1px solid var(--border-strong); border-radius: 6px; background: #ffffff; color: var(--text); outline: none; transition: border-color 0.18s ease, box-shadow 0.18s ease; }
 input, select { min-height: 48px; padding: 0 14px; }
 textarea { min-height: 132px; padding: 14px; resize: vertical; }
-input:focus, select:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(8, 122, 75, 0.10); }
+input:focus, select:focus, textarea:focus { border-color: var(--cyan); box-shadow: 0 0 0 3px rgba(14, 159, 110, 0.12); }
 input::placeholder, textarea::placeholder { color: #8a938d; }
 
 .card, .grid-card, .mission-card { border: 1px solid var(--border); border-radius: var(--radius); background: var(--surface); box-shadow: var(--shadow-sm); }
@@ -97,7 +99,7 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 .reveal img { transition: none; }
 .reveal:not(.is-visible) img, .reveal.is-visible img { transform: none; filter: none; }
 
-:focus-visible { outline: 3px solid rgba(8, 122, 75, 0.35); outline-offset: 3px; border-radius: 4px; }
+:focus-visible { outline: 3px solid rgba(14, 159, 110, 0.35); outline-offset: 3px; border-radius: 4px; }
 
 .living-ecosystem { position: relative; padding: clamp(64px, 7vw, 104px) 24px; overflow: hidden; background: var(--bg); }
 .living-ecosystem::before, .living-ecosystem::after { display: none; }
@@ -124,12 +126,12 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 .institutional-note, .guiropa-note { color: var(--text-faint); font-size: 0.72rem; font-weight: 650; letter-spacing: 0.04em; }
 .guiropa-wordmark { color: var(--text); font-weight: 800; letter-spacing: 0.06em; text-transform: uppercase; }
 
-.support-strip, .agronexus-support { width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #111411; color: #ffffff; }
+.support-strip, .agronexus-support { width: 100%; border-top: 1px solid var(--border); border-bottom: 1px solid var(--border); background: #0A1F16; color: #ffffff; }
 .agronexus-support__inner { width: 100%; max-width: var(--container); margin: 0 auto; padding: 28px 24px; }
 .agronexus-support h2, .agronexus-support h3, .agronexus-support p { color: #ffffff; }
 .agronexus-support__values { display: flex; flex-wrap: wrap; gap: 8px; margin-top: 18px; }
-.agronexus-support__values button, .agronexus-support__values a { min-height: 42px; padding: 9px 14px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #4a504c; border-radius: 5px; background: #1d211e; color: #ffffff; font-size: 0.76rem; font-weight: 800; cursor: pointer; }
-.agronexus-support__values button:hover, .agronexus-support__values a:hover { border-color: #ffffff; background: #ffffff; color: #111411; }
+.agronexus-support__values button, .agronexus-support__values a { min-height: 42px; padding: 9px 14px; display: inline-flex; align-items: center; justify-content: center; border: 1px solid #3E5447; border-radius: 5px; background: #14261C; color: #ffffff; font-size: 0.76rem; font-weight: 800; cursor: pointer; }
+.agronexus-support__values button:hover, .agronexus-support__values a:hover { border-color: #ffffff; background: #ffffff; color: #0A1F16; }
 
 @media (max-width: 1080px) { .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
 @media (max-width: 900px) { .container { padding-inline: 20px; } .section { padding-block: 72px; } .ecosystem-grid { grid-template-columns: repeat(2, minmax(0, 1fr)); } }
@@ -161,9 +163,9 @@ input::placeholder, textarea::placeholder { color: #8a938d; }
 
 /* ============================================================
    EXORCISMO NUCLEAR FINAL — CORTA 50% DO TOPO + BLUR BRUTAL
+   (só peixes/corais — NÃO atinge plantas)
    ============================================================ */
 
-/* Zoom BRUTAL + mostra só a parte de BAIXO da imagem */
 .ecosystem-card__image img,
 [class*="product"] img,
 [class*="catalog"] img,
@@ -182,10 +184,9 @@ img[src*="reefaquarios"] {
 [class*="marketplace-image"] {
   overflow: hidden !important;
   position: relative !important;
-  background: #f4f6f4 !important;
+  background: #F7F9F7 !important;
 }
 
-/* BLUR BRUTAL nos 50% SUPERIORES */
 .ecosystem-card__image::after,
 [class*="product-image"]::after,
 [class*="catalog-image"]::after,
@@ -201,22 +202,21 @@ img[src*="reefaquarios"] {
   -webkit-backdrop-filter: blur(12px) !important;
   background: linear-gradient(
     to bottom,
-    rgba(244, 246, 244, 0.98) 0%,
-    rgba(244, 246, 244, 0.85) 30%,
-    rgba(244, 246, 244, 0.5) 60%,
-    rgba(244, 246, 244, 0) 100%
+    rgba(247, 249, 247, 0.98) 0%,
+    rgba(247, 249, 247, 0.85) 30%,
+    rgba(247, 249, 247, 0.5) 60%,
+    rgba(247, 249, 247, 0) 100%
   ) !important;
   pointer-events: none !important;
   z-index: 2 !important;
 }
 
-/* Etiqueta AgroNexus embaixo */
 .ecosystem-card__image > .agronexus-badge,
 [class*="product-image"] > .agronexus-badge {
   position: absolute !important;
   bottom: 8px !important;
   right: 8px !important;
-  background: rgba(8, 122, 75, 0.95) !important;
+  background: rgba(14, 159, 110, 0.95) !important;
   color: #ffffff !important;
   padding: 5px 12px !important;
   border-radius: 4px !important;
@@ -225,6 +225,7 @@ img[src*="reefaquarios"] {
   z-index: 3 !important;
   pointer-events: none !important;
 }
+
 /* ============================================================
    PLANTS MARKET — IMAGENS LIMPAS (exorcismo desligado aqui)
    ============================================================ */
@@ -253,8 +254,9 @@ img[src*="reefaquarios"] {
   transform: scale(1.48) !important;
   transition: transform 0.3s ease !important;
 }
+
 /* ============================================================
-   EMERGÊNCIA — mata camada invisível que bloqueia cliques
+   RAIO-X — mata camada invisível que bloqueia cliques
    ============================================================ */
 [class*="beacon"], [class*="Beacon"],
 [id*="beacon"], [id*="Beacon"],
@@ -265,48 +267,4 @@ img[src*="reefaquarios"] {
 [class*="beacon"] button, [class*="Beacon"] button,
 [id*="beacon"] a, [id*="beacon"] button {
   pointer-events: auto !important;
-}
-
-/* ============================================================
-   RAIO-X — mata o "vidro invisível" em qualquer esconderijo
-   ============================================================ */
-
-/* 1) Qualquer camada injetada FORA do #root (portal/skin) */
-body > div:not(#root) { pointer-events: none !important; }
-body > div:not(#root) a,
-body > div:not(#root) button { pointer-events: auto !important; }
-
-/* 2) Qualquer div com position:fixed / inset no estilo inline */
-div[style*="fixed"],
-div[style*="inset"] { pointer-events: none !important; }
-div[style*="fixed"] a, div[style*="fixed"] button,
-div[style*="inset"] a, div[style*="inset"] button { pointer-events: auto !important; }
-
-/* 3) Skins de conversão / flutuantes genéricos */
-[class*="skin"], [class*="Skin"],
-[class*="conversion"], [class*="Conversion"],
-[class*="floating"], [class*="Floating"],
-[class*="sticky-cta"], [class*="cta-fix"] { pointer-events: none !important; }
-[class*="skin"] a, [class*="skin"] button,
-[class*="conversion"] a, [class*="conversion"] button,
-[class*="floating"] a, [class*="floating"] button,
-[class*="sticky-cta"] a, [class*="sticky-cta"] button,
-[class*="cta-fix"] a, [class*="cta-fix"] button { pointer-events: auto !important; }
-/* ============================================================
-   FIX RESPONSIVIDADE DOS BOTÕES (vale em todas as páginas)
-   ============================================================ */
-@media (max-width: 680px) {
-  .btn, .btn-primary, .btn-outline, .btn-buy, .btn-commerce,
-  .commerce-button, .world-button, .agx-life__btn,
-  .marketplace-war__buy, .agx-rural__cta,
-  .marketplace-war__search-row button {
-    width: 100% !important;
-    white-space: normal !important;
-    min-height: 48px !important;
-  }
-  .hero__actions, .world-hero__actions, .commerce-hero__actions,
-  .commerce-search__control {
-    flex-direction: column !important;
-    width: 100% !important;
-  }
 }
