@@ -5,8 +5,8 @@ import BabylonHeader from './components/babylon/BabylonHeader'
 import BabylonFooter from './components/BabylonFooter'
 import AgroNexusCommerceHub from './components/AgroNexusCommerceHub'
 import AgroNexusMarketSpotlight from './components/AgroNexusMarketSpotlight'
-import AgroNexusMegaHub from './components/AgroNexusMegaHub'
-import AgroNexusRuralMarket from './components/AgroNexusRuralMarket'
+import AgroNexusPlantsMarket from './components/AgroNexusPlantsMarket'
+import AgroNexusSuperHome from './pages/AgroNexusSuperHome'
 import Contact from './components/Contact'
 import BabylonHome from './pages/BabylonHome'
 import AgroNexusWorldExperience from './pages/AgroNexusWorldExperience'
@@ -26,6 +26,21 @@ function SpaRedirect() {
   return null
 }
 
+function HashLinkFix() {
+  const navigate = useNavigate()
+  useEffect(() => {
+    const onClick = (e) => {
+      const a = e.target.closest('a[href^="#/"]')
+      if (!a) return
+      e.preventDefault()
+      navigate(a.getAttribute('href').slice(1))
+    }
+    document.addEventListener('click', onClick)
+    return () => document.removeEventListener('click', onClick)
+  }, [navigate])
+  return null
+}
+
 function Marketplace() {
   return (
     <main style={{ minHeight: '100vh', paddingTop: 92, background: '#f1f0e9' }}>
@@ -38,18 +53,15 @@ export default function App() {
   return (
     <BrowserRouter>
       <SpaRedirect />
-      <BabylonHeader />
+      <HashLinkFix />
       <Routes>
-        <Route path="/" element={<BabylonHome />} />
+        <Route path="/" element={<AgroNexusSuperHome />} />
         <Route path="/home" element={<BabylonHome />} />
         <Route path="/inicio" element={<BabylonHome />} />
 
-        <Route path="/tudo" element={<AgroNexusMegaHub />} />
-        <Route path="/hub" element={<AgroNexusMegaHub />} />
-        <Route path="/rural" element={<AgroNexusRuralMarket />} />
-
         <Route path="/marketplace" element={<Marketplace />} />
         <Route path="/catalogo" element={<Marketplace />} />
+        <Route path="/mercado-de-plantas" element={<AgroNexusPlantsMarket />} />
 
         <Route path="/especie/:speciesKey" element={<AgroNexusSpeciesPage />} />
         <Route path="/exotico/:id" element={<AgroNexusExoticDetail />} />
@@ -100,7 +112,6 @@ export default function App() {
           </main>
         } />
       </Routes>
-      <AgroNexusMarketSpotlight title="Em destaque agora" limit={12} />
       <BabylonFooter />
     </BrowserRouter>
   )
