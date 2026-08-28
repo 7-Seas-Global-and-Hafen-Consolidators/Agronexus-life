@@ -7,9 +7,9 @@ const pix = (v) => (Number(v) || 0) * 0.95
 const REPTILES = [
   { emoji: '🐍', nome: 'Califórnia King Snake Albina', cient: 'Lampropeltis getula', desc: 'Coloração rara, super dócil.', preco: 3800, img: 'https://acdn-us.mitiendanube.com/stores/004/777/787/products/img_4269-b25d2a4ae9283f2c8217857996620364-480-0.webp' },
   { emoji: '🐍', nome: 'Milk Snake Hondurensis', cient: 'Lampropeltis triangulum', desc: 'Coloração intensa, dócil.', preco: 5200, img: 'https://acdn-us.mitiendanube.com/stores/004/777/787/products/img_4275-e08882d1f3658f846b17858005877442-480-0.webp' },
-  { emoji: '🐍', nome: 'Milk Snake Snow', cient: 'Lampropeltis t. hondurensis', desc: 'Morf branco, muito procurado.', preco: 4600, img: '' },
-  { emoji: '🦎', nome: 'Iguana El Salvador', cient: 'Iguana iguana', desc: 'Mansa, nascida em cativeiro.', preco: 2500, img: '' },
-  { emoji: '🦎', nome: 'Teiú Brasileiro', cient: 'Salvator merianae', desc: 'Inteligente, dócil, nacional.', preco: 3000, img: '' },
+  { emoji: '🐍', nome: 'Milk Snake Snow', cient: 'Lampropeltis t. hondurensis', desc: 'Morf branco, muito procurado.', preco: 4600, img: 'https://www.thirdeyeherp.com/snowhome.jpg' },
+  { emoji: '🦎', nome: 'Iguana El Salvador', cient: 'Iguana iguana', desc: 'Mansa, nascida em cativeiro.', preco: 2500, img: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Iguana_iguana_-_green_iguana.jpg?width=960' },
+  { emoji: '🦎', nome: 'Teiú Brasileiro', cient: 'Salvator merianae', desc: 'Inteligente, dócil, nacional.', preco: 3000, img: 'https://commons.wikimedia.org/wiki/Special:Redirect/file/Teiu_Gigante_Em_Santa_Helena_de_Goi%C3%A1s.jpg?width=960' },
 ]
 
 const PRODUTOS = [
@@ -85,7 +85,7 @@ export default function AgroNexusExoticsMarket() {
       <div className="xx__wrap">
         <div className="xx__hero">
           <h1>Répteis & Exóticos</h1>
-          <p>Serpentes, iguanas e teiús de criadouros licenciados, com fotos limpas e procedência AgroNexus™. Se a foto não carregar, o card vira emoji sozinho.</p>
+          <p>Serpentes, iguanas e teiús de criadouros licenciados, com fotos e procedência AgroNexus™.</p>
         </div>
 
         <h2 className="xx__h2">🦎 Répteis & exóticos</h2>
